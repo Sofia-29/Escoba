@@ -3,7 +3,7 @@ import java.util.ArrayList;
 
 public class JugadorMaquina extends Jugador{
 
-    JugadorMaquina(String nombre){
+    public JugadorMaquina(String nombre){
         super(nombre);
     }
 

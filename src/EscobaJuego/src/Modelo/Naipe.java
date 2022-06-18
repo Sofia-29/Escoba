@@ -13,11 +13,11 @@ public class Naipe {
         this.palo = palo;
     };
 
-    public int obtenerPalo(){
+    public int obtenerValor(){
         return valor;
     }
 
-    public String obtenerValor(){
+    public String obtenerPalo(){
         return palo;
     }
 }
