@@ -7,6 +7,7 @@ public class JugadorMaquina extends Jugador{
         super(nombre);
     }
 
+    @Override
     public Naipe descartarCarta(ArrayList<Naipe> cartasEnMesa){
         return new Naipe();
     }

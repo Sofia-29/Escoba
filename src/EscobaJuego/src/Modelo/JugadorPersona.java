@@ -7,8 +7,8 @@ public class JugadorPersona extends Jugador{
         super(nombre);
     }
 
-    public Naipe descartarCarta(int valor, String palo){
+    @Override
+    public Naipe descartarCarta(ArrayList<Naipe> naipe){
         return new Naipe();
     }
-
 }

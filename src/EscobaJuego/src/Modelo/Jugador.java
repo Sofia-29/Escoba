@@ -14,12 +14,14 @@ public abstract class Jugador {
         this.puntaje = 0;
     }
 
-    public void descartarCarta()
-    {
-    }
+    public abstract Naipe descartarCarta(ArrayList<Naipe> naipe);
 
     public ArrayList<Naipe> obtenerCartas(){
         return new ArrayList<Naipe>();
+    };
+
+    public Naipe obtenerCarta(int valor, String palo){
+        return new Naipe();
     };
 
     public int obtenerPuntaje(){
