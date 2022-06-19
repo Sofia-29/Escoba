@@ -14,10 +14,10 @@ public class Naipe {
     };
 
     public int obtenerValor(){
-        return valor;
+        return this.valor;
     }
 
     public String obtenerPalo(){
-        return palo;
+        return this.palo;
     }
 }
