@@ -12,16 +12,24 @@ public abstract class Jugador {
     public Jugador(String nombre){
         this.nombre = nombre;
         this.puntaje = 0;
+        this.cartasCapturadas = new ArrayList<Naipe>();
     }
 
     public abstract Naipe descartarCarta(ArrayList<Naipe> naipe);
 
     public ArrayList<Naipe> obtenerCartas(){
-        return new ArrayList<Naipe>();
+        return cartas;
     };
 
     public Naipe obtenerCarta(int valor, String palo){
-        return new Naipe();
+        Naipe resultado = null;
+        for(Naipe naipe:cartas){
+            if(naipe.obtenerPalo().equals(palo) && naipe.obtenerValor() == valor){
+                resultado = naipe;
+                break;
+            }
+        }
+        return resultado; 
     };
 
     public int obtenerPuntaje(){
@@ -41,8 +49,11 @@ public abstract class Jugador {
     }
 
     public void capturarCartas(ArrayList<Naipe> cartasCapturadas){
-
+        for(Naipe naipe:cartasCapturadas){
+            this.cartasCapturadas.add(naipe);
+        }
     }
+
     public ArrayList<Naipe> obtenerCartasCapturadas(){
         return cartasCapturadas;
     }
