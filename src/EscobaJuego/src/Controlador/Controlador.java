@@ -12,7 +12,10 @@ import Modelo.JugadorPersona;
 public class Controlador {
     public static void main(String[] args) throws Exception {
 
-       Naipe naipe1 = new Naipe(1, "Oro");
+    }
+
+    public void PruebaJugadores(){
+        Naipe naipe1 = new Naipe(1, "Oros");
        Naipe naipe2 = new Naipe(2, "Copas");
        Naipe naipe3 = new Naipe(4, "Espadas");
 
@@ -36,5 +39,6 @@ public class Controlador {
        jugador.asignarCartas(cartas);
        Naipe auxiliar = jugador.descartarCarta(naipe);
         auxiliar = jugador.obtenerCarta(4, "Bastos");
+
     }
 }
