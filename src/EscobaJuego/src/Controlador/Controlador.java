@@ -7,6 +7,7 @@ import java.util.ArrayList;
 import Modelo.Jugador;
 import Modelo.JugadorMaquina;
 import Modelo.JugadorPersona;
+import Modelo.Mazo;
 
 
 public class Controlador {
