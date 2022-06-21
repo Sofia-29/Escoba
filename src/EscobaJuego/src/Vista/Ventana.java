@@ -11,9 +11,11 @@ import java.util.ArrayList;
 
 import javax.swing.Icon;
 import javax.swing.ImageIcon;
+import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
+import javax.swing.JOptionPane;
 
 
 public class Ventana extends JFrame {
@@ -88,5 +90,19 @@ public class Ventana extends JFrame {
         panel.setLayout(new FlowLayout(alineacion));
         panel.setBackground(new java.awt.Color(28, 84, 45));
         return panel; 
+    }
+
+    public String preguntarNombreJugadorPersona(){
+        String nombreJugador;
+        String mensaje = "Ingrese el nombre del jugador";
+        nombreJugador= JOptionPane.showInputDialog(mensaje,"");
+        return nombreJugador;
+    }
+
+    public String preguntarTurnoJugador(){
+        String opcionJugador;
+        String mensaje="Escoja su turno: Primero o Segundo";
+        opcionJugador= JOptionPane.showInputDialog(mensaje,"");
+        return opcionJugador;
     }
 }
