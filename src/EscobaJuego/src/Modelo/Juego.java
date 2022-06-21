@@ -28,7 +28,7 @@ public class Juego {
 
 
     public void iniciarPartida(String jugadorNombre, String jugadorOpcion){
-        if("primerJugador" == jugadorOpcion){
+        if(jugadorOpcion.equals("Primero")){
             primerJugador = new JugadorPersona(jugadorNombre);
             segundoJugador = new JugadorMaquina("JugadorMaquina");
         }else {
