@@ -63,7 +63,7 @@ public class Juego {
     }
 
     public Jugador pasarTurno(){
-        if(jugadorActual.obtenerNombre()==primerJugador.obtenerNombre()){
+        if(jugadorActual.obtenerNombre().equals(primerJugador.obtenerNombre())){
             jugadorActual = segundoJugador;
         } else {
             jugadorActual = primerJugador;
@@ -83,7 +83,7 @@ public class Juego {
     }
 
     private void retornarJugadorActual(String nombreJugador){
-        if(jugadorActual.obtenerNombre()==primerJugador.obtenerNombre()){
+        if(primerJugador.obtenerNombre().equals(nombreJugador)){
             jugadorActual = primerJugador;
         } else {
             jugadorActual = segundoJugador;
