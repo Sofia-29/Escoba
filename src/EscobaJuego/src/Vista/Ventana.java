@@ -99,7 +99,7 @@ public class Ventana<Dimension> extends JFrame {
         JLabel etiqueta = new JLabel();
         etiqueta.setText(text);
         etiqueta.setVisible(false);
-        etiqueta.setFont(new Font("Serif", Font.PLAIN, 24));
+        etiqueta.setFont(new Font("Arial", Font.PLAIN, 24));
         etiqueta.setOpaque(true);
         etiqueta.setBackground(new java.awt.Color(24, 61, 97));
         return etiqueta;
