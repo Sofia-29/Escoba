@@ -1,26 +1,39 @@
 package Vista;
 
 import java.util.ArrayList;
-
+import javax.swing.JButton;
+import javax.swing.JOptionPane;
 import Modelo.Naipe;
 import Modelo.Juego;
 
 public class Vista {
+    static String nombreJugador;
+    static String opcionJugador;
+
+    public static String preguntarNombreJugadorPersona(){
+        String mensaje = "Ingrese el nombre del jugador";
+        nombreJugador= JOptionPane.showInputDialog(mensaje,"");
+        return nombreJugador;
+    }
+
+    public static String preguntarTurnoJugador(){
+        String mensaje="Escoja su turno: Primero o Segundo";
+        opcionJugador= JOptionPane.showInputDialog(mensaje,"");
+        return opcionJugador;
+    }
+
+
     public static void main(String[] args){
         Ventana ventana = new Ventana(1920,1024, "Juego Escoba");
         ventana.hacerVisible();
-        String nombreJugador;
-        String opcionJugador;
+    
+        nombreJugador = preguntarNombreJugadorPersona();
+        opcionJugador = preguntarTurnoJugador();
 
-        nombreJugador = ventana.preguntarNombreJugadorPersona();
-        opcionJugador = ventana.preguntarTurnoJugador();
-
-        Juego juego = new Juego();
-        juego.iniciarPartida(nombreJugador, opcionJugador);
-   
-
-
-
+        ventana.inicializarEtiquetas();
+        ventana.actualizarTurnoJugador("Ny");
+        //Juego juego = new Juego();
+        //juego.iniciarPartida(nombreJugador, opcionJugador);
 
         Naipe naipe1 = new Naipe(1, "Oros");
         Naipe naipe2 = new Naipe(8, "Copas");
