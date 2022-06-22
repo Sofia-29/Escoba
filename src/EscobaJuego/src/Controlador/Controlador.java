@@ -18,6 +18,12 @@ public class Controlador {
         String jugadorNombre;
         String jugadorOpcion;
 
+        // Mazo m = new Mazo();
+        // m.imprimirMazo();
+        // System.out.println("---------reparte 3");
+        // m.repartirMazo(3);
+        // m.imprimirMazo();
+
         Ventana ventana = new Ventana(1920,1024, "Juego Escoba");
         ventana.hacerVisible();
 
