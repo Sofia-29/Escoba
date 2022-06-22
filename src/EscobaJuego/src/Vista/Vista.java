@@ -32,8 +32,8 @@ public class Vista {
         Ventana ventana = new Ventana(1920,1024, "Juego Escoba");
         ventana.hacerVisible();
     
-        nombreJugador = preguntarNombreJugadorPersona();
-        opcionJugador = preguntarTurnoJugador();
+        //nombreJugador = preguntarNombreJugadorPersona();
+        //opcionJugador = preguntarTurnoJugador();
 
         ventana.inicializarEtiquetas();
         ventana.actualizarTurnoJugador("Ny");
