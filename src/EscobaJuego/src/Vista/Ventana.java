@@ -28,6 +28,7 @@ public class Ventana extends JFrame {
     private ArrayList<JToggleButton> cartasJugador;
     private ButtonGroup cartasJugadorGrupo;
     private JPanel panelPrincipal;
+    private JPanel panelCartasJugador;
     private JButton descartar;
     private String palo; 
     private String valor;
@@ -39,26 +40,23 @@ public class Ventana extends JFrame {
         iniciarComponentes();
         setDefaultCloseOperation(EXIT_ON_CLOSE);
         add(panelPrincipal);
+        add(panelCartasJugador, BorderLayout.SOUTH);
     }
 
     public void hacerVisible(){
-        // for(int indice = 0; indice < cartasJugador.size(); indice++){
-        //     JLabel jlabel = cartasJugador.get(indice);
-        //     jlabel.setEnabled(true);
-        // }
         setVisible(true);
     }
 
-    public void asignarNaipe(String datosNaipe){
+    private void asignarNaipe(String datosNaipe){
         StringTokenizer tokenizador = new StringTokenizer(datosNaipe, "-");
         this.palo = tokenizador.nextToken();
         this.valor = tokenizador.nextToken();
     }
 
-    private String[] obtenerNaipe(){
+    public String[] obtenerNaipe(){
         String[] naipe = new String[2];
-        naipe[0] = this.palo;
-        naipe[1] = this.valor;
+        naipe[0] = this.valor;
+        naipe[1] = this.palo;
         return naipe;
      }
 
@@ -67,7 +65,7 @@ public class Ventana extends JFrame {
         cartasEnMesa = new ArrayList<JLabel>(4);
         cartasJugador = new ArrayList<JToggleButton>(3);  
         cartasJugadorGrupo = new ButtonGroup();
-        actualizarComponenteJButtonJugador(3);
+        panelCartasJugador = generarPanel(1);
         panelPrincipal = generarPanel(4);
         descartar = new JButton("Descartar");
         descartar.setSize(100,100);
@@ -75,41 +73,35 @@ public class Ventana extends JFrame {
         accionDescarta();
     }
 
-    private void actualizarComponenteJButtonJugador(int cantidadCartas){
-        if(cartasJugador.size() < cantidadCartas){
-            for(int indice = 0; indice < cantidadCartas; indice++){
-                JToggleButton jButton = new JToggleButton();
-                jButton.setBackground(new java.awt.Color(28, 84, 45));
-                jButton.setSize(144, 200);
-                jButton.setVisible(true);
-                cartasJugador.add(jButton);
-            }
-        }else{
-            for(int indice = cantidadCartas; indice < cartasJugador.size(); indice++){
-                cartasJugador.get(indice).setVisible(false);
-            }
-        }
-    }
-
-    public void actualizarComponentesCartasJugador(ArrayList<Naipe> cartas){
-        actualizarComponenteJButtonJugador(cartas.size());
-        JPanel panelCartasJugador = generarPanel(1);
-        for(int indice = 0; indice < cartas.size(); indice++){
+    public void actualizarComponentesCartasJugador(ArrayList<Naipe> cartas, int indiceCartas){
+        if(indiceCartas != -1){
+            JToggleButton boton = cartasJugador.get(indiceCartas);
+            boton.setVisible(false);
+            cartasJugadorGrupo.remove(boton);
+            cartasJugador.remove(indiceCartas);
+        } else{
+            int cantidadCartas = cartasJugador.size();
+            for(int indice = cantidadCartas; indice < cartas.size(); indice++){
                 String palo = cartas.get(indice).obtenerPalo();
                 Integer valor = cartas.get(indice).obtenerValor();
                 String ruta = "Imagenes\\" + palo + "\\" + valor.toString() + "-" + palo + ".jpg";
-                JToggleButton boton = cartasJugador.get(indice);
+                JToggleButton boton = new JToggleButton();
+                boton.setName(valor+"-"+palo);
+                boton.setBorder(new EmptyBorder(10,10,10,10));
+                boton.setSize(144,200);
+                boton.setVisible(true);
                 ImageIcon imagen = new ImageIcon(this.getClass().getResource(ruta));
                 Icon icon = new ImageIcon(imagen.getImage().getScaledInstance(boton.getWidth(), boton.getHeight(), Image.SCALE_DEFAULT));
-                boton.setName(valor+"-"+palo);
                 boton.setIcon(icon);
-                boton.setBorder(new EmptyBorder(10,10,10,10));
                 cartasJugadorGrupo.add(boton);
+                cartasJugador.add(boton);
                 accionSeleccionarCarta(boton);
                 panelCartasJugador.add(boton, BorderLayout.CENTER);
+            }
+            if(cantidadCartas == 0){
+                panelCartasJugador.add(descartar);
+            }
         }
-        panelCartasJugador.add(descartar);
-        add(panelCartasJugador, BorderLayout.SOUTH);
     }
 
     private JPanel generarPanel(int alineacion){
@@ -137,8 +129,10 @@ public class Ventana extends JFrame {
                 @Override
                 public void actionPerformed(ActionEvent event){
                     ButtonModel modeloBoton = cartasJugadorGrupo.getSelection();
-                    JToggleButton boton = obtenerBoton(modeloBoton);
+                    int indice = obtenerBoton(modeloBoton);
+                    JToggleButton boton = cartasJugador.get(indice);
                     asignarNaipe(boton.getName());
+                    actualizarComponentesCartasJugador(null, indice);
                     cartasJugadorGrupo.clearSelection();
                     descartar.setEnabled(false);
                 }
@@ -146,18 +140,16 @@ public class Ventana extends JFrame {
         descartar.addActionListener(accion);
     }
 
-    private JToggleButton obtenerBoton(ButtonModel modeloBoton){
+    private int obtenerBoton(ButtonModel modeloBoton){
         JToggleButton boton = null;
         int indice = 0;
         while(true){
             boton = cartasJugador.get(indice);
-            if(boton.isEnabled()){
-                if(modeloBoton.equals(boton.getModel())){
-                    break;
-                }
+            if(modeloBoton.equals(boton.getModel())){
+                break;
             }
             indice++;
         }
-        return boton;
+        return indice;
     }
 }
