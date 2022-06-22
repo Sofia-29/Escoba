@@ -18,10 +18,15 @@ public class Vista {
 
     public static String preguntarTurnoJugador(){
         String mensaje="Escoja su turno: Primero o Segundo";
-        opcionJugador= JOptionPane.showInputDialog(mensaje,"");
+        String opcionJugador = JOptionPane.showInputDialog(mensaje,"");
+        if(!(opcionJugador.equals("Primero"))){
+            if(!(opcionJugador.equals("Segundo"))){
+                String mensajeError = "Escoja su turno nuevamente: Primero o Segundo";
+                opcionJugador = JOptionPane.showInputDialog(null, mensajeError, "Error!", JOptionPane.ERROR_MESSAGE);
+            }
+        } 
         return opcionJugador;
     }
-
 
     public static void main(String[] args){
         Ventana ventana = new Ventana(1920,1024, "Juego Escoba");

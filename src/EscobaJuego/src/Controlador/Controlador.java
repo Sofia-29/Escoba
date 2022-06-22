@@ -24,6 +24,7 @@ public class Controlador {
         //Vista: se obtiene el nombre del jugador y su turno
         jugadorNombre = Vista.preguntarNombreJugadorPersona();
         jugadorOpcion = Vista.preguntarTurnoJugador();
+
         juego.iniciarPartida(jugadorNombre, jugadorOpcion);
         jugadorAuxiliar = juego.obtenerPrimerJugador();
         ventana.inicializarEtiquetas();
