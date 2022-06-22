@@ -11,6 +11,7 @@ public class Juego {
     private Jugador jugadorActual;
     private Validador validar;
     private ArrayList<Naipe> cartasEnMesa;
+    public Jugador obtenerPrimerJugador;
 
     public Juego(){}
 
@@ -18,7 +19,7 @@ public class Juego {
         this.primerJugador=jugadorUno;
     }
 
-    private Jugador obtenerPrimerJugador(){
+    public Jugador obtenerPrimerJugador(){
         return primerJugador;
     }
 
@@ -28,16 +29,18 @@ public class Juego {
 
 
     public void iniciarPartida(String jugadorNombre, String jugadorOpcion){
-        if("primerJugador" == jugadorOpcion){
+        if(jugadorOpcion.equals("Primero")){
             primerJugador = new JugadorPersona(jugadorNombre);
-            segundoJugador = new JugadorMaquina("JugadorMaquina");
-        }else {
-            primerJugador =  new JugadorMaquina("JugadorMaquina");
+            segundoJugador = new JugadorMaquina("Jugador Maquina");
+            asignarPrimerJugador(primerJugador);
+        }else if(jugadorOpcion.equals("Segundo")){
+            primerJugador =  new JugadorMaquina("Jugador Maquina");
             segundoJugador = new JugadorPersona(jugadorNombre);
+            asignarPrimerJugador(primerJugador);
         }
         jugadorActual = primerJugador;
         mazo = new Mazo();
-        mazo.barajar();
+        //mazo.barajar();
         cartasEnMesa = mazo.repartirMazo(4);
         primerJugador.asignarCartas(mazo.repartirMazo(3));
         segundoJugador.asignarCartas(mazo.repartirMazo(3));
@@ -63,7 +66,7 @@ public class Juego {
     }
 
     public Jugador pasarTurno(){
-        if(jugadorActual.obtenerNombre()==primerJugador.obtenerNombre()){
+        if(jugadorActual.obtenerNombre().equals(primerJugador.obtenerNombre())){
             jugadorActual = segundoJugador;
         } else {
             jugadorActual = primerJugador;
@@ -83,11 +86,33 @@ public class Juego {
     }
 
     private void retornarJugadorActual(String nombreJugador){
-        if(jugadorActual.obtenerNombre()==primerJugador.obtenerNombre()){
+        if(primerJugador.obtenerNombre().equals(nombreJugador)){
             jugadorActual = primerJugador;
         } else {
             jugadorActual = segundoJugador;
         }
+    }
+
+    public Boolean repartirCartas(){
+        if(primerJugador.obtenerNumeroCartasEnJuego()==0 && segundoJugador.obtenerNumeroCartasEnJuego()==0){
+            return true;
+        }
+        else 
+        {
+            return false;
+        }
+    }
+
+    public void repartirCartasJugadores(){
+        primerJugador.asignarCartas(mazo.repartirMazo(3));
+        segundoJugador.asignarCartas(mazo.repartirMazo(3));
+    }
+
+    public Boolean validarTerminarPartida(){
+        if(mazo.obtenerCantidadDeNaipes()==0){
+            return true;
+        }
+        return false;
     }
 
     public void terminarPartida(){
@@ -105,6 +130,7 @@ public class Juego {
             }else if(puntajeSegundoJugador>puntajePrimerJugador){
                 return segundoJugador;
             }
+            //empate??
             /* else {
                 partidaEnCurso();
             }

@@ -5,8 +5,11 @@ import java.util.StringTokenizer;
 
 import java.awt.event.ActionEvent;
 import java.awt.FlowLayout;
+import java.awt.Font;
+import java.awt.Color;
 import java.awt.Image;
 import java.awt.event.ActionListener;
+import java.text.Normalizer.Form;
 import java.awt.BorderLayout;
 
 import java.util.ArrayList;
@@ -23,7 +26,7 @@ import javax.swing.JToggleButton;
 import javax.swing.border.EmptyBorder;
 
 
-public class Ventana extends JFrame {
+public class Ventana<Dimension> extends JFrame {
     private ArrayList<JLabel> cartasEnMesa;
     private ArrayList<JToggleButton> cartasJugador;
     private ButtonGroup cartasJugadorGrupo;
@@ -32,6 +35,7 @@ public class Ventana extends JFrame {
     private JButton descartar;
     private String palo; 
     private String valor;
+    private JLabel etiquetaTurnoJugador;
 
     public Ventana(int ancho, int altura, String titulo){
         setSize(ancho, altura);
@@ -152,4 +156,30 @@ public class Ventana extends JFrame {
         }
         return indice;
     }
+   
+    //
+    public JLabel construirEtiqueta(String text) {
+        JLabel etiqueta = new JLabel();
+        etiqueta.setText(text);
+        etiqueta.setVisible(false);
+        etiqueta.setFont(new Font("Arial", Font.PLAIN, 24));
+        etiqueta.setOpaque(true);
+        etiqueta.setBackground(new java.awt.Color(24, 61, 97));
+        return etiqueta;
+    }
+
+    public void inicializarEtiquetas(){
+        JPanel panelEtiquetas = generarPanel(2);
+        etiquetaTurnoJugador = construirEtiqueta("Turno");
+        etiquetaTurnoJugador.setForeground(Color.white);
+        panelEtiquetas.add(etiquetaTurnoJugador);
+        add(panelEtiquetas,BorderLayout.WEST);
+        etiquetaTurnoJugador.setVisible(false);
+    }
+
+    public void actualizarTurnoJugador(String nombreJugadorActual) {
+        etiquetaTurnoJugador.setText("Turno de " +nombreJugadorActual+ " ");
+        etiquetaTurnoJugador.setVisible(true);
+    }
+
 }
