@@ -4,24 +4,26 @@ import Modelo.Naipe;
 
 import java.awt.Color;
 import java.awt.FlowLayout;
+import java.awt.Font;
 import java.awt.Image;
+import java.text.Normalizer.Form;
 import java.awt.BorderLayout;
 
 import java.util.ArrayList;
 
 import javax.swing.Icon;
 import javax.swing.ImageIcon;
-import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
-import javax.swing.JOptionPane;
 
 
-public class Ventana extends JFrame {
+public class Ventana<Dimension> extends JFrame {
     private ArrayList<JLabel> cartasEnMesa;
     private ArrayList<JLabel> cartasJugador;
     private JPanel panelPrincipal;
+    private JLabel etiquetaTurnoJugador;
+    private JLabel etiquetaJugadorActual;
 
     public Ventana(int ancho, int altura, String titulo){
         setSize(ancho, altura);
@@ -30,6 +32,7 @@ public class Ventana extends JFrame {
         iniciarComponentes();
         setDefaultCloseOperation(EXIT_ON_CLOSE);
         add(panelPrincipal);
+
     }
 
     public void hacerVisible(){
@@ -91,18 +94,34 @@ public class Ventana extends JFrame {
         panel.setBackground(new java.awt.Color(28, 84, 45));
         return panel; 
     }
-
-    public String preguntarNombreJugadorPersona(){
-        String nombreJugador;
-        String mensaje = "Ingrese el nombre del jugador";
-        nombreJugador= JOptionPane.showInputDialog(mensaje,"");
-        return nombreJugador;
+   
+    //
+    public JLabel construirEtiqueta(String text) {
+        JLabel etiqueta = new JLabel();
+        etiqueta.setText(text);
+        etiqueta.setVisible(false);
+        //Font labelFont = etiqueta.getFont();
+        etiqueta.setFont(new Font("Serif", Font.PLAIN, 24));
+        return etiqueta;
     }
 
-    public String preguntarTurnoJugador(){
-        String opcionJugador;
-        String mensaje="Escoja su turno: Primero o Segundo";
-        opcionJugador= JOptionPane.showInputDialog(mensaje,"");
-        return opcionJugador;
+    public void inicializarEtiquetas(){
+        JPanel panelEtiquetas = generarPanel(2);
+        etiquetaTurnoJugador = construirEtiqueta("Turno");
+        etiquetaTurnoJugador.setForeground(Color.white);
+        etiquetaJugadorActual = construirEtiqueta("Jugador");
+        etiquetaJugadorActual.setForeground(Color.white);
+        panelEtiquetas.add(etiquetaTurnoJugador);
+        panelEtiquetas.add(etiquetaJugadorActual);
+        add(panelEtiquetas,BorderLayout.WEST);
+        etiquetaTurnoJugador.setVisible(false);
+        etiquetaJugadorActual.setVisible(false);
     }
+
+    public void actualizarTurnoJugador(String nombreJugadorActual) {
+        etiquetaJugadorActual.setText(nombreJugadorActual+ " ");
+        etiquetaJugadorActual.setVisible(true);
+        etiquetaTurnoJugador.setVisible(true);
+    }
+
 }

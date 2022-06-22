@@ -11,6 +11,7 @@ public class Juego {
     private Jugador jugadorActual;
     private Validador validar;
     private ArrayList<Naipe> cartasEnMesa;
+    public Jugador obtenerPrimerJugador;
 
     public Juego(){}
 
@@ -18,7 +19,7 @@ public class Juego {
         this.primerJugador=jugadorUno;
     }
 
-    private Jugador obtenerPrimerJugador(){
+    public Jugador obtenerPrimerJugador(){
         return primerJugador;
     }
 
@@ -30,14 +31,16 @@ public class Juego {
     public void iniciarPartida(String jugadorNombre, String jugadorOpcion){
         if(jugadorOpcion.equals("Primero")){
             primerJugador = new JugadorPersona(jugadorNombre);
-            segundoJugador = new JugadorMaquina("JugadorMaquina");
+            segundoJugador = new JugadorMaquina("Jugador Maquina");
+            asignarPrimerJugador(primerJugador);
         }else {
-            primerJugador =  new JugadorMaquina("JugadorMaquina");
+            primerJugador =  new JugadorMaquina("Jugador Maquina");
             segundoJugador = new JugadorPersona(jugadorNombre);
+            asignarPrimerJugador(primerJugador);
         }
         jugadorActual = primerJugador;
         mazo = new Mazo();
-        mazo.barajar();
+        //mazo.barajar();
         cartasEnMesa = mazo.repartirMazo(4);
         primerJugador.asignarCartas(mazo.repartirMazo(3));
         segundoJugador.asignarCartas(mazo.repartirMazo(3));
@@ -90,6 +93,28 @@ public class Juego {
         }
     }
 
+    public Boolean repartirCartas(){
+        if(primerJugador.obtenerNumeroCartasEnJuego()==0 && segundoJugador.obtenerNumeroCartasEnJuego()==0){
+            return true;
+        }
+        else 
+        {
+            return false;
+        }
+    }
+
+    public void repartirCartasJugadores(){
+        primerJugador.asignarCartas(mazo.repartirMazo(3));
+        segundoJugador.asignarCartas(mazo.repartirMazo(3));
+    }
+
+    public Boolean validarTerminarPartida(){
+        if(mazo.obtenerCantidadDeNaipes()==0){
+            return true;
+        }
+        return false;
+    }
+
     public void terminarPartida(){
         if(mazo.obtenerCantidadDeNaipes()==0){
             declararGanador();
@@ -105,6 +130,7 @@ public class Juego {
             }else if(puntajeSegundoJugador>puntajePrimerJugador){
                 return segundoJugador;
             }
+            //empate??
             /* else {
                 partidaEnCurso();
             }
