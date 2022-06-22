@@ -14,6 +14,8 @@ public class Vista {
 
     public Vista(){
         ventana = new Ventana(1000, 1000, "Juego Escoba");
+        ventana.hacerVisible();
+        ventana.inicializarEtiquetas();
     }
 
     public static String preguntarNombreJugadorPersona(){
@@ -32,6 +34,10 @@ public class Vista {
             }
         } 
         return opcionJugador;
+    }
+
+    public void actualizarTurnoJugador(String nombreJugador){
+        ventana.actualizarTurnoJugador(nombreJugador);
     }
 
     public void iniciarPartida(ArrayList<Naipe> cartasJugador){
