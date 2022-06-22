@@ -18,5 +18,6 @@ public class Vista {
         cartas.add(naipe3);
         ventana.actualizarComponentesCartasJugador(cartas);
         ventana.hacerVisible();
+
     }
 }

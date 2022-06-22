@@ -1,10 +1,9 @@
 package Vista;
 
 import Modelo.Naipe;
+import java.util.StringTokenizer;
 
 import java.awt.event.ActionEvent;
-import java.awt.Color;
-import java.awt.Dimension;
 import java.awt.FlowLayout;
 import java.awt.Image;
 import java.awt.event.ActionListener;
@@ -13,18 +12,15 @@ import java.awt.BorderLayout;
 import java.util.ArrayList;
 
 import javax.swing.ButtonGroup;
+import javax.swing.ButtonModel;
 import javax.swing.Icon;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
-import javax.swing.JRadioButton;
 import javax.swing.JToggleButton;
-import javax.swing.border.BevelBorder;
-import javax.swing.border.Border;
 import javax.swing.border.EmptyBorder;
-import javax.swing.plaf.basic.BasicOptionPaneUI.ButtonActionListener;
 
 
 public class Ventana extends JFrame {
@@ -33,6 +29,8 @@ public class Ventana extends JFrame {
     private ButtonGroup cartasJugadorGrupo;
     private JPanel panelPrincipal;
     private JButton descartar;
+    private String palo; 
+    private String valor;
 
     public Ventana(int ancho, int altura, String titulo){
         setSize(ancho, altura);
@@ -51,6 +49,19 @@ public class Ventana extends JFrame {
         setVisible(true);
     }
 
+    public void asignarNaipe(String datosNaipe){
+        StringTokenizer tokenizador = new StringTokenizer(datosNaipe, "-");
+        this.palo = tokenizador.nextToken();
+        this.valor = tokenizador.nextToken();
+    }
+
+    private String[] obtenerNaipe(){
+        String[] naipe = new String[2];
+        naipe[0] = this.palo;
+        naipe[1] = this.valor;
+        return naipe;
+     }
+
     private void iniciarComponentes(){
 
         cartasEnMesa = new ArrayList<JLabel>(4);
@@ -61,6 +72,7 @@ public class Ventana extends JFrame {
         descartar = new JButton("Descartar");
         descartar.setSize(100,100);
         descartar.setEnabled(false);
+        accionDescarta();
     }
 
     private void actualizarComponenteJButtonJugador(int cantidadCartas){
@@ -89,10 +101,11 @@ public class Ventana extends JFrame {
                 JToggleButton boton = cartasJugador.get(indice);
                 ImageIcon imagen = new ImageIcon(this.getClass().getResource(ruta));
                 Icon icon = new ImageIcon(imagen.getImage().getScaledInstance(boton.getWidth(), boton.getHeight(), Image.SCALE_DEFAULT));
+                boton.setName(valor+"-"+palo);
                 boton.setIcon(icon);
                 boton.setBorder(new EmptyBorder(10,10,10,10));
                 cartasJugadorGrupo.add(boton);
-                accionDescartar(boton);
+                accionSeleccionarCarta(boton);
                 panelCartasJugador.add(boton, BorderLayout.CENTER);
         }
         panelCartasJugador.add(descartar);
@@ -106,18 +119,45 @@ public class Ventana extends JFrame {
         return panel; 
     }
 
-    private void accionDescartar(JToggleButton boton){
+    private void accionSeleccionarCarta(JToggleButton boton){
         ActionListener accion = new ActionListener(){
                 @Override
                 public void actionPerformed(ActionEvent event){
                     if(boton.isSelected()){
                         cartasJugadorGrupo.setSelected(boton.getModel(), true);
                         descartar.setEnabled(true);
-                    } else {
-                        cartasJugadorGrupo.setSelected(boton.getModel(), false);
                     }
                 }
         };
         boton.addActionListener(accion);
+    }
+
+    private void accionDescarta(){
+        ActionListener accion = new ActionListener(){
+                @Override
+                public void actionPerformed(ActionEvent event){
+                    ButtonModel modeloBoton = cartasJugadorGrupo.getSelection();
+                    JToggleButton boton = obtenerBoton(modeloBoton);
+                    asignarNaipe(boton.getName());
+                    cartasJugadorGrupo.clearSelection();
+                    descartar.setEnabled(false);
+                }
+        };
+        descartar.addActionListener(accion);
+    }
+
+    private JToggleButton obtenerBoton(ButtonModel modeloBoton){
+        JToggleButton boton = null;
+        int indice = 0;
+        while(true){
+            boton = cartasJugador.get(indice);
+            if(boton.isEnabled()){
+                if(modeloBoton.equals(boton.getModel())){
+                    break;
+                }
+            }
+            indice++;
+        }
+        return boton;
     }
 }
