@@ -23,7 +23,6 @@ public class Ventana<Dimension> extends JFrame {
     private ArrayList<JLabel> cartasJugador;
     private JPanel panelPrincipal;
     private JLabel etiquetaTurnoJugador;
-    private JLabel etiquetaJugadorActual;
 
     public Ventana(int ancho, int altura, String titulo){
         setSize(ancho, altura);
@@ -100,8 +99,9 @@ public class Ventana<Dimension> extends JFrame {
         JLabel etiqueta = new JLabel();
         etiqueta.setText(text);
         etiqueta.setVisible(false);
-        //Font labelFont = etiqueta.getFont();
         etiqueta.setFont(new Font("Serif", Font.PLAIN, 24));
+        etiqueta.setOpaque(true);
+        etiqueta.setBackground(new java.awt.Color(24, 61, 97));
         return etiqueta;
     }
 
@@ -109,18 +109,13 @@ public class Ventana<Dimension> extends JFrame {
         JPanel panelEtiquetas = generarPanel(2);
         etiquetaTurnoJugador = construirEtiqueta("Turno");
         etiquetaTurnoJugador.setForeground(Color.white);
-        etiquetaJugadorActual = construirEtiqueta("Jugador");
-        etiquetaJugadorActual.setForeground(Color.white);
         panelEtiquetas.add(etiquetaTurnoJugador);
-        panelEtiquetas.add(etiquetaJugadorActual);
         add(panelEtiquetas,BorderLayout.WEST);
         etiquetaTurnoJugador.setVisible(false);
-        etiquetaJugadorActual.setVisible(false);
     }
 
     public void actualizarTurnoJugador(String nombreJugadorActual) {
-        etiquetaJugadorActual.setText(nombreJugadorActual+ " ");
-        etiquetaJugadorActual.setVisible(true);
+        etiquetaTurnoJugador.setText("Turno de " +nombreJugadorActual+ " ");
         etiquetaTurnoJugador.setVisible(true);
     }
 

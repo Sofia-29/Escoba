@@ -33,7 +33,7 @@ public class Juego {
             primerJugador = new JugadorPersona(jugadorNombre);
             segundoJugador = new JugadorMaquina("Jugador Maquina");
             asignarPrimerJugador(primerJugador);
-        }else {
+        }else if(jugadorOpcion.equals("Segundo")){
             primerJugador =  new JugadorMaquina("Jugador Maquina");
             segundoJugador = new JugadorPersona(jugadorNombre);
             asignarPrimerJugador(primerJugador);
