@@ -42,6 +42,10 @@ public class Mazo {
                 break;
             }
         }
+
+        for (Naipe naipe : cartas) {
+            mazo.remove(naipe);
+        }
         return cartas;
     }
 

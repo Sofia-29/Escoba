@@ -27,11 +27,13 @@ import javax.swing.border.EmptyBorder;
 
 
 public class Ventana<Dimension> extends JFrame {
-    private ArrayList<JLabel> cartasEnMesa;
     private ArrayList<JToggleButton> cartasJugador;
+    private ArrayList<JLabel> cartasMesa;
     private ButtonGroup cartasJugadorGrupo;
+    private ButtonGroup cartasMesaGrupo;
     private JPanel panelPrincipal;
     private JPanel panelCartasJugador;
+    private JPanel panelCartasMesa;
     private JButton descartar;
     private String palo; 
     private String valor;
@@ -45,6 +47,8 @@ public class Ventana<Dimension> extends JFrame {
         setDefaultCloseOperation(EXIT_ON_CLOSE);
         add(panelPrincipal);
         add(panelCartasJugador, BorderLayout.SOUTH);
+        add(panelCartasMesa, BorderLayout.CENTER);
+
         this.palo = "-1";
         this.valor = "-1";
     }
@@ -68,10 +72,13 @@ public class Ventana<Dimension> extends JFrame {
 
     private void iniciarComponentes(){
 
-        cartasEnMesa = new ArrayList<JLabel>(4);
+        panelCartasMesa = generarPanel(1);
+        cartasMesa = new ArrayList<JLabel>(4);  
         cartasJugador = new ArrayList<JToggleButton>(3);  
+        cartasMesaGrupo = new ButtonGroup();
         cartasJugadorGrupo = new ButtonGroup();
         panelCartasJugador = generarPanel(1);
+        panelCartasMesa = generarPanel(1);
         panelPrincipal = generarPanel(4);
         descartar = new JButton("Descartar");
         descartar.setSize(100,100);
@@ -114,6 +121,36 @@ public class Ventana<Dimension> extends JFrame {
         for(int indice = 0; indice < cartasJugador.size(); indice++){
             JToggleButton boton = cartasJugador.get(indice);
             boton.setEnabled(opcion);
+        }
+    }
+
+    public void actualizarComponentesCartasMesa(ArrayList<Naipe> cartas){
+        int indiceCartasMesa = cartasMesa.size() - 1;
+        while(indiceCartasMesa >= 0){
+            JLabel boton = cartasMesa.get(indiceCartasMesa);
+            boton.setVisible(false);
+            cartasMesa.remove(indiceCartasMesa);
+            indiceCartasMesa--;
+        }
+
+        for(int indice = 0; indice < cartas.size(); indice++){
+            String palo = cartas.get(indice).obtenerPalo();
+            Integer valor = cartas.get(indice).obtenerValor();
+            String ruta = "Imagenes\\" + palo + "\\" + valor.toString() + "-" + palo + ".jpg";
+            JLabel etiqueta = new JLabel();
+            etiqueta.setName(valor+"-"+palo);
+            etiqueta.setBorder(new EmptyBorder(300,10,10,10));
+            etiqueta.setSize(144,200);
+            ImageIcon imagen = new ImageIcon(this.getClass().getResource(ruta));
+            Icon icono = new ImageIcon(imagen.getImage().getScaledInstance(etiqueta.getWidth(), etiqueta.getHeight(),
+             Image.SCALE_DEFAULT));
+            etiqueta.setIcon(icono);
+            etiqueta.setEnabled(true);
+            cartasMesa.add(etiqueta);
+            etiqueta.setVisible(true);
+            panelCartasMesa.add(etiqueta, BorderLayout.CENTER);
+            panelCartasMesa.revalidate();
+            panelCartasMesa.repaint();
         }
     }
 
