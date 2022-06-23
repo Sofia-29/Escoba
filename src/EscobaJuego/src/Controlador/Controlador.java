@@ -32,6 +32,7 @@ public class Controlador {
 
         while(!juego.validarTerminarPartida()){
             vista.actualizarTurnoJugador(jugadorAuxiliar.obtenerNombre());
+            TimeUnit.SECONDS.sleep(2);
             if(juego.repartirCartas()){
                 juego.repartirCartasJugadores();
                 cartasJugador = juego.obtenerJugadorPersona(jugadorNombre).obtenerCartas();
@@ -47,13 +48,14 @@ public class Controlador {
                 jugadorAuxiliar.descartarCarta(naipe);
             }else{
                 naipeAuxiliar = jugadorAuxiliar.descartarCarta(juego.retornarCartasEnMesa());
-                TimeUnit.SECONDS.sleep(2);
+                TimeUnit.SECONDS.sleep(3);
             }
                 //????? To Do montoncito para obtener las caartas en una esquina del panel
-                //ArrayList<Naipe> naipesCapturados = juego.movimientoJugadorCapturarCarta(naipeAuxiliar.obtenerValor(), naipeAuxiliar.obtenerPalo(), jugadorAuxiliar.obtenerNombre());
+            juego.movimientoJugadorCapturarCarta(naipeAuxiliar.obtenerValor(), naipeAuxiliar.obtenerPalo(), jugadorAuxiliar.obtenerNombre());
             vista.actualizarCartasEnMesa(juego.retornarCartasEnMesa());
 
             jugadorAuxiliar = juego.pasarTurno();
+
         }
         juego.terminarPartida();
         jugadorAuxiliar = juego.obtenerJugadorActual();
