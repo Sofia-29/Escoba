@@ -7,8 +7,16 @@ import Modelo.Naipe;
 import Modelo.Juego;
 
 public class Vista {
-    static String nombreJugador;
-    static String opcionJugador;
+
+    private Ventana ventana;
+    private static String nombreJugador;
+    private static String opcionJugador;
+
+    public Vista(){
+        ventana = new Ventana(1000, 1000, "Juego Escoba");
+        ventana.hacerVisible();
+        ventana.inicializarEtiquetas();
+    }
 
     public static String preguntarNombreJugadorPersona(){
         String mensaje = "Ingrese el nombre del jugador";
@@ -28,35 +36,35 @@ public class Vista {
         return opcionJugador;
     }
 
-    public static void main(String[] args){
-        Ventana ventana = new Ventana(1920,1024, "Juego Escoba");
+    public static int preguntarTurno(){
+        String mensaje="¿Desea ser el primer jugador?";
+        int respuesta = JOptionPane.showConfirmDialog(null, mensaje);
+        return respuesta;
+    }
+
+    public void actualizarCartasEnMesa(ArrayList<Naipe> cartasEnMesa){
+        //Llamar al metodo en ventana que actualiza las cartas que estan sobre la mesa. 
+    }
+
+    public void actualizarTurnoJugador(String nombreJugador){
+        ventana.actualizarTurnoJugador(nombreJugador);
+    }
+
+    public void iniciarPartida(ArrayList<Naipe> cartasJugador){
+        ventana.actualizarComponentesCartasJugador(cartasJugador, -1);
         ventana.hacerVisible();
-    
-        //nombreJugador = preguntarNombreJugadorPersona();
-        //opcionJugador = preguntarTurnoJugador();
+    }
 
-        ventana.inicializarEtiquetas();
-        ventana.actualizarTurnoJugador("Ny");
-        //Juego juego = new Juego();
-        //juego.iniciarPartida(nombreJugador, opcionJugador);
+    public void actualizarCartasJugador(ArrayList<Naipe> cartasJugador){
+        ventana.actualizarComponentesCartasJugador(cartasJugador, -1);
+    }
 
-        Naipe naipe1 = new Naipe(1, "Oros");
-        Naipe naipe2 = new Naipe(8, "Copas");
-        Naipe naipe3 = new Naipe(3, "Espadas");
-        ArrayList<Naipe> cartas = new ArrayList<Naipe>();
-
-        cartas.add(naipe1);
-        cartas.add(naipe2);
-        cartas.add(naipe3);
-        ventana.actualizarComponentesCartasJugador(cartas);
-
-        ArrayList<Naipe> cartasMesa = new ArrayList<Naipe>();
-
-        cartasMesa.add(naipe1);
-        cartasMesa.add(naipe2);
-        cartasMesa.add(naipe3);
-        ventana.actualizarComponentesCartasMesa(cartasMesa);
-
-        ventana.hacerVisible();
+    public Naipe retornarNaipeSeleccionada(){
+        String[] valorNaipe = ventana.obtenerNaipe();
+        Naipe naipeAuxiliar = null;
+        if(valorNaipe[0] != "-1"){
+            naipeAuxiliar = new Naipe(Integer.parseInt(valorNaipe[1]), valorNaipe[0]);
+        }
+        return naipeAuxiliar;
     }
 }

@@ -1,27 +1,40 @@
 package Vista;
 
 import Modelo.Naipe;
+import java.util.StringTokenizer;
 
-import java.awt.Color;
+import java.awt.event.ActionEvent;
 import java.awt.FlowLayout;
 import java.awt.Font;
+import java.awt.Color;
 import java.awt.Image;
+import java.awt.event.ActionListener;
 import java.text.Normalizer.Form;
 import java.awt.BorderLayout;
 
 import java.util.ArrayList;
 
+import javax.swing.ButtonGroup;
+import javax.swing.ButtonModel;
 import javax.swing.Icon;
 import javax.swing.ImageIcon;
+import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
+import javax.swing.JToggleButton;
+import javax.swing.border.EmptyBorder;
 
 
 public class Ventana<Dimension> extends JFrame {
     private ArrayList<JLabel> cartasEnMesa;
-    private ArrayList<JLabel> cartasJugador;
+    private ArrayList<JToggleButton> cartasJugador;
+    private ButtonGroup cartasJugadorGrupo;
     private JPanel panelPrincipal;
+    private JPanel panelCartasJugador;
+    private JButton descartar;
+    private String palo; 
+    private String valor;
     private JLabel etiquetaTurnoJugador;
 
     public Ventana(int ancho, int altura, String titulo){
@@ -31,83 +44,142 @@ public class Ventana<Dimension> extends JFrame {
         iniciarComponentes();
         setDefaultCloseOperation(EXIT_ON_CLOSE);
         add(panelPrincipal);
-
+        add(panelCartasJugador, BorderLayout.SOUTH);
+        this.palo = "-1";
+        this.valor = "-1";
     }
 
     public void hacerVisible(){
-        // for(int indice = 0; indice < cartasJugador.size(); indice++){
-        //     JLabel jlabel = cartasJugador.get(indice);
-        //     jlabel.setEnabled(true);
-        // }
         setVisible(true);
     }
 
+    private void asignarNaipe(String datosNaipe){
+        StringTokenizer tokenizador = new StringTokenizer(datosNaipe, "-");
+        this.palo = tokenizador.nextToken();
+        this.valor = tokenizador.nextToken();
+    }
+
+    public String[] obtenerNaipe(){
+        String[] naipe = new String[2];
+        naipe[0] = this.valor;
+        naipe[1] = this.palo;
+        return naipe;
+     }
+
     private void iniciarComponentes(){
+
         cartasEnMesa = new ArrayList<JLabel>(4);
-        cartasJugador = new ArrayList<JLabel>(3);  
-        actualizarComponenteJLabel(4, "CartasEnMesa");
-        actualizarComponenteJLabel(3, "Jugador");
+        cartasJugador = new ArrayList<JToggleButton>(3);  
+        cartasJugadorGrupo = new ButtonGroup();
+        panelCartasJugador = generarPanel(1);
         panelPrincipal = generarPanel(4);
+        descartar = new JButton("Descartar");
+        descartar.setSize(100,100);
+        descartar.setEnabled(false);
+        accionDescarta();
     }
 
-    private void actualizarComponenteJLabel(int cantidadCartas, String vista){
-        ArrayList<JLabel> auxiliar;
-        if(vista == "Jugador"){
-            auxiliar = cartasJugador;
-        }else{
-            auxiliar = cartasEnMesa;
-        }
-        if(auxiliar.size() < cantidadCartas){
-            for(int indice = 0; indice < cantidadCartas; indice++){
-                JLabel jlabel = new JLabel();
-                jlabel.setSize(144, 200);
-                jlabel.setEnabled(true);
-                auxiliar.add(jlabel);
-            }
-        }else{
-            for(int indice = cantidadCartas; indice < auxiliar.size(); indice++){
-                auxiliar.get(indice).setEnabled(false);;
-            }
-        }
-    }
-
-    public void actualizarComponentesCartasJugador(ArrayList<Naipe> cartas){
-        actualizarComponenteJLabel(cartas.size(), "Jugador");
-        JPanel panelCartasJugador = generarPanel(1);
-        for(int indice = 0; indice < cartas.size(); indice++){
+    public void actualizarComponentesCartasJugador(ArrayList<Naipe> cartas, int indiceCartas){
+        if(indiceCartas != -1){
+            JToggleButton boton = cartasJugador.get(indiceCartas);
+            boton.setVisible(false);
+            cartasJugadorGrupo.remove(boton);
+            cartasJugador.remove(indiceCartas);
+        } else{
+            int cantidadCartas = cartasJugador.size();
+            for(int indice = cantidadCartas; indice < cartas.size(); indice++){
                 String palo = cartas.get(indice).obtenerPalo();
                 Integer valor = cartas.get(indice).obtenerValor();
                 String ruta = "Imagenes\\" + palo + "\\" + valor.toString() + "-" + palo + ".jpg";
-                JLabel label = cartasJugador.get(indice);
+                JToggleButton boton = new JToggleButton();
+                boton.setName(valor+"-"+palo);
+                boton.setBorder(new EmptyBorder(10,10,10,10));
+                boton.setSize(144,200);
                 ImageIcon imagen = new ImageIcon(this.getClass().getResource(ruta));
-                Icon icon = new ImageIcon(imagen.getImage().getScaledInstance(label.getWidth(), label.getHeight(), Image.SCALE_DEFAULT));
-                label.setIcon(icon);
-                panelCartasJugador.add(label);
+                Icon icon = new ImageIcon(imagen.getImage().getScaledInstance(boton.getWidth(), boton.getHeight(), Image.SCALE_DEFAULT));
+                boton.setIcon(icon);
+                boton.setEnabled(false);
+                cartasJugadorGrupo.add(boton);
+                cartasJugador.add(boton);
+                accionSeleccionarCarta(boton);
+                panelCartasJugador.add(boton, BorderLayout.CENTER);
+            }
+            if(cantidadCartas == 0){
+                panelCartasJugador.add(descartar);
+            }
         }
-        add(panelCartasJugador, BorderLayout.SOUTH);
     }
 
-    public void actualizarComponentesCartasMesa(ArrayList<Naipe> cartas){
-        actualizarComponenteJLabel(cartas.size(), "CartasEnMesa");
-        JPanel panelCartasMesa = generarPanel(1);
-        for(int indice = 0; indice < cartas.size(); indice++){
-                String palo = cartas.get(indice).obtenerPalo();
-                Integer valor = cartas.get(indice).obtenerValor();
-                String ruta = "Imagenes\\" + palo + "\\" + valor.toString() + "-" + palo + ".jpg";
-                JLabel label = cartasJugador.get(indice);
-                ImageIcon imagen = new ImageIcon(this.getClass().getResource(ruta));
-                Icon icon = new ImageIcon(imagen.getImage().getScaledInstance(label.getWidth(), label.getHeight(), Image.SCALE_DEFAULT));
-                label.setIcon(icon);
-                panelCartasMesa.add(label);
+    private void habilitarCartasJugador(boolean opcion){
+        for(int indice = 0; indice < cartasJugador.size(); indice++){
+            JToggleButton boton = cartasJugador.get(indice);
+            boton.setEnabled(opcion);
         }
-        add(panelCartasMesa, BorderLayout.CENTER);
     }
+
+    // public void actualizarComponentesCartasMesa(ArrayList<Naipe> cartas){
+    //     actualizarComponenteJLabel(cartas.size(), "CartasEnMesa");
+    //     JPanel panelCartasMesa = generarPanel(1);
+    //     for(int indice = 0; indice < cartas.size(); indice++){
+    //             String palo = cartas.get(indice).obtenerPalo();
+    //             Integer valor = cartas.get(indice).obtenerValor();
+    //             String ruta = "Imagenes\\" + palo + "\\" + valor.toString() + "-" + palo + ".jpg";
+    //             JLabel label = cartasJugador.get(indice);
+    //             ImageIcon imagen = new ImageIcon(this.getClass().getResource(ruta));
+    //             Icon icon = new ImageIcon(imagen.getImage().getScaledInstance(label.getWidth(), label.getHeight(), Image.SCALE_DEFAULT));
+    //             label.setIcon(icon);
+    //             panelCartasMesa.add(label);
+    //     }
+    //     add(panelCartasMesa, BorderLayout.CENTER);
+    // }
 
     private JPanel generarPanel(int alineacion){
         JPanel panel = new JPanel();
         panel.setLayout(new FlowLayout(alineacion));
         panel.setBackground(new java.awt.Color(28, 84, 45));
         return panel; 
+    }
+
+    private void accionSeleccionarCarta(JToggleButton boton){
+        ActionListener accion = new ActionListener(){
+                @Override
+                public void actionPerformed(ActionEvent event){
+                    if(boton.isSelected()){
+                        cartasJugadorGrupo.setSelected(boton.getModel(), true);
+                        descartar.setEnabled(true);
+                    }
+                }
+        };
+        boton.addActionListener(accion);
+    }
+
+    private void accionDescarta(){
+        ActionListener accion = new ActionListener(){
+                @Override
+                public void actionPerformed(ActionEvent event){
+                    ButtonModel modeloBoton = cartasJugadorGrupo.getSelection();
+                    int indice = obtenerBoton(modeloBoton);
+                    JToggleButton boton = cartasJugador.get(indice);
+                    asignarNaipe(boton.getName());
+                    actualizarComponentesCartasJugador(null, indice);
+                    cartasJugadorGrupo.clearSelection();
+                    descartar.setEnabled(false);
+                }
+        };
+        descartar.addActionListener(accion);
+    }
+
+    private int obtenerBoton(ButtonModel modeloBoton){
+        JToggleButton boton = null;
+        int indice = 0;
+        while(true){
+            boton = cartasJugador.get(indice);
+            if(modeloBoton.equals(boton.getModel())){
+                break;
+            }
+            indice++;
+        }
+        return indice;
     }
    
     //
@@ -117,7 +189,7 @@ public class Ventana<Dimension> extends JFrame {
         etiqueta.setVisible(false);
         etiqueta.setFont(new Font("Arial", Font.PLAIN, 24));
         etiqueta.setOpaque(true);
-        etiqueta.setBackground(new java.awt.Color(24, 61, 97));
+        etiqueta.setBackground(new java.awt.Color(12, 35, 64));
         return etiqueta;
     }
 
@@ -133,6 +205,14 @@ public class Ventana<Dimension> extends JFrame {
     public void actualizarTurnoJugador(String nombreJugadorActual) {
         etiquetaTurnoJugador.setText("Turno de " +nombreJugadorActual+ " ");
         etiquetaTurnoJugador.setVisible(true);
+        String texto = etiquetaTurnoJugador.getText();
+        if(texto.equals("Turno de Jugador Maquina ")){
+            this.palo = "-1";
+            this.valor = "-1";
+            habilitarCartasJugador(false);
+        } else{
+            habilitarCartasJugador(true);
+        }
     }
 
 }

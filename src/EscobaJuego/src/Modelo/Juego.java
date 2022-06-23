@@ -22,18 +22,28 @@ public class Juego {
     public Jugador obtenerPrimerJugador(){
         return primerJugador;
     }
+    public Jugador obtenerJugadorActual(){
+        return jugadorActual;
+    }
 
     private Jugador obtenerSegundoJugador(){
         return segundoJugador;
     }
 
+    public Jugador obtenerJugadorPersona(String nombre){
+        if(primerJugador.obtenerNombre() == nombre){
+            return primerJugador;
+        }else{
+            return segundoJugador;
+        }
+    }
 
-    public void iniciarPartida(String jugadorNombre, String jugadorOpcion){
-        if(jugadorOpcion.equals("Primero")){
+    public void iniciarPartida(String jugadorNombre, int jugadorOpcion){
+        if(jugadorOpcion == 0){
             primerJugador = new JugadorPersona(jugadorNombre);
             segundoJugador = new JugadorMaquina("Jugador Maquina");
             asignarPrimerJugador(primerJugador);
-        }else if(jugadorOpcion.equals("Segundo")){
+        }else if(jugadorOpcion == 1){
             primerJugador =  new JugadorMaquina("Jugador Maquina");
             segundoJugador = new JugadorPersona(jugadorNombre);
             asignarPrimerJugador(primerJugador);
@@ -50,8 +60,7 @@ public class Juego {
         Naipe cartaDescartada = null;
         cartaDescartada = movimientoJugadorDescartarCarta(valor, palo, nombreJugador);
         ArrayList<Naipe> naipesCapturados = null;
-        retornarJugadorActual(nombreJugador);
-        naipesCapturados =validar.validarCaptura(cartaDescartada, cartasEnMesa);
+        naipesCapturados = validar.validarCaptura(cartaDescartada, cartasEnMesa); //Elimina las cartas que se capturaron de carta de mesa
         jugadorActual.capturarCartas(naipesCapturados);
         return naipesCapturados;
     }
@@ -59,9 +68,12 @@ public class Juego {
     public Naipe movimientoJugadorDescartarCarta(int valor, String palo, String nombreJugador){
         ArrayList<Naipe> naipes = new ArrayList<Naipe>();
         Naipe cartaDescartada = null;
-        retornarJugadorActual(nombreJugador);
-        naipes.add(jugadorActual.obtenerCarta(valor, palo));
-        cartaDescartada = jugadorActual.descartarCarta(naipes);
+        if(jugadorActual.obtenerNombre() != obtenerJugadorPersona(nombreJugador).obtenerNombre()){
+            cartaDescartada = jugadorActual.descartarCarta(cartasEnMesa);
+        }else{
+            naipes.add(jugadorActual.obtenerCarta(valor, palo));
+            cartaDescartada = jugadorActual.descartarCarta(naipes);
+        }
         return cartaDescartada;
     }
 
@@ -76,21 +88,12 @@ public class Juego {
 
     //RETROALIMENTACIÓN VISTA-CONTROLADOR-JUEGO
     public ArrayList<Naipe> retornarCartasJugador(String nombreJugador){
-        retornarJugadorActual(nombreJugador);
         return jugadorActual.obtenerCartas();
     }
 
     //RETROALIMENTACIÓN VISTA-CONTROLADOR-JUEGO
     public ArrayList<Naipe> retornarCartasEnMesa(){
         return cartasEnMesa;
-    }
-
-    private void retornarJugadorActual(String nombreJugador){
-        if(primerJugador.obtenerNombre().equals(nombreJugador)){
-            jugadorActual = primerJugador;
-        } else {
-            jugadorActual = segundoJugador;
-        }
     }
 
     public Boolean repartirCartas(){
@@ -117,7 +120,7 @@ public class Juego {
 
     public void terminarPartida(){
         if(mazo.obtenerCantidadDeNaipes()==0){
-            declararGanador();
+            jugadorActual = declararGanador();
         }
     }
 
@@ -130,11 +133,6 @@ public class Juego {
             }else if(puntajeSegundoJugador>puntajePrimerJugador){
                 return segundoJugador;
             }
-            //empate??
-            /* else {
-                partidaEnCurso();
-            }
-            */ 
        }else if(puntajePrimerJugador>=21 && puntajeSegundoJugador<=21){
             return primerJugador;
        }else{
