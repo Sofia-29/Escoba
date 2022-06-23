@@ -124,30 +124,36 @@ public class Ventana<Dimension> extends JFrame {
         }
     }
 
-    public void actualizarComponentesCartasMesa(ArrayList<Naipe> cartas, int indiceCartas){
-        if(indiceCartas != -1){
-            JLabel boton = cartasMesa.get(indiceCartas);
+    public void actualizarComponentesCartasMesa(ArrayList<Naipe> cartas){
+        int indiceCartasMesa = cartasMesa.size() - 1;
+        while(indiceCartasMesa >= 0){
+            JLabel boton = cartasMesa.get(indiceCartasMesa);
             boton.setVisible(false);
-            cartasMesa.remove(indiceCartas);
-        } else{
-            int cantidadCartas = cartasMesa.size();
-            for(int indice = cantidadCartas; indice < cartas.size(); indice++){
-                String palo = cartas.get(indice).obtenerPalo();
-                Integer valor = cartas.get(indice).obtenerValor();
-                String ruta = "Imagenes\\" + palo + "\\" + valor.toString() + "-" + palo + ".jpg";
-                JLabel boton = new JLabel();
-                boton.setName(valor+"-"+palo);
-                boton.setBorder(new EmptyBorder(300,10,10,10));
-                boton.setSize(144,200);
-                ImageIcon imagen = new ImageIcon(this.getClass().getResource(ruta));
-                Icon icon = new ImageIcon(imagen.getImage().getScaledInstance(boton.getWidth(), boton.getHeight(), Image.SCALE_DEFAULT));
-                boton.setIcon(icon);
-                boton.setEnabled(true);
-                cartasMesa.add(boton);
-                panelCartasMesa.add(boton, BorderLayout.CENTER);
-            }
+            cartasMesa.remove(indiceCartasMesa);
+            indiceCartasMesa--;
+        }
+
+        for(int indice = 0; indice < cartas.size(); indice++){
+            String palo = cartas.get(indice).obtenerPalo();
+            Integer valor = cartas.get(indice).obtenerValor();
+            String ruta = "Imagenes\\" + palo + "\\" + valor.toString() + "-" + palo + ".jpg";
+            JLabel etiqueta = new JLabel();
+            etiqueta.setName(valor+"-"+palo);
+            etiqueta.setBorder(new EmptyBorder(300,10,10,10));
+            etiqueta.setSize(144,200);
+            ImageIcon imagen = new ImageIcon(this.getClass().getResource(ruta));
+            Icon icono = new ImageIcon(imagen.getImage().getScaledInstance(etiqueta.getWidth(), etiqueta.getHeight(),
+             Image.SCALE_DEFAULT));
+            etiqueta.setIcon(icono);
+            etiqueta.setEnabled(true);
+            cartasMesa.add(etiqueta);
+            etiqueta.setVisible(true);
+            panelCartasMesa.add(etiqueta, BorderLayout.CENTER);
+            panelCartasMesa.revalidate();
+            panelCartasMesa.repaint();
         }
     }
+
     private JPanel generarPanel(int alineacion){
         JPanel panel = new JPanel();
         panel.setLayout(new FlowLayout(alineacion));

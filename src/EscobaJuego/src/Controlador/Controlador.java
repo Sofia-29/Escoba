@@ -1,14 +1,18 @@
 package Controlador;
 import Modelo.Naipe;
 import java.util.ArrayList;
+import java.util.concurrent.TimeUnit;
+import java.util.Random;
+
+import javax.swing.text.View;
+
 import Modelo.Juego;
 import Modelo.Jugador;
+import Modelo.Mazo;
 import Vista.Vista;
-
 
 public class Controlador {
     public static void main(String[] args) throws Exception {
-
         Juego juego = new Juego();
         Vista vista = new Vista();
         Jugador jugadorAuxiliar;
@@ -16,15 +20,16 @@ public class Controlador {
         Naipe naipeAuxiliar = null;
         String jugadorNombre;
         int jugadorOpcion;
+        Random rand = new Random();
 
         jugadorNombre = vista.preguntarNombreJugadorPersona();
         jugadorOpcion = vista.preguntarTurno();
 
         juego.iniciarPartida(jugadorNombre, jugadorOpcion);
-        //jugadorAuxiliar = juego.obtenerPrimerJugador();
+        jugadorAuxiliar = juego.obtenerPrimerJugador();
         
 
-        // juego.retornarCartasEnMesa();
+        juego.retornarCartasEnMesa();
         cartasJugador = juego.retornarCartasJugador(jugadorNombre);
         jugadorAuxiliar = juego.obtenerJugadorActual();
         vista.iniciarPartida(cartasJugador);
@@ -47,11 +52,8 @@ public class Controlador {
                 }else{
                     naipeAuxiliar = jugadorAuxiliar.descartarCarta(juego.retornarCartasEnMesa());
                 }
-                //????? To Do montoncito para obtener las caartas en una esquina del panel
-                //ArrayList<Naipe> naipesCapturados = juego.movimientoJugadorCapturarCarta(naipeAuxiliar.obtenerValor(), naipeAuxiliar.obtenerPalo(), jugadorAuxiliar.obtenerNombre());
-              
-                vista.actualizarCartasEnMesa(juego.retornarCartasEnMesa());
-            }
+            } 
+            vista.actualizarCartasEnMesa(juego.retornarCartasEnMesa());
             jugadorAuxiliar = juego.pasarTurno();
         }
         juego.terminarPartida();
@@ -59,4 +61,5 @@ public class Controlador {
         //comunicar el jugador que gano a la vista
     }
 }
+
 
