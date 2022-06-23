@@ -3,12 +3,7 @@ package Modelo;
 import java.util.ArrayList;
 
 public class Validador {
-    public Jugador primerJugador;
-    public Jugador segundoJugador;
-
-    public Validador(Jugador jugadorUno, Jugador jugadorDos){
-        this.primerJugador=jugadorUno;
-        this.segundoJugador=jugadorDos;
+    public Validador(){
     }
 
     public ArrayList<Naipe> validarCaptura(Jugador jugador, Naipe naipe, ArrayList<Naipe> cartasEnMesa){

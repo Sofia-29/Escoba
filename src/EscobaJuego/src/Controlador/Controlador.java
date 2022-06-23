@@ -1,5 +1,7 @@
 package Controlador;
 import Modelo.Naipe;
+import Modelo.Validador;
+
 import java.util.ArrayList;
 import java.util.concurrent.TimeUnit;
 import java.util.Random;
@@ -21,6 +23,7 @@ public class Controlador {
         String jugadorNombre;
         int jugadorOpcion;
         Random rand = new Random();
+        Validador validadora = new Validador();
 
         jugadorNombre = vista.preguntarNombreJugadorPersona();
         jugadorOpcion = vista.preguntarTurno();
@@ -55,7 +58,12 @@ public class Controlador {
                 TimeUnit.SECONDS.sleep(3);
             }
                 //????? To Do montoncito para obtener las caartas en una esquina del panel
-            juego.movimientoJugadorCapturarCarta(naipeAuxiliar.obtenerValor(), naipeAuxiliar.obtenerPalo(), jugadorAuxiliar.obtenerNombre());
+            ArrayList<Naipe> cartasCapturadas = juego.movimientoJugadorCapturarCarta(naipeAuxiliar.obtenerValor(), naipeAuxiliar.obtenerPalo(), jugadorAuxiliar.obtenerNombre());
+            if(cartasCapturadas != null){
+                vista.actualizarCartasCaptura(cartasCapturadas, validadora.esEscoba(juego.retornarCartasEnMesa()));
+                TimeUnit.SECONDS.sleep(4);
+                vista.limpiarComponeneteCartasCapturadas();
+            }
             vista.actualizarCartasEnMesa(juego.retornarCartasEnMesa());
 
             jugadorAuxiliar = juego.pasarTurno();

@@ -46,6 +46,13 @@ public class Vista {
       ventana.actualizarComponentesCartasMesa(cartasEnMesa);
     }
 
+    public void actualizarCartasCaptura(ArrayList<Naipe> cartas, boolean escoba){
+        ventana.actualizarComponentesCartasCapturadas(cartas, escoba);
+    }
+
+    public void limpiarComponeneteCartasCapturadas(){
+        ventana.limpiarComponeneteCartasCapturadas();
+    }
 
     public void actualizarTurnoJugador(String nombreJugador){
         ventana.actualizarTurnoJugador(nombreJugador);

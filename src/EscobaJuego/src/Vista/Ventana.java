@@ -3,6 +3,7 @@ package Vista;
 import Modelo.Naipe;
 import java.util.StringTokenizer;
 
+
 import java.awt.event.ActionEvent;
 import java.awt.FlowLayout;
 import java.awt.Font;
@@ -25,15 +26,17 @@ import javax.swing.JPanel;
 import javax.swing.JToggleButton;
 import javax.swing.border.EmptyBorder;
 
+import java.util.concurrent.TimeUnit;
 
 public class Ventana<Dimension> extends JFrame {
     private ArrayList<JToggleButton> cartasJugador;
     private ArrayList<JLabel> cartasMesa;
+    private ArrayList<JLabel> cartasCapturadas;
     private ButtonGroup cartasJugadorGrupo;
-    private ButtonGroup cartasMesaGrupo;
     private JPanel panelPrincipal;
     private JPanel panelCartasJugador;
     private JPanel panelCartasMesa;
+    private JPanel panelCartasCapturadas;
     private JButton descartar;
     private String palo; 
     private String valor;
@@ -47,6 +50,7 @@ public class Ventana<Dimension> extends JFrame {
         setDefaultCloseOperation(EXIT_ON_CLOSE);
         add(panelPrincipal);
         add(panelCartasJugador, BorderLayout.SOUTH);
+        add(panelCartasCapturadas, BorderLayout.NORTH);
         add(panelCartasMesa, BorderLayout.CENTER);
 
         this.palo = "-1";
@@ -71,13 +75,12 @@ public class Ventana<Dimension> extends JFrame {
      }
 
     private void iniciarComponentes(){
-
-        panelCartasMesa = generarPanel(1);
-        cartasMesa = new ArrayList<JLabel>(4);  
-        cartasJugador = new ArrayList<JToggleButton>(3);  
-        cartasMesaGrupo = new ButtonGroup();
+        cartasMesa = new ArrayList<JLabel>(4);
+        cartasCapturadas = new ArrayList<JLabel>(4);
+        cartasJugador = new ArrayList<JToggleButton>(3);
         cartasJugadorGrupo = new ButtonGroup();
         panelCartasJugador = generarPanel(1);
+        panelCartasCapturadas = generarPanel(1);
         panelCartasMesa = generarPanel(1);
         panelPrincipal = generarPanel(4);
         descartar = new JButton("Descartar");
@@ -152,6 +155,69 @@ public class Ventana<Dimension> extends JFrame {
             panelCartasMesa.revalidate();
             panelCartasMesa.repaint();
         }
+    }
+
+    public void limpiarComponente(ArrayList<JLabel> componente){
+        int indiceComponente = componente.size() - 1;
+        while(indiceComponente >= 0){
+            JLabel etiqueta = componente.get(indiceComponente);
+            etiqueta.setVisible(false);
+            componente.remove(indiceComponente);
+            indiceComponente--;
+        }
+    }
+
+    public void actualizarComponente(ArrayList<JLabel> etiquetas, JPanel componente, ArrayList<Naipe> cartas){
+        for(int indice = 0; indice < cartas.size(); indice++){
+            String palo = cartas.get(indice).obtenerPalo();
+            Integer valor = cartas.get(indice).obtenerValor();
+            String ruta = "Imagenes\\" + palo + "\\" + valor.toString() + "-" + palo + ".jpg";
+            JLabel nuevaEtiqueta = new JLabel();
+            nuevaEtiqueta.setName(valor+"-"+palo);
+            nuevaEtiqueta.setBorder(new EmptyBorder(300,10,10,10));
+            nuevaEtiqueta.setSize(144,200);
+            ImageIcon imagen = new ImageIcon(this.getClass().getResource(ruta));
+            Icon icono = new ImageIcon(imagen.getImage().getScaledInstance(nuevaEtiqueta.getWidth(), nuevaEtiqueta.getHeight(),
+             Image.SCALE_DEFAULT));
+            nuevaEtiqueta.setIcon(icono);
+            nuevaEtiqueta.setEnabled(true);
+            etiquetas.add(nuevaEtiqueta);
+            nuevaEtiqueta.setVisible(true);
+            componente.add(nuevaEtiqueta, BorderLayout.CENTER);
+            componente.revalidate();
+            componente.repaint();
+        }
+    }
+
+    public void actualizarComponentesCartasCapturadas(ArrayList<Naipe> cartas, boolean escoba){
+        panelCartasCapturadas.setVisible(true);
+        JLabel nuevaEtiqueta = generarEtiquetaCartasCapturadas(escoba);
+        cartasCapturadas.add(nuevaEtiqueta);
+        panelCartasCapturadas.add(nuevaEtiqueta, BorderLayout.CENTER);
+        actualizarComponente(cartasCapturadas, panelCartasCapturadas, cartas);
+    }
+
+    public JLabel generarEtiquetaCartasCapturadas(boolean escoba){
+        JLabel nuevaEtiqueta = new JLabel();
+        nuevaEtiqueta.setBorder(new EmptyBorder(10,10,10,10));
+        nuevaEtiqueta.setSize(100, 100);
+        nuevaEtiqueta.setEnabled(true);
+        nuevaEtiqueta.setVisible(true);
+        nuevaEtiqueta.setFont(new Font("Arial", Font.PLAIN, 24));
+        nuevaEtiqueta.setForeground(Color.WHITE);
+        if (escoba){
+            nuevaEtiqueta.setText("Escoba");
+            nuevaEtiqueta.setName("Escoba");
+        }else{
+            nuevaEtiqueta.setText("Captura");
+            nuevaEtiqueta.setName("Captura");
+        }
+        return nuevaEtiqueta;
+    }
+
+    public void limpiarComponeneteCartasCapturadas(){
+        limpiarComponente(cartasCapturadas);
+        panelCartasCapturadas.setVisible(false);
     }
 
     private JPanel generarPanel(int alineacion){
