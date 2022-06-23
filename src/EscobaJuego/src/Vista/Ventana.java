@@ -87,6 +87,22 @@ public class Ventana<Dimension> extends JFrame {
         add(panelCartasJugador, BorderLayout.SOUTH);
     }
 
+    public void actualizarComponentesCartasMesa(ArrayList<Naipe> cartas){
+        actualizarComponenteJLabel(cartas.size(), "CartasEnMesa");
+        JPanel panelCartasMesa = generarPanel(1);
+        for(int indice = 0; indice < cartas.size(); indice++){
+                String palo = cartas.get(indice).obtenerPalo();
+                Integer valor = cartas.get(indice).obtenerValor();
+                String ruta = "Imagenes\\" + palo + "\\" + valor.toString() + "-" + palo + ".jpg";
+                JLabel label = cartasJugador.get(indice);
+                ImageIcon imagen = new ImageIcon(this.getClass().getResource(ruta));
+                Icon icon = new ImageIcon(imagen.getImage().getScaledInstance(label.getWidth(), label.getHeight(), Image.SCALE_DEFAULT));
+                label.setIcon(icon);
+                panelCartasMesa.add(label);
+        }
+        add(panelCartasMesa, BorderLayout.CENTER);
+    }
+
     private JPanel generarPanel(int alineacion){
         JPanel panel = new JPanel();
         panel.setLayout(new FlowLayout(alineacion));

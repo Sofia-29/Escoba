@@ -49,6 +49,14 @@ public class Vista {
         cartas.add(naipe2);
         cartas.add(naipe3);
         ventana.actualizarComponentesCartasJugador(cartas);
+
+        ArrayList<Naipe> cartasMesa = new ArrayList<Naipe>();
+
+        cartasMesa.add(naipe1);
+        cartasMesa.add(naipe2);
+        cartasMesa.add(naipe3);
+        ventana.actualizarComponentesCartasMesa(cartasMesa);
+
         ventana.hacerVisible();
     }
 }
