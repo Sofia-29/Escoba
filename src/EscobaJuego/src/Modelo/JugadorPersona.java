@@ -13,12 +13,13 @@ public class JugadorPersona extends Jugador{
         ArrayList<Naipe> cartasCapturadas = this.obtenerCartas();
         String palo;
         int valor; 
+        int indice = 0;
         for(Naipe naipe: cartasCapturadas){
-            palo = naipes.get(0).obtenerPalo();
-            valor = naipes.get(0).obtenerValor();
+            palo = naipes.get(indice).obtenerPalo();
+            valor = naipes.get(indice).obtenerValor();
             if(naipe.obtenerPalo().equals(palo) && naipe.obtenerValor() == valor){
                 resultado = naipe;
-                cartasCapturadas.remove(0);
+                cartasCapturadas.remove(naipe);
                 break;
             }
         }

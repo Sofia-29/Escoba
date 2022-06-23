@@ -98,7 +98,7 @@ public class Ventana<Dimension> extends JFrame {
                 ImageIcon imagen = new ImageIcon(this.getClass().getResource(ruta));
                 Icon icon = new ImageIcon(imagen.getImage().getScaledInstance(boton.getWidth(), boton.getHeight(), Image.SCALE_DEFAULT));
                 boton.setIcon(icon);
-                boton.setEnabled(false);
+                boton.setEnabled(true);
                 cartasJugadorGrupo.add(boton);
                 cartasJugador.add(boton);
                 accionSeleccionarCarta(boton);

@@ -1,6 +1,7 @@
 package Controlador;
 import Modelo.Naipe;
 import java.util.ArrayList;
+import java.util.concurrent.TimeUnit;
 import Modelo.Juego;
 import Modelo.Jugador;
 import Vista.Vista;
@@ -35,22 +36,23 @@ public class Controlador {
                 juego.repartirCartasJugadores();
                 cartasJugador = juego.obtenerJugadorPersona(jugadorNombre).obtenerCartas();
                 vista.actualizarCartasJugador(cartasJugador);
-            }else{
-                if(jugadorAuxiliar.obtenerNombre() == jugadorNombre){
+            }
+            if(jugadorAuxiliar.obtenerNombre() == jugadorNombre){
+                naipeAuxiliar = vista.retornarNaipeSeleccionada();
+                while(naipeAuxiliar == null){
                     naipeAuxiliar = vista.retornarNaipeSeleccionada();
-                    while(naipeAuxiliar == null){
-                        naipeAuxiliar = vista.retornarNaipeSeleccionada();
-                    }
-                    ArrayList<Naipe> naipe = new ArrayList<Naipe>();
-                    naipe.add(naipeAuxiliar);
-                    jugadorAuxiliar.descartarCarta(naipe);
-                }else{
-                    naipeAuxiliar = jugadorAuxiliar.descartarCarta(juego.retornarCartasEnMesa());
                 }
+                ArrayList<Naipe> naipe = new ArrayList<Naipe>();
+                naipe.add(naipeAuxiliar);
+                jugadorAuxiliar.descartarCarta(naipe);
+            }else{
+                naipeAuxiliar = jugadorAuxiliar.descartarCarta(juego.retornarCartasEnMesa());
+                TimeUnit.SECONDS.sleep(2);
+            }
                 //????? To Do montoncito para obtener las caartas en una esquina del panel
                 //ArrayList<Naipe> naipesCapturados = juego.movimientoJugadorCapturarCarta(naipeAuxiliar.obtenerValor(), naipeAuxiliar.obtenerPalo(), jugadorAuxiliar.obtenerNombre());
-                vista.actualizarCartasEnMesa(juego.retornarCartasEnMesa());
-            }
+            vista.actualizarCartasEnMesa(juego.retornarCartasEnMesa());
+
             jugadorAuxiliar = juego.pasarTurno();
         }
         juego.terminarPartida();
