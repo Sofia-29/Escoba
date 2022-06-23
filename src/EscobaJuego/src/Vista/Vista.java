@@ -38,7 +38,7 @@ public class Vista {
 
     public static int preguntarTurno(){
         String mensaje="¿Desea ser el primer jugador?";
-        int respuesta = JOptionPane.showConfirmDialog(null, mensaje);
+        int respuesta = JOptionPane.showConfirmDialog(null, mensaje, "Escoger turno", JOptionPane.YES_NO_OPTION);
         return respuesta;
     }
 

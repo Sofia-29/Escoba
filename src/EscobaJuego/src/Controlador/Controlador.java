@@ -36,25 +36,30 @@ public class Controlador {
 
         while(!juego.validarTerminarPartida()){
             vista.actualizarTurnoJugador(jugadorAuxiliar.obtenerNombre());
+            TimeUnit.SECONDS.sleep(2);
             if(juego.repartirCartas()){
                 juego.repartirCartasJugadores();
                 cartasJugador = juego.obtenerJugadorPersona(jugadorNombre).obtenerCartas();
                 vista.actualizarCartasJugador(cartasJugador);
-            }else{
-                if(jugadorAuxiliar.obtenerNombre() == jugadorNombre){
+            }
+            if(jugadorAuxiliar.obtenerNombre() == jugadorNombre){
+                naipeAuxiliar = vista.retornarNaipeSeleccionada();
+                while(naipeAuxiliar == null){
                     naipeAuxiliar = vista.retornarNaipeSeleccionada();
-                    while(naipeAuxiliar == null){
-                        naipeAuxiliar = vista.retornarNaipeSeleccionada();
-                    }
-                    ArrayList<Naipe> naipe = new ArrayList<Naipe>();
-                    naipe.add(naipeAuxiliar);
-                    jugadorAuxiliar.descartarCarta(naipe);
-                }else{
-                    naipeAuxiliar = jugadorAuxiliar.descartarCarta(juego.retornarCartasEnMesa());
                 }
-            } 
+                ArrayList<Naipe> naipe = new ArrayList<Naipe>();
+                naipe.add(naipeAuxiliar);
+                jugadorAuxiliar.descartarCarta(naipe);
+            }else{
+                naipeAuxiliar = jugadorAuxiliar.descartarCarta(juego.retornarCartasEnMesa());
+                TimeUnit.SECONDS.sleep(3);
+            }
+                //????? To Do montoncito para obtener las caartas en una esquina del panel
+            juego.movimientoJugadorCapturarCarta(naipeAuxiliar.obtenerValor(), naipeAuxiliar.obtenerPalo(), jugadorAuxiliar.obtenerNombre());
             vista.actualizarCartasEnMesa(juego.retornarCartasEnMesa());
+
             jugadorAuxiliar = juego.pasarTurno();
+
         }
         juego.terminarPartida();
         jugadorAuxiliar = juego.obtenerJugadorActual();

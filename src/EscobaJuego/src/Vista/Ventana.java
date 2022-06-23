@@ -105,7 +105,7 @@ public class Ventana<Dimension> extends JFrame {
                 ImageIcon imagen = new ImageIcon(this.getClass().getResource(ruta));
                 Icon icon = new ImageIcon(imagen.getImage().getScaledInstance(boton.getWidth(), boton.getHeight(), Image.SCALE_DEFAULT));
                 boton.setIcon(icon);
-                boton.setEnabled(false);
+                boton.setEnabled(true);
                 cartasJugadorGrupo.add(boton);
                 cartasJugador.add(boton);
                 accionSeleccionarCarta(boton);
@@ -210,7 +210,7 @@ public class Ventana<Dimension> extends JFrame {
         etiqueta.setVisible(false);
         etiqueta.setFont(new Font("Arial", Font.PLAIN, 24));
         etiqueta.setOpaque(true);
-        etiqueta.setBackground(new java.awt.Color(12, 35, 64));
+        etiqueta.setBackground(new java.awt.Color(24, 61, 97));
         return etiqueta;
     }
 
