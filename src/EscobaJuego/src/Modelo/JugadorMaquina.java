@@ -27,7 +27,6 @@ public class JugadorMaquina extends Jugador{
             int indice = (int)(Math.random()*cartas.size()+0);
             resultado = cartas.get(indice);
         }
-        cartas.remove(resultado);
         return resultado;
     }
 

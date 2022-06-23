@@ -13,7 +13,10 @@ public class Juego {
     private ArrayList<Naipe> cartasEnMesa;
     public Jugador obtenerPrimerJugador;
 
-    public Juego(){}
+    public Juego(){
+
+        validar = new Validador(primerJugador, segundoJugador);
+    }
 
     public void asignarPrimerJugador(Jugador jugadorUno){
         this.primerJugador=jugadorUno;
@@ -56,24 +59,25 @@ public class Juego {
         segundoJugador.asignarCartas(mazo.repartirMazo(3));
     }
 
-    public ArrayList<Naipe> movimientoJugadorCapturarCarta(int valor, String palo, String nombreJugador){
+    public ArrayList<Naipe> movimientoJugadorCapturarCarta(Naipe naipe, String nombreJugador){
         Naipe cartaDescartada = null;
-        cartaDescartada = movimientoJugadorDescartarCarta(valor, palo, nombreJugador);
+        cartaDescartada = movimientoJugadorDescartarCarta(naipe, nombreJugador);
         ArrayList<Naipe> naipesCapturados = null;
-        naipesCapturados =validar.validarCaptura(jugadorActual, cartaDescartada, cartasEnMesa);
-        jugadorActual.capturarCartas(naipesCapturados);
+        naipesCapturados = validar.validarCaptura(jugadorActual, cartaDescartada, cartasEnMesa);
+        if(naipesCapturados != null)
+            jugadorActual.capturarCartas(naipesCapturados);
         return naipesCapturados;
     }
 
-    public Naipe movimientoJugadorDescartarCarta(int valor, String palo, String nombreJugador){
+    public Naipe movimientoJugadorDescartarCarta(Naipe naipe, String nombreJugador){
         ArrayList<Naipe> naipes = new ArrayList<Naipe>();
-        Naipe cartaDescartada = null;
-        if(jugadorActual.obtenerNombre() != obtenerJugadorPersona(nombreJugador).obtenerNombre()){
-            cartaDescartada = jugadorActual.descartarCarta(cartasEnMesa);
-        }else{
-            naipes.add(jugadorActual.obtenerCarta(valor, palo));
+        Naipe cartaDescartada = naipe;
+        if(jugadorActual.obtenerNombre() == obtenerJugadorPersona(nombreJugador).obtenerNombre()){
+            naipes.add(naipe);
             cartaDescartada = jugadorActual.descartarCarta(naipes);
         }
+
+        jugadorActual.removerCarta(naipe);
         return cartaDescartada;
     }
 

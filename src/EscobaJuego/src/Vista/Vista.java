@@ -51,8 +51,9 @@ public class Vista {
         ventana.actualizarTurnoJugador(nombreJugador);
     }
 
-    public void iniciarPartida(ArrayList<Naipe> cartasJugador){
+    public void iniciarPartida(ArrayList<Naipe> cartasJugador, ArrayList<Naipe> cartasMesa){
         ventana.actualizarComponentesCartasJugador(cartasJugador, -1);
+        ventana.actualizarComponentesCartasMesa(cartasMesa);
         ventana.hacerVisible();
     }
 

@@ -10,16 +10,15 @@ public class JugadorPersona extends Jugador{
     @Override
     public Naipe descartarCarta(ArrayList<Naipe> naipes){
         Naipe resultado = null;
-        ArrayList<Naipe> cartasCapturadas = this.obtenerCartas();
+        ArrayList<Naipe> cartas = this.obtenerCartas();
         String palo;
         int valor; 
         int indice = 0;
-        for(Naipe naipe: cartasCapturadas){
+        for(Naipe naipe: cartas){
             palo = naipes.get(indice).obtenerPalo();
             valor = naipes.get(indice).obtenerValor();
             if(naipe.obtenerPalo().equals(palo) && naipe.obtenerValor() == valor){
                 resultado = naipe;
-                cartasCapturadas.remove(naipe);
                 break;
             }
         }
