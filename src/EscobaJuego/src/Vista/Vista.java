@@ -36,6 +36,16 @@ public class Vista {
         return opcionJugador;
     }
 
+    public static int preguntarTurno(){
+        String mensaje="¿Desea ser el primer jugador?";
+        int respuesta = JOptionPane.showConfirmDialog(null, mensaje);
+        return respuesta;
+    }
+
+    public void actualizarCartasEnMesa(ArrayList<Naipe> cartasEnMesa){
+        //Llamar al metodo en ventana que actualiza las cartas que estan sobre la mesa. 
+    }
+
     public void actualizarTurnoJugador(String nombreJugador){
         ventana.actualizarTurnoJugador(nombreJugador);
     }
@@ -45,9 +55,16 @@ public class Vista {
         ventana.hacerVisible();
     }
 
+    public void actualizarCartasJugador(ArrayList<Naipe> cartasJugador){
+        ventana.actualizarComponentesCartasJugador(cartasJugador, -1);
+    }
+
     public Naipe retornarNaipeSeleccionada(){
         String[] valorNaipe = ventana.obtenerNaipe();
-        Naipe naipeAuxiliar = new Naipe(Integer.parseInt(valorNaipe[0]), valorNaipe[1]);
+        Naipe naipeAuxiliar = null;
+        if(valorNaipe[0] != "-1"){
+            naipeAuxiliar = new Naipe(Integer.parseInt(valorNaipe[1]), valorNaipe[0]);
+        }
         return naipeAuxiliar;
     }
 }
