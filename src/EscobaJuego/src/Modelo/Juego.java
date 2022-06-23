@@ -60,7 +60,7 @@ public class Juego {
         Naipe cartaDescartada = null;
         cartaDescartada = movimientoJugadorDescartarCarta(valor, palo, nombreJugador);
         ArrayList<Naipe> naipesCapturados = null;
-        naipesCapturados = validar.validarCaptura(cartaDescartada, cartasEnMesa); //Elimina las cartas que se capturaron de carta de mesa
+        naipesCapturados =validar.validarCaptura(jugadorActual, cartaDescartada, cartasEnMesa);
         jugadorActual.capturarCartas(naipesCapturados);
         return naipesCapturados;
     }
