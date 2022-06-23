@@ -45,6 +45,8 @@ public class Ventana<Dimension> extends JFrame {
         setDefaultCloseOperation(EXIT_ON_CLOSE);
         add(panelPrincipal);
         add(panelCartasJugador, BorderLayout.SOUTH);
+        this.palo = "-1";
+        this.valor = "-1";
     }
 
     public void hacerVisible(){
@@ -93,10 +95,10 @@ public class Ventana<Dimension> extends JFrame {
                 boton.setName(valor+"-"+palo);
                 boton.setBorder(new EmptyBorder(10,10,10,10));
                 boton.setSize(144,200);
-                boton.setVisible(true);
                 ImageIcon imagen = new ImageIcon(this.getClass().getResource(ruta));
                 Icon icon = new ImageIcon(imagen.getImage().getScaledInstance(boton.getWidth(), boton.getHeight(), Image.SCALE_DEFAULT));
                 boton.setIcon(icon);
+                boton.setEnabled(false);
                 cartasJugadorGrupo.add(boton);
                 cartasJugador.add(boton);
                 accionSeleccionarCarta(boton);
@@ -105,6 +107,13 @@ public class Ventana<Dimension> extends JFrame {
             if(cantidadCartas == 0){
                 panelCartasJugador.add(descartar);
             }
+        }
+    }
+
+    private void habilitarCartasJugador(boolean opcion){
+        for(int indice = 0; indice < cartasJugador.size(); indice++){
+            JToggleButton boton = cartasJugador.get(indice);
+            boton.setEnabled(opcion);
         }
     }
 
@@ -164,7 +173,7 @@ public class Ventana<Dimension> extends JFrame {
         etiqueta.setVisible(false);
         etiqueta.setFont(new Font("Arial", Font.PLAIN, 24));
         etiqueta.setOpaque(true);
-        etiqueta.setBackground(new java.awt.Color(24, 61, 97));
+        etiqueta.setBackground(new java.awt.Color(12, 35, 64));
         return etiqueta;
     }
 
@@ -180,6 +189,14 @@ public class Ventana<Dimension> extends JFrame {
     public void actualizarTurnoJugador(String nombreJugadorActual) {
         etiquetaTurnoJugador.setText("Turno de " +nombreJugadorActual+ " ");
         etiquetaTurnoJugador.setVisible(true);
+        String texto = etiquetaTurnoJugador.getText();
+        if(texto.equals("Turno de Jugador Maquina ")){
+            this.palo = "-1";
+            this.valor = "-1";
+            habilitarCartasJugador(false);
+        } else{
+            habilitarCartasJugador(true);
+        }
     }
 
 }

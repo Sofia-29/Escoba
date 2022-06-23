@@ -3,10 +3,6 @@ import Modelo.Naipe;
 import java.util.ArrayList;
 import Modelo.Juego;
 import Modelo.Jugador;
-import Modelo.JugadorMaquina;
-import Modelo.JugadorPersona;
-import Modelo.Mazo;
-import Vista.Ventana;
 import Vista.Vista;
 
 
@@ -17,46 +13,49 @@ public class Controlador {
         Vista vista = new Vista();
         Jugador jugadorAuxiliar;
         ArrayList<Naipe> cartasJugador;
+        Naipe naipeAuxiliar = null;
         String jugadorNombre;
-        String jugadorOpcion;
+        int jugadorOpcion;
 
-        
-        //Vista: se obtiene el nombre del jugador y su turno
         jugadorNombre = vista.preguntarNombreJugadorPersona();
-        jugadorOpcion = vista.preguntarTurnoJugador();
+        jugadorOpcion = vista.preguntarTurno();
 
         juego.iniciarPartida(jugadorNombre, jugadorOpcion);
-        jugadorAuxiliar = juego.obtenerPrimerJugador();
-        vista.actualizarTurnoJugador(jugadorAuxiliar.obtenerNombre());
+        //jugadorAuxiliar = juego.obtenerPrimerJugador();
+        
 
-        //ABSTRACTO: comunicación con la vista para darle las cartas que se repartieron
-        juego.retornarCartasEnMesa();
+        // juego.retornarCartasEnMesa();
         cartasJugador = juego.retornarCartasJugador(jugadorNombre);
+        jugadorAuxiliar = juego.obtenerJugadorActual();
         vista.iniciarPartida(cartasJugador);
-        juego.retornarCartasJugador("Jugador Maquina");
 
-        // while(juego.validarTerminarPartida()){
-        //     if(juego.repartirCartas()){
-        //         juego.repartirCartasJugadores();
-        //         //ABSTRACTO: comunicación con la vista para darle las cartas que se repartieron
-        //         //ArrayList<Naipe>
-        //         juego.retornarCartasJugador(jugadorNombre);
-        //         juego.retornarCartasJugador("Jugador Maquina");
-        //     }else{
-        //         //ABSTRACTO: comunicación con la vista para obtener la carta elegida del jugador
-
-        //         //cartaDescartada = juego.movimientoJugadorDescartarCarta(valor, palo, nombreJugador);??
-        //         //comunicación con la vista para darle la carta descartada
-    
-        //         //comunicación con la vista de que se descartó la carta y se agrega a las que existen en la mesa 
-        //         //comunicación con la vista para saber que cartas existen en la mesa
-        //         //cartasCapturadas = juego.movimientoJugadorCapturarCarta(valor, palo, nombreJugador);
-    
-        //         //comunicación con la vista para las cartas capturada
-        //     }
-        // //comunicación con la vista de que la partida se terminó
-        // juego.pasarTurno();
-        //comunicación con la vista de que es el turno del otro jugador
+        while(!juego.validarTerminarPartida()){
+            vista.actualizarTurnoJugador(jugadorAuxiliar.obtenerNombre());
+            if(juego.repartirCartas()){
+                juego.repartirCartasJugadores();
+                cartasJugador = juego.obtenerJugadorPersona(jugadorNombre).obtenerCartas();
+                vista.actualizarCartasJugador(cartasJugador);
+            }else{
+                if(jugadorAuxiliar.obtenerNombre() == jugadorNombre){
+                    naipeAuxiliar = vista.retornarNaipeSeleccionada();
+                    while(naipeAuxiliar == null){
+                        naipeAuxiliar = vista.retornarNaipeSeleccionada();
+                    }
+                    ArrayList<Naipe> naipe = new ArrayList<Naipe>();
+                    naipe.add(naipeAuxiliar);
+                    jugadorAuxiliar.descartarCarta(naipe);
+                }else{
+                    naipeAuxiliar = jugadorAuxiliar.descartarCarta(juego.retornarCartasEnMesa());
+                }
+                //????? To Do montoncito para obtener las caartas en una esquina del panel
+                //ArrayList<Naipe> naipesCapturados = juego.movimientoJugadorCapturarCarta(naipeAuxiliar.obtenerValor(), naipeAuxiliar.obtenerPalo(), jugadorAuxiliar.obtenerNombre());
+                vista.actualizarCartasEnMesa(juego.retornarCartasEnMesa());
+            }
+            jugadorAuxiliar = juego.pasarTurno();
+        }
+        juego.terminarPartida();
+        jugadorAuxiliar = juego.obtenerJugadorActual();
+        //comunicar el jugador que gano a la vista
     }
 }
 

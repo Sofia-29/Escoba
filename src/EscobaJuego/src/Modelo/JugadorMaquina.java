@@ -18,8 +18,8 @@ public class JugadorMaquina extends Jugador{
             ArrayList<Integer> indicesVisitados = new ArrayList<Integer>();
             encontrado = combinaciones(cartasEnMesa, suma, indicesVisitados);
             if(encontrado){
-            resultado = naipeDeJugador;
-            break;
+                resultado = naipeDeJugador;
+                break;
             }
         }
 
@@ -28,6 +28,7 @@ public class JugadorMaquina extends Jugador{
             resultado = cartas.get(indice);
         }
 
+        cartas.remove(resultado);
         return resultado;
     }
 

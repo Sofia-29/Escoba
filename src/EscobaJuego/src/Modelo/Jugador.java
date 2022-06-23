@@ -49,8 +49,10 @@ public abstract class Jugador {
     }
 
     public void capturarCartas(ArrayList<Naipe> cartasCapturadas){
-        for(Naipe naipe:cartasCapturadas){
-            this.cartasCapturadas.add(naipe);
+        if(cartasCapturadas != null){
+            for(Naipe naipe:cartasCapturadas){
+                this.cartasCapturadas.add(naipe);
+            }
         }
     }
 
