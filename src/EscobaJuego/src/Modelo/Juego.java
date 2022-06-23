@@ -51,7 +51,7 @@ public class Juego {
         cartaDescartada = movimientoJugadorDescartarCarta(valor, palo, nombreJugador);
         ArrayList<Naipe> naipesCapturados = null;
         retornarJugadorActual(nombreJugador);
-        naipesCapturados =validar.validarCaptura(cartaDescartada, cartasEnMesa);
+        naipesCapturados =validar.validarCaptura(jugadorActual, cartaDescartada, cartasEnMesa);
         jugadorActual.capturarCartas(naipesCapturados);
         return naipesCapturados;
     }
