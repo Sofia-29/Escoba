@@ -47,7 +47,7 @@ public class Ventana<Dimension> extends JFrame {
         setDefaultCloseOperation(EXIT_ON_CLOSE);
         add(panelPrincipal);
         add(panelCartasJugador, BorderLayout.SOUTH);
-        add(panelCartasMesa, BorderLayout.NORTH);
+        add(panelCartasMesa, BorderLayout.CENTER);
 
         this.palo = "-1";
         this.valor = "-1";
@@ -137,14 +137,14 @@ public class Ventana<Dimension> extends JFrame {
                 String ruta = "Imagenes\\" + palo + "\\" + valor.toString() + "-" + palo + ".jpg";
                 JLabel boton = new JLabel();
                 boton.setName(valor+"-"+palo);
-                boton.setBorder(new EmptyBorder(10,10,10,10));
+                boton.setBorder(new EmptyBorder(300,10,10,10));
                 boton.setSize(144,200);
                 ImageIcon imagen = new ImageIcon(this.getClass().getResource(ruta));
                 Icon icon = new ImageIcon(imagen.getImage().getScaledInstance(boton.getWidth(), boton.getHeight(), Image.SCALE_DEFAULT));
                 boton.setIcon(icon);
                 boton.setEnabled(true);
                 cartasMesa.add(boton);
-                panelCartasMesa.add(boton, BorderLayout.NORTH);
+                panelCartasMesa.add(boton, BorderLayout.CENTER);
             }
         }
     }
