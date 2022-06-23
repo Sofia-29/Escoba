@@ -43,7 +43,7 @@ public class Vista {
     }
 
     public void actualizarCartasEnMesa(ArrayList<Naipe> cartasEnMesa){
-        //Llamar al metodo en ventana que actualiza las cartas que estan sobre la mesa. 
+        ventana.actualizarComponentesCartasMesa(cartasEnMesa, -1);
     }
 
     public void actualizarTurnoJugador(String nombreJugador){

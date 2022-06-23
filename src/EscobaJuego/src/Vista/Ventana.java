@@ -27,11 +27,13 @@ import javax.swing.border.EmptyBorder;
 
 
 public class Ventana<Dimension> extends JFrame {
-    private ArrayList<JLabel> cartasEnMesa;
     private ArrayList<JToggleButton> cartasJugador;
+    private ArrayList<JLabel> cartasMesa;
     private ButtonGroup cartasJugadorGrupo;
+    private ButtonGroup cartasMesaGrupo;
     private JPanel panelPrincipal;
     private JPanel panelCartasJugador;
+    private JPanel panelCartasMesa;
     private JButton descartar;
     private String palo; 
     private String valor;
@@ -45,6 +47,8 @@ public class Ventana<Dimension> extends JFrame {
         setDefaultCloseOperation(EXIT_ON_CLOSE);
         add(panelPrincipal);
         add(panelCartasJugador, BorderLayout.SOUTH);
+        add(panelCartasMesa, BorderLayout.NORTH);
+
         this.palo = "-1";
         this.valor = "-1";
     }
@@ -68,10 +72,13 @@ public class Ventana<Dimension> extends JFrame {
 
     private void iniciarComponentes(){
 
-        cartasEnMesa = new ArrayList<JLabel>(4);
+        panelCartasMesa = generarPanel(1);
+        cartasMesa = new ArrayList<JLabel>(4);  
         cartasJugador = new ArrayList<JToggleButton>(3);  
+        cartasMesaGrupo = new ButtonGroup();
         cartasJugadorGrupo = new ButtonGroup();
         panelCartasJugador = generarPanel(1);
+        panelCartasMesa = generarPanel(1);
         panelPrincipal = generarPanel(4);
         descartar = new JButton("Descartar");
         descartar.setSize(100,100);
@@ -117,22 +124,30 @@ public class Ventana<Dimension> extends JFrame {
         }
     }
 
-    // public void actualizarComponentesCartasMesa(ArrayList<Naipe> cartas){
-    //     actualizarComponenteJLabel(cartas.size(), "CartasEnMesa");
-    //     JPanel panelCartasMesa = generarPanel(1);
-    //     for(int indice = 0; indice < cartas.size(); indice++){
-    //             String palo = cartas.get(indice).obtenerPalo();
-    //             Integer valor = cartas.get(indice).obtenerValor();
-    //             String ruta = "Imagenes\\" + palo + "\\" + valor.toString() + "-" + palo + ".jpg";
-    //             JLabel label = cartasJugador.get(indice);
-    //             ImageIcon imagen = new ImageIcon(this.getClass().getResource(ruta));
-    //             Icon icon = new ImageIcon(imagen.getImage().getScaledInstance(label.getWidth(), label.getHeight(), Image.SCALE_DEFAULT));
-    //             label.setIcon(icon);
-    //             panelCartasMesa.add(label);
-    //     }
-    //     add(panelCartasMesa, BorderLayout.CENTER);
-    // }
-
+    public void actualizarComponentesCartasMesa(ArrayList<Naipe> cartas, int indiceCartas){
+        if(indiceCartas != -1){
+            JLabel boton = cartasMesa.get(indiceCartas);
+            boton.setVisible(false);
+            cartasMesa.remove(indiceCartas);
+        } else{
+            int cantidadCartas = cartasMesa.size();
+            for(int indice = cantidadCartas; indice < cartas.size(); indice++){
+                String palo = cartas.get(indice).obtenerPalo();
+                Integer valor = cartas.get(indice).obtenerValor();
+                String ruta = "Imagenes\\" + palo + "\\" + valor.toString() + "-" + palo + ".jpg";
+                JLabel boton = new JLabel();
+                boton.setName(valor+"-"+palo);
+                boton.setBorder(new EmptyBorder(10,10,10,10));
+                boton.setSize(144,200);
+                ImageIcon imagen = new ImageIcon(this.getClass().getResource(ruta));
+                Icon icon = new ImageIcon(imagen.getImage().getScaledInstance(boton.getWidth(), boton.getHeight(), Image.SCALE_DEFAULT));
+                boton.setIcon(icon);
+                boton.setEnabled(true);
+                cartasMesa.add(boton);
+                panelCartasMesa.add(boton, BorderLayout.NORTH);
+            }
+        }
+    }
     private JPanel generarPanel(int alineacion){
         JPanel panel = new JPanel();
         panel.setLayout(new FlowLayout(alineacion));

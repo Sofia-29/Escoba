@@ -49,6 +49,7 @@ public class Controlador {
                 }
                 //????? To Do montoncito para obtener las caartas en una esquina del panel
                 //ArrayList<Naipe> naipesCapturados = juego.movimientoJugadorCapturarCarta(naipeAuxiliar.obtenerValor(), naipeAuxiliar.obtenerPalo(), jugadorAuxiliar.obtenerNombre());
+              
                 vista.actualizarCartasEnMesa(juego.retornarCartasEnMesa());
             }
             jugadorAuxiliar = juego.pasarTurno();
