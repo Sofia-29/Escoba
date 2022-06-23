@@ -60,6 +60,10 @@ public class Vista {
         ventana.actualizarComponentesCartasJugador(cartasJugador, -1);
     }
 
+    public void iniciarComponenteRobot(){
+        ventana.iniciarComponenteRobot();
+    }
+
     public Naipe retornarNaipeSeleccionada(){
         String[] valorNaipe = ventana.obtenerNaipe();
         Naipe naipeAuxiliar = null;

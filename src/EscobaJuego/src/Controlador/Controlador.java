@@ -24,15 +24,13 @@ public class Controlador {
 
         jugadorNombre = vista.preguntarNombreJugadorPersona();
         jugadorOpcion = vista.preguntarTurno();
-
         juego.iniciarPartida(jugadorNombre, jugadorOpcion);
         jugadorAuxiliar = juego.obtenerPrimerJugador();
-        
-
         juego.retornarCartasEnMesa();
         cartasJugador = juego.retornarCartasJugador(jugadorNombre);
         jugadorAuxiliar = juego.obtenerJugadorActual();
         vista.iniciarPartida(cartasJugador);
+        vista.iniciarComponenteRobot();
 
         while(!juego.validarTerminarPartida()){
             vista.actualizarTurnoJugador(jugadorAuxiliar.obtenerNombre());

@@ -29,11 +29,12 @@ import javax.swing.border.EmptyBorder;
 public class Ventana<Dimension> extends JFrame {
     private ArrayList<JToggleButton> cartasJugador;
     private ArrayList<JLabel> cartasMesa;
+    private ArrayList<JLabel> etiquetaRobot;
     private ButtonGroup cartasJugadorGrupo;
-    private ButtonGroup cartasMesaGrupo;
     private JPanel panelPrincipal;
     private JPanel panelCartasJugador;
     private JPanel panelCartasMesa;
+    private JPanel panelRobot;
     private JButton descartar;
     private String palo; 
     private String valor;
@@ -48,6 +49,7 @@ public class Ventana<Dimension> extends JFrame {
         add(panelPrincipal);
         add(panelCartasJugador, BorderLayout.SOUTH);
         add(panelCartasMesa, BorderLayout.CENTER);
+        add(panelRobot, BorderLayout.NORTH);
 
         this.palo = "-1";
         this.valor = "-1";
@@ -75,11 +77,12 @@ public class Ventana<Dimension> extends JFrame {
         panelCartasMesa = generarPanel(1);
         cartasMesa = new ArrayList<JLabel>(4);  
         cartasJugador = new ArrayList<JToggleButton>(3);  
-        cartasMesaGrupo = new ButtonGroup();
+        etiquetaRobot = new ArrayList<JLabel>(1);  
         cartasJugadorGrupo = new ButtonGroup();
         panelCartasJugador = generarPanel(1);
         panelCartasMesa = generarPanel(1);
         panelPrincipal = generarPanel(4);
+        panelRobot = generarPanel(1);
         descartar = new JButton("Descartar");
         descartar.setSize(100,100);
         descartar.setEnabled(false);
@@ -152,6 +155,24 @@ public class Ventana<Dimension> extends JFrame {
             panelCartasMesa.revalidate();
             panelCartasMesa.repaint();
         }
+    }
+
+    public void iniciarComponenteRobot(){
+            String ruta = "Imagenes\\" + "Robot" + "\\" + "robot" + ".png";
+            JLabel etiqueta = new JLabel();
+            etiqueta.setName("Robot");
+            etiqueta.setBorder(new EmptyBorder(10,10,300,10));
+            etiqueta.setSize(144,200);
+            ImageIcon imagen = new ImageIcon(this.getClass().getResource(ruta));
+            Icon icono = new ImageIcon(imagen.getImage().getScaledInstance(etiqueta.getWidth(), etiqueta.getHeight(),
+             Image.SCALE_DEFAULT));
+            etiqueta.setIcon(icono);
+            etiqueta.setEnabled(true);
+            etiquetaRobot.add(etiqueta);
+            etiqueta.setVisible(true);
+            panelRobot.add(etiqueta, BorderLayout.NORTH);
+            panelRobot.revalidate();
+            panelRobot.repaint();
     }
 
     private JPanel generarPanel(int alineacion){
