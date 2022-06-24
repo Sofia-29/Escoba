@@ -40,6 +40,7 @@ public class Controlador {
                         break;
                     }
                 }
+                System.out.println("2. Estoy aca y soy: " + jugadorAuxiliar.obtenerNombre());
             }else{
                 naipeAuxiliar = jugadorAuxiliar.descartarCarta(juego.retornarCartasEnMesa());
                 TimeUnit.SECONDS.sleep(3);

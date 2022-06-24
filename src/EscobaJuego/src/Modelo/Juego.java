@@ -117,6 +117,7 @@ public class Juego {
     }
 
     public Boolean validarTerminarPartida(){
+        System.out.println("1. Cantidad de cartas en mazo: " + mazo.obtenerCantidadDeNaipes());
         if(mazo.obtenerCantidadDeNaipes()==0){
             return true;
         }
@@ -124,7 +125,8 @@ public class Juego {
     }
 
     public void terminarPartida(){
-        if(mazo.obtenerCantidadDeNaipes()==0){
+        boolean terminar = mazo.obtenerCantidadDeNaipes() == 0 && primerJugador.obtenerNumeroCartasEnJuego() == 0 & segundoJugador.obtenerNumeroCartasEnJuego() == 0;
+        if(terminar){
             jugadorActual = declararGanador();
         }
     }
