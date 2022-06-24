@@ -33,7 +33,6 @@ public class Controlador {
                 cartasJugador = juego.obtenerJugadorPersona(jugadorNombre).obtenerCartas();
                 vista.actualizarCartasJugador(cartasJugador);
             }
-            //TimeUnit.SECONDS.sleep(2);
             if(jugadorAuxiliar.obtenerNombre() == jugadorNombre){
                 while(true){
                     naipeAuxiliar = vista.retornarNaipeSeleccionada();
@@ -49,7 +48,6 @@ public class Controlador {
             juego.movimientoJugadorCapturarCarta(naipeAuxiliar, jugadorAuxiliar.obtenerNombre());
             vista.actualizarCartasEnMesa(juego.retornarCartasEnMesa());
             if(naipeAuxiliar != null){
-                //TimeUnit.SECONDS.sleep(3);
                 jugadorAuxiliar = juego.pasarTurno();
                 vista.actualizarTurnoJugador(jugadorAuxiliar.obtenerNombre());
                 naipeAuxiliar = null;

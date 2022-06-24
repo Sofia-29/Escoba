@@ -13,13 +13,15 @@ public class JugadorMaquina extends Jugador{
         int suma = 0;
         boolean encontrado = false;
         ArrayList<Naipe> cartas = this.obtenerCartas();
-        for(Naipe naipeDeJugador:cartas){
-            suma = naipeDeJugador.obtenerValor();
-            ArrayList<Integer> indicesVisitados = new ArrayList<Integer>();
-            encontrado = combinaciones(cartasEnMesa, suma, indicesVisitados);
-            if(encontrado){
-                resultado = naipeDeJugador;
-                break;
+        if(cartasEnMesa != null){
+            for(Naipe naipeDeJugador:cartas){
+                suma = naipeDeJugador.obtenerValor();
+                ArrayList<Integer> indicesVisitados = new ArrayList<Integer>();
+                encontrado = combinaciones(cartasEnMesa, suma, indicesVisitados);
+                if(encontrado){
+                    resultado = naipeDeJugador;
+                    break;
+                }
             }
         }
 
