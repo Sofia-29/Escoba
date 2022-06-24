@@ -16,6 +16,7 @@ public class Controlador {
         Vista vista = new Vista();
         Jugador jugadorAuxiliar;
         ArrayList<Naipe> cartasJugador;
+        ArrayList<Naipe> cartasXD;
         Naipe naipeAuxiliar = null;
         String jugadorNombre;
         int jugadorOpcion;
@@ -33,11 +34,13 @@ public class Controlador {
         vista.iniciarPartida(cartasJugador, juego.retornarCartasEnMesa());
         vista.actualizarTurnoJugador(jugadorAuxiliar.obtenerNombre());
         while(!juego.validarTerminarPartida()){
+            
             if(juego.repartirCartas()){
                 juego.repartirCartasJugadores();
                 cartasJugador = juego.obtenerJugadorPersona(jugadorNombre).obtenerCartas();
                 vista.actualizarCartasJugador(cartasJugador);
             }
+            cartasJugador = jugadorAuxiliar.obtenerCartas();
             if(jugadorAuxiliar.obtenerNombre() == jugadorNombre){
                 while(true){
                     naipeAuxiliar = vista.retornarNaipeSeleccionada();
@@ -45,14 +48,11 @@ public class Controlador {
                         break;
                     }
                     TimeUnit.SECONDS.sleep(1);
-                    System.out.println("1. Estoy aca y no me salgo: " + jugadorAuxiliar.obtenerNombre());
                 }
-                System.out.println("2. Estoy aca y soy: " + jugadorAuxiliar.obtenerNombre());
             }else{
                 naipeAuxiliar = jugadorAuxiliar.descartarCarta(juego.retornarCartasEnMesa());
                 TimeUnit.SECONDS.sleep(3);
             }
-                //????? To Do montoncito para obtener las caartas en una esquina del panel
             ArrayList<Naipe> cartasCapturadas = juego.movimientoJugadorCapturarCarta(naipeAuxiliar, jugadorAuxiliar.obtenerNombre());
             if(cartasCapturadas != null){
                 vista.actualizarCartasCaptura(cartasCapturadas, validadora.esEscoba(juego.retornarCartasEnMesa()));
@@ -65,9 +65,12 @@ public class Controlador {
                 vista.actualizarTurnoJugador(jugadorAuxiliar.obtenerNombre());
                 naipeAuxiliar = null;
             }
+            cartasJugador = jugadorAuxiliar.obtenerCartas();
+            
         }
-        juego.terminarPartida();
-        jugadorAuxiliar = juego.obtenerJugadorActual();
+        vista.finalizarJuego();
+        //juego.terminarPartida();
+        //jugadorAuxiliar = juego.obtenerJugadorActual();
     }
 }
 

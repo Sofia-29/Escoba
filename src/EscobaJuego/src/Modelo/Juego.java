@@ -74,7 +74,7 @@ public class Juego {
             naipes.add(naipe);
             cartaDescartada = jugadorActual.descartarCarta(naipes);
         }
-        jugadorActual.removerCarta(naipe);
+        jugadorActual.removerCarta(cartaDescartada);
         return cartaDescartada;
     }
 
@@ -118,14 +118,14 @@ public class Juego {
 
     public Boolean validarTerminarPartida(){
         System.out.println("1. Cantidad de cartas en mazo: " + mazo.obtenerCantidadDeNaipes());
-        if(mazo.obtenerCantidadDeNaipes()==0){
+        if(mazo.obtenerCantidadDeNaipes() == 0 && primerJugador.obtenerNumeroCartasEnJuego() == 0 && segundoJugador.obtenerNumeroCartasEnJuego() == 0){
             return true;
         }
         return false;
     }
 
     public void terminarPartida(){
-        boolean terminar = mazo.obtenerCantidadDeNaipes() == 0 && primerJugador.obtenerNumeroCartasEnJuego() == 0 & segundoJugador.obtenerNumeroCartasEnJuego() == 0;
+        boolean terminar = mazo.obtenerCantidadDeNaipes() == 0 && primerJugador.obtenerNumeroCartasEnJuego() == 0 && segundoJugador.obtenerNumeroCartasEnJuego() == 0;
         if(terminar){
             jugadorActual = declararGanador();
         }

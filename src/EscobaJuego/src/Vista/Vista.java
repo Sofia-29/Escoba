@@ -74,4 +74,9 @@ public class Vista {
         naipeAuxiliar = new Naipe(Integer.parseInt(valorNaipe[1]), valorNaipe[0]);
         return naipeAuxiliar;
     }
+
+    public void finalizarJuego(){
+        String mensaje="Juego finalizado";
+        JOptionPane.showMessageDialog(null, mensaje);
+    }
 }

@@ -42,16 +42,6 @@ public class Validador {
         }
     }
 
-    public void removerCarta(ArrayList<Naipe> resultado, ArrayList<Naipe> cartasEnMesa){
-        for(Naipe cartaEnMesa:cartasEnMesa){
-            for(Naipe cartaResultado:resultado){
-                if(cartaEnMesa.obtenerPalo().equals(cartaResultado.obtenerPalo()) && cartaEnMesa.obtenerValor() == cartaResultado.obtenerValor()){
-                    cartasEnMesa.remove(cartaEnMesa);
-                }
-            }
-        }
-    }
-
     public boolean combinaciones(ArrayList<Naipe> cartasEnMesa, int suma, ArrayList<Integer> indicesVisitados){
         boolean encontrado = false;
         if(suma == 15){
