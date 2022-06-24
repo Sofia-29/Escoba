@@ -111,6 +111,8 @@ public class Ventana<Dimension> extends JFrame {
                 cartasJugador.add(boton);
                 accionSeleccionarCarta(boton);
                 panelCartasJugador.add(boton, BorderLayout.CENTER);
+                panelCartasJugador.revalidate();
+                panelCartasJugador.repaint();
             }
             if(cantidadCartas == 0){
                 panelCartasJugador.add(descartar);
