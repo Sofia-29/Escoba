@@ -92,7 +92,11 @@ public class Juego {
 
     //RETROALIMENTACIÓN VISTA-CONTROLADOR-JUEGO
     public ArrayList<Naipe> retornarCartasJugador(String nombreJugador){
-        return jugadorActual.obtenerCartas();
+        if(nombreJugador == obtenerJugadorPersona(nombreJugador).obtenerNombre()){
+            return obtenerJugadorPersona(nombreJugador).obtenerCartas();
+        }else{
+            return jugadorActual.obtenerCartas();
+        }
     }
 
     //RETROALIMENTACIÓN VISTA-CONTROLADOR-JUEGO

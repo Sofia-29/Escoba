@@ -49,7 +49,12 @@ public abstract class Jugador {
     }
 
     public void removerCarta(Naipe naipe){
-        cartas.remove(naipe);
+        for(Naipe naipeJugador:cartas){
+            if(naipeJugador.obtenerPalo().equals(naipe.obtenerPalo()) && naipeJugador.obtenerValor() == naipe.obtenerValor()){
+                cartas.remove(naipeJugador);
+                break;
+            }
+        }
     }
 
     public void capturarCartas(ArrayList<Naipe> cartasCapturadas){
