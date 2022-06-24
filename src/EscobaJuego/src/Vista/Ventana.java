@@ -10,7 +10,6 @@ import java.awt.Font;
 import java.awt.Color;
 import java.awt.Image;
 import java.awt.event.ActionListener;
-import java.text.Normalizer.Form;
 import java.awt.BorderLayout;
 
 import java.util.ArrayList;
@@ -26,7 +25,6 @@ import javax.swing.JPanel;
 import javax.swing.JToggleButton;
 import javax.swing.border.EmptyBorder;
 
-import java.util.concurrent.TimeUnit;
 
 public class Ventana<Dimension> extends JFrame {
     private ArrayList<JToggleButton> cartasJugador;
@@ -128,33 +126,8 @@ public class Ventana<Dimension> extends JFrame {
     }
 
     public void actualizarComponentesCartasMesa(ArrayList<Naipe> cartas){
-        int indiceCartasMesa = cartasMesa.size() - 1;
-        while(indiceCartasMesa >= 0){
-            JLabel boton = cartasMesa.get(indiceCartasMesa);
-            boton.setVisible(false);
-            cartasMesa.remove(indiceCartasMesa);
-            indiceCartasMesa--;
-        }
-
-        for(int indice = 0; indice < cartas.size(); indice++){
-            String palo = cartas.get(indice).obtenerPalo();
-            Integer valor = cartas.get(indice).obtenerValor();
-            String ruta = "Imagenes\\" + palo + "\\" + valor.toString() + "-" + palo + ".jpg";
-            JLabel etiqueta = new JLabel();
-            etiqueta.setName(valor+"-"+palo);
-            etiqueta.setBorder(new EmptyBorder(300,10,10,10));
-            etiqueta.setSize(144,200);
-            ImageIcon imagen = new ImageIcon(this.getClass().getResource(ruta));
-            Icon icono = new ImageIcon(imagen.getImage().getScaledInstance(etiqueta.getWidth(), etiqueta.getHeight(),
-             Image.SCALE_DEFAULT));
-            etiqueta.setIcon(icono);
-            etiqueta.setEnabled(true);
-            cartasMesa.add(etiqueta);
-            etiqueta.setVisible(true);
-            panelCartasMesa.add(etiqueta, BorderLayout.CENTER);
-            panelCartasMesa.revalidate();
-            panelCartasMesa.repaint();
-        }
+        limpiarComponente(cartasMesa);
+        actualizarComponente(cartasMesa, panelCartasMesa, cartas);
     }
 
     public void limpiarComponente(ArrayList<JLabel> componente){

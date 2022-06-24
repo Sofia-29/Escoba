@@ -16,7 +16,6 @@ public class Controlador {
         Vista vista = new Vista();
         Jugador jugadorAuxiliar;
         ArrayList<Naipe> cartasJugador;
-        ArrayList<Naipe> cartasXD;
         Naipe naipeAuxiliar = null;
         String jugadorNombre;
         int jugadorOpcion;

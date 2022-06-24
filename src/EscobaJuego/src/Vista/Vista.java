@@ -1,10 +1,8 @@
 package Vista;
 
 import java.util.ArrayList;
-import javax.swing.JButton;
 import javax.swing.JOptionPane;
 import Modelo.Naipe;
-import Modelo.Juego;
 
 public class Vista {
 
