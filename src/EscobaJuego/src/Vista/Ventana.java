@@ -192,6 +192,7 @@ public class Ventana<Dimension> extends JFrame {
     public void actualizarComponentesCartasCapturadas(ArrayList<Naipe> cartas, boolean escoba){
         panelCartasCapturadas.setVisible(true);
         JLabel nuevaEtiqueta = generarEtiquetaCartasCapturadas(escoba);
+        etiquetaTurnoJugador.setVisible(false);
         cartasCapturadas.add(nuevaEtiqueta);
         panelCartasCapturadas.add(nuevaEtiqueta, BorderLayout.CENTER);
         actualizarComponente(cartasCapturadas, panelCartasCapturadas, cartas);
@@ -218,6 +219,7 @@ public class Ventana<Dimension> extends JFrame {
     public void limpiarComponeneteCartasCapturadas(){
         limpiarComponente(cartasCapturadas);
         panelCartasCapturadas.setVisible(false);
+        etiquetaTurnoJugador.setVisible(true);
     }
 
     private JPanel generarPanel(int alineacion){
