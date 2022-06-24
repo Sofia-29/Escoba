@@ -48,11 +48,18 @@ public abstract class Jugador {
         this.puntaje+=puntaje;
     }
 
-    public void capturarCartas(ArrayList<Naipe> cartasCapturadas){
-        if(cartasCapturadas != null){
-            for(Naipe naipe:cartasCapturadas){
-                this.cartasCapturadas.add(naipe);
+    public void removerCarta(Naipe naipe){
+        for(Naipe naipeJugador:cartas){
+            if(naipeJugador.obtenerPalo().equals(naipe.obtenerPalo()) && naipeJugador.obtenerValor() == naipe.obtenerValor()){
+                cartas.remove(naipeJugador);
+                break;
             }
+        }
+    }
+
+    public void capturarCartas(ArrayList<Naipe> cartasCapturadas){
+        for(Naipe naipe:cartasCapturadas){
+            this.cartasCapturadas.add(naipe);
         }
     }
 

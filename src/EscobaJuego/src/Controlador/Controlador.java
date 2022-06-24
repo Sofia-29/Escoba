@@ -4,13 +4,10 @@ import Modelo.Validador;
 
 import java.util.ArrayList;
 import java.util.concurrent.TimeUnit;
-import java.util.Random;
 
-import javax.swing.text.View;
 
 import Modelo.Juego;
 import Modelo.Jugador;
-import Modelo.Mazo;
 import Vista.Vista;
 
 public class Controlador {
@@ -22,7 +19,7 @@ public class Controlador {
         Naipe naipeAuxiliar = null;
         String jugadorNombre;
         int jugadorOpcion;
-        Random rand = new Random();
+
         Validador validadora = new Validador();
 
         jugadorNombre = vista.preguntarNombreJugadorPersona();
@@ -30,48 +27,48 @@ public class Controlador {
 
         juego.iniciarPartida(jugadorNombre, jugadorOpcion);
         jugadorAuxiliar = juego.obtenerPrimerJugador();
-        
 
-        juego.retornarCartasEnMesa();
         cartasJugador = juego.retornarCartasJugador(jugadorNombre);
         jugadorAuxiliar = juego.obtenerJugadorActual();
-        vista.iniciarPartida(cartasJugador);
-
+        vista.iniciarPartida(cartasJugador, juego.retornarCartasEnMesa());
+        vista.actualizarTurnoJugador(jugadorAuxiliar.obtenerNombre());
         while(!juego.validarTerminarPartida()){
-            vista.actualizarTurnoJugador(jugadorAuxiliar.obtenerNombre());
-            TimeUnit.SECONDS.sleep(2);
             if(juego.repartirCartas()){
                 juego.repartirCartasJugadores();
                 cartasJugador = juego.obtenerJugadorPersona(jugadorNombre).obtenerCartas();
                 vista.actualizarCartasJugador(cartasJugador);
             }
+            TimeUnit.SECONDS.sleep(2);
             if(jugadorAuxiliar.obtenerNombre() == jugadorNombre){
                 naipeAuxiliar = vista.retornarNaipeSeleccionada();
                 while(naipeAuxiliar == null){
                     naipeAuxiliar = vista.retornarNaipeSeleccionada();
                 }
-                ArrayList<Naipe> naipe = new ArrayList<Naipe>();
-                naipe.add(naipeAuxiliar);
-                jugadorAuxiliar.descartarCarta(naipe);
+                TimeUnit.SECONDS.sleep(3);
             }else{
                 naipeAuxiliar = jugadorAuxiliar.descartarCarta(juego.retornarCartasEnMesa());
-                TimeUnit.SECONDS.sleep(3);
+                //TimeUnit.SECONDS.sleep(3);
             }
                 //????? To Do montoncito para obtener las caartas en una esquina del panel
-            ArrayList<Naipe> cartasCapturadas = juego.movimientoJugadorCapturarCarta(naipeAuxiliar.obtenerValor(), naipeAuxiliar.obtenerPalo(), jugadorAuxiliar.obtenerNombre());
+            ArrayList<Naipe> cartasCapturadas = juego.movimientoJugadorCapturarCarta(naipeAuxiliar, jugadorAuxiliar.obtenerNombre());
             if(cartasCapturadas != null){
                 vista.actualizarCartasCaptura(cartasCapturadas, validadora.esEscoba(juego.retornarCartasEnMesa()));
                 TimeUnit.SECONDS.sleep(4);
                 vista.limpiarComponeneteCartasCapturadas();
             }
+            juego.movimientoJugadorCapturarCarta(naipeAuxiliar, jugadorNombre);
+            TimeUnit.SECONDS.sleep(3);
             vista.actualizarCartasEnMesa(juego.retornarCartasEnMesa());
-
-            jugadorAuxiliar = juego.pasarTurno();
-
+            if(naipeAuxiliar != null){
+                //TimeUnit.SECONDS.sleep(3);
+                jugadorAuxiliar = juego.pasarTurno();
+                vista.actualizarTurnoJugador(jugadorAuxiliar.obtenerNombre());
+                TimeUnit.SECONDS.sleep(2);
+                naipeAuxiliar = null;
+            }
         }
         juego.terminarPartida();
         jugadorAuxiliar = juego.obtenerJugadorActual();
-        //comunicar el jugador que gano a la vista
     }
 }
 
