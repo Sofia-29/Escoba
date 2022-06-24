@@ -64,8 +64,6 @@ public class Juego {
         cartaDescartada = movimientoJugadorDescartarCarta(naipe, nombreJugador);
         ArrayList<Naipe> naipesCapturados = null;
         naipesCapturados = validar.validarCaptura(jugadorActual, cartaDescartada, cartasEnMesa);
-        if(naipesCapturados != null)
-            jugadorActual.capturarCartas(naipesCapturados);
         return naipesCapturados;
     }
 
@@ -76,7 +74,6 @@ public class Juego {
             naipes.add(naipe);
             cartaDescartada = jugadorActual.descartarCarta(naipes);
         }
-
         jugadorActual.removerCarta(naipe);
         return cartaDescartada;
     }

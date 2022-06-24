@@ -185,6 +185,7 @@ public class Ventana<Dimension> extends JFrame {
                     actualizarComponentesCartasJugador(null, indice);
                     cartasJugadorGrupo.clearSelection();
                     descartar.setEnabled(false);
+                    habilitarCartasJugador(false);
                 }
         };
         descartar.addActionListener(accion);

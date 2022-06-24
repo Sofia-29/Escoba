@@ -64,9 +64,7 @@ public class Vista {
     public Naipe retornarNaipeSeleccionada(){
         String[] valorNaipe = ventana.obtenerNaipe();
         Naipe naipeAuxiliar = null;
-        if(valorNaipe[0] != "-1"){
-            naipeAuxiliar = new Naipe(Integer.parseInt(valorNaipe[1]), valorNaipe[0]);
-        }
+        naipeAuxiliar = new Naipe(Integer.parseInt(valorNaipe[1]), valorNaipe[0]);
         return naipeAuxiliar;
     }
 }
