@@ -206,10 +206,10 @@ public class Ventana<Dimension> extends JFrame {
         nuevaEtiqueta.setFont(new Font("Arial", Font.PLAIN, 24));
         nuevaEtiqueta.setForeground(Color.WHITE);
         if (escoba){
-            nuevaEtiqueta.setText("Escoba");
+            nuevaEtiqueta.setText("Escoba en el " + etiquetaTurnoJugador.getText());
             nuevaEtiqueta.setName("Escoba");
         }else{
-            nuevaEtiqueta.setText("Captura");
+            nuevaEtiqueta.setText("Captura en el " + etiquetaTurnoJugador.getText());
             nuevaEtiqueta.setName("Captura");
         }
         return nuevaEtiqueta;
@@ -251,6 +251,7 @@ public class Ventana<Dimension> extends JFrame {
                     actualizarComponentesCartasJugador(null, indice);
                     cartasJugadorGrupo.clearSelection();
                     descartar.setEnabled(false);
+                    habilitarCartasJugador(false);
                 }
         };
         descartar.addActionListener(accion);

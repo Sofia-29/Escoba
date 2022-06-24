@@ -15,7 +15,7 @@ public class Juego {
 
     public Juego(){
 
-        validar = new Validador(primerJugador, segundoJugador);
+        validar = new Validador();
     }
 
     public void asignarPrimerJugador(Jugador jugadorUno){
@@ -64,8 +64,6 @@ public class Juego {
         cartaDescartada = movimientoJugadorDescartarCarta(naipe, nombreJugador);
         ArrayList<Naipe> naipesCapturados = null;
         naipesCapturados = validar.validarCaptura(jugadorActual, cartaDescartada, cartasEnMesa);
-        if(naipesCapturados != null)
-            jugadorActual.capturarCartas(naipesCapturados);
         return naipesCapturados;
     }
 
@@ -76,7 +74,6 @@ public class Juego {
             naipes.add(naipe);
             cartaDescartada = jugadorActual.descartarCarta(naipes);
         }
-
         jugadorActual.removerCarta(naipe);
         return cartaDescartada;
     }
@@ -120,6 +117,7 @@ public class Juego {
     }
 
     public Boolean validarTerminarPartida(){
+        System.out.println("1. Cantidad de cartas en mazo: " + mazo.obtenerCantidadDeNaipes());
         if(mazo.obtenerCantidadDeNaipes()==0){
             return true;
         }
@@ -127,7 +125,8 @@ public class Juego {
     }
 
     public void terminarPartida(){
-        if(mazo.obtenerCantidadDeNaipes()==0){
+        boolean terminar = mazo.obtenerCantidadDeNaipes() == 0 && primerJugador.obtenerNumeroCartasEnJuego() == 0 & segundoJugador.obtenerNumeroCartasEnJuego() == 0;
+        if(terminar){
             jugadorActual = declararGanador();
         }
     }

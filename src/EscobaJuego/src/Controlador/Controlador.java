@@ -38,16 +38,19 @@ public class Controlador {
                 cartasJugador = juego.obtenerJugadorPersona(jugadorNombre).obtenerCartas();
                 vista.actualizarCartasJugador(cartasJugador);
             }
-            TimeUnit.SECONDS.sleep(2);
             if(jugadorAuxiliar.obtenerNombre() == jugadorNombre){
-                naipeAuxiliar = vista.retornarNaipeSeleccionada();
-                while(naipeAuxiliar == null){
+                while(true){
                     naipeAuxiliar = vista.retornarNaipeSeleccionada();
+                    if(!naipeAuxiliar.obtenerPalo().equals("-1")){
+                        break;
+                    }
+                    TimeUnit.SECONDS.sleep(1);
+                    System.out.println("1. Estoy aca y no me salgo: " + jugadorAuxiliar.obtenerNombre());
                 }
-                TimeUnit.SECONDS.sleep(3);
+                System.out.println("2. Estoy aca y soy: " + jugadorAuxiliar.obtenerNombre());
             }else{
                 naipeAuxiliar = jugadorAuxiliar.descartarCarta(juego.retornarCartasEnMesa());
-                //TimeUnit.SECONDS.sleep(3);
+                TimeUnit.SECONDS.sleep(3);
             }
                 //????? To Do montoncito para obtener las caartas en una esquina del panel
             ArrayList<Naipe> cartasCapturadas = juego.movimientoJugadorCapturarCarta(naipeAuxiliar, jugadorAuxiliar.obtenerNombre());
@@ -56,14 +59,10 @@ public class Controlador {
                 TimeUnit.SECONDS.sleep(4);
                 vista.limpiarComponeneteCartasCapturadas();
             }
-            juego.movimientoJugadorCapturarCarta(naipeAuxiliar, jugadorNombre);
-            TimeUnit.SECONDS.sleep(3);
             vista.actualizarCartasEnMesa(juego.retornarCartasEnMesa());
             if(naipeAuxiliar != null){
-                //TimeUnit.SECONDS.sleep(3);
                 jugadorAuxiliar = juego.pasarTurno();
                 vista.actualizarTurnoJugador(jugadorAuxiliar.obtenerNombre());
-                TimeUnit.SECONDS.sleep(2);
                 naipeAuxiliar = null;
             }
         }
