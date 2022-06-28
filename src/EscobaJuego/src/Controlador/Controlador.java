@@ -5,7 +5,6 @@ import Modelo.Validador;
 import java.util.ArrayList;
 import java.util.concurrent.TimeUnit;
 
-
 import Modelo.Juego;
 import Modelo.Jugador;
 import Vista.Vista;
