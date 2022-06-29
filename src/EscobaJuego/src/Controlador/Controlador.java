@@ -2,18 +2,28 @@ package Controlador;
 import Modelo.Naipe;
 import Modelo.Validador;
 
+import java.io.File;
 import java.util.ArrayList;
 import java.util.concurrent.TimeUnit;
 
 import Modelo.Juego;
 import Modelo.Jugador;
 import Vista.Vista;
+import Modelo.Serializador;
 
 public class Controlador {
     public static void main(String[] args) throws Exception {
         Juego juego = new Juego();
         Vista vista = new Vista();
         Jugador jugadorAuxiliar;
+
+        // File partida = vista.elegirArchivo();
+        // System.out.println(partida);
+
+        // Serializador serializador = new Serializador();
+        // serializador.cargarJuego(partida);
+
+
         ArrayList<Naipe> cartasJugador;
         Naipe naipeAuxiliar = null;
         String jugadorNombre;
@@ -71,5 +81,3 @@ public class Controlador {
         //jugadorAuxiliar = juego.obtenerJugadorActual();
     }
 }
-
-
