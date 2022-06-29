@@ -2,6 +2,7 @@ package Controlador;
 import Modelo.Naipe;
 import Modelo.Validador;
 
+import java.io.File;
 import java.util.ArrayList;
 import java.util.concurrent.TimeUnit;
 
@@ -14,6 +15,11 @@ public class Controlador {
         Juego juego = new Juego();
         Vista vista = new Vista();
         Jugador jugadorAuxiliar;
+
+        // File partida = vista.elegirArchivo();
+        // System.out.println(partida);
+
+
         ArrayList<Naipe> cartasJugador;
         Naipe naipeAuxiliar = null;
         String jugadorNombre;
@@ -71,5 +77,3 @@ public class Controlador {
         //jugadorAuxiliar = juego.obtenerJugadorActual();
     }
 }
-
-
