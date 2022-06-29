@@ -2,15 +2,15 @@
   "primerJugador": {
     "cartas": [
       {
-        "valor": 1,
-        "palo": "Bastos"
+        "valor": 6,
+        "palo": "Copas"
+      },
+      {
+        "valor": 6,
+        "palo": "Espadas"
       },
       {
         "valor": 2,
-        "palo": "Oros"
-      },
-      {
-        "valor": 10,
         "palo": "Copas"
       }
     ],
@@ -21,16 +21,16 @@
   "segundoJugador": {
     "cartas": [
       {
-        "valor": 2,
-        "palo": "Bastos"
-      },
-      {
-        "valor": 8,
-        "palo": "Bastos"
-      },
-      {
-        "valor": 7,
+        "valor": 9,
         "palo": "Espadas"
+      },
+      {
+        "valor": 1,
+        "palo": "Oros"
+      },
+      {
+        "valor": 10,
+        "palo": "Oros"
       }
     ],
     "puntaje": 0,
@@ -40,124 +40,124 @@
   "mazo": {
     "mazo": [
       {
-        "valor": 6,
-        "palo": "Oros"
-      },
-      {
-        "valor": 3,
-        "palo": "Espadas"
-      },
-      {
-        "valor": 5,
-        "palo": "Oros"
-      },
-      {
-        "valor": 4,
+        "valor": 10,
         "palo": "Copas"
-      },
-      {
-        "valor": 9,
-        "palo": "Oros"
-      },
-      {
-        "valor": 8,
-        "palo": "Espadas"
-      },
-      {
-        "valor": 6,
-        "palo": "Bastos"
       },
       {
         "valor": 7,
         "palo": "Copas"
-      },
-      {
-        "valor": 8,
-        "palo": "Oros"
-      },
-      {
-        "valor": 3,
-        "palo": "Copas"
-      },
-      {
-        "valor": 4,
-        "palo": "Espadas"
-      },
-      {
-        "valor": 3,
-        "palo": "Bastos"
-      },
-      {
-        "valor": 10,
-        "palo": "Oros"
-      },
-      {
-        "valor": 6,
-        "palo": "Copas"
-      },
-      {
-        "valor": 5,
-        "palo": "Bastos"
-      },
-      {
-        "valor": 2,
-        "palo": "Copas"
-      },
-      {
-        "valor": 8,
-        "palo": "Copas"
-      },
-      {
-        "valor": 6,
-        "palo": "Espadas"
-      },
-      {
-        "valor": 7,
-        "palo": "Bastos"
-      },
-      {
-        "valor": 3,
-        "palo": "Oros"
-      },
-      {
-        "valor": 5,
-        "palo": "Espadas"
-      },
-      {
-        "valor": 9,
-        "palo": "Bastos"
-      },
-      {
-        "valor": 4,
-        "palo": "Bastos"
-      },
-      {
-        "valor": 4,
-        "palo": "Oros"
-      },
-      {
-        "valor": 5,
-        "palo": "Copas"
-      },
-      {
-        "valor": 2,
-        "palo": "Espadas"
-      },
-      {
-        "valor": 10,
-        "palo": "Espadas"
       },
       {
         "valor": 1,
         "palo": "Copas"
       },
       {
-        "valor": 7,
+        "valor": 5,
+        "palo": "Copas"
+      },
+      {
+        "valor": 3,
+        "palo": "Espadas"
+      },
+      {
+        "valor": 6,
+        "palo": "Bastos"
+      },
+      {
+        "valor": 5,
         "palo": "Oros"
+      },
+      {
+        "valor": 3,
+        "palo": "Oros"
+      },
+      {
+        "valor": 2,
+        "palo": "Oros"
+      },
+      {
+        "valor": 8,
+        "palo": "Oros"
+      },
+      {
+        "valor": 1,
+        "palo": "Espadas"
       },
       {
         "valor": 10,
         "palo": "Bastos"
+      },
+      {
+        "valor": 2,
+        "palo": "Bastos"
+      },
+      {
+        "valor": 3,
+        "palo": "Bastos"
+      },
+      {
+        "valor": 9,
+        "palo": "Copas"
+      },
+      {
+        "valor": 2,
+        "palo": "Espadas"
+      },
+      {
+        "valor": 9,
+        "palo": "Bastos"
+      },
+      {
+        "valor": 4,
+        "palo": "Espadas"
+      },
+      {
+        "valor": 10,
+        "palo": "Espadas"
+      },
+      {
+        "valor": 4,
+        "palo": "Oros"
+      },
+      {
+        "valor": 4,
+        "palo": "Copas"
+      },
+      {
+        "valor": 8,
+        "palo": "Copas"
+      },
+      {
+        "valor": 5,
+        "palo": "Espadas"
+      },
+      {
+        "valor": 7,
+        "palo": "Oros"
+      },
+      {
+        "valor": 1,
+        "palo": "Bastos"
+      },
+      {
+        "valor": 4,
+        "palo": "Bastos"
+      },
+      {
+        "valor": 9,
+        "palo": "Oros"
+      },
+      {
+        "valor": 3,
+        "palo": "Copas"
+      },
+      {
+        "valor": 7,
+        "palo": "Bastos"
+      },
+      {
+        "valor": 7,
+        "palo": "Espadas"
       }
     ],
     "palos": [
@@ -170,15 +170,15 @@
   "jugadorActual": {
     "cartas": [
       {
-        "valor": 1,
-        "palo": "Bastos"
+        "valor": 6,
+        "palo": "Copas"
+      },
+      {
+        "valor": 6,
+        "palo": "Espadas"
       },
       {
         "valor": 2,
-        "palo": "Oros"
-      },
-      {
-        "valor": 10,
         "palo": "Copas"
       }
     ],
@@ -189,20 +189,20 @@
   "validar": {},
   "cartasEnMesa": [
     {
-      "valor": 1,
-      "palo": "Espadas"
+      "valor": 8,
+      "palo": "Bastos"
     },
     {
-      "valor": 9,
-      "palo": "Espadas"
+      "valor": 5,
+      "palo": "Bastos"
     },
     {
-      "valor": 9,
-      "palo": "Copas"
-    },
-    {
-      "valor": 1,
+      "valor": 6,
       "palo": "Oros"
+    },
+    {
+      "valor": 8,
+      "palo": "Espadas"
     }
   ]
 }

@@ -8,8 +8,10 @@ import com.google.gson.GsonBuilder;
 
 public class Serializador {
     private Gson gson;
+    
     public Serializador(){
-        gson = new GsonBuilder().setPrettyPrinting().create();
+        gson = new GsonBuilder().
+            setPrettyPrinting().create();
     }
 
     public void guardarJuego(Juego juego, String nombreArchivo){

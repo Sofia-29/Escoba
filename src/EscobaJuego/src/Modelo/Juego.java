@@ -11,7 +11,7 @@ public class Juego {
     private Jugador jugadorActual;
     private Validador validar;
     private ArrayList<Naipe> cartasEnMesa;
-    private Serializador serializador;
+    private static Serializador serializador;
 
     public Juego(){
 
