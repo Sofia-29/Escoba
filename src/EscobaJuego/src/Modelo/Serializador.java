@@ -20,8 +20,17 @@ public class Serializador {
             String ruta =  "src\\EscobaJuego\\src\\Modelo\\JuegosGuardados\\" + nombreArchivo + ".json";
             FileWriter archivo = new FileWriter(ruta);
             PrintWriter escritor = new PrintWriter(archivo);
-            String informacion = gson.toJson(juego);
-            escritor.println(informacion);
+            String informacionJugadorUno = gson.toJson(juego.obtenerPrimerJugador());
+            String informacionJugadorDos = gson.toJson(juego.obtenerSegundoJugador());
+            String informacionMazo = gson.toJson(juego.obtenerMazo());
+            String informacionCartasEnMesa = gson.toJson(juego.retornarCartasEnMesa());
+            String informacionJugadorActual = juego.obtenerJugadorActual().obtenerNombre();
+
+            escritor.println(informacionJugadorUno + "*");
+            escritor.println(informacionJugadorDos + "*");
+            escritor.println(informacionMazo + "*");
+            escritor.println(informacionCartasEnMesa + "*");
+            escritor.println(informacionJugadorActual);
             escritor.close();
             archivo.close();
         } catch (Exception e) {

@@ -14,7 +14,6 @@ public class Juego {
     private static Serializador serializador;
 
     public Juego(){
-
         validar = new Validador();
         serializador = new Serializador();
     }
@@ -26,11 +25,16 @@ public class Juego {
     public Jugador obtenerPrimerJugador(){
         return primerJugador;
     }
+
+    public Mazo obtenerMazo(){
+        return mazo;
+    }
+
     public Jugador obtenerJugadorActual(){
         return jugadorActual;
     }
 
-    private Jugador obtenerSegundoJugador(){
+    public Jugador obtenerSegundoJugador(){
         return segundoJugador;
     }
 
@@ -54,7 +58,6 @@ public class Juego {
         }
         jugadorActual = primerJugador;
         mazo = new Mazo();
-        //mazo.barajar();
         cartasEnMesa = mazo.repartirMazo(4);
         primerJugador.asignarCartas(mazo.repartirMazo(3));
         segundoJugador.asignarCartas(mazo.repartirMazo(3));

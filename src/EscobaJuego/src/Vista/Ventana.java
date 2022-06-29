@@ -247,7 +247,6 @@ public class Ventana<Dimension> extends JFrame {
         return indice;
     }
    
-    //
     public JLabel construirEtiqueta(String text) {
         JLabel etiqueta = new JLabel();
         etiqueta.setText(text);
