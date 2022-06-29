@@ -43,11 +43,11 @@ public class Serializador {
     }
 
 
-    public void cargarJuego(File partida){
+    public Juego cargarJuego(File partida){
+        Juego juegoCargado = null;
         try
         {
             // Atributos del juego
-            Juego juegoCargado = null;
             JugadorPersona jugadorPersona = null;
             JugadorMaquina jugadorMaquina = null;
             Mazo mazo = null;
@@ -92,6 +92,7 @@ public class Serializador {
         } catch (Exception e) {
             e.printStackTrace();
         }
+        return juegoCargado;
     }
 
     public String leerArchivo(File partida){
