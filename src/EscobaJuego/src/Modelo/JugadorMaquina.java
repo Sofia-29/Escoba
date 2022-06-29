@@ -3,6 +3,10 @@ import java.util.ArrayList;
 
 public class JugadorMaquina extends Jugador{
 
+    public JugadorMaquina(){
+        super("");
+    }
+
     public JugadorMaquina(String nombre){
         super(nombre);
     }
