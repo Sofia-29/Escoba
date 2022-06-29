@@ -9,6 +9,7 @@ import java.util.concurrent.TimeUnit;
 import Modelo.Juego;
 import Modelo.Jugador;
 import Vista.Vista;
+import Modelo.Serializador;
 
 public class Controlador {
     public static void main(String[] args) throws Exception {
@@ -18,6 +19,9 @@ public class Controlador {
 
         File partida = vista.elegirArchivo();
         System.out.println(partida);
+
+        Serializador serializador = new Serializador();
+        serializador.cargarJuego(partida);
 
 
         // ArrayList<Naipe> cartasJugador;

@@ -79,8 +79,6 @@
       "palo": "Copas"
     },
     {
-<<<<<<< HEAD
-=======
       "valor": 5,
       "palo": "Bastos"
     },
@@ -113,22 +111,10 @@
       "palo": "Espadas"
     },
     {
->>>>>>> main
       "valor": 8,
       "palo": "Oros"
     },
     {
-<<<<<<< HEAD
-      "valor": 7,
-      "palo": "Oros"
-    },
-    {
-      "valor": 10,
-      "palo": "Copas"
-    }
-  ]
-}
-=======
       "valor": 1,
       "palo": "Bastos"
     },
@@ -199,4 +185,3 @@
   }
 ]*
 xd
->>>>>>> main
