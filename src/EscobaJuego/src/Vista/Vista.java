@@ -25,6 +25,12 @@ public class Vista {
         return nombreJugador;
     }
 
+    public static int preguntarCargarPartida(){
+        String mensaje = "¿Desea cargar una partida?";
+        int respuesta = JOptionPane.showConfirmDialog(null, mensaje, "Cargar partida", JOptionPane.YES_NO_OPTION);
+        return respuesta;
+    }
+
     public static String preguntarTurnoJugador(){
         String mensaje="Escoja su turno: Primero o Segundo";
         String opcionJugador = JOptionPane.showInputDialog(mensaje,"");

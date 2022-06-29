@@ -27,57 +27,68 @@ public class Controlador {
         ArrayList<Naipe> cartasJugador;
         Naipe naipeAuxiliar = null;
         String jugadorNombre;
+        int cargarPartida;
         int jugadorOpcion;
 
         Validador validadora = new Validador();
 
-        jugadorNombre = vista.preguntarNombreJugadorPersona();
-        jugadorOpcion = vista.preguntarTurno();
+        cargarPartida = vista.preguntarCargarPartida();
+        if(cargarPartida == 0){
+            File partida = vista.elegirArchivo();
+            System.out.println(partida);
+            Serializador serializador = new Serializador();
+            juego = serializador.cargarJuego(partida);
+            jugadorAuxiliar = juego.obtenerJugadorActual();
+            jugadorNombre = juego.obtenerJugadorActual().obtenerNombre();
 
-        juego.iniciarPartida(jugadorNombre, jugadorOpcion);
-        jugadorAuxiliar = juego.obtenerPrimerJugador();
-
-        cartasJugador = juego.retornarCartasJugador(jugadorNombre);
-        jugadorAuxiliar = juego.obtenerJugadorActual();
-        vista.iniciarPartida(cartasJugador, juego.retornarCartasEnMesa());
-        vista.actualizarTurnoJugador(jugadorAuxiliar.obtenerNombre());
-        while(!juego.validarTerminarPartida()){
-            
-            if(juego.repartirCartas()){
-                juego.repartirCartasJugadores();
-                cartasJugador = juego.obtenerJugadorPersona(jugadorNombre).obtenerCartas();
-                vista.actualizarCartasJugador(cartasJugador);
+        }else{
+                jugadorNombre = vista.preguntarNombreJugadorPersona();
+                jugadorOpcion = vista.preguntarTurno();
+                juego.iniciarPartida(jugadorNombre, jugadorOpcion);
             }
-            cartasJugador = jugadorAuxiliar.obtenerCartas();
-            if(jugadorAuxiliar.obtenerNombre() == jugadorNombre){
-                while(true){
-                    naipeAuxiliar = vista.retornarNaipeSeleccionada();
-                    if(!naipeAuxiliar.obtenerPalo().equals("-1")){
-                        break;
-                    }
-                    TimeUnit.SECONDS.sleep(1);
+
+            jugadorAuxiliar = juego.obtenerPrimerJugador();
+            cartasJugador = juego.retornarCartasJugador(jugadorNombre);
+            jugadorAuxiliar = juego.obtenerJugadorActual();
+            vista.iniciarPartida(cartasJugador, juego.retornarCartasEnMesa());
+            vista.actualizarTurnoJugador(jugadorAuxiliar.obtenerNombre());
+            while(!juego.validarTerminarPartida()){
+                
+                if(juego.repartirCartas()){
+                    juego.repartirCartasJugadores();
+                    cartasJugador = juego.obtenerJugadorPersona(jugadorNombre).obtenerCartas();
+                    vista.actualizarCartasJugador(cartasJugador);
                 }
-            }else{
-                naipeAuxiliar = jugadorAuxiliar.descartarCarta(juego.retornarCartasEnMesa());
-                TimeUnit.SECONDS.sleep(3);
+                cartasJugador = jugadorAuxiliar.obtenerCartas();
+                if(jugadorAuxiliar.obtenerNombre() == jugadorNombre){
+                    while(true){
+                        naipeAuxiliar = vista.retornarNaipeSeleccionada();
+                        if(!naipeAuxiliar.obtenerPalo().equals("-1")){
+                            break;
+                        }
+                        TimeUnit.SECONDS.sleep(1);
+                    }
+                }else{
+                    naipeAuxiliar = jugadorAuxiliar.descartarCarta(juego.retornarCartasEnMesa());
+                    TimeUnit.SECONDS.sleep(3);
+                }
+                ArrayList<Naipe> cartasCapturadas = juego.movimientoJugadorCapturarCarta(naipeAuxiliar, jugadorAuxiliar.obtenerNombre());
+                if(cartasCapturadas != null){
+                    vista.actualizarCartasCaptura(cartasCapturadas, validadora.esEscoba(juego.retornarCartasEnMesa()));
+                    TimeUnit.SECONDS.sleep(4);
+                    vista.limpiarComponeneteCartasCapturadas();
+                }
+                vista.actualizarCartasEnMesa(juego.retornarCartasEnMesa());
+                if(naipeAuxiliar != null){
+                    jugadorAuxiliar = juego.pasarTurno();
+                    vista.actualizarTurnoJugador(jugadorAuxiliar.obtenerNombre());
+                    naipeAuxiliar = null;
+                }
+                cartasJugador = jugadorAuxiliar.obtenerCartas();
+                
             }
-            ArrayList<Naipe> cartasCapturadas = juego.movimientoJugadorCapturarCarta(naipeAuxiliar, jugadorAuxiliar.obtenerNombre());
-            if(cartasCapturadas != null){
-                vista.actualizarCartasCaptura(cartasCapturadas, validadora.esEscoba(juego.retornarCartasEnMesa()));
-                TimeUnit.SECONDS.sleep(4);
-                vista.limpiarComponeneteCartasCapturadas();
-            }
-            vista.actualizarCartasEnMesa(juego.retornarCartasEnMesa());
-            if(naipeAuxiliar != null){
-                jugadorAuxiliar = juego.pasarTurno();
-                vista.actualizarTurnoJugador(jugadorAuxiliar.obtenerNombre());
-                naipeAuxiliar = null;
-            }
-            cartasJugador = jugadorAuxiliar.obtenerCartas();
-            
-        }
-        vista.finalizarJuego();
-        //juego.terminarPartida();
-        //jugadorAuxiliar = juego.obtenerJugadorActual();
+            vista.finalizarJuego();
+            //juego.terminarPartida();
+            //jugadorAuxiliar = juego.obtenerJugadorActual();
     }
 }

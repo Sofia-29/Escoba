@@ -5,7 +5,6 @@ import java.io.File;
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.PrintWriter;
-import java.util.ArrayList;
 import java.util.StringTokenizer;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
@@ -43,11 +42,11 @@ public class Serializador {
     }
 
 
-    public void cargarJuego(File partida){
+    public Juego cargarJuego(File partida){
+        Juego juegoCargado = null;
         try
         {
             // Atributos del juego
-            Juego juegoCargado = null;
             JugadorPersona jugadorPersona = null;
             JugadorMaquina jugadorMaquina = null;
             Mazo mazo = null;
@@ -92,6 +91,7 @@ public class Serializador {
         } catch (Exception e) {
             e.printStackTrace();
         }
+        return juegoCargado;
     }
 
     public String leerArchivo(File partida){
@@ -104,6 +104,7 @@ public class Serializador {
             while ((st = br.readLine()) != null){
                 salida += st+"\n";
             }
+            br.close();
         } catch (Exception e) {
             e.printStackTrace();
         }
