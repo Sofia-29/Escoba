@@ -5,8 +5,8 @@ import java.io.File;
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.PrintWriter;
+import java.util.ArrayList;
 import java.util.StringTokenizer;
-
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 
@@ -46,64 +46,82 @@ public class Serializador {
     public void cargarJuego(File partida){
         try
         {
-            BufferedReader br = new BufferedReader(new FileReader(partida));
-            String jsonString = "";
-            String st;
-            while ((st = br.readLine()) != null){
-                // if(st.contains("segundoJugador") || st.contains("primerJugador") || st.contains("mazo")|| st.contains("jugadorActual")){
-                //     if(st.contains("primerJugador")){
-                //         st = "{";
-                //     }
-                //     jsonString += "*"+st+"\n";
-                // }else{
-                    jsonString += st+"\n";
-               // }
-            }
-            System.out.println("Archivo cargado: ");
-            System.out.println(jsonString);
+            // Atributos del juego
+            Juego juegoCargado = null;
+            JugadorPersona jugadorPersona = null;
+            JugadorMaquina jugadorMaquina = null;
+            Mazo mazo = null;
+            ArrayList<Naipe> cartasEnMesa;
+            String jugadorActual = "";
 
-            int attributeCounter = 0;
-            StringTokenizer st2 = new StringTokenizer(jsonString, "*");
-            while (st2.hasMoreTokens()) {
-                String line = st2.nextToken();
-                // switch (attributeCounter) {
-                //     case 0:
-                //         // line.trim();
-                //         line = line.substring(0, line.length()-2);
-                //         System.out.println(line);
-                //         System.out.println("----------------------------");
-                //         JugadorPersona jugadorPersona = gson.fromJson(line, JugadorPersona.class);
-                //         System.out.println("aaaaaa");
-                //         System.out.println(jugadorPersona.toString());
-                //         System.out.println(jugadorPersona.obtenerNombre());
-
-                //         break;
-                //     case 2:
-                //         // line.trim();
-                //         line = line.substring(0, line.length()-2);
-                //         System.out.println(line);
-                //         System.out.println("----------------------------");
-                //         JugadorPersona jugadorPersona = gson.fromJson(line, JugadorPersona.class);
-                //         System.out.println("aaaaaa");
-                //         System.out.println(jugadorPersona.toString());
-                //         System.out.println(jugadorPersona.obtenerNombre());
-
-                //         break;
+            String juegoSerializado = leerArchivo(partida);
+            int IdAtributo = 0;
+            StringTokenizer tokenizador = new StringTokenizer(juegoSerializado, "*");
+            while (tokenizador.hasMoreTokens()) {
+                String line = tokenizador.nextToken();
+                switch (IdAtributo) {
+                    case 0:
+                    case 1:
+                        if(line.contains("Jugador Maquina")){
+                            jugadorMaquina = gson.fromJson(line, JugadorMaquina.class);
+                        }else{
+                            jugadorPersona = gson.fromJson(line, JugadorPersona.class);
+                        }
+                        break;
+                    case 2:
+                        mazo = gson.fromJson(line, Mazo.class);
+                        break;
+                    case 3:
+                        System.out.println("Cartas en mesa omitidas jiji");
+                        break;
+                    case 4:
+                        System.out.println("Jugador actual es: "+line);
+                        jugadorActual = line;
+                        break;
                 
-                //     default:
-                //         break;
-                // }
-                System.out.println(line);
-                System.out.println("----------------------------");
-                attributeCounter +=1;
+                    default:
+                        break;
+                }
+                IdAtributo +=1;
             }
+
+            if(jugadorActual.equals("Jugador Maquina")){
+                juegoCargado = new Juego(jugadorPersona, jugadorMaquina, mazo, jugadorMaquina);
+            }else{
+                juegoCargado = new Juego(jugadorPersona, jugadorMaquina, mazo, jugadorPersona);
+            }
+
+            System.out.println("Primer Jugador: "+juegoCargado.obtenerPrimerJugador().obtenerNombre());
+            System.out.println("-----------");
+            System.out.println("Segundo Jugador: "+juegoCargado.obtenerSegundoJugador().obtenerNombre());
+            System.out.println("-----------");
+            System.out.println("Mazo: ");
+            juegoCargado.obtenerMazo().imprimirMazo();
+            System.out.println("-----------");
+            System.out.println("Jugador Actual: "+juegoCargado.obtenerJugadorActual().obtenerNombre());
+            System.out.println("-----------");
             
-            // Juego juego = new Juego(); gson.fromJson(jsonString, Juego.class);
-            // System.out.println(juego.toString());
         } catch (Exception e) {
             e.printStackTrace();
         }
     }
+
+    public String leerArchivo(File partida){
+        String salida = "";
+        try
+        {
+            BufferedReader br = new BufferedReader(new FileReader(partida));
+            salida = "";
+            String st;
+            while ((st = br.readLine()) != null){
+                salida += st+"\n";
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return salida;
+    }
+
     
 
     public static void main(String[] args){

@@ -18,6 +18,15 @@ public class Juego {
         serializador = new Serializador();
     }
 
+    public Juego(Jugador primerJugador, Jugador segundoJugador, Mazo mazo, Jugador jugadorActual){
+        this.primerJugador = primerJugador;
+        this.segundoJugador = segundoJugador;
+        this.mazo = mazo;
+        this.jugadorActual = jugadorActual;
+        validar = new Validador();
+        serializador = new Serializador();
+    }
+
     public void asignarPrimerJugador(Jugador jugadorUno){
         this.primerJugador=jugadorUno;
     }
