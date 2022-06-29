@@ -11,11 +11,12 @@ public class Juego {
     private Jugador jugadorActual;
     private Validador validar;
     private ArrayList<Naipe> cartasEnMesa;
-    public Jugador obtenerPrimerJugador;
+    private Serializador serializador;
 
     public Juego(){
 
         validar = new Validador();
+        serializador = new Serializador();
     }
 
     public void asignarPrimerJugador(Jugador jugadorUno){
@@ -145,6 +146,10 @@ public class Juego {
             return segundoJugador;
        }
         return null;
+    }
+
+    public void guardarPartida(String nombreArchivo){
+        serializador.guardarJuego(this, nombreArchivo);
     }
 }
 
