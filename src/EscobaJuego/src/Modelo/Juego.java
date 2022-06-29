@@ -18,11 +18,12 @@ public class Juego {
         serializador = new Serializador();
     }
 
-    public Juego(Jugador primerJugador, Jugador segundoJugador, Mazo mazo, Jugador jugadorActual){
+    public Juego(Jugador primerJugador, Jugador segundoJugador, Mazo mazo, Jugador jugadorActual, ArrayList<Naipe> cartasEnMesa){
         this.primerJugador = primerJugador;
         this.segundoJugador = segundoJugador;
         this.mazo = mazo;
         this.jugadorActual = jugadorActual;
+        this.cartasEnMesa = cartasEnMesa;
         validar = new Validador();
         serializador = new Serializador();
     }

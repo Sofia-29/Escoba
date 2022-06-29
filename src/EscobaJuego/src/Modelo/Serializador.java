@@ -51,7 +51,7 @@ public class Serializador {
             JugadorPersona jugadorPersona = null;
             JugadorMaquina jugadorMaquina = null;
             Mazo mazo = null;
-            ArrayList<Naipe> cartasEnMesa;
+            Mazo cartasEnMesa = null;
             String jugadorActual = "";
 
             String juegoSerializado = leerArchivo(partida);
@@ -72,10 +72,9 @@ public class Serializador {
                         mazo = gson.fromJson(line, Mazo.class);
                         break;
                     case 3:
-                        System.out.println("Cartas en mesa omitidas jiji");
+                        cartasEnMesa = gson.fromJson(line, Mazo.class);
                         break;
                     case 4:
-                        System.out.println("Jugador actual es: "+line);
                         jugadorActual = line;
                         break;
                 
@@ -86,21 +85,10 @@ public class Serializador {
             }
 
             if(jugadorActual.equals("Jugador Maquina")){
-                juegoCargado = new Juego(jugadorPersona, jugadorMaquina, mazo, jugadorMaquina);
+                juegoCargado = new Juego(jugadorPersona, jugadorMaquina, mazo, jugadorMaquina, cartasEnMesa.obtenerMazo());
             }else{
-                juegoCargado = new Juego(jugadorPersona, jugadorMaquina, mazo, jugadorPersona);
+                juegoCargado = new Juego(jugadorPersona, jugadorMaquina, mazo, jugadorPersona, cartasEnMesa.obtenerMazo());
             }
-
-            System.out.println("Primer Jugador: "+juegoCargado.obtenerPrimerJugador().obtenerNombre());
-            System.out.println("-----------");
-            System.out.println("Segundo Jugador: "+juegoCargado.obtenerSegundoJugador().obtenerNombre());
-            System.out.println("-----------");
-            System.out.println("Mazo: ");
-            juegoCargado.obtenerMazo().imprimirMazo();
-            System.out.println("-----------");
-            System.out.println("Jugador Actual: "+juegoCargado.obtenerJugadorActual().obtenerNombre());
-            System.out.println("-----------");
-            
         } catch (Exception e) {
             e.printStackTrace();
         }
