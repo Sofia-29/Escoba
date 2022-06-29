@@ -5,7 +5,6 @@ import java.io.File;
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.PrintWriter;
-import java.util.ArrayList;
 import java.util.StringTokenizer;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
@@ -105,6 +104,7 @@ public class Serializador {
             while ((st = br.readLine()) != null){
                 salida += st+"\n";
             }
+            br.close();
         } catch (Exception e) {
             e.printStackTrace();
         }

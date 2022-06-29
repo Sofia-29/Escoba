@@ -16,6 +16,14 @@ public class Controlador {
         Juego juego = new Juego();
         Vista vista = new Vista();
         Jugador jugadorAuxiliar;
+
+        // File partida = vista.elegirArchivo();
+        // System.out.println(partida);
+
+        // Serializador serializador = new Serializador();
+        // serializador.cargarJuego(partida);
+
+
         ArrayList<Naipe> cartasJugador;
         Naipe naipeAuxiliar = null;
         String jugadorNombre;
