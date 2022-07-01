@@ -36,6 +36,7 @@ public class Ventana<Dimension> extends JFrame {
     private JPanel panelCartasMesa;
     private JPanel panelCartasCapturadas;
     private JButton descartar;
+    private JButton guardarPartida;
     private String palo; 
     private String valor;
     private JLabel etiquetaTurnoJugador;
@@ -84,6 +85,9 @@ public class Ventana<Dimension> extends JFrame {
         descartar = new JButton("Descartar");
         descartar.setSize(100,100);
         descartar.setEnabled(false);
+        guardarPartida = new JButton("Guardar Partida");
+        guardarPartida.setSize(100,100);
+        guardarPartida.setEnabled(false);
         accionDescarta();
     }
 
@@ -116,6 +120,7 @@ public class Ventana<Dimension> extends JFrame {
             }
             if(cantidadCartas == 0){
                 panelCartasJugador.add(descartar);
+                panelCartasJugador.add(guardarPartida);
             }
         }
     }
@@ -274,8 +279,10 @@ public class Ventana<Dimension> extends JFrame {
             this.palo = "-1";
             this.valor = "-1";
             habilitarCartasJugador(false);
+            guardarPartida.setEnabled(false);
         } else{
             habilitarCartasJugador(true);
+            guardarPartida.setEnabled(true);
         }
     }
 
