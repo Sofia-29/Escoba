@@ -41,6 +41,7 @@ public class Ventana<Dimension> extends JFrame {
     private String valor;
     private JLabel etiquetaTurnoJugador;
     private JToggleButton reglasJuego;
+    private JButton bot;
 
     public Ventana(int ancho, int altura, String titulo){
         setSize(ancho, altura);
@@ -88,6 +89,7 @@ public class Ventana<Dimension> extends JFrame {
         accionDescarta();
         botonReglas();
         accionMostrarReglas();
+        mostrarBot();
     }
 
     public void actualizarComponentesCartasJugador(ArrayList<Naipe> cartas, int indiceCartas){
@@ -240,7 +242,6 @@ public class Ventana<Dimension> extends JFrame {
         descartar.addActionListener(accion);
     }
 
-
     private void accionMostrarReglas(){
         ActionListener accion = new ActionListener(){
                 @Override
@@ -338,5 +339,23 @@ public class Ventana<Dimension> extends JFrame {
             habilitarCartasJugador(true);
         }
     }
+
+    public void mostrarBot(){
+        JPanel panelBot = generarPanel(2);
+        bot = new JButton();
+        String ruta = "Imagenes\\Bot\\botcito.png";
+        ImageIcon imagen = new ImageIcon(this.getClass().getResource(ruta));
+        Icon icono = new ImageIcon(imagen.getImage().getScaledInstance(130,100,
+        Image.SCALE_DEFAULT));
+        bot.setBorder(new EmptyBorder(0,0,0,0));
+        bot.setBackground(new java.awt.Color(28, 84, 45));
+        bot.setIcon(icono);
+        bot.setForeground(new java.awt.Color(28, 84, 45));
+        panelBot.add(bot);
+        add(panelBot);
+        bot.setVisible(true);
+    }
+
+
 
 }
