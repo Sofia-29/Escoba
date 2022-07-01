@@ -253,7 +253,7 @@ public class Ventana<Dimension> extends JFrame {
         etiqueta.setVisible(false);
         etiqueta.setFont(new Font("Arial", Font.PLAIN, 24));
         etiqueta.setOpaque(true);
-        etiqueta.setBackground(new java.awt.Color(24, 61, 97));
+        etiqueta.setBackground(new java.awt.Color(78, 59, 49));
         return etiqueta;
     }
 
