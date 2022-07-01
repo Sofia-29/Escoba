@@ -300,7 +300,6 @@
   <object id="T9X+ifT9f0eKmdMOWQzk1w" type="umloperation.uml"/>
   <object id="D6qkwj9h2kSVVeUt4DIkMw" type="umlparameter.uml"/>
   <object id="N8T1noOwvUio9qHMa3VhFg" type="umloperation.uml"/>
-  <object id="EyBv7k/gR0yvtuWC5BVWDg" type="umlattribute.uml"/>
   <object id="UVg1ytXPqkesWguFnjSU1w" type="umloperation.uml"/>
   <object id="u5WqZVJoHEe8YIWTZ9AQUw" type="umlparameter.uml"/>
   <object id="K3VTTt8ah0esviOfO6xVnw" type="umloperation.uml"/>
@@ -399,6 +398,18 @@
   <object id="U8Lqc4Et6kuPw1Fowb8wHA" type="textcompartmentview.core"/>
   <object id="gSwWmsrbsEq9xZyRhziUMg" type="umlattribute.uml"/>
   <object id="p+vkWST8YkOJo5iin38hrw" type="umlparameter.uml"/>
+  <object id="eNRzmwF9BUCe1BHXvB6JpQ" type="umlattribute.uml"/>
+  <object id="WfTxmBH3U0mW6Cs10Xh93Q" type="umloperation.uml"/>
+  <object id="fAtPCy0edka4s/WgYZxYbg" type="umlparameter.uml"/>
+  <object id="q6E+vbH2LkS94b60mEh7tA" type="umlparameter.uml"/>
+  <object id="sFnxyRuz6kq4vEx3fyN9XA" type="umloperation.uml"/>
+  <object id="hLJNDtKBsk+NNODYLdPoKQ" type="umloperation.uml"/>
+  <object id="TJegKK8qCEmzZHLHor4fkQ" type="umlparameter.uml"/>
+  <object id="3QXjI+ZwvkaB3BJZtlOU4w" type="umloperation.uml"/>
+  <object id="RTA/j1ZSs0eytUX+Bq/QLg" type="umlparameter.uml"/>
+  <object id="6vb+mY5SfUmK5410pzJkHQ" type="umlparameter.uml"/>
+  <object id="U1Ch68LVaUuQbBn9jUxRkA" type="umlparameter.uml"/>
+  <object id="ye12aUFUIEW8Yql7HPkKYw" type="umlparameter.uml"/>
  </objects>
  <relations>
   <relation from="SDPo+pGhrECV8LsYuIHPfQ" id="gA85SnwC5ESVLOHC5Uo9hw" to="x2oTGHkUhEeNyIGltEmAQA" type="umlaggregation.umlclassifier.umlclassifier.uml"/>
@@ -783,8 +794,6 @@
   <reference from="ndwUkXCu8Ui3wbm3DiMR6Q" to="T9X+ifT9f0eKmdMOWQzk1w" type="classifier.operations.umlclassifier.umloperation.uml"/>
   <reference from="T9X+ifT9f0eKmdMOWQzk1w" to="D6qkwj9h2kSVVeUt4DIkMw" type="operation.parameters.umloperation.umlparameter.uml"/>
   <reference from="esxNWEzdkEC85CoLBHc7hg" to="N8T1noOwvUio9qHMa3VhFg" type="classifier.operations.umlclassifier.umloperation.uml"/>
-  <reference from="esxNWEzdkEC85CoLBHc7hg" to="EyBv7k/gR0yvtuWC5BVWDg" type="classifier.attributes.umlclassifier.umlattribute.uml"/>
-  <reference from="EyBv7k/gR0yvtuWC5BVWDg" to="7iafnU8sCEK3KuXnRphIEg" type="typedattribute.type.umlattribute.umlclassifier.uml"/>
   <reference from="esxNWEzdkEC85CoLBHc7hg" to="UVg1ytXPqkesWguFnjSU1w" type="classifier.operations.umlclassifier.umloperation.uml"/>
   <reference from="RTYOrQioikei3kfk9UcDbw" to="u5WqZVJoHEe8YIWTZ9AQUw" type="operation.parameters.umloperation.umlparameter.uml"/>
   <reference from="u5WqZVJoHEe8YIWTZ9AQUw" to="7iafnU8sCEK3KuXnRphIEg" type="typedparameter.type.umlparameter.umlclassifier.uml"/>
@@ -913,6 +922,23 @@
   <reference from="qWCSoihCEUamousfa8RKTA" to="DwMFQiZ/rEWU5hOLf7LTTQ" type="model.views.umlcomposition.umlcompositionview.uml"/>
   <reference from="yB0UBztleEWb/1ouxbpxaA" to="gSwWmsrbsEq9xZyRhziUMg" type="classifier.attributes.umlclassifier.umlattribute.uml"/>
   <reference from="gLhgaaswm0yHZwuoZR3HOg" to="p+vkWST8YkOJo5iin38hrw" type="operation.parameters.umloperation.umlparameter.uml"/>
+  <reference from="esxNWEzdkEC85CoLBHc7hg" to="eNRzmwF9BUCe1BHXvB6JpQ" type="classifier.attributes.umlclassifier.umlattribute.uml"/>
+  <reference from="eNRzmwF9BUCe1BHXvB6JpQ" to="yB0UBztleEWb/1ouxbpxaA" type="typedattribute.type.umlattribute.umlclassifier.uml"/>
+  <reference from="esxNWEzdkEC85CoLBHc7hg" to="WfTxmBH3U0mW6Cs10Xh93Q" type="classifier.operations.umlclassifier.umloperation.uml"/>
+  <reference from="WfTxmBH3U0mW6Cs10Xh93Q" to="fAtPCy0edka4s/WgYZxYbg" type="operation.parameters.umloperation.umlparameter.uml"/>
+  <reference from="CdrxFwcLn0aJGBuFMpnIRQ" to="q6E+vbH2LkS94b60mEh7tA" type="operation.parameters.umloperation.umlparameter.uml"/>
+  <reference from="Mma5xFQkoEiyIH964kDC/g" to="sFnxyRuz6kq4vEx3fyN9XA" type="classifier.operations.umlclassifier.umloperation.uml"/>
+  <reference from="yB0UBztleEWb/1ouxbpxaA" to="hLJNDtKBsk+NNODYLdPoKQ" type="classifier.operations.umlclassifier.umloperation.uml"/>
+  <reference from="hLJNDtKBsk+NNODYLdPoKQ" to="TJegKK8qCEmzZHLHor4fkQ" type="operation.parameters.umloperation.umlparameter.uml"/>
+  <reference from="esxNWEzdkEC85CoLBHc7hg" to="3QXjI+ZwvkaB3BJZtlOU4w" type="classifier.operations.umlclassifier.umloperation.uml"/>
+  <reference from="3QXjI+ZwvkaB3BJZtlOU4w" to="RTA/j1ZSs0eytUX+Bq/QLg" type="operation.parameters.umloperation.umlparameter.uml"/>
+  <reference from="3QXjI+ZwvkaB3BJZtlOU4w" to="6vb+mY5SfUmK5410pzJkHQ" type="operation.parameters.umloperation.umlparameter.uml"/>
+  <reference from="3QXjI+ZwvkaB3BJZtlOU4w" to="U1Ch68LVaUuQbBn9jUxRkA" type="operation.parameters.umloperation.umlparameter.uml"/>
+  <reference from="3QXjI+ZwvkaB3BJZtlOU4w" to="ye12aUFUIEW8Yql7HPkKYw" type="operation.parameters.umloperation.umlparameter.uml"/>
+  <reference from="RTA/j1ZSs0eytUX+Bq/QLg" to="7iafnU8sCEK3KuXnRphIEg" type="typedparameter.type.umlparameter.umlclassifier.uml"/>
+  <reference from="6vb+mY5SfUmK5410pzJkHQ" to="7iafnU8sCEK3KuXnRphIEg" type="typedparameter.type.umlparameter.umlclassifier.uml"/>
+  <reference from="U1Ch68LVaUuQbBn9jUxRkA" to="SDPo+pGhrECV8LsYuIHPfQ" type="typedparameter.type.umlparameter.umlclassifier.uml"/>
+  <reference from="ye12aUFUIEW8Yql7HPkKYw" to="7iafnU8sCEK3KuXnRphIEg" type="typedparameter.type.umlparameter.umlclassifier.uml"/>
  </references>
  <object-values>
   <value-owner id="4QcatZ+UskiM7sNK6lLyoA">
@@ -985,8 +1011,8 @@
   </value-owner>
   <value-owner id="C/9PTZvKMU6qlj0bfJSzQw">
    <value name="style">{&quot;fill-color&quot;: &quot;255,255,127,255&quot;}</value>
-   <value name="rendering">{&quot;bounds&quot;: &quot;803,194,461,294&quot;,&quot;model&quot;: &quot;Mma5xFQkoEiyIH964kDC/g&quot;,&quot;name&quot;: &quot;Vista&quot;,&quot;render&quot;: [{&quot;bounds&quot;: &quot;803,194,461,294&quot;,&quot;type&quot;: &quot;Rect&quot;},{&quot;bounds&quot;: &quot;1017,199,33,16&quot;,&quot;fontStyle&quot;: &quot;2&quot;,&quot;text&quot;: &quot;Vista&quot;,&quot;type&quot;: &quot;Text&quot;},{&quot;bounds&quot;: &quot;803,220,461,54&quot;,&quot;fillColor&quot;: &quot;0,0,0,0&quot;,&quot;type&quot;: &quot;Rect&quot;},{&quot;bounds&quot;: &quot;808,223,105,16&quot;,&quot;text&quot;: &quot;-ventana: Ventana&quot;,&quot;type&quot;: &quot;Text&quot;},{&quot;bounds&quot;: &quot;808,239,137,16&quot;,&quot;text&quot;: &quot;-nombreJugador: String&quot;,&quot;type&quot;: &quot;Text&quot;},{&quot;bounds&quot;: &quot;808,255,130,16&quot;,&quot;text&quot;: &quot;-opcionJugador: String&quot;,&quot;type&quot;: &quot;Text&quot;},{&quot;bounds&quot;: &quot;803,274,461,214&quot;,&quot;fillColor&quot;: &quot;0,0,0,0&quot;,&quot;type&quot;: &quot;Rect&quot;},{&quot;bounds&quot;: &quot;808,277,46,16&quot;,&quot;text&quot;: &quot;+Vista()&quot;,&quot;type&quot;: &quot;Text&quot;},{&quot;bounds&quot;: &quot;808,293,253,16&quot;,&quot;text&quot;: &quot;+preguntarNombreJugadorPersona(): String&quot;,&quot;type&quot;: &quot;Text&quot;},{&quot;bounds&quot;: &quot;808,309,386,16&quot;,&quot;text&quot;: &quot;+actualizarCartasCaptura(cartas: vector&lt;Naipe&gt;, escoba: boolean)&quot;,&quot;type&quot;: &quot;Text&quot;},{&quot;bounds&quot;: &quot;808,325,238,16&quot;,&quot;text&quot;: &quot;+limpiarComponeneteCartasCapturadas()&quot;,&quot;type&quot;: &quot;Text&quot;},{&quot;bounds&quot;: &quot;808,341,386,16&quot;,&quot;text&quot;: &quot;+actualizarCartasCaptura(cartas: vector&lt;Naipe&gt;, escoba: boolean)&quot;,&quot;type&quot;: &quot;Text&quot;},{&quot;bounds&quot;: &quot;808,357,327,16&quot;,&quot;text&quot;: &quot;+actualizarCartasEnMesa(cartasEnMesa: vector&lt;Naipe&gt;)&quot;,&quot;type&quot;: &quot;Text&quot;},{&quot;bounds&quot;: &quot;808,373,433,16&quot;,&quot;text&quot;: &quot;+iniciarPartida(cartasJugador: vector&lt;Naipe&gt;, cartasMesa: vector&lt;Naipe&gt;)&quot;,&quot;type&quot;: &quot;Text&quot;},{&quot;bounds&quot;: &quot;808,389,249,16&quot;,&quot;text&quot;: &quot;+Naipe retornarNaipeSeleccionada(): Naipe&quot;,&quot;type&quot;: &quot;Text&quot;},{&quot;bounds&quot;: &quot;808,405,123,16&quot;,&quot;text&quot;: &quot;+void finalizarJuego()&quot;,&quot;type&quot;: &quot;Text&quot;},{&quot;bounds&quot;: &quot;808,421,130,16&quot;,&quot;text&quot;: &quot;+preguntarTurno(): int&quot;,&quot;type&quot;: &quot;Text&quot;},{&quot;bounds&quot;: &quot;808,437,283,16&quot;,&quot;text&quot;: &quot;+actualizarTurnoJugador(nombreJugador: String)&quot;,&quot;type&quot;: &quot;Text&quot;},{&quot;bounds&quot;: &quot;808,453,320,16&quot;,&quot;text&quot;: &quot;+actualizarCartasJugador(cartasJugadorvector&lt;Naipe&gt;)&quot;,&quot;type&quot;: &quot;Text&quot;},{&quot;bounds&quot;: &quot;808,469,96,16&quot;,&quot;text&quot;: &quot;+finalizarJuego()&quot;,&quot;type&quot;: &quot;Text&quot;}],&quot;type&quot;: &quot;UMLClassView&quot;}</value>
-   <value name="bounds">803,194,461,294</value>
+   <value name="rendering">{&quot;bounds&quot;: &quot;803,194,461,310&quot;,&quot;model&quot;: &quot;Mma5xFQkoEiyIH964kDC/g&quot;,&quot;name&quot;: &quot;Vista&quot;,&quot;render&quot;: [{&quot;bounds&quot;: &quot;803,194,461,310&quot;,&quot;type&quot;: &quot;Rect&quot;},{&quot;bounds&quot;: &quot;1017,199,33,16&quot;,&quot;fontStyle&quot;: &quot;2&quot;,&quot;text&quot;: &quot;Vista&quot;,&quot;type&quot;: &quot;Text&quot;},{&quot;bounds&quot;: &quot;803,220,461,54&quot;,&quot;fillColor&quot;: &quot;0,0,0,0&quot;,&quot;type&quot;: &quot;Rect&quot;},{&quot;bounds&quot;: &quot;808,223,105,16&quot;,&quot;text&quot;: &quot;-ventana: Ventana&quot;,&quot;type&quot;: &quot;Text&quot;},{&quot;bounds&quot;: &quot;808,239,137,16&quot;,&quot;text&quot;: &quot;-nombreJugador: String&quot;,&quot;type&quot;: &quot;Text&quot;},{&quot;bounds&quot;: &quot;808,255,130,16&quot;,&quot;text&quot;: &quot;-opcionJugador: String&quot;,&quot;type&quot;: &quot;Text&quot;},{&quot;bounds&quot;: &quot;803,274,461,230&quot;,&quot;fillColor&quot;: &quot;0,0,0,0&quot;,&quot;type&quot;: &quot;Rect&quot;},{&quot;bounds&quot;: &quot;808,277,46,16&quot;,&quot;text&quot;: &quot;+Vista()&quot;,&quot;type&quot;: &quot;Text&quot;},{&quot;bounds&quot;: &quot;808,293,253,16&quot;,&quot;text&quot;: &quot;+preguntarNombreJugadorPersona(): String&quot;,&quot;type&quot;: &quot;Text&quot;},{&quot;bounds&quot;: &quot;808,309,386,16&quot;,&quot;text&quot;: &quot;+actualizarCartasCaptura(cartas: vector&lt;Naipe&gt;, escoba: boolean)&quot;,&quot;type&quot;: &quot;Text&quot;},{&quot;bounds&quot;: &quot;808,325,238,16&quot;,&quot;text&quot;: &quot;+limpiarComponeneteCartasCapturadas()&quot;,&quot;type&quot;: &quot;Text&quot;},{&quot;bounds&quot;: &quot;808,341,386,16&quot;,&quot;text&quot;: &quot;+actualizarCartasCaptura(cartas: vector&lt;Naipe&gt;, escoba: boolean)&quot;,&quot;type&quot;: &quot;Text&quot;},{&quot;bounds&quot;: &quot;808,357,327,16&quot;,&quot;text&quot;: &quot;+actualizarCartasEnMesa(cartasEnMesa: vector&lt;Naipe&gt;)&quot;,&quot;type&quot;: &quot;Text&quot;},{&quot;bounds&quot;: &quot;808,373,433,16&quot;,&quot;text&quot;: &quot;+iniciarPartida(cartasJugador: vector&lt;Naipe&gt;, cartasMesa: vector&lt;Naipe&gt;)&quot;,&quot;type&quot;: &quot;Text&quot;},{&quot;bounds&quot;: &quot;808,389,249,16&quot;,&quot;text&quot;: &quot;+Naipe retornarNaipeSeleccionada(): Naipe&quot;,&quot;type&quot;: &quot;Text&quot;},{&quot;bounds&quot;: &quot;808,405,123,16&quot;,&quot;text&quot;: &quot;+void finalizarJuego()&quot;,&quot;type&quot;: &quot;Text&quot;},{&quot;bounds&quot;: &quot;808,421,130,16&quot;,&quot;text&quot;: &quot;+preguntarTurno(): int&quot;,&quot;type&quot;: &quot;Text&quot;},{&quot;bounds&quot;: &quot;808,437,283,16&quot;,&quot;text&quot;: &quot;+actualizarTurnoJugador(nombreJugador: String)&quot;,&quot;type&quot;: &quot;Text&quot;},{&quot;bounds&quot;: &quot;808,453,320,16&quot;,&quot;text&quot;: &quot;+actualizarCartasJugador(cartasJugadorvector&lt;Naipe&gt;)&quot;,&quot;type&quot;: &quot;Text&quot;},{&quot;bounds&quot;: &quot;808,469,96,16&quot;,&quot;text&quot;: &quot;+finalizarJuego()&quot;,&quot;type&quot;: &quot;Text&quot;},{&quot;bounds&quot;: &quot;808,485,170,16&quot;,&quot;text&quot;: &quot;+elegirArchivo(): partida: File&quot;,&quot;type&quot;: &quot;Text&quot;}],&quot;type&quot;: &quot;UMLClassView&quot;}</value>
+   <value name="bounds">803,194,461,310</value>
   </value-owner>
   <value-owner id="esxNWEzdkEC85CoLBHc7hg">
    <value name="name">Juego</value>
@@ -994,8 +1020,8 @@
   </value-owner>
   <value-owner id="w68MbGq4DES+aF0oLcuB6w">
    <value name="style">{&quot;fill-color&quot;: &quot;170,170,255,255&quot;}</value>
-   <value name="rendering">{&quot;bounds&quot;: &quot;1326,626,571,454&quot;,&quot;model&quot;: &quot;esxNWEzdkEC85CoLBHc7hg&quot;,&quot;name&quot;: &quot;Juego&quot;,&quot;render&quot;: [{&quot;bounds&quot;: &quot;1326,626,571,454&quot;,&quot;type&quot;: &quot;Rect&quot;},{&quot;bounds&quot;: &quot;1593,631,38,16&quot;,&quot;fontStyle&quot;: &quot;2&quot;,&quot;text&quot;: &quot;Juego&quot;,&quot;type&quot;: &quot;Text&quot;},{&quot;bounds&quot;: &quot;1326,652,571,134&quot;,&quot;fillColor&quot;: &quot;0,0,0,0&quot;,&quot;type&quot;: &quot;Rect&quot;},{&quot;bounds&quot;: &quot;1331,655,142,16&quot;,&quot;text&quot;: &quot;-primerJugador: Jugador&quot;,&quot;type&quot;: &quot;Text&quot;},{&quot;bounds&quot;: &quot;1331,671,152,16&quot;,&quot;text&quot;: &quot;-segundoJugador: Jugador&quot;,&quot;type&quot;: &quot;Text&quot;},{&quot;bounds&quot;: &quot;1331,687,75,16&quot;,&quot;text&quot;: &quot;-mazo: Mazo&quot;,&quot;type&quot;: &quot;Text&quot;},{&quot;bounds&quot;: &quot;1331,703,178,16&quot;,&quot;text&quot;: &quot;-cartasEnMesa: vector&lt;Naipe&gt;&quot;,&quot;type&quot;: &quot;Text&quot;},{&quot;bounds&quot;: &quot;1331,719,119,16&quot;,&quot;text&quot;: &quot;-validador: Validador&quot;,&quot;type&quot;: &quot;Text&quot;},{&quot;bounds&quot;: &quot;1331,735,138,16&quot;,&quot;text&quot;: &quot;-jugadorActual: Jugador&quot;,&quot;type&quot;: &quot;Text&quot;},{&quot;bounds&quot;: &quot;1331,751,189,16&quot;,&quot;text&quot;: &quot;+obtenerPrimerJugador: Jugador&quot;,&quot;type&quot;: &quot;Text&quot;},{&quot;bounds&quot;: &quot;1331,767,64,16&quot;,&quot;text&quot;: &quot;+Attribute1&quot;,&quot;type&quot;: &quot;Text&quot;},{&quot;bounds&quot;: &quot;1326,786,571,294&quot;,&quot;fillColor&quot;: &quot;0,0,0,0&quot;,&quot;type&quot;: &quot;Rect&quot;},{&quot;bounds&quot;: &quot;1331,789,51,16&quot;,&quot;text&quot;: &quot;+Juego()&quot;,&quot;type&quot;: &quot;Text&quot;},{&quot;bounds&quot;: &quot;1331,805,60,16&quot;,&quot;text&quot;: &quot;+~Juego()&quot;,&quot;type&quot;: &quot;Text&quot;},{&quot;bounds&quot;: &quot;1331,821,263,16&quot;,&quot;text&quot;: &quot;+asignarPrimerJugador(jugadorUno: Jugador)&quot;,&quot;type&quot;: &quot;Text&quot;},{&quot;bounds&quot;: &quot;1331,837,199,16&quot;,&quot;text&quot;: &quot;+obtenerPrimerJugador(): Jugador&quot;,&quot;type&quot;: &quot;Text&quot;},{&quot;bounds&quot;: &quot;1331,853,196,16&quot;,&quot;text&quot;: &quot;+obtenerJugadorActual(): Jugador&quot;,&quot;type&quot;: &quot;Text&quot;},{&quot;bounds&quot;: &quot;1331,869,208,16&quot;,&quot;text&quot;: &quot;-obtenerSegundoJugador(): Jugador&quot;,&quot;type&quot;: &quot;Text&quot;},{&quot;bounds&quot;: &quot;1331,885,294,16&quot;,&quot;text&quot;: &quot;+obtenerJugadorPersona(nombre: String): Jugador&quot;,&quot;type&quot;: &quot;Text&quot;},{&quot;bounds&quot;: &quot;1331,901,338,16&quot;,&quot;text&quot;: &quot;+iniciarPartida(jugadorNombre: String, jugadorOpcion: int)&quot;,&quot;type&quot;: &quot;Text&quot;},{&quot;bounds&quot;: &quot;1331,917,516,16&quot;,&quot;text&quot;: &quot;+movimientoJugadorCapturarCarta(naipe: Naipe, nombreJugador: String): vector&lt;Naipe&gt;&quot;,&quot;type&quot;: &quot;Text&quot;},{&quot;bounds&quot;: &quot;1331,933,468,16&quot;,&quot;text&quot;: &quot;+movimientoJugadorDescartarCarta(naipe: Naipe, nombreJugador: String): Naipe&quot;,&quot;type&quot;: &quot;Text&quot;},{&quot;bounds&quot;: &quot;1331,949,137,16&quot;,&quot;text&quot;: &quot;+pasarTurno(): Jugador&quot;,&quot;type&quot;: &quot;Text&quot;},{&quot;bounds&quot;: &quot;1331,965,373,16&quot;,&quot;text&quot;: &quot;+retornarCartasJugador(nombreJugador: String): vector&lt;Naipe&gt;&quot;,&quot;type&quot;: &quot;Text&quot;},{&quot;bounds&quot;: &quot;1331,981,240,16&quot;,&quot;text&quot;: &quot;+retornarCartasEnMesa(): vector&lt;Naipe&gt;&quot;,&quot;type&quot;: &quot;Text&quot;},{&quot;bounds&quot;: &quot;1331,997,152,16&quot;,&quot;text&quot;: &quot;+repartirCartas(): Boolean&quot;,&quot;type&quot;: &quot;Text&quot;},{&quot;bounds&quot;: &quot;1331,1013,156,16&quot;,&quot;text&quot;: &quot;+repartirCartasJugadores()&quot;,&quot;type&quot;: &quot;Text&quot;},{&quot;bounds&quot;: &quot;1331,1029,201,16&quot;,&quot;text&quot;: &quot;+validarTerminarPartida(): Boleean&quot;,&quot;type&quot;: &quot;Text&quot;},{&quot;bounds&quot;: &quot;1331,1045,107,16&quot;,&quot;text&quot;: &quot;+terminarPartida()&quot;,&quot;type&quot;: &quot;Text&quot;},{&quot;bounds&quot;: &quot;1331,1061,164,16&quot;,&quot;text&quot;: &quot;-declararGanador(): Jugador&quot;,&quot;type&quot;: &quot;Text&quot;}],&quot;type&quot;: &quot;UMLClassView&quot;}</value>
-   <value name="bounds">1326,626,571,454</value>
+   <value name="rendering">{&quot;bounds&quot;: &quot;1326,626,574,470&quot;,&quot;model&quot;: &quot;esxNWEzdkEC85CoLBHc7hg&quot;,&quot;name&quot;: &quot;Juego&quot;,&quot;render&quot;: [{&quot;bounds&quot;: &quot;1326,626,574,470&quot;,&quot;type&quot;: &quot;Rect&quot;},{&quot;bounds&quot;: &quot;1594,631,38,16&quot;,&quot;fontStyle&quot;: &quot;2&quot;,&quot;text&quot;: &quot;Juego&quot;,&quot;type&quot;: &quot;Text&quot;},{&quot;bounds&quot;: &quot;1326,652,574,118&quot;,&quot;fillColor&quot;: &quot;0,0,0,0&quot;,&quot;type&quot;: &quot;Rect&quot;},{&quot;bounds&quot;: &quot;1331,655,142,16&quot;,&quot;text&quot;: &quot;-primerJugador: Jugador&quot;,&quot;type&quot;: &quot;Text&quot;},{&quot;bounds&quot;: &quot;1331,671,152,16&quot;,&quot;text&quot;: &quot;-segundoJugador: Jugador&quot;,&quot;type&quot;: &quot;Text&quot;},{&quot;bounds&quot;: &quot;1331,687,75,16&quot;,&quot;text&quot;: &quot;-mazo: Mazo&quot;,&quot;type&quot;: &quot;Text&quot;},{&quot;bounds&quot;: &quot;1331,703,178,16&quot;,&quot;text&quot;: &quot;-cartasEnMesa: vector&lt;Naipe&gt;&quot;,&quot;type&quot;: &quot;Text&quot;},{&quot;bounds&quot;: &quot;1331,719,119,16&quot;,&quot;text&quot;: &quot;-validador: Validador&quot;,&quot;type&quot;: &quot;Text&quot;},{&quot;bounds&quot;: &quot;1331,735,138,16&quot;,&quot;text&quot;: &quot;-jugadorActual: Jugador&quot;,&quot;type&quot;: &quot;Text&quot;},{&quot;bounds&quot;: &quot;1331,751,148,16&quot;,&quot;text&quot;: &quot;-serializador: Serializador&quot;,&quot;type&quot;: &quot;Text&quot;},{&quot;bounds&quot;: &quot;1326,770,574,326&quot;,&quot;fillColor&quot;: &quot;0,0,0,0&quot;,&quot;type&quot;: &quot;Rect&quot;},{&quot;bounds&quot;: &quot;1331,773,51,16&quot;,&quot;text&quot;: &quot;+Juego()&quot;,&quot;type&quot;: &quot;Text&quot;},{&quot;bounds&quot;: &quot;1331,789,60,16&quot;,&quot;text&quot;: &quot;+~Juego()&quot;,&quot;type&quot;: &quot;Text&quot;},{&quot;bounds&quot;: &quot;1331,805,263,16&quot;,&quot;text&quot;: &quot;+asignarPrimerJugador(jugadorUno: Jugador)&quot;,&quot;type&quot;: &quot;Text&quot;},{&quot;bounds&quot;: &quot;1331,821,199,16&quot;,&quot;text&quot;: &quot;+obtenerPrimerJugador(): Jugador&quot;,&quot;type&quot;: &quot;Text&quot;},{&quot;bounds&quot;: &quot;1331,837,196,16&quot;,&quot;text&quot;: &quot;+obtenerJugadorActual(): Jugador&quot;,&quot;type&quot;: &quot;Text&quot;},{&quot;bounds&quot;: &quot;1331,853,208,16&quot;,&quot;text&quot;: &quot;-obtenerSegundoJugador(): Jugador&quot;,&quot;type&quot;: &quot;Text&quot;},{&quot;bounds&quot;: &quot;1331,869,294,16&quot;,&quot;text&quot;: &quot;+obtenerJugadorPersona(nombre: String): Jugador&quot;,&quot;type&quot;: &quot;Text&quot;},{&quot;bounds&quot;: &quot;1331,885,338,16&quot;,&quot;text&quot;: &quot;+iniciarPartida(jugadorNombre: String, jugadorOpcion: int)&quot;,&quot;type&quot;: &quot;Text&quot;},{&quot;bounds&quot;: &quot;1331,901,516,16&quot;,&quot;text&quot;: &quot;+movimientoJugadorCapturarCarta(naipe: Naipe, nombreJugador: String): vector&lt;Naipe&gt;&quot;,&quot;type&quot;: &quot;Text&quot;},{&quot;bounds&quot;: &quot;1331,917,468,16&quot;,&quot;text&quot;: &quot;+movimientoJugadorDescartarCarta(naipe: Naipe, nombreJugador: String): Naipe&quot;,&quot;type&quot;: &quot;Text&quot;},{&quot;bounds&quot;: &quot;1331,933,137,16&quot;,&quot;text&quot;: &quot;+pasarTurno(): Jugador&quot;,&quot;type&quot;: &quot;Text&quot;},{&quot;bounds&quot;: &quot;1331,949,373,16&quot;,&quot;text&quot;: &quot;+retornarCartasJugador(nombreJugador: String): vector&lt;Naipe&gt;&quot;,&quot;type&quot;: &quot;Text&quot;},{&quot;bounds&quot;: &quot;1331,965,240,16&quot;,&quot;text&quot;: &quot;+retornarCartasEnMesa(): vector&lt;Naipe&gt;&quot;,&quot;type&quot;: &quot;Text&quot;},{&quot;bounds&quot;: &quot;1331,981,152,16&quot;,&quot;text&quot;: &quot;+repartirCartas(): Boolean&quot;,&quot;type&quot;: &quot;Text&quot;},{&quot;bounds&quot;: &quot;1331,997,156,16&quot;,&quot;text&quot;: &quot;+repartirCartasJugadores()&quot;,&quot;type&quot;: &quot;Text&quot;},{&quot;bounds&quot;: &quot;1331,1013,201,16&quot;,&quot;text&quot;: &quot;+validarTerminarPartida(): Boleean&quot;,&quot;type&quot;: &quot;Text&quot;},{&quot;bounds&quot;: &quot;1331,1029,107,16&quot;,&quot;text&quot;: &quot;+terminarPartida()&quot;,&quot;type&quot;: &quot;Text&quot;},{&quot;bounds&quot;: &quot;1331,1045,164,16&quot;,&quot;text&quot;: &quot;-declararGanador(): Jugador&quot;,&quot;type&quot;: &quot;Text&quot;},{&quot;bounds&quot;: &quot;1331,1061,232,16&quot;,&quot;text&quot;: &quot;+guardarPartida(nombreArchivo: String)&quot;,&quot;type&quot;: &quot;Text&quot;},{&quot;bounds&quot;: &quot;1331,1077,564,16&quot;,&quot;text&quot;: &quot;+Juego(jugadorPersona: Jugador, jugadorMaquina: Jugador, mazo: Mazo, jugadorActual: Jugador)&quot;,&quot;type&quot;: &quot;Text&quot;}],&quot;type&quot;: &quot;UMLClassView&quot;}</value>
+   <value name="bounds">1326,626,574,470</value>
   </value-owner>
   <value-owner id="x2oTGHkUhEeNyIGltEmAQA">
    <value name="name">Naipe</value>
@@ -1012,8 +1038,8 @@
   </value-owner>
   <value-owner id="QFIpVYEH/0i8NCOUfsznEQ">
    <value name="style">{&quot;fill-color&quot;: &quot;170,170,255,255&quot;}</value>
-   <value name="rendering">{&quot;bounds&quot;: &quot;1416,233,319,166&quot;,&quot;model&quot;: &quot;SDPo+pGhrECV8LsYuIHPfQ&quot;,&quot;name&quot;: &quot;Mazo&quot;,&quot;render&quot;: [{&quot;bounds&quot;: &quot;1416,233,319,166&quot;,&quot;type&quot;: &quot;Rect&quot;},{&quot;bounds&quot;: &quot;1559,238,34,16&quot;,&quot;fontStyle&quot;: &quot;2&quot;,&quot;text&quot;: &quot;Mazo&quot;,&quot;type&quot;: &quot;Text&quot;},{&quot;bounds&quot;: &quot;1416,259,319,38&quot;,&quot;fillColor&quot;: &quot;0,0,0,0&quot;,&quot;type&quot;: &quot;Rect&quot;},{&quot;bounds&quot;: &quot;1421,262,130,16&quot;,&quot;text&quot;: &quot;-mazo: vector&lt;Naipe&gt;&quot;,&quot;type&quot;: &quot;Text&quot;},{&quot;bounds&quot;: &quot;1421,278,131,16&quot;,&quot;text&quot;: &quot;-palos: vector&lt;String&gt;&quot;,&quot;type&quot;: &quot;Text&quot;},{&quot;bounds&quot;: &quot;1416,297,319,102&quot;,&quot;fillColor&quot;: &quot;0,0,0,0&quot;,&quot;type&quot;: &quot;Rect&quot;},{&quot;bounds&quot;: &quot;1421,300,48,16&quot;,&quot;text&quot;: &quot;+Mazo()&quot;,&quot;type&quot;: &quot;Text&quot;},{&quot;bounds&quot;: &quot;1421,316,57,16&quot;,&quot;text&quot;: &quot;+~Mazo()&quot;,&quot;type&quot;: &quot;Text&quot;},{&quot;bounds&quot;: &quot;1421,332,186,16&quot;,&quot;text&quot;: &quot;+obtenerMazo(): vector&lt;Naipe&gt;&quot;,&quot;type&quot;: &quot;Text&quot;},{&quot;bounds&quot;: &quot;1421,348,188,16&quot;,&quot;text&quot;: &quot;+obtenerCantidadDeNaipes(): int&quot;,&quot;type&quot;: &quot;Text&quot;},{&quot;bounds&quot;: &quot;1421,364,309,16&quot;,&quot;text&quot;: &quot;+repartirMazo(cantidadDeNaipes: int): vector&lt;Naipe&gt;&quot;,&quot;type&quot;: &quot;Text&quot;},{&quot;bounds&quot;: &quot;1421,380,60,16&quot;,&quot;text&quot;: &quot;+barajar()&quot;,&quot;type&quot;: &quot;Text&quot;}],&quot;type&quot;: &quot;UMLClassView&quot;}</value>
-   <value name="bounds">1416,233,319,166</value>
+   <value name="rendering">{&quot;bounds&quot;: &quot;1326,233,319,166&quot;,&quot;model&quot;: &quot;SDPo+pGhrECV8LsYuIHPfQ&quot;,&quot;name&quot;: &quot;Mazo&quot;,&quot;render&quot;: [{&quot;bounds&quot;: &quot;1326,233,319,166&quot;,&quot;type&quot;: &quot;Rect&quot;},{&quot;bounds&quot;: &quot;1469,238,34,16&quot;,&quot;fontStyle&quot;: &quot;2&quot;,&quot;text&quot;: &quot;Mazo&quot;,&quot;type&quot;: &quot;Text&quot;},{&quot;bounds&quot;: &quot;1326,259,319,38&quot;,&quot;fillColor&quot;: &quot;0,0,0,0&quot;,&quot;type&quot;: &quot;Rect&quot;},{&quot;bounds&quot;: &quot;1331,262,130,16&quot;,&quot;text&quot;: &quot;-mazo: vector&lt;Naipe&gt;&quot;,&quot;type&quot;: &quot;Text&quot;},{&quot;bounds&quot;: &quot;1331,278,131,16&quot;,&quot;text&quot;: &quot;-palos: vector&lt;String&gt;&quot;,&quot;type&quot;: &quot;Text&quot;},{&quot;bounds&quot;: &quot;1326,297,319,102&quot;,&quot;fillColor&quot;: &quot;0,0,0,0&quot;,&quot;type&quot;: &quot;Rect&quot;},{&quot;bounds&quot;: &quot;1331,300,48,16&quot;,&quot;text&quot;: &quot;+Mazo()&quot;,&quot;type&quot;: &quot;Text&quot;},{&quot;bounds&quot;: &quot;1331,316,57,16&quot;,&quot;text&quot;: &quot;+~Mazo()&quot;,&quot;type&quot;: &quot;Text&quot;},{&quot;bounds&quot;: &quot;1331,332,186,16&quot;,&quot;text&quot;: &quot;+obtenerMazo(): vector&lt;Naipe&gt;&quot;,&quot;type&quot;: &quot;Text&quot;},{&quot;bounds&quot;: &quot;1331,348,188,16&quot;,&quot;text&quot;: &quot;+obtenerCantidadDeNaipes(): int&quot;,&quot;type&quot;: &quot;Text&quot;},{&quot;bounds&quot;: &quot;1331,364,309,16&quot;,&quot;text&quot;: &quot;+repartirMazo(cantidadDeNaipes: int): vector&lt;Naipe&gt;&quot;,&quot;type&quot;: &quot;Text&quot;},{&quot;bounds&quot;: &quot;1331,380,60,16&quot;,&quot;text&quot;: &quot;+barajar()&quot;,&quot;type&quot;: &quot;Text&quot;}],&quot;type&quot;: &quot;UMLClassView&quot;}</value>
+   <value name="bounds">1326,233,319,166</value>
   </value-owner>
   <value-owner id="7iafnU8sCEK3KuXnRphIEg">
    <value name="name">Jugador</value>
@@ -1358,8 +1384,8 @@
   </value-owner>
   <value-owner id="TbIA6QNdh0+wQwag8UtQog">
    <value name="style">{&quot;fill-color&quot;: &quot;170,170,255,255&quot;}</value>
-   <value name="rendering">{&quot;bounds&quot;: &quot;1334,1184,590,235&quot;,&quot;model&quot;: &quot;aajDez5qU06aD0P1S3LK4Q&quot;,&quot;name&quot;: &quot;Validadora&quot;,&quot;render&quot;: [{&quot;bounds&quot;: &quot;1334,1184,590,235&quot;,&quot;type&quot;: &quot;Rect&quot;},{&quot;bounds&quot;: &quot;1595,1189,69,16&quot;,&quot;fontStyle&quot;: &quot;2&quot;,&quot;text&quot;: &quot;Validadora&quot;,&quot;type&quot;: &quot;Text&quot;},{&quot;bounds&quot;: &quot;1334,1210,590,11&quot;,&quot;fillColor&quot;: &quot;0,0,0,0&quot;,&quot;type&quot;: &quot;Rect&quot;},{&quot;bounds&quot;: &quot;1334,1221,590,198&quot;,&quot;fillColor&quot;: &quot;0,0,0,0&quot;,&quot;type&quot;: &quot;Rect&quot;},{&quot;bounds&quot;: &quot;1339,1224,78,16&quot;,&quot;text&quot;: &quot;+Validadora()&quot;,&quot;type&quot;: &quot;Text&quot;},{&quot;bounds&quot;: &quot;1339,1240,87,16&quot;,&quot;text&quot;: &quot;+~Validadora()&quot;,&quot;type&quot;: &quot;Text&quot;},{&quot;bounds&quot;: &quot;1339,1256,510,16&quot;,&quot;text&quot;: &quot;+validarCaptura(jugador: Jugador, naipe: Naipe, naipes: vector&lt;Naipe&gt;): vector&lt;Naipe&gt;&quot;,&quot;type&quot;: &quot;Text&quot;},{&quot;bounds&quot;: &quot;1339,1272,511,16&quot;,&quot;text&quot;: &quot;+combinaciones(cartasEnMesa: vector&lt;Naipe&gt;, suma: int, indicesVisitados: vector&lt;int&gt;)&quot;,&quot;type&quot;: &quot;Text&quot;},{&quot;bounds&quot;: &quot;1339,1288,580,16&quot;,&quot;text&quot;: &quot;+asignarPuntajeCaptura(jugador: Jugador, resultado: vector&lt;Naipe&gt;, cartasEnMesa: vector&lt;Naipe&gt;)&quot;,&quot;type&quot;: &quot;Text&quot;},{&quot;bounds&quot;: &quot;1339,1304,298,16&quot;,&quot;text&quot;: &quot;+esEscoba(cartasEnMesa: vector&lt;Naipe&gt;): boolean&quot;,&quot;type&quot;: &quot;Text&quot;},{&quot;bounds&quot;: &quot;1339,1320,260,16&quot;,&quot;text&quot;: &quot;+validarEscoba(naipes: vector&lt;Naipe&gt;): bool&quot;,&quot;type&quot;: &quot;Text&quot;},{&quot;bounds&quot;: &quot;1339,1336,478,16&quot;,&quot;text&quot;: &quot;+reglaCantidadCartas(primerJugador: Jugador, segundoJugador: Jugador): Jugador&quot;,&quot;type&quot;: &quot;Text&quot;},{&quot;bounds&quot;: &quot;1339,1352,457,16&quot;,&quot;text&quot;: &quot;+reglaPaloDeOros(primerJugador: Jugador, segundoJugador: Jugador): Jugador&quot;,&quot;type&quot;: &quot;Text&quot;},{&quot;bounds&quot;: &quot;1339,1368,468,16&quot;,&quot;text&quot;: &quot;+reglaSietesDeOros(primerJugador: Jugador, segundoJugador: Jugador): Jugador&quot;,&quot;type&quot;: &quot;Text&quot;},{&quot;bounds&quot;: &quot;1339,1384,476,16&quot;,&quot;text&quot;: &quot;+reglaCantidadSietes(primerJugador: Jugador, segundoJugador: Jugador): Jugador&quot;,&quot;type&quot;: &quot;Text&quot;},{&quot;bounds&quot;: &quot;1339,1400,219,16&quot;,&quot;text&quot;: &quot;+contabilizarPuntos(jugador: Jugador)&quot;,&quot;type&quot;: &quot;Text&quot;}],&quot;type&quot;: &quot;UMLClassView&quot;}</value>
-   <value name="bounds">1334,1184,590,235</value>
+   <value name="rendering">{&quot;bounds&quot;: &quot;1354,1184,590,235&quot;,&quot;model&quot;: &quot;aajDez5qU06aD0P1S3LK4Q&quot;,&quot;name&quot;: &quot;Validadora&quot;,&quot;render&quot;: [{&quot;bounds&quot;: &quot;1354,1184,590,235&quot;,&quot;type&quot;: &quot;Rect&quot;},{&quot;bounds&quot;: &quot;1615,1189,69,16&quot;,&quot;fontStyle&quot;: &quot;2&quot;,&quot;text&quot;: &quot;Validadora&quot;,&quot;type&quot;: &quot;Text&quot;},{&quot;bounds&quot;: &quot;1354,1210,590,11&quot;,&quot;fillColor&quot;: &quot;0,0,0,0&quot;,&quot;type&quot;: &quot;Rect&quot;},{&quot;bounds&quot;: &quot;1354,1221,590,198&quot;,&quot;fillColor&quot;: &quot;0,0,0,0&quot;,&quot;type&quot;: &quot;Rect&quot;},{&quot;bounds&quot;: &quot;1359,1224,78,16&quot;,&quot;text&quot;: &quot;+Validadora()&quot;,&quot;type&quot;: &quot;Text&quot;},{&quot;bounds&quot;: &quot;1359,1240,87,16&quot;,&quot;text&quot;: &quot;+~Validadora()&quot;,&quot;type&quot;: &quot;Text&quot;},{&quot;bounds&quot;: &quot;1359,1256,510,16&quot;,&quot;text&quot;: &quot;+validarCaptura(jugador: Jugador, naipe: Naipe, naipes: vector&lt;Naipe&gt;): vector&lt;Naipe&gt;&quot;,&quot;type&quot;: &quot;Text&quot;},{&quot;bounds&quot;: &quot;1359,1272,511,16&quot;,&quot;text&quot;: &quot;+combinaciones(cartasEnMesa: vector&lt;Naipe&gt;, suma: int, indicesVisitados: vector&lt;int&gt;)&quot;,&quot;type&quot;: &quot;Text&quot;},{&quot;bounds&quot;: &quot;1359,1288,580,16&quot;,&quot;text&quot;: &quot;+asignarPuntajeCaptura(jugador: Jugador, resultado: vector&lt;Naipe&gt;, cartasEnMesa: vector&lt;Naipe&gt;)&quot;,&quot;type&quot;: &quot;Text&quot;},{&quot;bounds&quot;: &quot;1359,1304,298,16&quot;,&quot;text&quot;: &quot;+esEscoba(cartasEnMesa: vector&lt;Naipe&gt;): boolean&quot;,&quot;type&quot;: &quot;Text&quot;},{&quot;bounds&quot;: &quot;1359,1320,260,16&quot;,&quot;text&quot;: &quot;+validarEscoba(naipes: vector&lt;Naipe&gt;): bool&quot;,&quot;type&quot;: &quot;Text&quot;},{&quot;bounds&quot;: &quot;1359,1336,478,16&quot;,&quot;text&quot;: &quot;+reglaCantidadCartas(primerJugador: Jugador, segundoJugador: Jugador): Jugador&quot;,&quot;type&quot;: &quot;Text&quot;},{&quot;bounds&quot;: &quot;1359,1352,457,16&quot;,&quot;text&quot;: &quot;+reglaPaloDeOros(primerJugador: Jugador, segundoJugador: Jugador): Jugador&quot;,&quot;type&quot;: &quot;Text&quot;},{&quot;bounds&quot;: &quot;1359,1368,468,16&quot;,&quot;text&quot;: &quot;+reglaSietesDeOros(primerJugador: Jugador, segundoJugador: Jugador): Jugador&quot;,&quot;type&quot;: &quot;Text&quot;},{&quot;bounds&quot;: &quot;1359,1384,476,16&quot;,&quot;text&quot;: &quot;+reglaCantidadSietes(primerJugador: Jugador, segundoJugador: Jugador): Jugador&quot;,&quot;type&quot;: &quot;Text&quot;},{&quot;bounds&quot;: &quot;1359,1400,219,16&quot;,&quot;text&quot;: &quot;+contabilizarPuntos(jugador: Jugador)&quot;,&quot;type&quot;: &quot;Text&quot;}],&quot;type&quot;: &quot;UMLClassView&quot;}</value>
+   <value name="bounds">1354,1184,590,235</value>
   </value-owner>
   <value-owner id="UU7PI15Z/EOSvAKdaaObsw">
    <value name="name">validarCaptura</value>
@@ -1427,14 +1453,14 @@
   </value-owner>
   <value-owner id="gOWzeaFRwUqqBdBuOQVqgQ">
    <value name="style">{&quot;fill-color&quot;: &quot;170,170,255,255&quot;}</value>
-   <value name="rendering">{&quot;model&quot;: &quot;cE7z9U1CpkebKTInsLeQLQ&quot;,&quot;name&quot;: &quot;&quot;,&quot;render&quot;: [{&quot;lineWidth&quot;: &quot;0&quot;,&quot;points&quot;: &quot;1624,1184,1620,1079,&quot;,&quot;type&quot;: &quot;Line&quot;},{&quot;bounds&quot;: &quot;1620,1065,14,28&quot;,&quot;path&quot;: &quot;shapes/composition.png&quot;,&quot;rotate&quot;: &quot;-21&quot;,&quot;type&quot;: &quot;EdgeEnd&quot;}],&quot;type&quot;: &quot;UMLCompositionView&quot;}</value>
-   <value name="points">1624,1184,1620,1079,</value>
+   <value name="rendering">{&quot;model&quot;: &quot;cE7z9U1CpkebKTInsLeQLQ&quot;,&quot;name&quot;: &quot;&quot;,&quot;render&quot;: [{&quot;lineWidth&quot;: &quot;0&quot;,&quot;points&quot;: &quot;1638,1184,1631,1095,&quot;,&quot;type&quot;: &quot;Line&quot;},{&quot;bounds&quot;: &quot;1631,1081,14,28&quot;,&quot;path&quot;: &quot;shapes/composition.png&quot;,&quot;rotate&quot;: &quot;-44&quot;,&quot;type&quot;: &quot;EdgeEnd&quot;}],&quot;type&quot;: &quot;UMLCompositionView&quot;}</value>
+   <value name="points">1638,1184,1631,1095,</value>
    <value name="tail-style">shapes/composition.png</value>
   </value-owner>
   <value-owner id="jHr29FTkV0CAUgSKI6zdQQ">
    <value name="selectable">true</value>
    <value name="visible">false</value>
-   <value name="bounds">1589,1127,36,13</value>
+   <value name="bounds">1602,1135,36,13</value>
    <value name="anchor">17</value>
    <value name="anchor-offset">0,-15</value>
    <value name="text-align">132</value>
@@ -1446,7 +1472,7 @@
   <value-owner id="xqCDR3H1eUeYILjjgIEaGw">
    <value name="selectable">true</value>
    <value name="visible">false</value>
-   <value name="bounds">1545,1127,95,13</value>
+   <value name="bounds">1558,1136,95,13</value>
    <value name="anchor">17</value>
    <value name="anchor-offset">0,-30</value>
    <value name="text-align">132</value>
@@ -1459,7 +1485,7 @@
    <value name="name">fromNameView</value>
    <value name="selectable">true</value>
    <value name="visible">false</value>
-   <value name="bounds">1578,1139,59,13</value>
+   <value name="bounds">1591,1139,59,13</value>
    <value name="anchor">16</value>
    <value name="anchor-offset">40,-15</value>
    <value name="text-align">132</value>
@@ -1471,7 +1497,7 @@
    <value name="name">fromMultiView</value>
    <value name="selectable">true</value>
    <value name="visible">false</value>
-   <value name="bounds">1598,1157,81,13</value>
+   <value name="bounds">1611,1157,81,13</value>
    <value name="anchor">16</value>
    <value name="anchor-offset">20,15</value>
    <value name="text-align">132</value>
@@ -1483,7 +1509,7 @@
    <value name="name">toNameView</value>
    <value name="selectable">true</value>
    <value name="visible">false</value>
-   <value name="bounds">1584,1114,47,13</value>
+   <value name="bounds">1596,1130,47,13</value>
    <value name="anchor">18</value>
    <value name="anchor-offset">40,15</value>
    <value name="text-align">132</value>
@@ -1495,7 +1521,7 @@
    <value name="name">toMultiView</value>
    <value name="selectable">true</value>
    <value name="visible">false</value>
-   <value name="bounds">1602,1092,69,13</value>
+   <value name="bounds">1614,1108,69,13</value>
    <value name="anchor">18</value>
    <value name="anchor-offset">20,-15</value>
    <value name="text-align">132</value>
@@ -1506,7 +1532,7 @@
   <value-owner id="NIP5AjwEsUSBr7GcML8JDA">
    <value name="selectable">true</value>
    <value name="visible">false</value>
-   <value name="bounds">1617,1173,15,11</value>
+   <value name="bounds">1631,1173,15,11</value>
    <value name="anchor">21</value>
    <value name="autosize">true</value>
    <value name="movable">false</value>
@@ -1527,7 +1553,7 @@
   <value-owner id="tTdZ+THP6EmpdZNxgPTpvg">
    <value name="selectable">true</value>
    <value name="visible">false</value>
-   <value name="bounds">1613,1080,15,11</value>
+   <value name="bounds">1624,1096,15,11</value>
    <value name="anchor">22</value>
    <value name="autosize">true</value>
    <value name="movable">false</value>
@@ -1556,14 +1582,14 @@
   </value-owner>
   <value-owner id="HmiNgzVtnUeAozWsY7LmEw">
    <value name="style">{&quot;fill-color&quot;: &quot;170,170,255,255&quot;}</value>
-   <value name="rendering">{&quot;model&quot;: &quot;A5Tn1+8sC0yFUW57ObmnBw&quot;,&quot;name&quot;: &quot;&quot;,&quot;render&quot;: [{&quot;lineWidth&quot;: &quot;0&quot;,&quot;points&quot;: &quot;2119,739,1896,789,&quot;,&quot;type&quot;: &quot;Line&quot;},{&quot;bounds&quot;: &quot;1896,775,14,28&quot;,&quot;path&quot;: &quot;shapes/composition.png&quot;,&quot;rotate&quot;: &quot;-1026&quot;,&quot;type&quot;: &quot;EdgeEnd&quot;}],&quot;type&quot;: &quot;UMLCompositionView&quot;}</value>
-   <value name="points">2119,739,1896,789,</value>
+   <value name="rendering">{&quot;model&quot;: &quot;A5Tn1+8sC0yFUW57ObmnBw&quot;,&quot;name&quot;: &quot;&quot;,&quot;render&quot;: [{&quot;lineWidth&quot;: &quot;0&quot;,&quot;points&quot;: &quot;2119,741,1899,793,&quot;,&quot;type&quot;: &quot;Line&quot;},{&quot;bounds&quot;: &quot;1899,779,14,28&quot;,&quot;path&quot;: &quot;shapes/composition.png&quot;,&quot;rotate&quot;: &quot;-1032&quot;,&quot;type&quot;: &quot;EdgeEnd&quot;}],&quot;type&quot;: &quot;UMLCompositionView&quot;}</value>
+   <value name="points">2119,741,1899,793,</value>
    <value name="tail-style">shapes/composition.png</value>
   </value-owner>
   <value-owner id="Vl8PFfbHCUSqcSbuZKRU8w">
    <value name="selectable">true</value>
    <value name="visible">false</value>
-   <value name="bounds">1993,773,36,13</value>
+   <value name="bounds">1994,776,36,13</value>
    <value name="anchor">17</value>
    <value name="anchor-offset">0,-15</value>
    <value name="text-align">132</value>
@@ -1575,7 +1601,7 @@
   <value-owner id="rTOv89fjhk+jxcYrPfoviA">
    <value name="selectable">true</value>
    <value name="visible">false</value>
-   <value name="bounds">1968,787,95,13</value>
+   <value name="bounds">1969,790,95,13</value>
    <value name="anchor">17</value>
    <value name="anchor-offset">0,-30</value>
    <value name="text-align">132</value>
@@ -1588,7 +1614,7 @@
    <value name="name">fromNameView</value>
    <value name="selectable">true</value>
    <value name="visible">false</value>
-   <value name="bounds">2054,756,59,13</value>
+   <value name="bounds">2055,759,59,13</value>
    <value name="anchor">16</value>
    <value name="anchor-offset">40,-15</value>
    <value name="text-align">132</value>
@@ -1600,7 +1626,7 @@
    <value name="name">fromMultiView</value>
    <value name="selectable">true</value>
    <value name="visible">false</value>
-   <value name="bounds">2056,723,81,13</value>
+   <value name="bounds">2056,725,81,13</value>
    <value name="anchor">16</value>
    <value name="anchor-offset">20,15</value>
    <value name="text-align">132</value>
@@ -1612,7 +1638,7 @@
    <value name="name">toNameView</value>
    <value name="selectable">true</value>
    <value name="visible">false</value>
-   <value name="bounds">1915,789,47,13</value>
+   <value name="bounds">1918,792,47,13</value>
    <value name="anchor">18</value>
    <value name="anchor-offset">40,15</value>
    <value name="text-align">132</value>
@@ -1624,7 +1650,7 @@
    <value name="name">toMultiView</value>
    <value name="selectable">true</value>
    <value name="visible">false</value>
-   <value name="bounds">1878,764,69,13</value>
+   <value name="bounds">1881,768,69,13</value>
    <value name="anchor">18</value>
    <value name="anchor-offset">20,-15</value>
    <value name="text-align">132</value>
@@ -1635,7 +1661,7 @@
   <value-owner id="8Ihl6A5C00aWTHlh79e3Iw">
    <value name="selectable">true</value>
    <value name="visible">false</value>
-   <value name="bounds">2104,734,15,11</value>
+   <value name="bounds">2104,736,15,11</value>
    <value name="anchor">21</value>
    <value name="autosize">true</value>
    <value name="movable">false</value>
@@ -1656,7 +1682,7 @@
   <value-owner id="SlShbuBv60KoLxamMDM9kw">
    <value name="selectable">true</value>
    <value name="visible">false</value>
-   <value name="bounds">1897,784,15,11</value>
+   <value name="bounds">1900,788,15,11</value>
    <value name="anchor">22</value>
    <value name="autosize">true</value>
    <value name="movable">false</value>
@@ -1805,14 +1831,14 @@
    <value name="returnType">String</value>
   </value-owner>
   <value-owner id="om58up/CVkqCTQjFV5QuFg">
-   <value name="rendering">{&quot;model&quot;: &quot;dGZ6/93FGU6xbPN+NTHTvg&quot;,&quot;name&quot;: &quot;&quot;,&quot;render&quot;: [{&quot;lineWidth&quot;: &quot;0&quot;,&quot;points&quot;: &quot;1326,813,1161,790,&quot;,&quot;type&quot;: &quot;Line&quot;},{&quot;bounds&quot;: &quot;1161,776,14,28&quot;,&quot;path&quot;: &quot;shapes/composition.png&quot;,&quot;rotate&quot;: &quot;-820&quot;,&quot;type&quot;: &quot;EdgeEnd&quot;}],&quot;type&quot;: &quot;UMLCompositionView&quot;}</value>
-   <value name="points">1326,813,1161,790,</value>
+   <value name="rendering">{&quot;model&quot;: &quot;dGZ6/93FGU6xbPN+NTHTvg&quot;,&quot;name&quot;: &quot;&quot;,&quot;render&quot;: [{&quot;lineWidth&quot;: &quot;0&quot;,&quot;points&quot;: &quot;1326,817,1161,792,&quot;,&quot;type&quot;: &quot;Line&quot;},{&quot;bounds&quot;: &quot;1161,778,14,28&quot;,&quot;path&quot;: &quot;shapes/composition.png&quot;,&quot;rotate&quot;: &quot;-813&quot;,&quot;type&quot;: &quot;EdgeEnd&quot;}],&quot;type&quot;: &quot;UMLCompositionView&quot;}</value>
+   <value name="points">1326,817,1161,792,</value>
    <value name="tail-style">shapes/composition.png</value>
   </value-owner>
   <value-owner id="OW6Elmj97ki96OhxkCbP8g">
    <value name="selectable">true</value>
    <value name="visible">false</value>
-   <value name="bounds">1224,811,36,13</value>
+   <value name="bounds">1224,814,36,13</value>
    <value name="anchor">17</value>
    <value name="anchor-offset">0,-15</value>
    <value name="text-align">132</value>
@@ -1824,7 +1850,7 @@
   <value-owner id="BnaHG4zT10CNKSoqsEPF4w">
    <value name="selectable">true</value>
    <value name="visible">false</value>
-   <value name="bounds">1193,826,95,13</value>
+   <value name="bounds">1193,829,95,13</value>
    <value name="anchor">17</value>
    <value name="anchor-offset">0,-30</value>
    <value name="text-align">132</value>
@@ -1837,7 +1863,7 @@
    <value name="name">fromNameView</value>
    <value name="selectable">true</value>
    <value name="visible">false</value>
-   <value name="bounds">1255,816,59,13</value>
+   <value name="bounds">1255,820,59,13</value>
    <value name="anchor">16</value>
    <value name="anchor-offset">40,-15</value>
    <value name="text-align">132</value>
@@ -1849,7 +1875,7 @@
    <value name="name">fromMultiView</value>
    <value name="selectable">true</value>
    <value name="visible">false</value>
-   <value name="bounds">1268,789,81,13</value>
+   <value name="bounds">1268,793,81,13</value>
    <value name="anchor">16</value>
    <value name="anchor-offset">20,15</value>
    <value name="text-align">132</value>
@@ -1861,7 +1887,7 @@
    <value name="name">toNameView</value>
    <value name="selectable">true</value>
    <value name="visible">false</value>
-   <value name="bounds">1176,804,47,13</value>
+   <value name="bounds">1175,807,47,13</value>
    <value name="anchor">18</value>
    <value name="anchor-offset">40,15</value>
    <value name="text-align">132</value>
@@ -1873,7 +1899,7 @@
    <value name="name">toMultiView</value>
    <value name="selectable">true</value>
    <value name="visible">false</value>
-   <value name="bounds">1149,772,69,13</value>
+   <value name="bounds">1149,774,69,13</value>
    <value name="anchor">18</value>
    <value name="anchor-offset">20,-15</value>
    <value name="text-align">132</value>
@@ -1884,7 +1910,7 @@
   <value-owner id="p7vZiFPMeU6qPyzuWpGztQ">
    <value name="selectable">true</value>
    <value name="visible">false</value>
-   <value name="bounds">1311,808,15,11</value>
+   <value name="bounds">1311,812,15,11</value>
    <value name="anchor">21</value>
    <value name="autosize">true</value>
    <value name="movable">false</value>
@@ -1905,7 +1931,7 @@
   <value-owner id="nA1zYqtBn0+Jh/S/Qi8I2w">
    <value name="selectable">true</value>
    <value name="visible">false</value>
-   <value name="bounds">1162,785,15,11</value>
+   <value name="bounds">1162,787,15,11</value>
    <value name="anchor">22</value>
    <value name="autosize">true</value>
    <value name="movable">false</value>
@@ -1924,14 +1950,14 @@
    <value name="sub-on-edit-text">uml.onEditAttribute(view, model, text)</value>
   </value-owner>
   <value-owner id="VGFioAvtf0+6tjVQ1h33gQ">
-   <value name="rendering">{&quot;model&quot;: &quot;zTCXAn5u1EeBIqKAzt3/EQ&quot;,&quot;name&quot;: &quot;&quot;,&quot;render&quot;: [{&quot;lineWidth&quot;: &quot;0&quot;,&quot;points&quot;: &quot;1033,703,1033,487,&quot;,&quot;type&quot;: &quot;Line&quot;},{&quot;bounds&quot;: &quot;1033,473,14,28&quot;,&quot;path&quot;: &quot;shapes/composition.png&quot;,&quot;type&quot;: &quot;EdgeEnd&quot;}],&quot;type&quot;: &quot;UMLCompositionView&quot;}</value>
-   <value name="points">1033,703,1033,487,</value>
+   <value name="rendering">{&quot;model&quot;: &quot;zTCXAn5u1EeBIqKAzt3/EQ&quot;,&quot;name&quot;: &quot;&quot;,&quot;render&quot;: [{&quot;lineWidth&quot;: &quot;0&quot;,&quot;points&quot;: &quot;1033,703,1033,503,&quot;,&quot;type&quot;: &quot;Line&quot;},{&quot;bounds&quot;: &quot;1033,489,14,28&quot;,&quot;path&quot;: &quot;shapes/composition.png&quot;,&quot;type&quot;: &quot;EdgeEnd&quot;}],&quot;type&quot;: &quot;UMLCompositionView&quot;}</value>
+   <value name="points">1033,703,1033,503,</value>
    <value name="tail-style">shapes/composition.png</value>
   </value-owner>
   <value-owner id="mXTFzNGwFE+KHmP5U/WJrQ">
    <value name="selectable">true</value>
    <value name="visible">false</value>
-   <value name="bounds">1000,589,36,13</value>
+   <value name="bounds">1000,597,36,13</value>
    <value name="anchor">17</value>
    <value name="anchor-offset">0,-15</value>
    <value name="text-align">132</value>
@@ -1943,7 +1969,7 @@
   <value-owner id="YUypYPiCZkW9j68IXDV3OQ">
    <value name="selectable">true</value>
    <value name="visible">false</value>
-   <value name="bounds">956,589,95,13</value>
+   <value name="bounds">956,597,95,13</value>
    <value name="anchor">17</value>
    <value name="anchor-offset">0,-30</value>
    <value name="text-align">132</value>
@@ -1980,7 +2006,7 @@
    <value name="name">toNameView</value>
    <value name="selectable">true</value>
    <value name="visible">false</value>
-   <value name="bounds">995,521,47,13</value>
+   <value name="bounds">995,537,47,13</value>
    <value name="anchor">18</value>
    <value name="anchor-offset">40,15</value>
    <value name="text-align">132</value>
@@ -1992,7 +2018,7 @@
    <value name="name">toMultiView</value>
    <value name="selectable">true</value>
    <value name="visible">false</value>
-   <value name="bounds">1014,501,69,13</value>
+   <value name="bounds">1014,517,69,13</value>
    <value name="anchor">18</value>
    <value name="anchor-offset">20,-15</value>
    <value name="text-align">132</value>
@@ -2024,7 +2050,7 @@
   <value-owner id="pDOASYq4B0mvggZNaL9H6Q">
    <value name="selectable">true</value>
    <value name="visible">false</value>
-   <value name="bounds">1026,488,15,11</value>
+   <value name="bounds">1026,504,15,11</value>
    <value name="anchor">22</value>
    <value name="autosize">true</value>
    <value name="movable">false</value>
@@ -2316,14 +2342,14 @@ clases derivadas (JugadorMaquina y JugadorPersona) sin afectar el juego.
    <value name="sub-on-edit-text">uml.onEditAttribute(view, model, text)</value>
   </value-owner>
   <value-owner id="I/ilbc21UkOY18AlsnMhzA">
-   <value name="rendering">{&quot;model&quot;: &quot;5d31qDxhY0OAarXV6G08GA&quot;,&quot;name&quot;: &quot;&quot;,&quot;render&quot;: [{&quot;lineWidth&quot;: &quot;0&quot;,&quot;points&quot;: &quot;1892,398,1751,626,&quot;,&quot;type&quot;: &quot;Line&quot;},{&quot;bounds&quot;: &quot;1751,612,14,28&quot;,&quot;path&quot;: &quot;shapes/aggregation.png&quot;,&quot;rotate&quot;: &quot;-1482&quot;,&quot;type&quot;: &quot;EdgeEnd&quot;}],&quot;type&quot;: &quot;UMLAggregationView&quot;}</value>
-   <value name="points">1892,398,1751,626,</value>
+   <value name="rendering">{&quot;model&quot;: &quot;5d31qDxhY0OAarXV6G08GA&quot;,&quot;name&quot;: &quot;&quot;,&quot;render&quot;: [{&quot;lineWidth&quot;: &quot;0&quot;,&quot;points&quot;: &quot;1893,398,1754,626,&quot;,&quot;type&quot;: &quot;Line&quot;},{&quot;bounds&quot;: &quot;1754,612,14,28&quot;,&quot;path&quot;: &quot;shapes/aggregation.png&quot;,&quot;rotate&quot;: &quot;-1486&quot;,&quot;type&quot;: &quot;EdgeEnd&quot;}],&quot;type&quot;: &quot;UMLAggregationView&quot;}</value>
+   <value name="points">1893,398,1754,626,</value>
    <value name="tail-style">shapes/aggregation.png</value>
   </value-owner>
   <value-owner id="pscwjahVMEGVQ7gyeqSUeg">
    <value name="selectable">true</value>
    <value name="visible">false</value>
-   <value name="bounds">1817,514,36,13</value>
+   <value name="bounds">1819,514,36,13</value>
    <value name="anchor">17</value>
    <value name="anchor-offset">0,-15</value>
    <value name="text-align">132</value>
@@ -2335,7 +2361,7 @@ clases derivadas (JugadorMaquina y JugadorPersona) sin afectar el juego.
   <value-owner id="w7Omo0RT/E2DsOsnCDARog">
    <value name="selectable">true</value>
    <value name="visible">false</value>
-   <value name="bounds">1801,522,95,13</value>
+   <value name="bounds">1803,522,95,13</value>
    <value name="anchor">17</value>
    <value name="anchor-offset">0,-30</value>
    <value name="text-align">132</value>
@@ -2348,7 +2374,7 @@ clases derivadas (JugadorMaquina y JugadorPersona) sin afectar el juego.
    <value name="name">fromNameView</value>
    <value name="selectable">true</value>
    <value name="visible">false</value>
-   <value name="bounds">1855,434,59,13</value>
+   <value name="bounds">1856,434,59,13</value>
    <value name="anchor">16</value>
    <value name="anchor-offset">40,-15</value>
    <value name="text-align">132</value>
@@ -2360,7 +2386,7 @@ clases derivadas (JugadorMaquina y JugadorPersona) sin afectar el juego.
    <value name="name">fromMultiView</value>
    <value name="selectable">true</value>
    <value name="visible">false</value>
-   <value name="bounds">1829,401,81,13</value>
+   <value name="bounds">1830,401,81,13</value>
    <value name="anchor">16</value>
    <value name="anchor-offset">20,15</value>
    <value name="text-align">132</value>
@@ -2372,7 +2398,7 @@ clases derivadas (JugadorMaquina y JugadorPersona) sin afectar el juego.
    <value name="name">toNameView</value>
    <value name="selectable">true</value>
    <value name="visible">false</value>
-   <value name="bounds">1762,594,47,13</value>
+   <value name="bounds">1765,594,47,13</value>
    <value name="anchor">18</value>
    <value name="anchor-offset">40,15</value>
    <value name="text-align">132</value>
@@ -2384,7 +2410,7 @@ clases derivadas (JugadorMaquina y JugadorPersona) sin afectar el juego.
    <value name="name">toMultiView</value>
    <value name="selectable">true</value>
    <value name="visible">false</value>
-   <value name="bounds">1715,595,69,13</value>
+   <value name="bounds">1718,595,69,13</value>
    <value name="anchor">18</value>
    <value name="anchor-offset">20,-15</value>
    <value name="text-align">132</value>
@@ -2395,7 +2421,7 @@ clases derivadas (JugadorMaquina y JugadorPersona) sin afectar el juego.
   <value-owner id="8UekdkxvnkS2vkZ1G6z8cw">
    <value name="selectable">true</value>
    <value name="visible">false</value>
-   <value name="bounds">1885,399,15,11</value>
+   <value name="bounds">1886,399,15,11</value>
    <value name="anchor">21</value>
    <value name="autosize">true</value>
    <value name="movable">false</value>
@@ -2416,7 +2442,7 @@ clases derivadas (JugadorMaquina y JugadorPersona) sin afectar el juego.
   <value-owner id="54FkXzdA402fWKEktL7mrg">
    <value name="selectable">true</value>
    <value name="visible">false</value>
-   <value name="bounds">1744,615,15,11</value>
+   <value name="bounds">1747,615,15,11</value>
    <value name="anchor">22</value>
    <value name="autosize">true</value>
    <value name="movable">false</value>
@@ -2435,14 +2461,14 @@ clases derivadas (JugadorMaquina y JugadorPersona) sin afectar el juego.
    <value name="sub-on-edit-text">uml.onEditAttribute(view, model, text)</value>
   </value-owner>
   <value-owner id="OngGAVpq9EmUialq+irBmQ">
-   <value name="rendering">{&quot;model&quot;: &quot;HmFr/Hd5fUO6gGEay6FXDQ&quot;,&quot;name&quot;: &quot;&quot;,&quot;render&quot;: [{&quot;lineWidth&quot;: &quot;0&quot;,&quot;points&quot;: &quot;1851,315,1734,315,&quot;,&quot;type&quot;: &quot;Line&quot;},{&quot;bounds&quot;: &quot;1734,301,14,28&quot;,&quot;path&quot;: &quot;shapes/aggregation.png&quot;,&quot;rotate&quot;: &quot;-900&quot;,&quot;type&quot;: &quot;EdgeEnd&quot;}],&quot;type&quot;: &quot;UMLAggregationView&quot;}</value>
-   <value name="points">1851,315,1734,315,</value>
+   <value name="rendering">{&quot;model&quot;: &quot;HmFr/Hd5fUO6gGEay6FXDQ&quot;,&quot;name&quot;: &quot;&quot;,&quot;render&quot;: [{&quot;lineWidth&quot;: &quot;0&quot;,&quot;points&quot;: &quot;1851,315,1644,315,&quot;,&quot;type&quot;: &quot;Line&quot;},{&quot;bounds&quot;: &quot;1644,301,14,28&quot;,&quot;path&quot;: &quot;shapes/aggregation.png&quot;,&quot;rotate&quot;: &quot;-900&quot;,&quot;type&quot;: &quot;EdgeEnd&quot;}],&quot;type&quot;: &quot;UMLAggregationView&quot;}</value>
+   <value name="points">1851,315,1644,315,</value>
    <value name="tail-style">shapes/aggregation.png</value>
   </value-owner>
   <value-owner id="wSfIHmR5kkyxS0Ymz/tZsw">
    <value name="selectable">true</value>
    <value name="visible">false</value>
-   <value name="bounds">1775,324,36,13</value>
+   <value name="bounds">1730,324,36,13</value>
    <value name="anchor">17</value>
    <value name="anchor-offset">0,-15</value>
    <value name="text-align">132</value>
@@ -2454,7 +2480,7 @@ clases derivadas (JugadorMaquina y JugadorPersona) sin afectar el juego.
   <value-owner id="KcKGLqmPckW4z5+pctT9+Q">
    <value name="selectable">true</value>
    <value name="visible">false</value>
-   <value name="bounds">1746,339,95,13</value>
+   <value name="bounds">1701,339,95,13</value>
    <value name="anchor">17</value>
    <value name="anchor-offset">0,-30</value>
    <value name="text-align">132</value>
@@ -2491,7 +2517,7 @@ clases derivadas (JugadorMaquina y JugadorPersona) sin afectar el juego.
    <value name="name">toNameView</value>
    <value name="selectable">true</value>
    <value name="visible">false</value>
-   <value name="bounds">1751,324,47,13</value>
+   <value name="bounds">1661,324,47,13</value>
    <value name="anchor">18</value>
    <value name="anchor-offset">40,15</value>
    <value name="text-align">132</value>
@@ -2503,7 +2529,7 @@ clases derivadas (JugadorMaquina y JugadorPersona) sin afectar el juego.
    <value name="name">toMultiView</value>
    <value name="selectable">true</value>
    <value name="visible">false</value>
-   <value name="bounds">1720,294,69,13</value>
+   <value name="bounds">1630,294,69,13</value>
    <value name="anchor">18</value>
    <value name="anchor-offset">20,-15</value>
    <value name="text-align">132</value>
@@ -2535,7 +2561,7 @@ clases derivadas (JugadorMaquina y JugadorPersona) sin afectar el juego.
   <value-owner id="6rcqdo0DPE+YliAnF7uS1Q">
    <value name="selectable">true</value>
    <value name="visible">false</value>
-   <value name="bounds">1735,310,15,11</value>
+   <value name="bounds">1645,310,15,11</value>
    <value name="anchor">22</value>
    <value name="autosize">true</value>
    <value name="movable">false</value>
@@ -2554,14 +2580,14 @@ clases derivadas (JugadorMaquina y JugadorPersona) sin afectar el juego.
    <value name="sub-on-edit-text">uml.onEditAttribute(view, model, text)</value>
   </value-owner>
   <value-owner id="8Q7n3oGWrUCfPsaXDTGdJQ">
-   <value name="rendering">{&quot;model&quot;: &quot;ekcCp/IcZEyw6Tn678B0WQ&quot;,&quot;name&quot;: &quot;&quot;,&quot;render&quot;: [{&quot;lineWidth&quot;: &quot;0&quot;,&quot;points&quot;: &quot;1581,398,1596,626,&quot;,&quot;type&quot;: &quot;Line&quot;},{&quot;bounds&quot;: &quot;1596,612,14,28&quot;,&quot;path&quot;: &quot;shapes/composition.png&quot;,&quot;rotate&quot;: &quot;-1837&quot;,&quot;type&quot;: &quot;EdgeEnd&quot;}],&quot;type&quot;: &quot;UMLCompositionView&quot;}</value>
-   <value name="points">1581,398,1596,626,</value>
+   <value name="rendering">{&quot;model&quot;: &quot;ekcCp/IcZEyw6Tn678B0WQ&quot;,&quot;name&quot;: &quot;&quot;,&quot;render&quot;: [{&quot;lineWidth&quot;: &quot;0&quot;,&quot;points&quot;: &quot;1504,398,1557,626,&quot;,&quot;type&quot;: &quot;Line&quot;},{&quot;bounds&quot;: &quot;1557,612,14,28&quot;,&quot;path&quot;: &quot;shapes/composition.png&quot;,&quot;rotate&quot;: &quot;-1930&quot;,&quot;type&quot;: &quot;EdgeEnd&quot;}],&quot;type&quot;: &quot;UMLCompositionView&quot;}</value>
+   <value name="points">1504,398,1557,626,</value>
    <value name="tail-style">shapes/composition.png</value>
   </value-owner>
   <value-owner id="05buU1bOiECu9izmFSpoiQ">
    <value name="selectable">true</value>
    <value name="visible">false</value>
-   <value name="bounds">1586,505,36,13</value>
+   <value name="bounds">1528,503,36,13</value>
    <value name="anchor">17</value>
    <value name="anchor-offset">0,-15</value>
    <value name="text-align">132</value>
@@ -2573,7 +2599,7 @@ clases derivadas (JugadorMaquina y JugadorPersona) sin afectar el juego.
   <value-owner id="5tofcjni4kOIjxgn4QjdhA">
    <value name="selectable">true</value>
    <value name="visible">false</value>
-   <value name="bounds">1572,504,95,13</value>
+   <value name="bounds">1513,499,95,13</value>
    <value name="anchor">17</value>
    <value name="anchor-offset">0,-30</value>
    <value name="text-align">132</value>
@@ -2586,7 +2612,7 @@ clases derivadas (JugadorMaquina y JugadorPersona) sin afectar el juego.
    <value name="name">fromNameView</value>
    <value name="selectable">true</value>
    <value name="visible">false</value>
-   <value name="bounds">1570,431,59,13</value>
+   <value name="bounds">1499,428,59,13</value>
    <value name="anchor">16</value>
    <value name="anchor-offset">40,-15</value>
    <value name="text-align">132</value>
@@ -2598,7 +2624,7 @@ clases derivadas (JugadorMaquina y JugadorPersona) sin afectar el juego.
    <value name="name">fromMultiView</value>
    <value name="selectable">true</value>
    <value name="visible">false</value>
-   <value name="bounds">1527,413,81,13</value>
+   <value name="bounds">1454,415,81,13</value>
    <value name="anchor">16</value>
    <value name="anchor-offset">20,15</value>
    <value name="text-align">132</value>
@@ -2610,7 +2636,7 @@ clases derivadas (JugadorMaquina y JugadorPersona) sin afectar el juego.
    <value name="name">toNameView</value>
    <value name="selectable">true</value>
    <value name="visible">false</value>
-   <value name="bounds">1585,579,47,13</value>
+   <value name="bounds">1540,578,47,13</value>
    <value name="anchor">18</value>
    <value name="anchor-offset">40,15</value>
    <value name="text-align">132</value>
@@ -2622,7 +2648,7 @@ clases derivadas (JugadorMaquina y JugadorPersona) sin afectar el juego.
    <value name="name">toMultiView</value>
    <value name="selectable">true</value>
    <value name="visible">false</value>
-   <value name="bounds">1546,601,69,13</value>
+   <value name="bounds">1504,604,69,13</value>
    <value name="anchor">18</value>
    <value name="anchor-offset">20,-15</value>
    <value name="text-align">132</value>
@@ -2633,7 +2659,7 @@ clases derivadas (JugadorMaquina y JugadorPersona) sin afectar el juego.
   <value-owner id="3654jigBskKUHNTyKdzddA">
    <value name="selectable">true</value>
    <value name="visible">false</value>
-   <value name="bounds">1574,399,15,11</value>
+   <value name="bounds">1497,399,15,11</value>
    <value name="anchor">21</value>
    <value name="autosize">true</value>
    <value name="movable">false</value>
@@ -2654,7 +2680,7 @@ clases derivadas (JugadorMaquina y JugadorPersona) sin afectar el juego.
   <value-owner id="PNesN/c3J0OBp6euPrtikw">
    <value name="selectable">true</value>
    <value name="visible">false</value>
-   <value name="bounds">1589,615,15,11</value>
+   <value name="bounds">1550,615,15,11</value>
    <value name="anchor">22</value>
    <value name="autosize">true</value>
    <value name="movable">false</value>
@@ -2777,8 +2803,8 @@ clases derivadas (JugadorMaquina y JugadorPersona) sin afectar el juego.
   </value-owner>
   <value-owner id="5SJVRZwvuE6avD956aoryg">
    <value name="style">{&quot;fill-color&quot;: &quot;255,255,127,255&quot;}</value>
-   <value name="rendering">{&quot;bounds&quot;: &quot;181,107,494,582&quot;,&quot;model&quot;: &quot;b4SrOqXzUU6x0iG2pnPQ1Q&quot;,&quot;name&quot;: &quot;Ventana&quot;,&quot;render&quot;: [{&quot;bounds&quot;: &quot;181,107,494,582&quot;,&quot;type&quot;: &quot;Rect&quot;},{&quot;bounds&quot;: &quot;401,112,55,16&quot;,&quot;fontStyle&quot;: &quot;2&quot;,&quot;text&quot;: &quot;Ventana&quot;,&quot;type&quot;: &quot;Text&quot;},{&quot;bounds&quot;: &quot;181,133,494,214&quot;,&quot;fillColor&quot;: &quot;0,0,0,0&quot;,&quot;type&quot;: &quot;Rect&quot;},{&quot;bounds&quot;: &quot;186,136,225,16&quot;,&quot;text&quot;: &quot;-cartasJugador: vector&lt;JToggleButton&gt;&quot;,&quot;type&quot;: &quot;Text&quot;},{&quot;bounds&quot;: &quot;186,152,167,16&quot;,&quot;text&quot;: &quot;-cartasMesa: vector&lt;JLabel&gt;&quot;,&quot;type&quot;: &quot;Text&quot;},{&quot;bounds&quot;: &quot;186,168,202,16&quot;,&quot;text&quot;: &quot;-cartasCapturadas: vector&lt;JLabel&gt;&quot;,&quot;type&quot;: &quot;Text&quot;},{&quot;bounds&quot;: &quot;186,184,198,16&quot;,&quot;text&quot;: &quot;-cartasJugadorGrupo: ButtonGroup&quot;,&quot;type&quot;: &quot;Text&quot;},{&quot;bounds&quot;: &quot;186,200,163,16&quot;,&quot;text&quot;: &quot;-panelCartasJugador: JPanel&quot;,&quot;type&quot;: &quot;Text&quot;},{&quot;bounds&quot;: &quot;186,216,129,16&quot;,&quot;text&quot;: &quot;-panelPrincipal: JPanel&quot;,&quot;type&quot;: &quot;Text&quot;},{&quot;bounds&quot;: &quot;186,232,163,16&quot;,&quot;text&quot;: &quot;-panelCartasJugador: JPanel&quot;,&quot;type&quot;: &quot;Text&quot;},{&quot;bounds&quot;: &quot;186,248,148,16&quot;,&quot;text&quot;: &quot;-panelCartasMesa: JPanel&quot;,&quot;type&quot;: &quot;Text&quot;},{&quot;bounds&quot;: &quot;186,264,183,16&quot;,&quot;text&quot;: &quot;-panelCartasCapturadas: JPanel&quot;,&quot;type&quot;: &quot;Text&quot;},{&quot;bounds&quot;: &quot;186,280,109,16&quot;,&quot;text&quot;: &quot;-descartar: JButton&quot;,&quot;type&quot;: &quot;Text&quot;},{&quot;bounds&quot;: &quot;186,296,72,16&quot;,&quot;text&quot;: &quot;-palo: String&quot;,&quot;type&quot;: &quot;Text&quot;},{&quot;bounds&quot;: &quot;186,312,76,16&quot;,&quot;text&quot;: &quot;-valor: String&quot;,&quot;type&quot;: &quot;Text&quot;},{&quot;bounds&quot;: &quot;186,328,173,16&quot;,&quot;text&quot;: &quot;-etiquetaTurnoJugador: JLabel&quot;,&quot;type&quot;: &quot;Text&quot;},{&quot;bounds&quot;: &quot;181,347,494,342&quot;,&quot;fillColor&quot;: &quot;0,0,0,0&quot;,&quot;type&quot;: &quot;Rect&quot;},{&quot;bounds&quot;: &quot;186,350,262,16&quot;,&quot;text&quot;: &quot;+Ventana(ancho: int, altura: int, titulo: string)&quot;,&quot;type&quot;: &quot;Text&quot;},{&quot;bounds&quot;: &quot;186,366,87,16&quot;,&quot;text&quot;: &quot;+hacerVisible()&quot;,&quot;type&quot;: &quot;Text&quot;},{&quot;bounds&quot;: &quot;186,382,195,16&quot;,&quot;text&quot;: &quot;-asignarNaipe(datosNaipe: String)&quot;,&quot;type&quot;: &quot;Text&quot;},{&quot;bounds&quot;: &quot;186,398,147,16&quot;,&quot;text&quot;: &quot;+obtenerNaipe(): String[]&quot;,&quot;type&quot;: &quot;Text&quot;},{&quot;bounds&quot;: &quot;186,414,127,16&quot;,&quot;text&quot;: &quot;-iniciarComponentes()&quot;,&quot;type&quot;: &quot;Text&quot;},{&quot;bounds&quot;: &quot;186,430,420,16&quot;,&quot;text&quot;: &quot;+actualizarComponenteCartasJugador(cartas: vector&lt;Naipe&gt;, indice: int)&quot;,&quot;type&quot;: &quot;Text&quot;},{&quot;bounds&quot;: &quot;186,446,296,16&quot;,&quot;text&quot;: &quot;+limpiarComponente(componente: vector&lt;JLabel&gt;)&quot;,&quot;type&quot;: &quot;Text&quot;},{&quot;bounds&quot;: &quot;186,462,234,16&quot;,&quot;text&quot;: &quot;-habilitarCartasJugador(opcion: boolean)&quot;,&quot;type&quot;: &quot;Text&quot;},{&quot;bounds&quot;: &quot;186,478,411,16&quot;,&quot;text&quot;: &quot;+actualizarComponentesCartasMesa(cartas: vector&lt;Naipe&gt;, indice: int)&quot;,&quot;type&quot;: &quot;Text&quot;},{&quot;bounds&quot;: &quot;186,494,216,16&quot;,&quot;text&quot;: &quot;-generarPanel(alineacion: int): JPanel&quot;,&quot;type&quot;: &quot;Text&quot;},{&quot;bounds&quot;: &quot;186,510,267,16&quot;,&quot;text&quot;: &quot;-accionSeleccionarCarta(boton: JToggleButton)&quot;,&quot;type&quot;: &quot;Text&quot;},{&quot;bounds&quot;: &quot;186,526,101,16&quot;,&quot;text&quot;: &quot;-accionDescarta()&quot;,&quot;type&quot;: &quot;Text&quot;},{&quot;bounds&quot;: &quot;186,542,267,16&quot;,&quot;text&quot;: &quot;-obtenerBoton(modeloBoton: ButtonModel): int&quot;,&quot;type&quot;: &quot;Text&quot;},{&quot;bounds&quot;: &quot;186,558,484,16&quot;,&quot;text&quot;: &quot;+actualizarComponentesCartasCapturadas(cartas: vector&lt;Naipe&gt;, escoba: boolean)&quot;,&quot;type&quot;: &quot;Text&quot;},{&quot;bounds&quot;: &quot;186,574,349,16&quot;,&quot;text&quot;: &quot;+generarEtiquetaCartasCapturadas(escoba: boolean): JLabel&quot;,&quot;type&quot;: &quot;Text&quot;},{&quot;bounds&quot;: &quot;186,590,238,16&quot;,&quot;text&quot;: &quot;+limpiarComponeneteCartasCapturadas()&quot;,&quot;type&quot;: &quot;Text&quot;},{&quot;bounds&quot;: &quot;186,606,412,16&quot;,&quot;text&quot;: &quot;+actualizarComponente(componente: JPanel, etiqueta: vectos&lt;JLabel&gt;)&quot;,&quot;type&quot;: &quot;Text&quot;},{&quot;bounds&quot;: &quot;186,622,484,16&quot;,&quot;text&quot;: &quot;+actualizarComponentesCartasCapturadas(cartas: vector&lt;Naipe&gt;, escoba: boolean)&quot;,&quot;type&quot;: &quot;Text&quot;},{&quot;bounds&quot;: &quot;186,638,229,16&quot;,&quot;text&quot;: &quot;+construirEtiqueta(texto: String): JLabel&quot;,&quot;type&quot;: &quot;Text&quot;},{&quot;bounds&quot;: &quot;186,654,123,16&quot;,&quot;text&quot;: &quot;+inicializarEtiquetas()&quot;,&quot;type&quot;: &quot;Text&quot;},{&quot;bounds&quot;: &quot;186,670,318,16&quot;,&quot;text&quot;: &quot;+actualizarTurnoJugador(nombreJugadorActual: String)&quot;,&quot;type&quot;: &quot;Text&quot;}],&quot;type&quot;: &quot;UMLClassView&quot;}</value>
-   <value name="bounds">181,107,494,582</value>
+   <value name="rendering">{&quot;bounds&quot;: &quot;201,107,494,582&quot;,&quot;model&quot;: &quot;b4SrOqXzUU6x0iG2pnPQ1Q&quot;,&quot;name&quot;: &quot;Ventana&quot;,&quot;render&quot;: [{&quot;bounds&quot;: &quot;201,107,494,582&quot;,&quot;type&quot;: &quot;Rect&quot;},{&quot;bounds&quot;: &quot;421,112,55,16&quot;,&quot;fontStyle&quot;: &quot;2&quot;,&quot;text&quot;: &quot;Ventana&quot;,&quot;type&quot;: &quot;Text&quot;},{&quot;bounds&quot;: &quot;201,133,494,214&quot;,&quot;fillColor&quot;: &quot;0,0,0,0&quot;,&quot;type&quot;: &quot;Rect&quot;},{&quot;bounds&quot;: &quot;206,136,225,16&quot;,&quot;text&quot;: &quot;-cartasJugador: vector&lt;JToggleButton&gt;&quot;,&quot;type&quot;: &quot;Text&quot;},{&quot;bounds&quot;: &quot;206,152,167,16&quot;,&quot;text&quot;: &quot;-cartasMesa: vector&lt;JLabel&gt;&quot;,&quot;type&quot;: &quot;Text&quot;},{&quot;bounds&quot;: &quot;206,168,202,16&quot;,&quot;text&quot;: &quot;-cartasCapturadas: vector&lt;JLabel&gt;&quot;,&quot;type&quot;: &quot;Text&quot;},{&quot;bounds&quot;: &quot;206,184,198,16&quot;,&quot;text&quot;: &quot;-cartasJugadorGrupo: ButtonGroup&quot;,&quot;type&quot;: &quot;Text&quot;},{&quot;bounds&quot;: &quot;206,200,163,16&quot;,&quot;text&quot;: &quot;-panelCartasJugador: JPanel&quot;,&quot;type&quot;: &quot;Text&quot;},{&quot;bounds&quot;: &quot;206,216,129,16&quot;,&quot;text&quot;: &quot;-panelPrincipal: JPanel&quot;,&quot;type&quot;: &quot;Text&quot;},{&quot;bounds&quot;: &quot;206,232,163,16&quot;,&quot;text&quot;: &quot;-panelCartasJugador: JPanel&quot;,&quot;type&quot;: &quot;Text&quot;},{&quot;bounds&quot;: &quot;206,248,148,16&quot;,&quot;text&quot;: &quot;-panelCartasMesa: JPanel&quot;,&quot;type&quot;: &quot;Text&quot;},{&quot;bounds&quot;: &quot;206,264,183,16&quot;,&quot;text&quot;: &quot;-panelCartasCapturadas: JPanel&quot;,&quot;type&quot;: &quot;Text&quot;},{&quot;bounds&quot;: &quot;206,280,109,16&quot;,&quot;text&quot;: &quot;-descartar: JButton&quot;,&quot;type&quot;: &quot;Text&quot;},{&quot;bounds&quot;: &quot;206,296,72,16&quot;,&quot;text&quot;: &quot;-palo: String&quot;,&quot;type&quot;: &quot;Text&quot;},{&quot;bounds&quot;: &quot;206,312,76,16&quot;,&quot;text&quot;: &quot;-valor: String&quot;,&quot;type&quot;: &quot;Text&quot;},{&quot;bounds&quot;: &quot;206,328,173,16&quot;,&quot;text&quot;: &quot;-etiquetaTurnoJugador: JLabel&quot;,&quot;type&quot;: &quot;Text&quot;},{&quot;bounds&quot;: &quot;201,347,494,342&quot;,&quot;fillColor&quot;: &quot;0,0,0,0&quot;,&quot;type&quot;: &quot;Rect&quot;},{&quot;bounds&quot;: &quot;206,350,262,16&quot;,&quot;text&quot;: &quot;+Ventana(ancho: int, altura: int, titulo: string)&quot;,&quot;type&quot;: &quot;Text&quot;},{&quot;bounds&quot;: &quot;206,366,87,16&quot;,&quot;text&quot;: &quot;+hacerVisible()&quot;,&quot;type&quot;: &quot;Text&quot;},{&quot;bounds&quot;: &quot;206,382,195,16&quot;,&quot;text&quot;: &quot;-asignarNaipe(datosNaipe: String)&quot;,&quot;type&quot;: &quot;Text&quot;},{&quot;bounds&quot;: &quot;206,398,147,16&quot;,&quot;text&quot;: &quot;+obtenerNaipe(): String[]&quot;,&quot;type&quot;: &quot;Text&quot;},{&quot;bounds&quot;: &quot;206,414,127,16&quot;,&quot;text&quot;: &quot;-iniciarComponentes()&quot;,&quot;type&quot;: &quot;Text&quot;},{&quot;bounds&quot;: &quot;206,430,420,16&quot;,&quot;text&quot;: &quot;+actualizarComponenteCartasJugador(cartas: vector&lt;Naipe&gt;, indice: int)&quot;,&quot;type&quot;: &quot;Text&quot;},{&quot;bounds&quot;: &quot;206,446,296,16&quot;,&quot;text&quot;: &quot;+limpiarComponente(componente: vector&lt;JLabel&gt;)&quot;,&quot;type&quot;: &quot;Text&quot;},{&quot;bounds&quot;: &quot;206,462,234,16&quot;,&quot;text&quot;: &quot;-habilitarCartasJugador(opcion: boolean)&quot;,&quot;type&quot;: &quot;Text&quot;},{&quot;bounds&quot;: &quot;206,478,411,16&quot;,&quot;text&quot;: &quot;+actualizarComponentesCartasMesa(cartas: vector&lt;Naipe&gt;, indice: int)&quot;,&quot;type&quot;: &quot;Text&quot;},{&quot;bounds&quot;: &quot;206,494,216,16&quot;,&quot;text&quot;: &quot;-generarPanel(alineacion: int): JPanel&quot;,&quot;type&quot;: &quot;Text&quot;},{&quot;bounds&quot;: &quot;206,510,267,16&quot;,&quot;text&quot;: &quot;-accionSeleccionarCarta(boton: JToggleButton)&quot;,&quot;type&quot;: &quot;Text&quot;},{&quot;bounds&quot;: &quot;206,526,101,16&quot;,&quot;text&quot;: &quot;-accionDescarta()&quot;,&quot;type&quot;: &quot;Text&quot;},{&quot;bounds&quot;: &quot;206,542,267,16&quot;,&quot;text&quot;: &quot;-obtenerBoton(modeloBoton: ButtonModel): int&quot;,&quot;type&quot;: &quot;Text&quot;},{&quot;bounds&quot;: &quot;206,558,484,16&quot;,&quot;text&quot;: &quot;+actualizarComponentesCartasCapturadas(cartas: vector&lt;Naipe&gt;, escoba: boolean)&quot;,&quot;type&quot;: &quot;Text&quot;},{&quot;bounds&quot;: &quot;206,574,349,16&quot;,&quot;text&quot;: &quot;+generarEtiquetaCartasCapturadas(escoba: boolean): JLabel&quot;,&quot;type&quot;: &quot;Text&quot;},{&quot;bounds&quot;: &quot;206,590,238,16&quot;,&quot;text&quot;: &quot;+limpiarComponeneteCartasCapturadas()&quot;,&quot;type&quot;: &quot;Text&quot;},{&quot;bounds&quot;: &quot;206,606,412,16&quot;,&quot;text&quot;: &quot;+actualizarComponente(componente: JPanel, etiqueta: vectos&lt;JLabel&gt;)&quot;,&quot;type&quot;: &quot;Text&quot;},{&quot;bounds&quot;: &quot;206,622,484,16&quot;,&quot;text&quot;: &quot;+actualizarComponentesCartasCapturadas(cartas: vector&lt;Naipe&gt;, escoba: boolean)&quot;,&quot;type&quot;: &quot;Text&quot;},{&quot;bounds&quot;: &quot;206,638,229,16&quot;,&quot;text&quot;: &quot;+construirEtiqueta(texto: String): JLabel&quot;,&quot;type&quot;: &quot;Text&quot;},{&quot;bounds&quot;: &quot;206,654,123,16&quot;,&quot;text&quot;: &quot;+inicializarEtiquetas()&quot;,&quot;type&quot;: &quot;Text&quot;},{&quot;bounds&quot;: &quot;206,670,318,16&quot;,&quot;text&quot;: &quot;+actualizarTurnoJugador(nombreJugadorActual: String)&quot;,&quot;type&quot;: &quot;Text&quot;}],&quot;type&quot;: &quot;UMLClassView&quot;}</value>
+   <value name="bounds">201,107,494,582</value>
   </value-owner>
   <value-owner id="dGzfmJmK80u4mGulUXQq1g">
    <value name="name">cartasJugador</value>
@@ -2932,14 +2958,14 @@ clases derivadas (JugadorMaquina y JugadorPersona) sin afectar el juego.
    <value name="type">ButtonModel</value>
   </value-owner>
   <value-owner id="mHIlM+kf+UmFmtNnzSh9PA">
-   <value name="rendering">{&quot;model&quot;: &quot;/uwmgIoHvUyRrRnZn4STyg&quot;,&quot;name&quot;: &quot;&quot;,&quot;render&quot;: [{&quot;lineWidth&quot;: &quot;0&quot;,&quot;points&quot;: &quot;674,374,803,362,&quot;,&quot;type&quot;: &quot;Line&quot;},{&quot;bounds&quot;: &quot;803,348,14,28&quot;,&quot;path&quot;: &quot;shapes/composition.png&quot;,&quot;rotate&quot;: &quot;846&quot;,&quot;type&quot;: &quot;EdgeEnd&quot;}],&quot;type&quot;: &quot;UMLCompositionView&quot;}</value>
-   <value name="points">674,374,803,362,</value>
+   <value name="rendering">{&quot;model&quot;: &quot;/uwmgIoHvUyRrRnZn4STyg&quot;,&quot;name&quot;: &quot;&quot;,&quot;render&quot;: [{&quot;lineWidth&quot;: &quot;0&quot;,&quot;points&quot;: &quot;694,376,803,367,&quot;,&quot;type&quot;: &quot;Line&quot;},{&quot;bounds&quot;: &quot;803,353,14,28&quot;,&quot;path&quot;: &quot;shapes/composition.png&quot;,&quot;rotate&quot;: &quot;852&quot;,&quot;type&quot;: &quot;EdgeEnd&quot;}],&quot;type&quot;: &quot;UMLCompositionView&quot;}</value>
+   <value name="points">694,376,803,367,</value>
    <value name="tail-style">shapes/composition.png</value>
   </value-owner>
   <value-owner id="6u1Mj8W/70WV3IpVom1KXg">
    <value name="selectable">true</value>
    <value name="visible">false</value>
-   <value name="bounds">720,347,36,13</value>
+   <value name="bounds">730,351,36,13</value>
    <value name="anchor">17</value>
    <value name="anchor-offset">0,-15</value>
    <value name="text-align">132</value>
@@ -2951,7 +2977,7 @@ clases derivadas (JugadorMaquina y JugadorPersona) sin afectar el juego.
   <value-owner id="6qNstvUyNkKdvcJjh4Z7vQ">
    <value name="selectable">true</value>
    <value name="visible">false</value>
-   <value name="bounds">689,332,95,13</value>
+   <value name="bounds">700,336,95,13</value>
    <value name="anchor">17</value>
    <value name="anchor-offset">0,-30</value>
    <value name="text-align">132</value>
@@ -2964,7 +2990,7 @@ clases derivadas (JugadorMaquina y JugadorPersona) sin afectar el juego.
    <value name="name">fromNameView</value>
    <value name="selectable">true</value>
    <value name="visible">false</value>
-   <value name="bounds">683,349,59,13</value>
+   <value name="bounds">704,352,59,13</value>
    <value name="anchor">16</value>
    <value name="anchor-offset">40,-15</value>
    <value name="text-align">132</value>
@@ -2976,7 +3002,7 @@ clases derivadas (JugadorMaquina y JugadorPersona) sin afectar el juego.
    <value name="name">fromMultiView</value>
    <value name="selectable">true</value>
    <value name="visible">false</value>
-   <value name="bounds">655,381,81,13</value>
+   <value name="bounds">675,383,81,13</value>
    <value name="anchor">16</value>
    <value name="anchor-offset">20,15</value>
    <value name="text-align">132</value>
@@ -2988,7 +3014,7 @@ clases derivadas (JugadorMaquina y JugadorPersona) sin afectar el juego.
    <value name="name">toNameView</value>
    <value name="selectable">true</value>
    <value name="visible">false</value>
-   <value name="bounds">739,345,47,13</value>
+   <value name="bounds">739,349,47,13</value>
    <value name="anchor">18</value>
    <value name="anchor-offset">40,15</value>
    <value name="text-align">132</value>
@@ -3000,7 +3026,7 @@ clases derivadas (JugadorMaquina y JugadorPersona) sin afectar el juego.
    <value name="name">toMultiView</value>
    <value name="selectable">true</value>
    <value name="visible">false</value>
-   <value name="bounds">750,373,69,13</value>
+   <value name="bounds">750,378,69,13</value>
    <value name="anchor">18</value>
    <value name="anchor-offset">20,-15</value>
    <value name="text-align">132</value>
@@ -3011,7 +3037,7 @@ clases derivadas (JugadorMaquina y JugadorPersona) sin afectar el juego.
   <value-owner id="fNofAzrn+0Cg8uoU3ReTxA">
    <value name="selectable">true</value>
    <value name="visible">false</value>
-   <value name="bounds">675,369,15,11</value>
+   <value name="bounds">695,371,15,11</value>
    <value name="anchor">21</value>
    <value name="autosize">true</value>
    <value name="movable">false</value>
@@ -3032,7 +3058,7 @@ clases derivadas (JugadorMaquina y JugadorPersona) sin afectar el juego.
   <value-owner id="phbcbDY6m0WbmH5CAbF+SA">
    <value name="selectable">true</value>
    <value name="visible">false</value>
-   <value name="bounds">788,357,15,11</value>
+   <value name="bounds">788,362,15,11</value>
    <value name="anchor">22</value>
    <value name="autosize">true</value>
    <value name="movable">false</value>
@@ -3062,10 +3088,6 @@ clases derivadas (JugadorMaquina y JugadorPersona) sin afectar el juego.
   <value-owner id="N8T1noOwvUio9qHMa3VhFg">
    <value name="name">repartirCartasJugadores</value>
    <value name="order">22</value>
-  </value-owner>
-  <value-owner id="EyBv7k/gR0yvtuWC5BVWDg">
-   <value name="name">obtenerPrimerJugador</value>
-   <value name="order">23</value>
   </value-owner>
   <value-owner id="UVg1ytXPqkesWguFnjSU1w">
    <value name="name">validarTerminarPartida</value>
@@ -3442,8 +3464,8 @@ clases derivadas (JugadorMaquina y JugadorPersona) sin afectar el juego.
   </value-owner>
   <value-owner id="HaGePY0L6k61oLhAxoetBA">
    <value name="style">{&quot;fill-color&quot;: &quot;170,170,255,255&quot;}</value>
-   <value name="rendering">{&quot;bounds&quot;: &quot;872,1073,324,102&quot;,&quot;model&quot;: &quot;yB0UBztleEWb/1ouxbpxaA&quot;,&quot;name&quot;: &quot;Serializador&quot;,&quot;render&quot;: [{&quot;bounds&quot;: &quot;872,1073,324,102&quot;,&quot;type&quot;: &quot;Rect&quot;},{&quot;bounds&quot;: &quot;996,1078,76,16&quot;,&quot;fontStyle&quot;: &quot;2&quot;,&quot;text&quot;: &quot;Serializador&quot;,&quot;type&quot;: &quot;Text&quot;},{&quot;bounds&quot;: &quot;872,1099,324,22&quot;,&quot;fillColor&quot;: &quot;0,0,0,0&quot;,&quot;type&quot;: &quot;Rect&quot;},{&quot;bounds&quot;: &quot;877,1102,69,16&quot;,&quot;text&quot;: &quot;-gson: Gson&quot;,&quot;type&quot;: &quot;Text&quot;},{&quot;bounds&quot;: &quot;872,1121,324,54&quot;,&quot;fillColor&quot;: &quot;0,0,0,0&quot;,&quot;type&quot;: &quot;Rect&quot;},{&quot;bounds&quot;: &quot;877,1124,314,16&quot;,&quot;text&quot;: &quot;+guardarPartida(juego: Juego, nombreArchivo: String)&quot;,&quot;type&quot;: &quot;Text&quot;},{&quot;bounds&quot;: &quot;877,1140,86,16&quot;,&quot;text&quot;: &quot;+Serializador()&quot;,&quot;type&quot;: &quot;Text&quot;},{&quot;bounds&quot;: &quot;877,1156,95,16&quot;,&quot;text&quot;: &quot;+cargarPartida()&quot;,&quot;type&quot;: &quot;Text&quot;}],&quot;type&quot;: &quot;UMLClassView&quot;}</value>
-   <value name="bounds">872,1073,324,102</value>
+   <value name="rendering">{&quot;bounds&quot;: &quot;872,1079,361,118&quot;,&quot;model&quot;: &quot;yB0UBztleEWb/1ouxbpxaA&quot;,&quot;name&quot;: &quot;Serializador&quot;,&quot;render&quot;: [{&quot;bounds&quot;: &quot;872,1079,361,118&quot;,&quot;type&quot;: &quot;Rect&quot;},{&quot;bounds&quot;: &quot;1015,1084,76,16&quot;,&quot;fontStyle&quot;: &quot;2&quot;,&quot;text&quot;: &quot;Serializador&quot;,&quot;type&quot;: &quot;Text&quot;},{&quot;bounds&quot;: &quot;872,1105,361,22&quot;,&quot;fillColor&quot;: &quot;0,0,0,0&quot;,&quot;type&quot;: &quot;Rect&quot;},{&quot;bounds&quot;: &quot;877,1108,69,16&quot;,&quot;text&quot;: &quot;-gson: Gson&quot;,&quot;type&quot;: &quot;Text&quot;},{&quot;bounds&quot;: &quot;872,1127,361,70&quot;,&quot;fillColor&quot;: &quot;0,0,0,0&quot;,&quot;type&quot;: &quot;Rect&quot;},{&quot;bounds&quot;: &quot;877,1130,314,16&quot;,&quot;text&quot;: &quot;+guardarPartida(juego: Juego, nombreArchivo: String)&quot;,&quot;type&quot;: &quot;Text&quot;},{&quot;bounds&quot;: &quot;877,1146,86,16&quot;,&quot;text&quot;: &quot;+Serializador()&quot;,&quot;type&quot;: &quot;Text&quot;},{&quot;bounds&quot;: &quot;877,1162,291,16&quot;,&quot;text&quot;: &quot;+cargarPartida(partida: File): juegoCargado:Juego&quot;,&quot;type&quot;: &quot;Text&quot;},{&quot;bounds&quot;: &quot;877,1178,233,16&quot;,&quot;text&quot;: &quot;+leerArchivo(archivo: File): salida:String&quot;,&quot;type&quot;: &quot;Text&quot;}],&quot;type&quot;: &quot;UMLClassView&quot;}</value>
+   <value name="bounds">872,1079,361,118</value>
   </value-owner>
   <value-owner id="gLhgaaswm0yHZwuoZR3HOg">
    <value name="name">guardarPartida</value>
@@ -3460,16 +3482,17 @@ clases derivadas (JugadorMaquina y JugadorPersona) sin afectar el juego.
   <value-owner id="CdrxFwcLn0aJGBuFMpnIRQ">
    <value name="name">cargarPartida</value>
    <value name="order">4</value>
+   <value name="returnType">juegoCargado:Juego</value>
   </value-owner>
   <value-owner id="DwMFQiZ/rEWU5hOLf7LTTQ">
-   <value name="rendering">{&quot;model&quot;: &quot;qWCSoihCEUamousfa8RKTA&quot;,&quot;name&quot;: &quot;&quot;,&quot;render&quot;: [{&quot;lineWidth&quot;: &quot;0&quot;,&quot;points&quot;: &quot;1140,1073,1326,986,&quot;,&quot;type&quot;: &quot;Line&quot;},{&quot;bounds&quot;: &quot;1326,972,14,28&quot;,&quot;path&quot;: &quot;shapes/composition.png&quot;,&quot;rotate&quot;: &quot;649&quot;,&quot;type&quot;: &quot;EdgeEnd&quot;}],&quot;type&quot;: &quot;UMLCompositionView&quot;}</value>
-   <value name="points">1140,1073,1326,986,</value>
+   <value name="rendering">{&quot;model&quot;: &quot;qWCSoihCEUamousfa8RKTA&quot;,&quot;name&quot;: &quot;&quot;,&quot;render&quot;: [{&quot;lineWidth&quot;: &quot;0&quot;,&quot;points&quot;: &quot;1169,1079,1326,1001,&quot;,&quot;type&quot;: &quot;Line&quot;},{&quot;bounds&quot;: &quot;1326,987,14,28&quot;,&quot;path&quot;: &quot;shapes/composition.png&quot;,&quot;rotate&quot;: &quot;635&quot;,&quot;type&quot;: &quot;EdgeEnd&quot;}],&quot;type&quot;: &quot;UMLCompositionView&quot;}</value>
+   <value name="points">1169,1079,1326,1001,</value>
    <value name="tail-style">shapes/composition.png</value>
   </value-owner>
   <value-owner id="sPZq4Fs9qEuv55mpJRCtFA">
    <value name="selectable">true</value>
    <value name="visible">false</value>
-   <value name="bounds">1209,1010,36,13</value>
+   <value name="bounds">1223,1021,36,13</value>
    <value name="anchor">17</value>
    <value name="anchor-offset">0,-15</value>
    <value name="text-align">132</value>
@@ -3481,7 +3504,7 @@ clases derivadas (JugadorMaquina y JugadorPersona) sin afectar el juego.
   <value-owner id="0VikmtL3Ok+wfW31UjL0jg">
    <value name="selectable">true</value>
    <value name="visible">false</value>
-   <value name="bounds">1173,997,95,13</value>
+   <value name="bounds">1188,1007,95,13</value>
    <value name="anchor">17</value>
    <value name="anchor-offset">0,-30</value>
    <value name="text-align">132</value>
@@ -3494,7 +3517,7 @@ clases derivadas (JugadorMaquina y JugadorPersona) sin afectar el juego.
    <value name="name">fromNameView</value>
    <value name="selectable">true</value>
    <value name="visible">false</value>
-   <value name="bounds">1141,1036,59,13</value>
+   <value name="bounds">1169,1042,59,13</value>
    <value name="anchor">16</value>
    <value name="anchor-offset">40,-15</value>
    <value name="text-align">132</value>
@@ -3506,7 +3529,7 @@ clases derivadas (JugadorMaquina y JugadorPersona) sin afectar el juego.
    <value name="name">fromMultiView</value>
    <value name="selectable">true</value>
    <value name="visible">false</value>
-   <value name="bounds">1124,1072,81,13</value>
+   <value name="bounds">1154,1078,81,13</value>
    <value name="anchor">16</value>
    <value name="anchor-offset">20,15</value>
    <value name="text-align">132</value>
@@ -3518,7 +3541,7 @@ clases derivadas (JugadorMaquina y JugadorPersona) sin afectar el juego.
    <value name="name">toNameView</value>
    <value name="selectable">true</value>
    <value name="visible">false</value>
-   <value name="bounds">1260,983,47,13</value>
+   <value name="bounds">1261,999,47,13</value>
    <value name="anchor">18</value>
    <value name="anchor-offset">40,15</value>
    <value name="text-align">132</value>
@@ -3530,7 +3553,7 @@ clases derivadas (JugadorMaquina y JugadorPersona) sin afectar el juego.
    <value name="name">toMultiView</value>
    <value name="selectable">true</value>
    <value name="visible">false</value>
-   <value name="bounds">1280,1002,69,13</value>
+   <value name="bounds">1281,1017,69,13</value>
    <value name="anchor">18</value>
    <value name="anchor-offset">20,-15</value>
    <value name="text-align">132</value>
@@ -3541,7 +3564,7 @@ clases derivadas (JugadorMaquina y JugadorPersona) sin afectar el juego.
   <value-owner id="elJZnOUfe0CXMhhie8qtfw">
    <value name="selectable">true</value>
    <value name="visible">false</value>
-   <value name="bounds">1133,1062,15,11</value>
+   <value name="bounds">1162,1068,15,11</value>
    <value name="anchor">21</value>
    <value name="autosize">true</value>
    <value name="movable">false</value>
@@ -3562,7 +3585,7 @@ clases derivadas (JugadorMaquina y JugadorPersona) sin afectar el juego.
   <value-owner id="zRPPNnFXKkCfccQDhbsWxA">
    <value name="selectable">true</value>
    <value name="visible">false</value>
-   <value name="bounds">1311,981,15,11</value>
+   <value name="bounds">1311,996,15,11</value>
    <value name="anchor">22</value>
    <value name="autosize">true</value>
    <value name="movable">false</value>
@@ -3590,6 +3613,60 @@ clases derivadas (JugadorMaquina y JugadorPersona) sin afectar el juego.
    <value name="name">nombreArchivo</value>
    <value name="order">3</value>
    <value name="type">String</value>
+  </value-owner>
+  <value-owner id="eNRzmwF9BUCe1BHXvB6JpQ">
+   <value name="name">serializador</value>
+   <value name="order">27</value>
+   <value name="visibility">1</value>
+  </value-owner>
+  <value-owner id="WfTxmBH3U0mW6Cs10Xh93Q">
+   <value name="name">guardarPartida</value>
+   <value name="order">27</value>
+  </value-owner>
+  <value-owner id="fAtPCy0edka4s/WgYZxYbg">
+   <value name="name">nombreArchivo</value>
+   <value name="order">2</value>
+   <value name="type">String</value>
+  </value-owner>
+  <value-owner id="q6E+vbH2LkS94b60mEh7tA">
+   <value name="name">partida</value>
+   <value name="order">2</value>
+   <value name="type">File</value>
+  </value-owner>
+  <value-owner id="sFnxyRuz6kq4vEx3fyN9XA">
+   <value name="name">elegirArchivo</value>
+   <value name="order">18</value>
+   <value name="returnType">partida: File</value>
+  </value-owner>
+  <value-owner id="hLJNDtKBsk+NNODYLdPoKQ">
+   <value name="name">leerArchivo</value>
+   <value name="order">6</value>
+   <value name="returnType">salida:String</value>
+  </value-owner>
+  <value-owner id="TJegKK8qCEmzZHLHor4fkQ">
+   <value name="name">archivo</value>
+   <value name="order">2</value>
+   <value name="type">File</value>
+  </value-owner>
+  <value-owner id="3QXjI+ZwvkaB3BJZtlOU4w">
+   <value name="name">Juego</value>
+   <value name="order">28</value>
+  </value-owner>
+  <value-owner id="RTA/j1ZSs0eytUX+Bq/QLg">
+   <value name="name">jugadorPersona</value>
+   <value name="order">2</value>
+  </value-owner>
+  <value-owner id="6vb+mY5SfUmK5410pzJkHQ">
+   <value name="name">jugadorMaquina</value>
+   <value name="order">3</value>
+  </value-owner>
+  <value-owner id="U1Ch68LVaUuQbBn9jUxRkA">
+   <value name="name">mazo</value>
+   <value name="order">4</value>
+  </value-owner>
+  <value-owner id="ye12aUFUIEW8Yql7HPkKYw">
+   <value name="name">jugadorActual</value>
+   <value name="order">5</value>
   </value-owner>
  </object-values>
  <relation-values>

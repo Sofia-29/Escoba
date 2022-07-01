@@ -1,6 +1,9 @@
 package Vista;
 
+import java.io.File;
 import java.util.ArrayList;
+
+import javax.swing.JFileChooser;
 import javax.swing.JOptionPane;
 import Modelo.Naipe;
 
@@ -20,6 +23,12 @@ public class Vista {
         String mensaje = "Ingrese el nombre del jugador";
         nombreJugador= JOptionPane.showInputDialog(mensaje,"");
         return nombreJugador;
+    }
+
+    public static int preguntarCargarPartida(){
+        String mensaje = "¿Desea cargar una partida?";
+        int respuesta = JOptionPane.showConfirmDialog(null, mensaje, "Cargar partida", JOptionPane.YES_NO_OPTION);
+        return respuesta;
     }
 
     public static String preguntarTurnoJugador(){
@@ -76,5 +85,19 @@ public class Vista {
     public void finalizarJuego(){
         String mensaje="Juego finalizado";
         JOptionPane.showMessageDialog(null, mensaje);
+    }
+
+    public File elegirArchivo(){
+        String ruta = "";
+        JFileChooser selectorDeArchivo = new JFileChooser();
+        int respuesta = selectorDeArchivo.showOpenDialog(null);
+
+        if(respuesta == JFileChooser.APPROVE_OPTION){
+            File file  = new File(selectorDeArchivo.getSelectedFile().getAbsolutePath());
+            return file;
+        }else{
+            System.out.println("error al cargar el archivo");
+            return null;
+        }
     }
 }
