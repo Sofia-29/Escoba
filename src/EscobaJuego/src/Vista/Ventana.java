@@ -2,14 +2,14 @@ package Vista;
 
 import Modelo.Naipe;
 import java.util.StringTokenizer;
-
-
+import java.util.concurrent.TimeUnit;
 import java.awt.event.ActionEvent;
 import java.awt.FlowLayout;
 import java.awt.Font;
 import java.awt.Color;
 import java.awt.Image;
 import java.awt.event.ActionListener;
+import java.sql.Time;
 import java.awt.BorderLayout;
 
 import java.util.ArrayList;
@@ -19,8 +19,10 @@ import javax.swing.ButtonModel;
 import javax.swing.Icon;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
+import javax.swing.JFileChooser;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JToggleButton;
 import javax.swing.border.EmptyBorder;
@@ -37,6 +39,7 @@ public class Ventana<Dimension> extends JFrame {
     private JPanel panelCartasCapturadas;
     private JButton descartar;
     private JButton guardarPartida;
+    private String estadoGuardarPartida;
     private String palo; 
     private String valor;
     private JLabel etiquetaTurnoJugador;
@@ -54,6 +57,7 @@ public class Ventana<Dimension> extends JFrame {
 
         this.palo = "-1";
         this.valor = "-1";
+        this.estadoGuardarPartida = "-1";
     }
 
     public void hacerVisible(){
@@ -73,6 +77,10 @@ public class Ventana<Dimension> extends JFrame {
         return naipe;
      }
 
+    public String retornarEstadoGuardarPartida(){
+        return estadoGuardarPartida;
+    }
+    
     private void iniciarComponentes(){
         cartasMesa = new ArrayList<JLabel>(4);
         cartasCapturadas = new ArrayList<JLabel>(4);
@@ -88,6 +96,7 @@ public class Ventana<Dimension> extends JFrame {
         guardarPartida = new JButton("Guardar Partida");
         guardarPartida.setSize(100,100);
         guardarPartida.setEnabled(false);
+        accionGuardarPartida();
         accionDescarta();
     }
 
@@ -222,6 +231,32 @@ public class Ventana<Dimension> extends JFrame {
         boton.addActionListener(accion);
     }
 
+    private void accionGuardarPartida(){
+        ActionListener accion = new ActionListener(){
+                @Override
+                public void actionPerformed(ActionEvent event){
+                    String ruta = "";
+                    String nombreArchivo = "";
+                    String mensaje = "Ingrese el nombre de la partida que desea guardar: ";
+                    JFileChooser selectorDeArchivo = new JFileChooser();
+                    selectorDeArchivo.setFileSelectionMode(JFileChooser.DIRECTORIES_ONLY);
+                    int respuesta = selectorDeArchivo.showOpenDialog(null);
+                    if(respuesta == JFileChooser.APPROVE_OPTION){
+                        ruta = selectorDeArchivo.getSelectedFile().getAbsolutePath();
+                        nombreArchivo = JOptionPane.showInputDialog(mensaje,"");
+                        ruta += "\\" + nombreArchivo + ".json"; 
+                        estadoGuardarPartida = ruta;
+                        JOptionPane.showMessageDialog(null, "Juego guardado");
+                    }else{
+                        estadoGuardarPartida = "-1";
+                        JOptionPane.showMessageDialog(null, "Selecione un directorio", "Error!", JOptionPane.ERROR_MESSAGE);
+                    }
+                    dispose();
+                }
+        };
+        guardarPartida.addActionListener(accion);
+    }
+
     private void accionDescarta(){
         ActionListener accion = new ActionListener(){
                 @Override
@@ -233,6 +268,7 @@ public class Ventana<Dimension> extends JFrame {
                     actualizarComponentesCartasJugador(null, indice);
                     cartasJugadorGrupo.clearSelection();
                     descartar.setEnabled(false);
+                    guardarPartida.setEnabled(false);
                     habilitarCartasJugador(false);
                 }
         };

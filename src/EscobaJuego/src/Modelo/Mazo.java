@@ -23,6 +23,10 @@ public class Mazo {
         }
     }
 
+    public void asignarMazo(ArrayList<Naipe> mazo){
+        this.mazo = mazo;
+    }
+
     public ArrayList<Naipe> obtenerMazo(){
         return mazo;
     }
