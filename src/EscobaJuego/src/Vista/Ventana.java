@@ -25,6 +25,7 @@ import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JToggleButton;
+
 import javax.swing.border.EmptyBorder;
 
 
@@ -36,6 +37,7 @@ public class Ventana<Dimension> extends JFrame {
     private JPanel panelPrincipal;
     private JPanel panelCartasJugador;
     private JPanel panelCartasMesa;
+    private JPanel panelEtiquetas;
     private JPanel panelCartasCapturadas;
     private JButton descartar;
     private JButton guardarPartida;
@@ -43,6 +45,8 @@ public class Ventana<Dimension> extends JFrame {
     private String palo; 
     private String valor;
     private JLabel etiquetaTurnoJugador;
+    private JToggleButton reglasJuego;
+    private JButton bot;
 
     public Ventana(int ancho, int altura, String titulo){
         setSize(ancho, altura);
@@ -54,7 +58,6 @@ public class Ventana<Dimension> extends JFrame {
         add(panelCartasJugador, BorderLayout.SOUTH);
         add(panelCartasCapturadas, BorderLayout.NORTH);
         add(panelCartasMesa, BorderLayout.CENTER);
-
         this.palo = "-1";
         this.valor = "-1";
         this.estadoGuardarPartida = "-1";
@@ -90,6 +93,7 @@ public class Ventana<Dimension> extends JFrame {
         panelCartasCapturadas = generarPanel(1);
         panelCartasMesa = generarPanel(1);
         panelPrincipal = generarPanel(4);
+        panelEtiquetas = generarPanel(2);
         descartar = new JButton("Descartar");
         descartar.setSize(100,100);
         descartar.setEnabled(false);
@@ -98,6 +102,9 @@ public class Ventana<Dimension> extends JFrame {
         guardarPartida.setEnabled(false);
         accionGuardarPartida();
         accionDescarta();
+        botonReglas();
+        accionMostrarReglas();
+        mostrarBot();
     }
 
     public void actualizarComponentesCartasJugador(ArrayList<Naipe> cartas, int indiceCartas){
@@ -179,12 +186,15 @@ public class Ventana<Dimension> extends JFrame {
     }
 
     public void actualizarComponentesCartasCapturadas(ArrayList<Naipe> cartas, boolean escoba){
+        reglasJuego.setVisible(false);
+        bot.setVisible(false);
         panelCartasCapturadas.setVisible(true);
         JLabel nuevaEtiqueta = generarEtiquetaCartasCapturadas(escoba);
         etiquetaTurnoJugador.setVisible(false);
         cartasCapturadas.add(nuevaEtiqueta);
         panelCartasCapturadas.add(nuevaEtiqueta, BorderLayout.CENTER);
         actualizarComponente(cartasCapturadas, panelCartasCapturadas, cartas);
+        
     }
 
     public JLabel generarEtiquetaCartasCapturadas(boolean escoba){
@@ -209,6 +219,7 @@ public class Ventana<Dimension> extends JFrame {
         limpiarComponente(cartasCapturadas);
         panelCartasCapturadas.setVisible(false);
         etiquetaTurnoJugador.setVisible(true);
+        reglasJuego.setVisible(true);
     }
 
     private JPanel generarPanel(int alineacion){
@@ -275,6 +286,43 @@ public class Ventana<Dimension> extends JFrame {
         descartar.addActionListener(accion);
     }
 
+    private void accionMostrarReglas(){
+        ActionListener accion = new ActionListener(){
+                @Override
+                public void actionPerformed(ActionEvent event){
+                    String reglasJuego = reglasJuego();
+                    JOptionPane.showMessageDialog(null,reglasJuego,"REGLAS DEL JUEGO",JOptionPane.INFORMATION_MESSAGE);
+                }
+        };
+        reglasJuego.addActionListener(accion);
+    }
+
+    public String reglasJuego(){
+        String juegoReglas = "Juego Escoba\n"+
+            "Valores de cartas:\n"+
+            "- La J (Usualmente, vale 10) vale 8.\n"+
+            "- El caballo (Usualmente, vale 11) vale 9.\n"+
+            "- El rey (Usualmente, vale 12) vale 10. \n"+
+    
+            "Partida: \n"+
+            "- El turno del jugador consiste en descartar una de sus cartas, si esta suma 15 con las cartas de la mesa entonces puede recoger \n"+
+            " dichas cartas, si no hay captura de cartas se deja la carta en la mesa.\n"+
+            "- Una vez que todos los jugadores han jugado sus tres cartas, se reparten tres cartas nuevas a cada jugador, y así sucesivamente \n"+
+            " hasta que se termine el mazo. Cuando el mazo se termina y los jugadores se quedan sin cartas entonces el juego termina.\n"+
+            " - Una escoba pasa cuando un jugador captura todas las cartas de la mesa. Una escoba vale un punto extra para el jugador. \n"+
+            
+            "Puntos:\n"+
+            "- Para cualquier jugador que tenga mayoría de cartas se otorga un punto a ese jugador. Si las cartas quedan 20-20 no se otorga ningún punto.\n"+
+            "- Para cualquier jugador que tenga mayoría de cartas del palo de monedas se otorga un punto a ese jugador. Si las cartas quedan 5-5 no se otorga ningún punto.\n"+ 
+            "- Para cualquier jugador que tome el 7 del palo de las monedas se le otorga un punto. \n"+
+            " - El jugador que tenga más 7s gana un punto.\n"+
+            
+            "Elegir un ganador: \n"+
+            "- El primer jugador en tener 21 o más puntos al final de una mano gana. Si ambos lados llegan a 21 en la misma mano, gana el lado con más puntos.";
+
+            return juegoReglas;
+        }
+
     private int obtenerBoton(ButtonModel modeloBoton){
         JToggleButton boton = null;
         int indice = 0;
@@ -287,22 +335,38 @@ public class Ventana<Dimension> extends JFrame {
         }
         return indice;
     }
-   
+    
+    public void botonReglas(){
+        JPanel panelReglas = generarPanel(2);
+        reglasJuego = new JToggleButton();
+        String ruta = "Imagenes\\Reglas\\reglas.png";
+        ImageIcon imagen = new ImageIcon(this.getClass().getResource(ruta));
+        Icon icono = new ImageIcon(imagen.getImage().getScaledInstance(130,100,
+        Image.SCALE_DEFAULT));
+        reglasJuego.setBorder(new EmptyBorder(0,0,0,0));
+        reglasJuego.setBackground(new java.awt.Color(28, 84, 45));
+        reglasJuego.setIcon(icono);
+        reglasJuego.setForeground(new java.awt.Color(28, 84, 45));
+        panelReglas.add(reglasJuego);
+        add(panelReglas,BorderLayout.EAST);
+        reglasJuego.setVisible(true);
+    }
+
     public JLabel construirEtiqueta(String text) {
         JLabel etiqueta = new JLabel();
         etiqueta.setText(text);
         etiqueta.setVisible(false);
         etiqueta.setFont(new Font("Arial", Font.PLAIN, 24));
         etiqueta.setOpaque(true);
-        etiqueta.setBackground(new java.awt.Color(24, 61, 97));
+        etiqueta.setBackground(new java.awt.Color(78, 59, 49));
         return etiqueta;
     }
 
     public void inicializarEtiquetas(){
-        JPanel panelEtiquetas = generarPanel(2);
+        
         etiquetaTurnoJugador = construirEtiqueta("Turno");
         etiquetaTurnoJugador.setForeground(Color.white);
-        panelEtiquetas.add(etiquetaTurnoJugador);
+        panelEtiquetas.add(etiquetaTurnoJugador,BorderLayout.LINE_START);
         add(panelEtiquetas,BorderLayout.WEST);
         etiquetaTurnoJugador.setVisible(false);
     }
@@ -315,11 +379,27 @@ public class Ventana<Dimension> extends JFrame {
             this.palo = "-1";
             this.valor = "-1";
             habilitarCartasJugador(false);
+            bot.setVisible(true);
             guardarPartida.setEnabled(false);
         } else{
             habilitarCartasJugador(true);
+            bot.setVisible(false);
             guardarPartida.setEnabled(true);
         }
+    }
+
+    public void mostrarBot(){
+        String ruta = "Imagenes\\Bot\\botcito.png";
+        ImageIcon imagen = new ImageIcon(this.getClass().getResource(ruta));
+        Icon icono = new ImageIcon(imagen.getImage().getScaledInstance(130,100,
+        Image.SCALE_DEFAULT));
+        bot = new JButton();
+        bot.setBorder(new EmptyBorder(0,0,0,0));
+        bot.setBackground(new java.awt.Color(28, 84, 45));
+        bot.setIcon(icono);
+        bot.setForeground(new java.awt.Color(28, 84, 45));
+        panelEtiquetas.add(bot,BorderLayout.CENTER);
+        bot.setVisible(false);
     }
 
 }

@@ -52,6 +52,7 @@ public class Controlador {
             jugadorAuxiliar = juego.obtenerJugadorActual();
             vista.iniciarPartida(cartasJugador, juego.retornarCartasEnMesa());
             vista.actualizarTurnoJugador(jugadorAuxiliar.obtenerNombre());
+            
             while(!juego.validarTerminarPartida()){
                 if(juego.repartirCartas()){
                     juego.repartirCartasJugadores();
