@@ -316,7 +316,7 @@ public class Ventana<Dimension> extends JFrame {
         JLabel etiqueta = new JLabel();
         etiqueta.setText(text);
         etiqueta.setVisible(false);
-        etiqueta.setFont(new Font("Sitka Text Semibold", Font.PLAIN, 24));
+        etiqueta.setFont(new Font("Arial", Font.PLAIN, 24));
         etiqueta.setOpaque(true);
         etiqueta.setBackground(new java.awt.Color(78, 59, 49));
         return etiqueta;
@@ -359,7 +359,5 @@ public class Ventana<Dimension> extends JFrame {
         panelEtiquetas.add(bot,BorderLayout.CENTER);
         bot.setVisible(false);
     }
-
-
 
 }
