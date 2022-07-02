@@ -24,6 +24,7 @@ import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JToggleButton;
+
 import javax.swing.border.EmptyBorder;
 
 
@@ -35,6 +36,7 @@ public class Ventana<Dimension> extends JFrame {
     private JPanel panelPrincipal;
     private JPanel panelCartasJugador;
     private JPanel panelCartasMesa;
+    private JPanel panelEtiquetas;
     private JPanel panelCartasCapturadas;
     private JButton descartar;
     private String palo; 
@@ -83,6 +85,7 @@ public class Ventana<Dimension> extends JFrame {
         panelCartasCapturadas = generarPanel(1);
         panelCartasMesa = generarPanel(1);
         panelPrincipal = generarPanel(4);
+        panelEtiquetas = generarPanel(2);
         descartar = new JButton("Descartar");
         descartar.setSize(100,100);
         descartar.setEnabled(false);
@@ -171,6 +174,7 @@ public class Ventana<Dimension> extends JFrame {
 
     public void actualizarComponentesCartasCapturadas(ArrayList<Naipe> cartas, boolean escoba){
         reglasJuego.setVisible(false);
+        bot.setVisible(false);
         panelCartasCapturadas.setVisible(true);
         JLabel nuevaEtiqueta = generarEtiquetaCartasCapturadas(escoba);
         etiquetaTurnoJugador.setVisible(false);
@@ -319,10 +323,10 @@ public class Ventana<Dimension> extends JFrame {
     }
 
     public void inicializarEtiquetas(){
-        JPanel panelEtiquetas = generarPanel(2);
+        
         etiquetaTurnoJugador = construirEtiqueta("Turno");
         etiquetaTurnoJugador.setForeground(Color.white);
-        panelEtiquetas.add(etiquetaTurnoJugador);
+        panelEtiquetas.add(etiquetaTurnoJugador,BorderLayout.LINE_START);
         add(panelEtiquetas,BorderLayout.WEST);
         etiquetaTurnoJugador.setVisible(false);
     }
@@ -335,25 +339,25 @@ public class Ventana<Dimension> extends JFrame {
             this.palo = "-1";
             this.valor = "-1";
             habilitarCartasJugador(false);
+            bot.setVisible(true);
         } else{
             habilitarCartasJugador(true);
+            bot.setVisible(false);
         }
     }
 
     public void mostrarBot(){
-        JPanel panelBot = generarPanel(2);
-        bot = new JButton();
         String ruta = "Imagenes\\Bot\\botcito.png";
         ImageIcon imagen = new ImageIcon(this.getClass().getResource(ruta));
         Icon icono = new ImageIcon(imagen.getImage().getScaledInstance(130,100,
         Image.SCALE_DEFAULT));
+        bot = new JButton();
         bot.setBorder(new EmptyBorder(0,0,0,0));
         bot.setBackground(new java.awt.Color(28, 84, 45));
         bot.setIcon(icono);
         bot.setForeground(new java.awt.Color(28, 84, 45));
-        panelBot.add(bot);
-        add(panelBot);
-        bot.setVisible(true);
+        panelEtiquetas.add(bot,BorderLayout.CENTER);
+        bot.setVisible(false);
     }
 
 
