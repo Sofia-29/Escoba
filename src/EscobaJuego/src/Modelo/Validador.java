@@ -67,20 +67,66 @@ public class Validador {
 
     public void contabilizarPuntos(Jugador jugador){}
 
-    public Jugador reglaCantidadCartas(){
-        return null;
+    //Asignar los puntos.
+    public Jugador reglaCantidadCartas(Jugador primerJugador, Jugador segundoJugador){
+        if(primerJugador.obtenerNumeroCartasCapturadas() > segundoJugador.obtenerNumeroCartasCapturadas()){
+            return primerJugador;
+        }else {
+            if(primerJugador.obtenerNumeroCartasCapturadas() < segundoJugador.obtenerNumeroCartasCapturadas()){
+                return segundoJugador;
+            }else {
+                return null;
+            }
+        }
     }
 
-    public Jugador reglaPaloDeOros(){
-        return null;
+    public Jugador reglaPaloDeOros(Jugador primerJugador, Jugador segundoJugador){
+        int cantidadOrosPrimer = 0;
+        int cantidadOrosSegundo = 0;
+        for (Naipe naipe : primerJugador.obtenerCartasCapturadas()) {
+            if(naipe.obtenerPalo() == "Oros"){
+                cantidadOrosPrimer += 1;
+            }
+        }
+        for (Naipe naipe : segundoJugador.obtenerCartasCapturadas()) {
+            if(naipe.obtenerPalo() == "Oros"){
+                cantidadOrosSegundo += 1;
+            }
+        }
+        if(cantidadOrosPrimer > cantidadOrosSegundo){
+            return primerJugador;
+        }else {
+            return segundoJugador;
+        }
     }
 
-    public Jugador reglaSieteDeOros(){
-        return null;
+    public Jugador reglaSieteDeOros(Jugador primerJugador, Jugador segundoJugador){
+        for (Naipe naipe : primerJugador.obtenerCartasCapturadas()) {
+            if(naipe.obtenerValor() == 7 && naipe.obtenerPalo() == "Oros"){
+                return primerJugador;
+            }
+        }
+        return segundoJugador;
     }
     
-    public Jugador reglacantidadDeSietes(){
-        return null;
+    public Jugador reglacantidadDeSietes(Jugador primerJugador, Jugador segundoJugador){
+        int cantidadSietesPrimer = 0;
+        int cantidadSietesSegundo = 0;
+        for (Naipe naipe : primerJugador.obtenerCartasCapturadas()) {
+            if(naipe.obtenerValor() == 7){
+                cantidadSietesPrimer += 1;
+            }
+        }
+        for (Naipe naipe : segundoJugador.obtenerCartasCapturadas()) {
+            if(naipe.obtenerValor() == 7){
+                cantidadSietesSegundo += 1;
+            }
+        }
+        if(cantidadSietesPrimer > cantidadSietesSegundo){
+            return primerJugador;
+        }else {
+            return segundoJugador;
+        }
     }
 
     public ArrayList<Naipe> validarEscoba(Naipe naipe, ArrayList<Naipe> naipes){
