@@ -17,16 +17,18 @@ public class Serializador {
             setPrettyPrinting().create();
     }
 
-    public void guardarJuego(Juego juego, String nombreArchivo){
+    public void guardarJuego(Juego juego, String rutaArchivo){
         try
         {
-            String ruta =  "src\\EscobaJuego\\src\\Modelo\\JuegosGuardados\\" + nombreArchivo + ".json";
+            String ruta =  rutaArchivo;
             FileWriter archivo = new FileWriter(ruta);
             PrintWriter escritor = new PrintWriter(archivo);
             String informacionJugadorUno = gson.toJson(juego.obtenerPrimerJugador());
             String informacionJugadorDos = gson.toJson(juego.obtenerSegundoJugador());
             String informacionMazo = gson.toJson(juego.obtenerMazo());
-            String informacionCartasEnMesa = gson.toJson(juego.retornarCartasEnMesa());
+            Mazo mazo = new Mazo();
+            mazo.asignarMazo(juego.retornarCartasEnMesa());
+            String informacionCartasEnMesa = gson.toJson(mazo);
             String informacionJugadorActual = juego.obtenerJugadorActual().obtenerNombre();
 
             escritor.println(informacionJugadorUno + "*");

@@ -82,16 +82,19 @@ public class Vista {
         return naipeAuxiliar;
     }
 
+    public String retornarEstadoGuardarPartida(){
+        return ventana.retornarEstadoGuardarPartida();
+    }
+
     public void finalizarJuego(){
         String mensaje="Juego finalizado";
         JOptionPane.showMessageDialog(null, mensaje);
     }
 
     public File elegirArchivo(){
-        String ruta = "";
         JFileChooser selectorDeArchivo = new JFileChooser();
         int respuesta = selectorDeArchivo.showOpenDialog(null);
-
+        
         if(respuesta == JFileChooser.APPROVE_OPTION){
             File file  = new File(selectorDeArchivo.getSelectedFile().getAbsolutePath());
             return file;

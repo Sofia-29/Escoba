@@ -11,11 +11,9 @@ public class Juego {
     private Jugador jugadorActual;
     private Validador validar;
     private ArrayList<Naipe> cartasEnMesa;
-    private static Serializador serializador;
 
     public Juego(){
         validar = new Validador();
-        serializador = new Serializador();
     }
 
     public Juego(Jugador primerJugador, Jugador segundoJugador, Mazo mazo, Jugador jugadorActual, ArrayList<Naipe> cartasEnMesa){
@@ -25,7 +23,6 @@ public class Juego {
         this.jugadorActual = jugadorActual;
         this.cartasEnMesa = cartasEnMesa;
         validar = new Validador();
-        serializador = new Serializador();
     }
 
     public void asignarPrimerJugador(Jugador jugadorUno){
@@ -159,10 +156,6 @@ public class Juego {
             return segundoJugador;
        }
         return null;
-    }
-
-    public void guardarPartida(String nombreArchivo){
-        serializador.guardarJuego(this, nombreArchivo);
     }
 }
 
