@@ -203,12 +203,14 @@ public class Ventana<Dimension> extends JFrame {
         nuevaEtiqueta.setSize(100, 100);
         nuevaEtiqueta.setEnabled(true);
         nuevaEtiqueta.setVisible(true);
-        nuevaEtiqueta.setFont(new Font("Arial", Font.PLAIN, 24));
-        nuevaEtiqueta.setForeground(Color.WHITE);
         if (escoba){
+            nuevaEtiqueta.setFont(new Font("Arial", Font.PLAIN, 40));
+            nuevaEtiqueta.setForeground(new Color(249,214,46));
             nuevaEtiqueta.setText("Escoba en el " + etiquetaTurnoJugador.getText());
             nuevaEtiqueta.setName("Escoba");
         }else{
+            nuevaEtiqueta.setFont(new Font("Arial", Font.PLAIN, 24));
+            nuevaEtiqueta.setForeground(Color.WHITE);
             nuevaEtiqueta.setText("Captura en el " + etiquetaTurnoJugador.getText());
             nuevaEtiqueta.setName("Captura");
         }

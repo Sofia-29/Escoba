@@ -137,6 +137,7 @@ public class Juego {
     public void terminarPartida(){
         boolean terminar = mazo.obtenerCantidadDeNaipes() == 0 && primerJugador.obtenerNumeroCartasEnJuego() == 0 && segundoJugador.obtenerNumeroCartasEnJuego() == 0;
         if(terminar){
+            validar.contabilizarPuntos(primerJugador, segundoJugador);
             jugadorActual = declararGanador();
         }
     }
@@ -144,18 +145,43 @@ public class Juego {
     private Jugador declararGanador(){
         int puntajePrimerJugador = primerJugador.obtenerPuntaje();
         int puntajeSegundoJugador = segundoJugador.obtenerPuntaje();
-        if(puntajePrimerJugador>=21 && puntajeSegundoJugador>=21){
+        System.out.println("Puntos jugador 1: " + puntajePrimerJugador);
+        System.out.println("Puntos jugador 2: " + puntajeSegundoJugador);
+        /* if(puntajePrimerJugador>=21 && puntajeSegundoJugador>=21){
            if(puntajePrimerJugador>puntajeSegundoJugador){
                 return primerJugador;
-            }else if(puntajeSegundoJugador>puntajePrimerJugador){
+            }else{
                 return segundoJugador;
             }
-       }else if(puntajePrimerJugador>=21 && puntajeSegundoJugador<=21){
-            return primerJugador;
-       }else{
-            return segundoJugador;
-       }
-        return null;
+        }else{
+            if(puntajePrimerJugador>=21 && puntajeSegundoJugador<=21){
+                return primerJugador;
+            }else {
+                return segundoJugador;
+            }
+        } */
+        if(puntajePrimerJugador>=21){
+            if(puntajeSegundoJugador>puntajePrimerJugador){
+                System.out.println("Gana jugador 2");
+                return segundoJugador;
+             }else{
+                if(puntajeSegundoJugador==puntajePrimerJugador){
+                    System.out.println("Empate");
+                    return null;
+                }else{
+                    System.out.println("Gana jugador 1");
+                    return primerJugador;
+                }
+             }
+         }else{
+             if(puntajeSegundoJugador>=21){
+                System.out.println("Gana jugador 2");
+                return segundoJugador;
+             }else {
+                System.out.println("Ninguno alcanzó los 21 puntos");
+                return null;
+             }
+         }
     }
 }
 

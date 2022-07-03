@@ -79,8 +79,13 @@ public class Controlador {
                 } else{
                     ArrayList<Naipe> cartasCapturadas = juego.movimientoJugadorCapturarCarta(naipeAuxiliar, jugadorAuxiliar.obtenerNombre());
                     if(cartasCapturadas != null){
-                        vista.actualizarCartasCaptura(cartasCapturadas, validadora.esEscoba(juego.retornarCartasEnMesa()));
-                        TimeUnit.SECONDS.sleep(4);
+                        boolean capturaEscoba = validadora.esEscoba(juego.retornarCartasEnMesa());
+                        vista.actualizarCartasCaptura(cartasCapturadas, capturaEscoba);
+                        if(capturaEscoba){
+                            TimeUnit.SECONDS.sleep(7);
+                        }else{
+                            TimeUnit.SECONDS.sleep(4);
+                        }
                         vista.limpiarComponeneteCartasCapturadas();
                     }
                     vista.actualizarCartasEnMesa(juego.retornarCartasEnMesa());
@@ -93,7 +98,7 @@ public class Controlador {
                 }
             }
             vista.finalizarJuego();
-            //juego.terminarPartida();
+            juego.terminarPartida();
             //jugadorAuxiliar = juego.obtenerJugadorActual();
     }
 }
