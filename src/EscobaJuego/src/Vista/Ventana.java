@@ -45,6 +45,7 @@ public class Ventana<Dimension> extends JFrame {
     private String palo; 
     private String valor;
     private JLabel etiquetaTurnoJugador;
+    private JLabel etiquetaPuntosJugador;
     private JToggleButton reglasJuego;
     private JButton bot;
 
@@ -191,6 +192,7 @@ public class Ventana<Dimension> extends JFrame {
         panelCartasCapturadas.setVisible(true);
         JLabel nuevaEtiqueta = generarEtiquetaCartasCapturadas(escoba);
         etiquetaTurnoJugador.setVisible(false);
+        etiquetaPuntosJugador.setVisible(false);
         cartasCapturadas.add(nuevaEtiqueta);
         panelCartasCapturadas.add(nuevaEtiqueta, BorderLayout.CENTER);
         actualizarComponente(cartasCapturadas, panelCartasCapturadas, cartas);
@@ -366,14 +368,19 @@ public class Ventana<Dimension> extends JFrame {
         
         etiquetaTurnoJugador = construirEtiqueta("Turno");
         etiquetaTurnoJugador.setForeground(Color.white);
+        etiquetaPuntosJugador = construirEtiqueta("Puntaje");
+        etiquetaPuntosJugador.setForeground(Color.white);
         panelEtiquetas.add(etiquetaTurnoJugador,BorderLayout.LINE_START);
+        panelEtiquetas.add(etiquetaPuntosJugador);
         add(panelEtiquetas,BorderLayout.WEST);
         etiquetaTurnoJugador.setVisible(false);
+        etiquetaPuntosJugador.setVisible(false);
     }
 
     public void actualizarTurnoJugador(String nombreJugadorActual) {
         etiquetaTurnoJugador.setText("Turno de " +nombreJugadorActual+ " ");
         etiquetaTurnoJugador.setVisible(true);
+        etiquetaPuntosJugador.setVisible(true);
         String texto = etiquetaTurnoJugador.getText();
         if(texto.equals("Turno de Jugador Maquina ")){
             this.palo = "-1";
@@ -386,6 +393,11 @@ public class Ventana<Dimension> extends JFrame {
             bot.setVisible(false);
             guardarPartida.setEnabled(true);
         }
+    }
+    
+    public void actualizarPuntajeJugador(int puntaje){
+        etiquetaPuntosJugador.setText("Puntaje: "+ puntaje+"");
+        etiquetaPuntosJugador.setVisible(true);
     }
 
     public void mostrarBot(){
