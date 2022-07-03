@@ -188,15 +188,12 @@ public class Ventana<Dimension> extends JFrame {
 
     public void actualizarComponentesCartasCapturadas(ArrayList<Naipe> cartas, boolean escoba){
         reglasJuego.setVisible(false);
-        bot.setVisible(false);
+        panelEtiquetas.setVisible(false);
         panelCartasCapturadas.setVisible(true);
         JLabel nuevaEtiqueta = generarEtiquetaCartasCapturadas(escoba);
-        etiquetaTurnoJugador.setVisible(false);
-        etiquetaPuntosJugador.setVisible(false);
         cartasCapturadas.add(nuevaEtiqueta);
         panelCartasCapturadas.add(nuevaEtiqueta, BorderLayout.CENTER);
         actualizarComponente(cartasCapturadas, panelCartasCapturadas, cartas);
-        
     }
 
     public JLabel generarEtiquetaCartasCapturadas(boolean escoba){
@@ -210,9 +207,11 @@ public class Ventana<Dimension> extends JFrame {
         if (escoba){
             nuevaEtiqueta.setText("Escoba en el " + etiquetaTurnoJugador.getText());
             nuevaEtiqueta.setName("Escoba");
+            etiquetaTurnoJugador.setVisible(false);
         }else{
             nuevaEtiqueta.setText("Captura en el " + etiquetaTurnoJugador.getText());
             nuevaEtiqueta.setName("Captura");
+            etiquetaTurnoJugador.setVisible(false);
         }
         return nuevaEtiqueta;
     }
@@ -220,7 +219,7 @@ public class Ventana<Dimension> extends JFrame {
     public void limpiarComponeneteCartasCapturadas(){
         limpiarComponente(cartasCapturadas);
         panelCartasCapturadas.setVisible(false);
-        etiquetaTurnoJugador.setVisible(true);
+        panelEtiquetas.setVisible(true);
         reglasJuego.setVisible(true);
     }
 
@@ -364,8 +363,7 @@ public class Ventana<Dimension> extends JFrame {
         return etiqueta;
     }
 
-    public void inicializarEtiquetas(){
-        
+    public void inicializarEtiquetas(){ 
         etiquetaTurnoJugador = construirEtiqueta("Turno");
         etiquetaTurnoJugador.setForeground(Color.white);
         etiquetaPuntosJugador = construirEtiqueta("Puntaje: 0");
@@ -413,5 +411,4 @@ public class Ventana<Dimension> extends JFrame {
         panelEtiquetas.add(bot,BorderLayout.CENTER);
         bot.setVisible(false);
     }
-
 }
