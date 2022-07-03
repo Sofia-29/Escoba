@@ -368,7 +368,7 @@ public class Ventana<Dimension> extends JFrame {
         
         etiquetaTurnoJugador = construirEtiqueta("Turno");
         etiquetaTurnoJugador.setForeground(Color.white);
-        etiquetaPuntosJugador = construirEtiqueta("Puntaje");
+        etiquetaPuntosJugador = construirEtiqueta("Puntaje: 0");
         etiquetaPuntosJugador.setForeground(Color.white);
         panelEtiquetas.add(etiquetaTurnoJugador,BorderLayout.LINE_START);
         panelEtiquetas.add(etiquetaPuntosJugador);
@@ -394,7 +394,7 @@ public class Ventana<Dimension> extends JFrame {
             guardarPartida.setEnabled(true);
         }
     }
-    
+
     public void actualizarPuntajeJugador(int puntaje){
         etiquetaPuntosJugador.setText("Puntaje: "+ puntaje+"");
         etiquetaPuntosJugador.setVisible(true);
