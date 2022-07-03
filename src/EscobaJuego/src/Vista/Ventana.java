@@ -45,6 +45,7 @@ public class Ventana<Dimension> extends JFrame {
     private String palo; 
     private String valor;
     private JLabel etiquetaTurnoJugador;
+    private JLabel etiquetaPuntosJugador;
     private JToggleButton reglasJuego;
     private JButton bot;
 
@@ -187,10 +188,9 @@ public class Ventana<Dimension> extends JFrame {
 
     public void actualizarComponentesCartasCapturadas(ArrayList<Naipe> cartas, boolean escoba){
         reglasJuego.setVisible(false);
-        bot.setVisible(false);
+        panelEtiquetas.setVisible(false);
         panelCartasCapturadas.setVisible(true);
         JLabel nuevaEtiqueta = generarEtiquetaCartasCapturadas(escoba);
-        etiquetaTurnoJugador.setVisible(false);
         cartasCapturadas.add(nuevaEtiqueta);
         panelCartasCapturadas.add(nuevaEtiqueta, BorderLayout.CENTER);
         actualizarComponente(cartasCapturadas, panelCartasCapturadas, cartas);
@@ -208,9 +208,11 @@ public class Ventana<Dimension> extends JFrame {
         if (escoba){
             nuevaEtiqueta.setText("Escoba en el " + etiquetaTurnoJugador.getText());
             nuevaEtiqueta.setName("Escoba");
+            etiquetaTurnoJugador.setVisible(false);
         }else{
             nuevaEtiqueta.setText("Captura en el " + etiquetaTurnoJugador.getText());
             nuevaEtiqueta.setName("Captura");
+            etiquetaTurnoJugador.setVisible(false);
         }
         return nuevaEtiqueta;
     }
@@ -218,7 +220,7 @@ public class Ventana<Dimension> extends JFrame {
     public void limpiarComponeneteCartasCapturadas(){
         limpiarComponente(cartasCapturadas);
         panelCartasCapturadas.setVisible(false);
-        etiquetaTurnoJugador.setVisible(true);
+        panelEtiquetas.setVisible(true);
         reglasJuego.setVisible(true);
     }
 
@@ -362,18 +364,22 @@ public class Ventana<Dimension> extends JFrame {
         return etiqueta;
     }
 
-    public void inicializarEtiquetas(){
-        
+    public void inicializarEtiquetas(){ 
         etiquetaTurnoJugador = construirEtiqueta("Turno");
         etiquetaTurnoJugador.setForeground(Color.white);
+        etiquetaPuntosJugador = construirEtiqueta("Puntaje: 0");
+        etiquetaPuntosJugador.setForeground(Color.white);
         panelEtiquetas.add(etiquetaTurnoJugador,BorderLayout.LINE_START);
+        panelEtiquetas.add(etiquetaPuntosJugador);
         add(panelEtiquetas,BorderLayout.WEST);
         etiquetaTurnoJugador.setVisible(false);
+        etiquetaPuntosJugador.setVisible(false);
     }
 
     public void actualizarTurnoJugador(String nombreJugadorActual) {
         etiquetaTurnoJugador.setText("Turno de " +nombreJugadorActual+ " ");
         etiquetaTurnoJugador.setVisible(true);
+        etiquetaPuntosJugador.setVisible(true);
         String texto = etiquetaTurnoJugador.getText();
         if(texto.equals("Turno de Jugador Maquina ")){
             this.palo = "-1";
@@ -386,6 +392,11 @@ public class Ventana<Dimension> extends JFrame {
             bot.setVisible(false);
             guardarPartida.setEnabled(true);
         }
+    }
+
+    public void actualizarPuntajeJugador(int puntaje){
+        etiquetaPuntosJugador.setText("Puntaje: "+ puntaje+"");
+        etiquetaPuntosJugador.setVisible(true);
     }
 
     public void mostrarBot(){
@@ -401,5 +412,4 @@ public class Ventana<Dimension> extends JFrame {
         panelEtiquetas.add(bot,BorderLayout.CENTER);
         bot.setVisible(false);
     }
-
 }
