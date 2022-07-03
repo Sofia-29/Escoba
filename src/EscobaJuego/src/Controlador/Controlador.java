@@ -80,6 +80,7 @@ public class Controlador {
                     ArrayList<Naipe> cartasCapturadas = juego.movimientoJugadorCapturarCarta(naipeAuxiliar, jugadorAuxiliar.obtenerNombre());
                     if(cartasCapturadas != null){
                         vista.actualizarCartasCaptura(cartasCapturadas, validadora.esEscoba(juego.retornarCartasEnMesa()));
+                        vista.actualizarPuntajeJugador(jugadorAuxiliar.obtenerPuntaje());
                         TimeUnit.SECONDS.sleep(4);
                         vista.limpiarComponeneteCartasCapturadas();
                     }
