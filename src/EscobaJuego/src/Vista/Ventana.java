@@ -194,6 +194,7 @@ public class Ventana<Dimension> extends JFrame {
         cartasCapturadas.add(nuevaEtiqueta);
         panelCartasCapturadas.add(nuevaEtiqueta, BorderLayout.CENTER);
         actualizarComponente(cartasCapturadas, panelCartasCapturadas, cartas);
+        
     }
 
     public JLabel generarEtiquetaCartasCapturadas(boolean escoba){
