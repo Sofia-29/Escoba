@@ -99,8 +99,11 @@ public class Controlador {
             }
             vista.actualizarCartasEnMesa(juego.retornarCartasEnMesa());
             System.out.println(juego.obtenerUltimoJugadorCaptura().obtenerNombre());
-            vista.finalizarJuego();
-            juego.terminarPartida();
+            Jugador ganador = juego.terminarPartida();
+            String mensaje="Juego finalizado\n"+juego.obtenerPrimerJugador().obtenerNombre()+ " termina con "
+            + juego.obtenerPrimerJugador().obtenerPuntaje() +"\n" + juego.obtenerSegundoJugador().obtenerNombre()+ " termina con "
+            + juego.obtenerSegundoJugador().obtenerPuntaje() + "\nEl ganador es: " + ganador.obtenerNombre();
+            vista.finalizarJuego(mensaje);
             //jugadorAuxiliar = juego.obtenerJugadorActual();
     }
 }

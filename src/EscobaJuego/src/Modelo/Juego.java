@@ -137,6 +137,11 @@ public class Juego {
 
     public Boolean validarTerminarPartida(){
         if(mazo.obtenerCantidadDeNaipes() == 0 && primerJugador.obtenerNumeroCartasEnJuego() == 0 && segundoJugador.obtenerNumeroCartasEnJuego() == 0){
+            System.out.println(ultimoJugadorCaptura.obtenerNombre() + " obtiene las cartas restantes en la mesa");
+            System.out.println("Cartas en mesa: ");
+            for(Naipe naipe:cartasEnMesa){
+                System.out.println(naipe.obtenerPalo() + " " + naipe.obtenerValor());
+            }
             ultimoJugadorCaptura.capturarCartas(cartasEnMesa);
             cartasEnMesa.removeAll(cartasEnMesa);
             return true;
@@ -153,8 +158,6 @@ public class Juego {
     private Jugador declararGanador(){
         int puntajePrimerJugador = primerJugador.obtenerPuntaje();
         int puntajeSegundoJugador = segundoJugador.obtenerPuntaje();
-        System.out.println("Puntos jugador 1: " + puntajePrimerJugador);
-        System.out.println("Puntos jugador 2: " + puntajeSegundoJugador);
         if(puntajePrimerJugador>puntajeSegundoJugador){
             return primerJugador;
         }else{
@@ -164,41 +167,6 @@ public class Juego {
                 return null;
             }
         }
-        /* if(puntajePrimerJugador>=21 && puntajeSegundoJugador>=21){
-           if(puntajePrimerJugador>puntajeSegundoJugador){
-                return primerJugador;
-            }else{
-                return segundoJugador;
-            }
-        }else{
-            if(puntajePrimerJugador>=21 && puntajeSegundoJugador<=21){
-                return primerJugador;
-            }else {
-                return segundoJugador;
-            }
-        } */
-        /* if(puntajePrimerJugador>=21){
-            if(puntajeSegundoJugador>puntajePrimerJugador){
-                System.out.println("Gana jugador 2");
-                return segundoJugador;
-             }else{
-                if(puntajeSegundoJugador==puntajePrimerJugador){
-                    System.out.println("Empate");
-                    return null;
-                }else{
-                    System.out.println("Gana jugador 1");
-                    return primerJugador;
-                }
-             }
-         }else{
-             if(puntajeSegundoJugador>=21){
-                System.out.println("Gana jugador 2");
-                return segundoJugador;
-             }else {
-                System.out.println("Ninguno alcanzó los 21 puntos");
-                return null;
-             }
-         } */
     }
 }
 
