@@ -29,13 +29,13 @@ public class Validador {
 
     public void asignarPuntajeCaptura(Jugador jugador, Naipe naipe, ArrayList<Naipe> resultado, ArrayList<Naipe> cartasEnMesa){
         if (resultado != null){
+            cartasEnMesa.removeAll(resultado);
             if(esEscoba(cartasEnMesa)){
                 jugador.asignarPuntaje(1);
+                System.out.println(jugador.obtenerNombre()+ " obtuvo un punto por escoba");
                 jugador.capturarCartas(resultado);
-                cartasEnMesa.removeAll(resultado);
             } else{
                 jugador.capturarCartas(resultado);
-                cartasEnMesa.removeAll(resultado);
             }
         }else{
             cartasEnMesa.add(naipe);
@@ -99,9 +99,11 @@ public class Validador {
     public void reglaCantidadCartas(Jugador primerJugador, Jugador segundoJugador){
         if(primerJugador.obtenerNumeroCartasCapturadas() > segundoJugador.obtenerNumeroCartasCapturadas()){
             primerJugador.asignarPuntaje(1);
+            System.out.println("Reglas: Jugador 1: Cantidad de Cartas");
         }else {
             if(primerJugador.obtenerNumeroCartasCapturadas() < segundoJugador.obtenerNumeroCartasCapturadas()){
                 segundoJugador.asignarPuntaje(1);
+                System.out.println("Reglas: Jugador 1: Cantidad de Cartas");
             }
         }
     }
@@ -119,17 +121,30 @@ public class Validador {
                 cantidadOrosSegundo += 1;
             }
         }
+        System.out.println("Reglas: Jugador 1: Palos de Oros: " + cantidadOrosPrimer);
+        System.out.println("Reglas: Jugador 2: Palos de Oros: " + cantidadOrosSegundo);
         primerJugador.asignarPuntaje(cantidadOrosPrimer);
         segundoJugador.asignarPuntaje(cantidadOrosSegundo);
     }
 
     public void reglaSieteDeOros(Jugador primerJugador, Jugador segundoJugador){
+        System.out.println("ANTES:Puntos Jugador 1: " + primerJugador.obtenerPuntaje());
+        System.out.println("ANTES:Puntos Jugador 2: " + segundoJugador.obtenerPuntaje());
+        boolean encontrado = false;
         for (Naipe naipe : primerJugador.obtenerCartasCapturadas()) {
             if(naipe.obtenerValor() == 7 && naipe.obtenerPalo() == "Oros"){
                 primerJugador.asignarPuntaje(1);
+                encontrado = true;
+                System.out.println("Reglas: Jugador 1: Siete de oros: 1 punto ");
+                break;
             }
         }
-        segundoJugador.asignarPuntaje(1);
+        if(!encontrado){
+            segundoJugador.asignarPuntaje(1);
+            System.out.println("Reglas: Jugador 2: Siete de oros: 1 punto ");
+        }
+        System.out.println("DESPUES:Puntos Jugador 1: " + primerJugador.obtenerPuntaje());
+        System.out.println("DESPUES:Puntos Jugador 2: " + segundoJugador.obtenerPuntaje());
     }
     
     public void reglacantidadDeSietes(Jugador primerJugador, Jugador segundoJugador){
@@ -145,6 +160,8 @@ public class Validador {
                 cantidadSietesSegundo += 1;
             }
         }
+        System.out.println("Reglas: Jugador 1: Cantidad Sietes: " + cantidadSietesPrimer);
+        System.out.println("Reglas: Jugador 2: Cantidad Sietes: " + cantidadSietesSegundo);
         primerJugador.asignarPuntaje(cantidadSietesPrimer);
         segundoJugador.asignarPuntaje(cantidadSietesSegundo);
     }

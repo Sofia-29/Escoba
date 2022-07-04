@@ -97,6 +97,8 @@ public class Controlador {
                     cartasJugador = jugadorAuxiliar.obtenerCartas();
                 }
             }
+            vista.actualizarCartasEnMesa(juego.retornarCartasEnMesa());
+            System.out.println(juego.obtenerUltimoJugadorCaptura().obtenerNombre());
             vista.finalizarJuego();
             juego.terminarPartida();
             //jugadorAuxiliar = juego.obtenerJugadorActual();

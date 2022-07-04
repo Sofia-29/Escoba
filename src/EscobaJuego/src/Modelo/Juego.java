@@ -9,6 +9,7 @@ public class Juego {
     private Jugador segundoJugador;
     private Mazo mazo;
     private Jugador jugadorActual;
+    private Jugador ultimoJugadorCaptura;
     private Validador validar;
     private ArrayList<Naipe> cartasEnMesa;
 
@@ -39,6 +40,10 @@ public class Juego {
 
     public Jugador obtenerJugadorActual(){
         return jugadorActual;
+    }
+
+    public Jugador obtenerUltimoJugadorCaptura(){
+        return ultimoJugadorCaptura;
     }
 
     public Jugador obtenerSegundoJugador(){
@@ -75,6 +80,9 @@ public class Juego {
         cartaDescartada = movimientoJugadorDescartarCarta(naipe, nombreJugador);
         ArrayList<Naipe> naipesCapturados = null;
         naipesCapturados = validar.validarCaptura(jugadorActual, cartaDescartada, cartasEnMesa);
+        if(naipesCapturados != null){
+            ultimoJugadorCaptura = jugadorActual;
+        }
         return naipesCapturados;
     }
 
@@ -129,17 +137,17 @@ public class Juego {
 
     public Boolean validarTerminarPartida(){
         if(mazo.obtenerCantidadDeNaipes() == 0 && primerJugador.obtenerNumeroCartasEnJuego() == 0 && segundoJugador.obtenerNumeroCartasEnJuego() == 0){
+            ultimoJugadorCaptura.capturarCartas(cartasEnMesa);
+            cartasEnMesa.removeAll(cartasEnMesa);
             return true;
         }
         return false;
     }
 
-    public void terminarPartida(){
-        boolean terminar = mazo.obtenerCantidadDeNaipes() == 0 && primerJugador.obtenerNumeroCartasEnJuego() == 0 && segundoJugador.obtenerNumeroCartasEnJuego() == 0;
-        if(terminar){
-            validar.contabilizarPuntos(primerJugador, segundoJugador);
-            jugadorActual = declararGanador();
-        }
+    public Jugador terminarPartida(){
+        validar.contabilizarPuntos(primerJugador, segundoJugador);
+        jugadorActual = declararGanador();
+        return jugadorActual;
     }
 
     private Jugador declararGanador(){
@@ -147,6 +155,15 @@ public class Juego {
         int puntajeSegundoJugador = segundoJugador.obtenerPuntaje();
         System.out.println("Puntos jugador 1: " + puntajePrimerJugador);
         System.out.println("Puntos jugador 2: " + puntajeSegundoJugador);
+        if(puntajePrimerJugador>puntajeSegundoJugador){
+            return primerJugador;
+        }else{
+            if(puntajeSegundoJugador>puntajePrimerJugador){
+                return segundoJugador;
+            }else{
+                return null;
+            }
+        }
         /* if(puntajePrimerJugador>=21 && puntajeSegundoJugador>=21){
            if(puntajePrimerJugador>puntajeSegundoJugador){
                 return primerJugador;
@@ -160,7 +177,7 @@ public class Juego {
                 return segundoJugador;
             }
         } */
-        if(puntajePrimerJugador>=21){
+        /* if(puntajePrimerJugador>=21){
             if(puntajeSegundoJugador>puntajePrimerJugador){
                 System.out.println("Gana jugador 2");
                 return segundoJugador;
@@ -181,7 +198,7 @@ public class Juego {
                 System.out.println("Ninguno alcanzó los 21 puntos");
                 return null;
              }
-         }
+         } */
     }
 }
 
