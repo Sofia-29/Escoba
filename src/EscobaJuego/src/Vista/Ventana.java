@@ -203,13 +203,17 @@ public class Ventana<Dimension> extends JFrame {
         nuevaEtiqueta.setSize(100, 100);
         nuevaEtiqueta.setEnabled(true);
         nuevaEtiqueta.setVisible(true);
-        nuevaEtiqueta.setFont(new Font("Arial", Font.PLAIN, 24));
-        nuevaEtiqueta.setForeground(Color.WHITE);
         if (escoba){
+            nuevaEtiqueta.setFont(new Font("Arial", Font.PLAIN, 40));
+            nuevaEtiqueta.setForeground(new Color(249,214,46));
+            nuevaEtiqueta.setBackground(new Color(78, 59, 49));
+            nuevaEtiqueta.setOpaque(true);
             nuevaEtiqueta.setText("Escoba en el " + etiquetaTurnoJugador.getText());
             nuevaEtiqueta.setName("Escoba");
             etiquetaTurnoJugador.setVisible(false);
         }else{
+            nuevaEtiqueta.setFont(new Font("Arial", Font.PLAIN, 24));
+            nuevaEtiqueta.setForeground(Color.WHITE);
             nuevaEtiqueta.setText("Captura en el " + etiquetaTurnoJugador.getText());
             nuevaEtiqueta.setName("Captura");
             etiquetaTurnoJugador.setVisible(false);
@@ -315,14 +319,16 @@ public class Ventana<Dimension> extends JFrame {
             
             "Puntos:\n"+
             "- Para cualquier jugador que tenga mayoría de cartas se otorga un punto a ese jugador. Si las cartas quedan 20-20 no se otorga ningún punto.\n"+
-            "- Para cualquier jugador que tenga mayoría de cartas del palo de monedas se otorga un punto a ese jugador. Si las cartas quedan 5-5 no se otorga ningún punto.\n"+ 
-            "- Para cualquier jugador que tome el 7 del palo de las monedas se le otorga un punto. \n"+
-            " - El jugador que tenga más 7s gana un punto.\n"+
-            
-            "Elegir un ganador: \n"+
-            "- El primer jugador en tener 21 o más puntos al final de una mano gana. Si ambos lados llegan a 21 en la misma mano, gana el lado con más puntos.";
+            "- Para cualquier jugador, por cada carta del palo de Oros capturada se le otorga un punto.\n"+ 
+            "- Para cualquier jugador que tome el 7 del palo de Oros se le otorga un punto. \n"+
+            "- Para cualquier jugador, por cada carta de valor 7 capturada se le otorga un punto.\n"+
+            "- El jugador que tenga más 7s gana un punto. Si las cartas quedan 2-2 no se otorga ningún punto\n"+
+            "- El jugador que tenga mayoría de cartas del palo de monedas se otorga un punto a ese jugador. Si las cartas quedan 5-5 no se otorga ningún punto.\n"+
 
-            return juegoReglas;
+            "Elegir un ganador: \n"+
+            "- El jugador que sume más puntos al final de la partida es declarado como ganador.";
+
+        return juegoReglas;
         }
 
     private int obtenerBoton(ButtonModel modeloBoton){

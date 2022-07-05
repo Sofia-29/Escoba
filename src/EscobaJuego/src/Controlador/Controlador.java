@@ -79,22 +79,31 @@ public class Controlador {
                 } else{
                     ArrayList<Naipe> cartasCapturadas = juego.movimientoJugadorCapturarCarta(naipeAuxiliar, jugadorAuxiliar.obtenerNombre());
                     if(cartasCapturadas != null){
-                        vista.actualizarCartasCaptura(cartasCapturadas, validadora.esEscoba(juego.retornarCartasEnMesa()));
-                        vista.actualizarPuntajeJugador(jugadorAuxiliar.obtenerPuntaje());
-                        TimeUnit.SECONDS.sleep(4);
+                        boolean capturaEscoba = validadora.esEscoba(juego.retornarCartasEnMesa());
+                        vista.actualizarCartasCaptura(cartasCapturadas, capturaEscoba);
+                        if(capturaEscoba){
+                            TimeUnit.SECONDS.sleep(7);
+                        }else{
+                            TimeUnit.SECONDS.sleep(4);
+                        }
                         vista.limpiarComponeneteCartasCapturadas();
                     }
                     vista.actualizarCartasEnMesa(juego.retornarCartasEnMesa());
                     if(naipeAuxiliar != null){
                         jugadorAuxiliar = juego.pasarTurno();
+                        vista.actualizarPuntajeJugador(jugadorAuxiliar.obtenerPuntaje());
                         vista.actualizarTurnoJugador(jugadorAuxiliar.obtenerNombre());
                         naipeAuxiliar = null;
                     }
                     cartasJugador = jugadorAuxiliar.obtenerCartas();
                 }
             }
-            vista.finalizarJuego();
-            //juego.terminarPartida();
-            //jugadorAuxiliar = juego.obtenerJugadorActual();
+            vista.actualizarCartasEnMesa(juego.retornarCartasEnMesa());
+            System.out.println(juego.obtenerUltimoJugadorCaptura().obtenerNombre());
+            Jugador ganador = juego.terminarPartida();
+            String mensaje="Juego finalizado\n"+juego.obtenerPrimerJugador().obtenerNombre()+ " termina con "
+            + juego.obtenerPrimerJugador().obtenerPuntaje() +" puntos\n" + juego.obtenerSegundoJugador().obtenerNombre()+ " termina con "
+            + juego.obtenerSegundoJugador().obtenerPuntaje() + "puntos \nEl ganador es: " + ganador.obtenerNombre();
+            vista.finalizarJuego(mensaje);
     }
 }

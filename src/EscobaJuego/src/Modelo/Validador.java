@@ -29,13 +29,12 @@ public class Validador {
 
     public void asignarPuntajeCaptura(Jugador jugador, Naipe naipe, ArrayList<Naipe> resultado, ArrayList<Naipe> cartasEnMesa){
         if (resultado != null){
+            cartasEnMesa.removeAll(resultado);
             if(esEscoba(cartasEnMesa)){
                 jugador.asignarPuntaje(1);
                 jugador.capturarCartas(resultado);
-                cartasEnMesa.removeAll(resultado);
             } else{
                 jugador.capturarCartas(resultado);
-                cartasEnMesa.removeAll(resultado);
             }
         }else{
             cartasEnMesa.add(naipe);
@@ -65,24 +64,6 @@ public class Validador {
         return encontrado;
     }
 
-    public void contabilizarPuntos(Jugador jugador){}
-
-    public Jugador reglaCantidadCartas(){
-        return null;
-    }
-
-    public Jugador reglaPaloDeOros(){
-        return null;
-    }
-
-    public Jugador reglaSieteDeOros(){
-        return null;
-    }
-    
-    public Jugador reglacantidadDeSietes(){
-        return null;
-    }
-
     public ArrayList<Naipe> validarEscoba(Naipe naipe, ArrayList<Naipe> naipes){
         ArrayList<Naipe> resultado = new ArrayList<Naipe>();
         int suma = naipe.obtenerValor();
@@ -104,5 +85,86 @@ public class Validador {
             resultado = true;
         }
         return resultado;
+    }
+
+    public void contabilizarPuntos(Jugador primerJugador, Jugador segundoJugador){
+        reglaCantidadCartas(primerJugador, segundoJugador);
+        reglaPaloDeOros(primerJugador, segundoJugador);
+        reglaSieteDeOros(primerJugador, segundoJugador);
+        reglacantidadDeSietes(primerJugador, segundoJugador);
+    }
+
+    public void reglaCantidadCartas(Jugador primerJugador, Jugador segundoJugador){
+        if(primerJugador.obtenerNumeroCartasCapturadas() > segundoJugador.obtenerNumeroCartasCapturadas()){
+            primerJugador.asignarPuntaje(1);
+        }else {
+            if(primerJugador.obtenerNumeroCartasCapturadas() < segundoJugador.obtenerNumeroCartasCapturadas()){
+                segundoJugador.asignarPuntaje(1);
+            }
+        }
+    }
+
+    public void reglaPaloDeOros(Jugador primerJugador, Jugador segundoJugador){
+        int cantidadOrosPrimer = 0;
+        int cantidadOrosSegundo = 0;
+        for (Naipe naipe : primerJugador.obtenerCartasCapturadas()) {
+            if(naipe.obtenerPalo() == "Oros"){
+                cantidadOrosPrimer += 1;
+            }
+        }
+        for (Naipe naipe : segundoJugador.obtenerCartasCapturadas()) {
+            if(naipe.obtenerPalo() == "Oros"){
+                cantidadOrosSegundo += 1;
+            }
+        }
+        primerJugador.asignarPuntaje(cantidadOrosPrimer);
+        segundoJugador.asignarPuntaje(cantidadOrosSegundo);
+        if(cantidadOrosPrimer>cantidadOrosSegundo){
+            primerJugador.asignarPuntaje(1);
+        }else{
+            if(cantidadOrosSegundo>cantidadOrosPrimer){
+                segundoJugador.asignarPuntaje(1);
+            }
+        }
+    }
+
+    public void reglaSieteDeOros(Jugador primerJugador, Jugador segundoJugador){
+        
+        boolean encontrado = false;
+        for (Naipe naipe : primerJugador.obtenerCartasCapturadas()) {
+            if(naipe.obtenerValor() == 7 && naipe.obtenerPalo() == "Oros"){
+                primerJugador.asignarPuntaje(1);
+                encontrado = true;
+                break;
+            }
+        }
+        if(!encontrado){
+            segundoJugador.asignarPuntaje(1);
+        }
+
+    }
+    
+    public void reglacantidadDeSietes(Jugador primerJugador, Jugador segundoJugador){
+        int cantidadSietesPrimer = 0;
+        int cantidadSietesSegundo = 0;
+        for (Naipe naipe : primerJugador.obtenerCartasCapturadas()) {
+            if(naipe.obtenerValor() == 7){
+                cantidadSietesPrimer += 1;
+            }
+        }
+        for (Naipe naipe : segundoJugador.obtenerCartasCapturadas()) {
+            if(naipe.obtenerValor() == 7){
+                cantidadSietesSegundo += 1;
+            }
+        }
+        primerJugador.asignarPuntaje(cantidadSietesPrimer);
+        segundoJugador.asignarPuntaje(cantidadSietesSegundo);
+        if(cantidadSietesPrimer>cantidadSietesSegundo){
+            primerJugador.asignarPuntaje(1);
+        }else{
+            if(cantidadSietesSegundo>cantidadSietesPrimer){
+                segundoJugador.asignarPuntaje(1);
+            }
+        }
     }
 }

@@ -90,8 +90,7 @@ public class Vista {
         return ventana.retornarEstadoGuardarPartida();
     }
 
-    public void finalizarJuego(){
-        String mensaje="Juego finalizado";
+    public void finalizarJuego(String mensaje){
         JOptionPane.showMessageDialog(null, mensaje);
     }
 
