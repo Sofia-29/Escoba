@@ -101,9 +101,8 @@ public class Controlador {
             System.out.println(juego.obtenerUltimoJugadorCaptura().obtenerNombre());
             Jugador ganador = juego.terminarPartida();
             String mensaje="Juego finalizado\n"+juego.obtenerPrimerJugador().obtenerNombre()+ " termina con "
-            + juego.obtenerPrimerJugador().obtenerPuntaje() +"\n" + juego.obtenerSegundoJugador().obtenerNombre()+ " termina con "
-            + juego.obtenerSegundoJugador().obtenerPuntaje() + "\nEl ganador es: " + ganador.obtenerNombre();
+            + juego.obtenerPrimerJugador().obtenerPuntaje() +" puntos\n" + juego.obtenerSegundoJugador().obtenerNombre()+ " termina con "
+            + juego.obtenerSegundoJugador().obtenerPuntaje() + "puntos \nEl ganador es: " + ganador.obtenerNombre();
             vista.finalizarJuego(mensaje);
-            //jugadorAuxiliar = juego.obtenerJugadorActual();
     }
 }

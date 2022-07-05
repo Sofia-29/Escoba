@@ -94,7 +94,6 @@ public class Validador {
         reglacantidadDeSietes(primerJugador, segundoJugador);
     }
 
-    //Asignar los puntos.
     public void reglaCantidadCartas(Jugador primerJugador, Jugador segundoJugador){
         if(primerJugador.obtenerNumeroCartasCapturadas() > segundoJugador.obtenerNumeroCartasCapturadas()){
             primerJugador.asignarPuntaje(1);
@@ -120,6 +119,13 @@ public class Validador {
         }
         primerJugador.asignarPuntaje(cantidadOrosPrimer);
         segundoJugador.asignarPuntaje(cantidadOrosSegundo);
+        if(cantidadOrosPrimer>cantidadOrosSegundo){
+            primerJugador.asignarPuntaje(1);
+        }else{
+            if(cantidadOrosSegundo>cantidadOrosPrimer){
+                segundoJugador.asignarPuntaje(1);
+            }
+        }
     }
 
     public void reglaSieteDeOros(Jugador primerJugador, Jugador segundoJugador){
@@ -153,5 +159,12 @@ public class Validador {
         }
         primerJugador.asignarPuntaje(cantidadSietesPrimer);
         segundoJugador.asignarPuntaje(cantidadSietesSegundo);
+        if(cantidadSietesPrimer>cantidadSietesSegundo){
+            primerJugador.asignarPuntaje(1);
+        }else{
+            if(cantidadSietesSegundo>cantidadSietesPrimer){
+                segundoJugador.asignarPuntaje(1);
+            }
+        }
     }
 }
