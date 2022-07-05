@@ -137,11 +137,6 @@ public class Juego {
 
     public Boolean validarTerminarPartida(){
         if(mazo.obtenerCantidadDeNaipes() == 0 && primerJugador.obtenerNumeroCartasEnJuego() == 0 && segundoJugador.obtenerNumeroCartasEnJuego() == 0){
-            System.out.println(ultimoJugadorCaptura.obtenerNombre() + " obtiene las cartas restantes en la mesa");
-            System.out.println("Cartas en mesa: ");
-            for(Naipe naipe:cartasEnMesa){
-                System.out.println(naipe.obtenerPalo() + " " + naipe.obtenerValor());
-            }
             ultimoJugadorCaptura.capturarCartas(cartasEnMesa);
             cartasEnMesa.removeAll(cartasEnMesa);
             return true;
