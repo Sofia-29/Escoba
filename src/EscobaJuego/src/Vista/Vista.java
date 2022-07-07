@@ -31,18 +31,6 @@ public class Vista {
         return respuesta;
     }
 
-    public static String preguntarTurnoJugador(){
-        String mensaje="Escoja su turno: Primero o Segundo";
-        String opcionJugador = JOptionPane.showInputDialog(mensaje,"");
-        if(!(opcionJugador.equals("Primero"))){
-            if(!(opcionJugador.equals("Segundo"))){
-                String mensajeError = "Escoja su turno nuevamente: Primero o Segundo";
-                opcionJugador = JOptionPane.showInputDialog(null, mensajeError, "Error!", JOptionPane.ERROR_MESSAGE);
-            }
-        } 
-        return opcionJugador;
-    }
-
     public static int preguntarTurno(){
         String mensaje="¿Desea ser el primer jugador?";
         int respuesta = JOptionPane.showConfirmDialog(null, mensaje, "Escoger turno", JOptionPane.YES_NO_OPTION);
