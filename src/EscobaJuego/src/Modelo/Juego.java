@@ -17,11 +17,12 @@ public class Juego {
         validar = new Validador();
     }
 
-    public Juego(Jugador primerJugador, Jugador segundoJugador, Mazo mazo, Jugador jugadorActual, ArrayList<Naipe> cartasEnMesa){
+    public Juego(Jugador primerJugador, Jugador segundoJugador, Mazo mazo, Jugador jugadorActual, Jugador jugadorUltimaCaptura,ArrayList<Naipe> cartasEnMesa){
         this.primerJugador = primerJugador;
         this.segundoJugador = segundoJugador;
         this.mazo = mazo;
         this.jugadorActual = jugadorActual;
+        this.ultimoJugadorCaptura = jugadorUltimaCaptura;
         this.cartasEnMesa = cartasEnMesa;
         validar = new Validador();
     }
@@ -69,6 +70,7 @@ public class Juego {
             asignarPrimerJugador(primerJugador);
         }
         jugadorActual = primerJugador;
+        ultimoJugadorCaptura = primerJugador;
         mazo = new Mazo();
         cartasEnMesa = mazo.repartirMazo(4);
         primerJugador.asignarCartas(mazo.repartirMazo(3));

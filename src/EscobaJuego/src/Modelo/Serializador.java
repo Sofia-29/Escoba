@@ -30,12 +30,14 @@ public class Serializador {
             mazo.asignarMazo(juego.retornarCartasEnMesa());
             String informacionCartasEnMesa = gson.toJson(mazo);
             String informacionJugadorActual = juego.obtenerJugadorActual().obtenerNombre();
-
+            String informacionJugadorUltimoCaptura = juego.obtenerUltimoJugadorCaptura().obtenerNombre();
+            
             escritor.println(informacionJugadorUno + "*");
             escritor.println(informacionJugadorDos + "*");
             escritor.println(informacionMazo + "*");
             escritor.println(informacionCartasEnMesa + "*");
-            escritor.println(informacionJugadorActual);
+            escritor.println(informacionJugadorActual + "*");
+            escritor.println(informacionJugadorUltimoCaptura);
             escritor.close();
             archivo.close();
         } catch (Exception e) {
@@ -54,6 +56,7 @@ public class Serializador {
             Mazo mazo = null;
             Mazo cartasEnMesa = null;
             String jugadorActual = "";
+            String jugadorUltimaCaptura = "";
 
             String juegoSerializado = leerArchivo(partida);
             int IdAtributo = 0;
@@ -78,7 +81,9 @@ public class Serializador {
                     case 4:
                         jugadorActual = line;
                         break;
-                
+                    case 5:
+                        jugadorUltimaCaptura = line;
+                        break;
                     default:
                         break;
                 }
@@ -86,9 +91,18 @@ public class Serializador {
             }
 
             if(jugadorActual.equals("Jugador Maquina")){
-                juegoCargado = new Juego(jugadorPersona, jugadorMaquina, mazo, jugadorMaquina, cartasEnMesa.obtenerMazo());
+                if(jugadorUltimaCaptura.equals("Jugador Maquina")){
+                    juegoCargado = new Juego(jugadorPersona, jugadorMaquina, mazo, jugadorMaquina, jugadorMaquina, cartasEnMesa.obtenerMazo());
+                }else{
+                    juegoCargado = new Juego(jugadorPersona, jugadorMaquina, mazo, jugadorMaquina, jugadorPersona, cartasEnMesa.obtenerMazo());
+                }
             }else{
-                juegoCargado = new Juego(jugadorPersona, jugadorMaquina, mazo, jugadorPersona, cartasEnMesa.obtenerMazo());
+                if(jugadorUltimaCaptura.equals("Jugador Maquina")){
+                    juegoCargado = new Juego(jugadorPersona, jugadorMaquina, mazo, jugadorPersona, jugadorMaquina, cartasEnMesa.obtenerMazo());
+                }else{
+                    juegoCargado = new Juego(jugadorPersona, jugadorMaquina, mazo, jugadorPersona, jugadorPersona, cartasEnMesa.obtenerMazo());
+                }
+                //juegoCargado = new Juego(jugadorPersona, jugadorMaquina, mazo, jugadorPersona, jugadorUltimaCaptura, cartasEnMesa.obtenerMazo());
             }
         } catch (Exception e) {
             e.printStackTrace();

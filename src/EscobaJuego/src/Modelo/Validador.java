@@ -108,12 +108,12 @@ public class Validador {
         int cantidadOrosPrimer = 0;
         int cantidadOrosSegundo = 0;
         for (Naipe naipe : primerJugador.obtenerCartasCapturadas()) {
-            if(naipe.obtenerPalo() == "Oros"){
+            if(naipe.obtenerPalo().equals("Oros")){
                 cantidadOrosPrimer += 1;
             }
         }
         for (Naipe naipe : segundoJugador.obtenerCartasCapturadas()) {
-            if(naipe.obtenerPalo() == "Oros"){
+            if(naipe.obtenerPalo().equals("Oros")){
                 cantidadOrosSegundo += 1;
             }
         }
@@ -132,7 +132,7 @@ public class Validador {
         
         boolean encontrado = false;
         for (Naipe naipe : primerJugador.obtenerCartasCapturadas()) {
-            if(naipe.obtenerValor() == 7 && naipe.obtenerPalo() == "Oros"){
+            if(naipe.obtenerValor() == 7 && naipe.obtenerPalo().equals("Oros")){
                 primerJugador.asignarPuntaje(1);
                 encontrado = true;
                 break;
