@@ -18,13 +18,6 @@ public class Controlador {
         Serializador serializador = new Serializador();
         Jugador jugadorAuxiliar;
 
-        // File partida = vista.elegirArchivo();
-        // System.out.println(partida);
-
-        // Serializador serializador = new Serializador();
-        // serializador.cargarJuego(partida);
-
-
         ArrayList<Naipe> cartasJugador;
         Naipe naipeAuxiliar = null;
         String jugadorNombre;
@@ -99,7 +92,6 @@ public class Controlador {
                 }
             }
             vista.actualizarCartasEnMesa(juego.retornarCartasEnMesa());
-            System.out.println(juego.obtenerUltimoJugadorCaptura().obtenerNombre());
             Jugador ganador = juego.terminarPartida();
             String mensaje="Juego finalizado\n"+juego.obtenerPrimerJugador().obtenerNombre()+ " termina con "
             + juego.obtenerPrimerJugador().obtenerPuntaje() +" puntos\n" + juego.obtenerSegundoJugador().obtenerNombre()+ " termina con "
