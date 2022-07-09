@@ -2,14 +2,12 @@ package Vista;
 
 import Modelo.Naipe;
 import java.util.StringTokenizer;
-import java.util.concurrent.TimeUnit;
 import java.awt.event.ActionEvent;
 import java.awt.FlowLayout;
 import java.awt.Font;
 import java.awt.Color;
 import java.awt.Image;
 import java.awt.event.ActionListener;
-import java.sql.Time;
 import java.awt.BorderLayout;
 
 import java.util.ArrayList;
@@ -119,7 +117,7 @@ public class Ventana<Dimension> extends JFrame {
             for(int indice = cantidadCartas; indice < cartas.size(); indice++){
                 String palo = cartas.get(indice).obtenerPalo();
                 Integer valor = cartas.get(indice).obtenerValor();
-                String ruta = "Imagenes\\" + palo + "\\" + valor.toString() + "-" + palo + ".jpg";
+                String ruta = "Imagenes/" + palo + "/" + valor.toString() + "-" + palo + ".jpg";
                 JToggleButton boton = new JToggleButton();
                 boton.setName(valor+"-"+palo);
                 boton.setBorder(new EmptyBorder(10,10,10,10));
@@ -168,7 +166,7 @@ public class Ventana<Dimension> extends JFrame {
         for(int indice = 0; indice < cartas.size(); indice++){
             String palo = cartas.get(indice).obtenerPalo();
             Integer valor = cartas.get(indice).obtenerValor();
-            String ruta = "Imagenes\\" + palo + "\\" + valor.toString() + "-" + palo + ".jpg";
+            String ruta = "Imagenes/" + palo + "/" + valor.toString() + "-" + palo + ".jpg";
             JLabel nuevaEtiqueta = new JLabel();
             nuevaEtiqueta.setName(valor+"-"+palo);
             nuevaEtiqueta.setBorder(new EmptyBorder(300,10,10,10));
@@ -347,7 +345,7 @@ public class Ventana<Dimension> extends JFrame {
     public void botonReglas(){
         JPanel panelReglas = generarPanel(2);
         reglasJuego = new JToggleButton();
-        String ruta = "Imagenes\\Reglas\\reglas.png";
+        String ruta = "Imagenes/Reglas/reglas.png";
         ImageIcon imagen = new ImageIcon(this.getClass().getResource(ruta));
         Icon icono = new ImageIcon(imagen.getImage().getScaledInstance(130,100,
         Image.SCALE_DEFAULT));
@@ -406,7 +404,7 @@ public class Ventana<Dimension> extends JFrame {
     }
 
     public void mostrarBot(){
-        String ruta = "Imagenes\\Bot\\botcito.png";
+        String ruta = "Imagenes/Bot/botcito.png";
         ImageIcon imagen = new ImageIcon(this.getClass().getResource(ruta));
         Icon icono = new ImageIcon(imagen.getImage().getScaledInstance(130,100,
         Image.SCALE_DEFAULT));
