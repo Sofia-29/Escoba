@@ -33,7 +33,7 @@ public class Controlador {
             juego = serializador.cargarJuego(partida);
             jugadorAuxiliar = juego.obtenerJugadorActual();
             jugadorNombre = juego.obtenerJugadorActual().obtenerNombre();
-
+            vista.actualizarPuntajeJugador(jugadorAuxiliar.obtenerPuntaje());
         }else{
                 jugadorNombre = vista.preguntarNombreJugadorPersona();
                 jugadorOpcion = vista.preguntarTurno();
