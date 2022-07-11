@@ -1,5 +1,5 @@
 # Escoba
-
+El diseño se encuentra en la carpeta Diseño, es un archivo .mdx que se abre con SYNVAS UML
 ## Demostración (Video)
 https://drive.google.com/uc?id=1dcySjdr6RyBZu4rFjTaesXtjrez9xkoc&export=download
 
