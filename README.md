@@ -1,5 +1,8 @@
 # Escoba
 
+## Demostración (Video)
+https://drive.google.com/uc?id=1dcySjdr6RyBZu4rFjTaesXtjrez9xkoc&export=download
+
 ## Guía de inicio 
 1) Aquí puede encontrar una guía para preparar el entorno de ejecución del juego.
 https://code.visualstudio.com/docs/languages/java#_install-visual-studio-code-for-java
