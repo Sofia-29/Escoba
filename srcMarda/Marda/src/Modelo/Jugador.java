@@ -49,9 +49,16 @@ public abstract class Jugador {
         return resultado; 
     }
 
+    public void removerCarta(String palo, int valor){
+        Carta resultado = obtenerCarta(palo, valor);
+        this.cartas.remove(resultado);
+    }
+
     protected abstract Carta elegirCarta(ArrayList<Carta> carta);
 
     public Carta descartarCarta(ArrayList<Carta> carta){
-        return null;
+        Carta resultado = this.elegirCarta(carta);
+        this.removerCarta(resultado.obtenerPalo(), resultado.obtenerValor());
+        return resultado;
     }
 }
