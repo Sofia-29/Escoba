@@ -8,7 +8,7 @@ import com.google.gson.GsonBuilder;
 public class ConstructorSerializadorEscobaJson extends ConstructorSerializadorAbstracto{
     private Gson gson;
 
-    ConstructorSerializadorEscobaJson(){
+    public ConstructorSerializadorEscobaJson(){
         super();
         gson = new GsonBuilder().
             setPrettyPrinting().create();
@@ -64,7 +64,7 @@ public class ConstructorSerializadorEscobaJson extends ConstructorSerializadorAb
     }
 
     @Override
-    public String finObjetop(String nombre) {
+    public String finObjeto() {
         return "*";
     }
 }

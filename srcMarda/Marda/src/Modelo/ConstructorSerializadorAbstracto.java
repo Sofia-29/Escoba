@@ -28,7 +28,7 @@ public abstract class ConstructorSerializadorAbstracto {
 
 
     public abstract String inicioObjetop(String nombre);
-    public abstract String finObjetop(String nombre);
+    public abstract String finObjeto();
 
 
     public String leerArchivo(File partida){
