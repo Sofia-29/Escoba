@@ -47,20 +47,12 @@ public abstract class Mesa {
         return jugadorActual;
     }
 
-    /* 
-    public Jugador obtenerUltimoJugadorCaptura(){
-        return ultimoJugadorCaptura;
-    }
-
-    
-    */
-
     public void iniciarPartidao(){
         jugadorActual = primerJugador;
         //ultimoJugadorCaptura = primerJugador;
         mazo = new Mazo();
         cartasEnMesa = mazo.repartirMazo(4);
-        primerJugador.asignarCartas(mazo.repartirMazo(3));
+        primerJugador.asignarCartas(mazo.repartirMazo(3)); //asignar cartas a jugador, metodo que reciba un entero y reparta las cartas conforme a ese entero
         segundoJugador.asignarCartas(mazo.repartirMazo(3));
     }
 
@@ -70,11 +62,11 @@ public abstract class Mesa {
         } else {
             jugadorActual = primerJugador;
         }
-        return jugadorActual;
+        return jugadorActual; // Hace falta retornarlo?
     }
 
     public ArrayList<Naipe> retornarCartasJugador(String nombreJugador){
-        if(nombreJugador == obtenerJugadorPersona(nombreJugador).obtenerNombre()){
+        if(nombreJugador == obtenerJugadorPersona(nombreJugador).obtenerNombre()){ //esto esta mal, deberia retornar cartas de un jugador dependiendo del nombre de ese jugador
             return obtenerJugadorPersona(nombreJugador).obtenerCartas();
         }else{
             return jugadorActual.obtenerCartas();
@@ -85,7 +77,7 @@ public abstract class Mesa {
         return cartasEnMesa;
     }
 
-    public Boolean validarRepartirCartas(){
+    public Boolean validarRepartirCartas(){ //esto es asi?
         if(primerJugador.obtenerNumeroCartasEnJuego()==0 && segundoJugador.obtenerNumeroCartasEnJuego()==0){
             return true;
         }
@@ -95,7 +87,7 @@ public abstract class Mesa {
         }
     }
 
-    public void repartirCartasAJugadores(){
+    public void repartirCartasAJugadores(){ //aca deberia de recibir cuantas cartas repartir, no asumir que son 3
         primerJugador.asignarCartas(mazo.repartirMazo(3));
         segundoJugador.asignarCartas(mazo.repartirMazo(3));
     }
@@ -104,7 +96,7 @@ public abstract class Mesa {
         cartasEnMesa = mazo.repartirMazo(cantCartas);
     }
 
-    public Boolean validarTerminarPartida(){
+    public Boolean validarTerminarPartida(){ //esto deberia ser abstracto creo 
         if(mazo.obtenerCantidadDeNaipes() == 0 && primerJugador.obtenerNumeroCartasEnJuego() == 0 && segundoJugador.obtenerNumeroCartasEnJuego() == 0){
             ultimoJugadorCaptura.capturarCartas(cartasEnMesa);
             cartasEnMesa.removeAll(cartasEnMesa);
@@ -113,13 +105,13 @@ public abstract class Mesa {
         return false;
     }
 
-    public Jugador terminarPartida(){
+    public Jugador terminarPartida(){ //este podria ser un metodo plantilla
         validar.contabilizarPuntos(primerJugador, segundoJugador);
         jugadorActual = declararGanador();
         return jugadorActual;
     }
 
-    private Jugador declararGanador(){
+    private Jugador declararGanador(){ //hacer metodo abstracto 
         int puntajePrimerJugador = primerJugador.obtenerPuntaje();
         int puntajeSegundoJugador = segundoJugador.obtenerPuntaje();
         if(puntajePrimerJugador>puntajeSegundoJugador){
