@@ -3,12 +3,11 @@ import java.util.ArrayList;
 
 public abstract class Mesa {
     
-    private Jugador primerJugador;
-    private Jugador segundoJugador;
-    private Jugador jugadorActual;
-    private ArrayList<Naipe> cartasEnMesa;
+    protected Jugador primerJugador;
+    protected Jugador segundoJugador;
+    protected Jugador jugadorActual;
+    protected ArrayList<Naipe> cartasEnMesa;
     private Mazo mazo;
-
 
     public Mesa(){
        // validar = new Validador();
@@ -53,13 +52,7 @@ public abstract class Mesa {
         return ultimoJugadorCaptura;
     }
 
-    public Jugador obtenerJugadorPersona(String nombre){
-        if(primerJugador.obtenerNombre() == nombre){
-            return primerJugador;
-        }else{
-            return segundoJugador;
-        }
-    }
+    
     */
 
     public void iniciarPartidao(){
@@ -70,30 +63,6 @@ public abstract class Mesa {
         primerJugador.asignarCartas(mazo.repartirMazo(3));
         segundoJugador.asignarCartas(mazo.repartirMazo(3));
     }
-
-    /*
-    public ArrayList<Naipe> movimientoJugadorCapturarCarta(Naipe naipe, String nombreJugador){
-        Naipe cartaDescartada = null;
-        cartaDescartada = movimientoJugadorDescartarCarta(naipe, nombreJugador);
-        ArrayList<Naipe> naipesCapturados = null;
-        naipesCapturados = validar.validarCaptura(jugadorActual, cartaDescartada, cartasEnMesa);
-        if(naipesCapturados != null){
-            ultimoJugadorCaptura = jugadorActual;
-        }
-        return naipesCapturados;
-    }
-
-    public Naipe movimientoJugadorDescartarCarta(Naipe naipe, String nombreJugador){
-        ArrayList<Naipe> naipes = new ArrayList<Naipe>();
-        Naipe cartaDescartada = naipe;
-        if(jugadorActual.obtenerNombre() == obtenerJugadorPersona(nombreJugador).obtenerNombre()){
-            naipes.add(naipe);
-            cartaDescartada = jugadorActual.descartarCarta(naipes);
-        }
-        jugadorActual.removerCarta(cartaDescartada);
-        return cartaDescartada;
-    }
-    */
 
     public Jugador pasarTurno(){
         if(jugadorActual.obtenerNombre().equals(primerJugador.obtenerNombre())){
