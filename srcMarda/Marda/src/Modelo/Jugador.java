@@ -38,6 +38,10 @@ public abstract class Jugador {
         this.puntaje += puntaje;
     }
 
+    public int obtenerCantidadCartasEnJuego(){
+        return this.cartas.size();
+    }
+
     public Carta obtenerCarta(String palo, int valor){
         Carta resultado = null;
         for(Carta carta:this.cartas){

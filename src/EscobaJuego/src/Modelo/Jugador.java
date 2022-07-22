@@ -8,7 +8,7 @@ public abstract class Jugador {
     private int puntaje;
     private String nombre;
     private ArrayList<Naipe> cartasCapturadas;
-
+    
     public Jugador(String nombre){
         this.nombre = nombre;
         this.puntaje = 0;
