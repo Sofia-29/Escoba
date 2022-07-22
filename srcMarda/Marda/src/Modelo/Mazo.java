@@ -32,24 +32,24 @@ public abstract class Mazo {
         return grupoDeCartas;
     }
 
-    public int obtenerCantidadDeNaipes(){
+    public int obtenerCantidadDecartas(){
         return grupoDeCartas.size();
     }
 
-    public ArrayList<Carta> repartirMazo(int cantidadDeNaipes){
+    public ArrayList<Carta> repartirMazo(int cantidadDecartas){
         int cartasElegidas = 0;
         ArrayList<Carta> cartas =  new ArrayList<Carta>();
         barajar();
-        for (Carta naipe : grupoDeCartas) {
-            cartas.add(naipe);
+        for (Carta carta : grupoDeCartas) {
+            cartas.add(carta);
             cartasElegidas++;
-            if(cartasElegidas == cantidadDeNaipes){
+            if(cartasElegidas == cantidadDecartas){
                 break;
             }
         }
 
-        for (Carta naipe : cartas) {
-            grupoDeCartas.remove(naipe);
+        for (Carta carta : cartas) {
+            grupoDeCartas.remove(carta);
         }
         return cartas;
     }
@@ -59,8 +59,8 @@ public abstract class Mazo {
     }
 
     public void imprimirMazo(){
-        for (Carta naipe : grupoDeCartas) {
-            System.out.println("Palo: "+naipe.obtenerPalo()+" Valor: "+naipe.obtenerValor());
+        for (Carta carta : grupoDeCartas) {
+            System.out.println("Palo: "+carta.obtenerPalo()+" Valor: "+carta.obtenerValor()+" Ruta: "+carta.obtenerRuta());
         }
     }
 }
