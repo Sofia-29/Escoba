@@ -1,5 +1,9 @@
-package Modelo;
+package Modelo.EscobaMarda;
 import java.util.ArrayList;
+
+import Modelo.Carta;
+import Modelo.Jugador;
+import Modelo.Mesa;
 
 class MesaEscoba extends Mesa {
 
