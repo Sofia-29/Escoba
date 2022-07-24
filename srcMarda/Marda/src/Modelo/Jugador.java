@@ -54,4 +54,8 @@ public abstract class Jugador {
     public Carta descartarCarta(ArrayList<Carta> carta){
         return null;
     }
+
+    public int obtenerNumeroCartasEnJuego(){
+        return cartas.size();
+    }
 }

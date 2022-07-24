@@ -6,29 +6,28 @@ public abstract class Mesa {
     protected Jugador primerJugador;
     protected Jugador segundoJugador;
     protected Jugador jugadorActual;
-    protected ArrayList<Naipe> cartasEnMesa;
-    private Mazo mazo;
+    protected ArrayList<Carta> cartasEnMesa;
+    //private Mazo mazo;
 
     public Mesa(){
        // validar = new Validador();
     }
 
-    public Mesa(Jugador primerJugador, Jugador segundoJugador, Mazo mazo, Jugador jugadorActual,ArrayList<Naipe> cartasEnMesa){
+    public Mesa(Jugador primerJugador, Jugador segundoJugador /*Mazo mazo*/, Jugador jugadorActual,ArrayList<Carta> cartasEnMesa){
         this.primerJugador = primerJugador;
         this.segundoJugador = segundoJugador;
-        this.mazo = mazo;
+        //this.mazo = mazo;
         this.jugadorActual = jugadorActual;
-        //this.ultimoJugadorCaptura = jugadorUltimaCaptura;
         this.cartasEnMesa = cartasEnMesa;
         //validar = new Validador();
     }
 
-    public void asignarPrimerJugador(String nombreJugador){
-        primerJugador = new Jugador(nombreJugador);
+    public void asignarPrimerJugador(Jugador primerJugador){
+        this.primerJugador = primerJugador;
     }
 
-    public void asignarSegundoJugador(String nombreJugador){
-        segundoJugador = new Jugador(nombreJugador);
+    public void asignarSegundoJugador(Jugador segundoJugador){
+       this.segundoJugador = segundoJugador;
     }
 
     public Jugador obtenerPrimerJugador(){
@@ -38,22 +37,29 @@ public abstract class Mesa {
     public Jugador obtenerSegundoJugador(){
         return segundoJugador;
     }
-
+    /* 
     public Mazo obtenerMazo(){
         return mazo;
     }
-
+    */
     public Jugador obtenerJugadorActual(){
         return jugadorActual;
     }
 
+    public Jugador obtenerJugadorPorNombre(String nombreJugador){
+        if(nombreJugador == primerJugador.obtenerNombre()){
+            return primerJugador;
+        }else{
+            return segundoJugador;
+        }
+    }
+
     public void iniciarPartidao(){
         jugadorActual = primerJugador;
-        //ultimoJugadorCaptura = primerJugador;
-        mazo = new Mazo();
-        cartasEnMesa = mazo.repartirMazo(4);
-        primerJugador.asignarCartas(mazo.repartirMazo(3)); //asignar cartas a jugador, metodo que reciba un entero y reparta las cartas conforme a ese entero
-        segundoJugador.asignarCartas(mazo.repartirMazo(3));
+        //mazo = new Mazo();
+        repartirCartasAMesa(4);
+        repartirCartasAJugador(primerJugador.obtenerNombre(),3);
+        repartirCartasAJugador(segundoJugador.obtenerNombre(),3);
     }
 
     public Jugador pasarTurno(){
@@ -62,66 +68,42 @@ public abstract class Mesa {
         } else {
             jugadorActual = primerJugador;
         }
-        return jugadorActual; // Hace falta retornarlo?
+        return jugadorActual; 
     }
 
-    public ArrayList<Naipe> retornarCartasJugador(String nombreJugador){
-        if(nombreJugador == obtenerJugadorPersona(nombreJugador).obtenerNombre()){ //esto esta mal, deberia retornar cartas de un jugador dependiendo del nombre de ese jugador
-            return obtenerJugadorPersona(nombreJugador).obtenerCartas();
-        }else{
-            return jugadorActual.obtenerCartas();
-        }
+    public ArrayList<Carta> retornarCartasJugador(String nombreJugador){
+        return obtenerJugadorPorNombre(nombreJugador).obtenerCartas();
     }
 
-    public ArrayList<Naipe> retornarCartasEnMesa(){
+    public ArrayList<Carta> retornarCartasMesa(){
+        return cartasEnMesa;
+    }
+    
+    public ArrayList<Carta> retornarCartasEnMesa(){
         return cartasEnMesa;
     }
 
-    public Boolean validarRepartirCartas(){ //esto es asi?
-        if(primerJugador.obtenerNumeroCartasEnJuego()==0 && segundoJugador.obtenerNumeroCartasEnJuego()==0){
-            return true;
-        }
-        else 
-        {
-            return false;
-        }
-    }
+    protected abstract Boolean validarRepartirCartas();
 
-    public void repartirCartasAJugadores(){ //aca deberia de recibir cuantas cartas repartir, no asumir que son 3
-        primerJugador.asignarCartas(mazo.repartirMazo(3));
-        segundoJugador.asignarCartas(mazo.repartirMazo(3));
+    protected abstract Carta movimientoJugadorDescartarCarta(Carta naipe, String nombreJugador);
+
+    protected abstract ArrayList<Carta> movimientoJugadorCapturarCarta(Carta naipe, String nombreJugador);
+
+    public void repartirCartasAJugador(String nombreJugador,int cantCartas){ 
+       // obtenerJugadorPorNombre(nombreJugador).asignarCartas(mazo.repartirMazo(cantCartas));
     }
 
     public void repartirCartasAMesa(int cantCartas){
-        cartasEnMesa = mazo.repartirMazo(cantCartas);
+        //cartasEnMesa = mazo.repartirMazo(cantCartas);
     }
 
-    public Boolean validarTerminarPartida(){ //esto deberia ser abstracto creo 
-        if(mazo.obtenerCantidadDeNaipes() == 0 && primerJugador.obtenerNumeroCartasEnJuego() == 0 && segundoJugador.obtenerNumeroCartasEnJuego() == 0){
-            ultimoJugadorCaptura.capturarCartas(cartasEnMesa);
-            cartasEnMesa.removeAll(cartasEnMesa);
-            return true;
-        }
-        return false;
-    }
+    protected abstract Boolean validarTerminarPartida();
 
-    public Jugador terminarPartida(){ //este podria ser un metodo plantilla
-        validar.contabilizarPuntos(primerJugador, segundoJugador);
+    public Jugador terminarPartida(){ 
+        //validar.contabilizarPuntos(primerJugador, segundoJugador);
         jugadorActual = declararGanador();
         return jugadorActual;
     }
 
-    private Jugador declararGanador(){ //hacer metodo abstracto 
-        int puntajePrimerJugador = primerJugador.obtenerPuntaje();
-        int puntajeSegundoJugador = segundoJugador.obtenerPuntaje();
-        if(puntajePrimerJugador>puntajeSegundoJugador){
-            return primerJugador;
-        }else{
-            if(puntajeSegundoJugador>puntajePrimerJugador){
-                return segundoJugador;
-            }else{
-                return null;
-            }
-        }
-    }
+    protected abstract Jugador declararGanador();
 }
