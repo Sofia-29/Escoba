@@ -11,31 +11,16 @@ class MesaEscoba extends Mesa {
         }
     }
 
-<<<<<<< HEAD
-    public ArrayList<Naipe> movimientoJugadorCapturarCarta(Naipe naipe, String nombreJugador){
-        Naipe cartaDescartada = null;
-        cartaDescartada = movimientoJugadorDescartarCarta(naipe, nombreJugador);
-        ArrayList<Naipe> naipesCapturados = null;
-=======
     @Override
     protected ArrayList<Carta> movimientoJugadorCapturarCarta(Carta naipe, String nombreJugador){
         Carta cartaDescartada = null;
         cartaDescartada = movimientoJugadorDescartarCarta(naipe, nombreJugador);
         ArrayList<Carta> naipesCapturados = null;
         /* 
->>>>>>> origin/Ny
         naipesCapturados = validar.validarCaptura(jugadorActual, cartaDescartada, cartasEnMesa);
         if(naipesCapturados != null){
             ultimoJugadorCaptura = jugadorActual;
         }
-<<<<<<< HEAD
-        return naipesCapturados;
-    }
-
-    public Naipe movimientoJugadorDescartarCarta(Naipe naipe, String nombreJugador){
-        ArrayList<Naipe> naipes = new ArrayList<Naipe>();
-        Naipe cartaDescartada = naipe;
-=======
         */
         return naipesCapturados;
     }
@@ -80,16 +65,11 @@ class MesaEscoba extends Mesa {
     protected Carta movimientoJugadorDescartarCarta(Carta naipe, String nombreJugador) {
         ArrayList<Carta> naipes = new ArrayList<Carta>();
         Carta cartaDescartada = naipe;
->>>>>>> origin/Ny
         if(jugadorActual.obtenerNombre() == obtenerJugadorPersona(nombreJugador).obtenerNombre()){
             naipes.add(naipe);
             cartaDescartada = jugadorActual.descartarCarta(naipes);
         }
-<<<<<<< HEAD
-        jugadorActual.removerCarta(cartaDescartada);
-=======
         //*jugadorActual.removerCarta(cartaDescartada);
->>>>>>> origin/Ny
         return cartaDescartada;
     }
 }
