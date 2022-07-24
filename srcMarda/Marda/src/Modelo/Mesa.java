@@ -57,8 +57,7 @@ public abstract class Mesa {
     public void iniciarPartidao(){
         jugadorActual = primerJugador;
         //mazo = new Mazo();
-        //cartasEnMesa = mazo.repartirMazo(4);
-        //asignar cartas a jugador, metodo que reciba un entero y reparta las cartas conforme a ese entero
+        repartirCartasAMesa(4);
         repartirCartasAJugador(primerJugador.obtenerNombre(),3);
         repartirCartasAJugador(segundoJugador.obtenerNombre(),3);
     }
