@@ -65,4 +65,8 @@ public abstract class Jugador {
         this.removerCarta(resultado.obtenerPalo(), resultado.obtenerValor());
         return resultado;
     }
+
+    public int obtenerNumeroCartasEnJuego(){
+        return cartas.size();
+    }
 }
