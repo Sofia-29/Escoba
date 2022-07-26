@@ -1,12 +1,10 @@
 package Vista;
 
 import java.awt.BorderLayout;
-import java.awt.EventQueue;
-import java.awt.Image;
 
 import java.util.ArrayList;
 
-import javax.swing.Icon;
+
 import javax.swing.ImageIcon;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
@@ -15,14 +13,11 @@ import javax.swing.border.EmptyBorder;
 
 import Modelo.Carta;
 
-import java.awt.Color;
 
 public class MesaVista extends JFrame {
 
 	private JPanel panelMesa;
 	private JPanel panelCartasMesa;
-	private JPanel panelCartasJugadorUno;
-	private JPanel panelCartasJugadorDos;
 	private JPanel mazoComun;
 
 	private ArrayList<JLabel> cartasEnMesa;
@@ -48,8 +43,8 @@ public class MesaVista extends JFrame {
 
 		
 		panelCartasMesa = this.generarPanel();
-		panelCartasJugadorUno = this.generarPanel();
-		panelCartasJugadorDos = this.generarPanel();
+		JPanel panelCartasJugadorUno = this.generarPanel();
+		JPanel panelCartasJugadorDos = this.generarPanel();
 		mazoComun = this.generarPanel();
 
 		jugadorUno.asignarPanel(panelCartasJugadorUno);
@@ -59,26 +54,6 @@ public class MesaVista extends JFrame {
 		panelMesa.add(panelCartasJugadorUno, BorderLayout.NORTH);
 		panelMesa.add(panelCartasJugadorDos, BorderLayout.SOUTH);
 		panelMesa.add(mazoComun, BorderLayout.EAST);
-	}
-
-	/**
-	 * Launch the application.
-	 */
-	public static void main(String[] args) {
-		MesaVista frame = new MesaVista();
-
-		Carta carta1 = new Carta(1, "Bastos");
-		Carta carta2 = new Carta(2, "Copas");
-		Carta carta3 = new Carta(3, "Oros");
-		Carta carta4 = new Carta(4, "Espadas");
-		ArrayList<Carta> cartas = new ArrayList<Carta>();
-		cartas.add(carta1);
-		cartas.add(carta2);
-		cartas.add(carta3);
-		cartas.add(carta4);
-		frame.actualizarCartasEnMesa(cartas);
-		frame.actualizarCartasJugador(cartas);
-		frame.setVisible(true);
 	}
 
 	public JPanel generarPanel(){
@@ -103,6 +78,26 @@ public class MesaVista extends JFrame {
 		jugadorDos.actualizarCartasJugador(cartas);
 	}
 
+	public void preguntarInformacionJugadorUno(){
+		jugadorUno.preguntarNombreJugador();
+		int opcion = jugadorUno.preguntarTurno();
+		asignarTurnoJugador(jugadorUno.obtenerNombreJugador());
+	}
+
+	public void preguntarInformacionJugadorDos(){
+		jugadorDos.preguntarNombreJugador();
+	}
+
+	public void asignarTurnoJugador(String nombre){
+		if(jugadorUno.obtenerNombreJugador().equals(nombre)){
+			JugadorActual = jugadorUno;
+			jugadorDos.deshabilitarCartasJugador();
+		}else{
+			JugadorActual = jugadorDos;
+			jugadorUno.deshabilitarCartasJugador();
+		}
+	}
+
 	public void actualizarCartasEnMesa(ArrayList<Carta> cartasEnMesa){
 		this.cartasEnMesa = new ArrayList<JLabel>();
 		for(int indice = 0; indice < cartasEnMesa.size(); indice++){
@@ -116,5 +111,28 @@ public class MesaVista extends JFrame {
             this.panelCartasMesa.revalidate();
             this.panelCartasMesa.repaint();
         }
+	}
+
+	/**
+	 * Launch the application.
+	 */
+	public static void main(String[] args) {
+		MesaVista frame = new MesaVista();
+
+		Carta carta1 = new Carta(1, "Bastos");
+		Carta carta2 = new Carta(2, "Copas");
+		Carta carta3 = new Carta(3, "Oros");
+		Carta carta4 = new Carta(4, "Espadas");
+		ArrayList<Carta> cartas = new ArrayList<Carta>();
+		cartas.add(carta1);
+		cartas.add(carta2);
+		cartas.add(carta3);
+		cartas.add(carta4);
+		frame.actualizarCartasEnMesa(cartas);
+		frame.actualizarCartasJugador(cartas);
+		frame.setVisible(true);
+		frame.preguntarInformacionJugadorUno();
+		frame.preguntarInformacionJugadorDos();
+		frame.asignarTurnoJugador("Carmelo");
 	}
 }
