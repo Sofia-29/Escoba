@@ -1,9 +1,12 @@
 package Controlador;
+import Modelo.EscobaMarda.JugadorMaquina;
+import Modelo.EscobaMarda.JugadorPersona;
 import Modelo.EscobaMarda.MazoEspanyol;
-import Modelo.EscobaMarda.ConstructorSerializadorEscobaJson;
+import Modelo.EscobaMarda.SerializadorEscobaJson;
 import java.io.File;
 import javax.swing.JFileChooser;
-import Modelo.ConstructorSerializadorAbstracto;
+import Modelo.SerializadorAbstracto;
+import Modelo.Jugador;
 import Modelo.Mazo;
 
 public class Controlador {
@@ -20,44 +23,31 @@ public class Controlador {
         }
     }
 
-    public static void directorConstructor(ConstructorSerializadorAbstracto cs){
-        File arch = elegirArchivo();
-        try
-        {
-            // FileWriter archivo = new FileWriter(ruta);
-            // PrintWriter escritor = new PrintWriter(archivo);
-            Mazo mazo = cs.construirMazo(cs.leerArchivo(arch));
-            // escritor.println(cs.inicioObjetop("Jugador 1")+informacionJugadorUno + cs.finObjeto());
-            // escritor.close();
-            // archivo.close();
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-    }
-
-    public static void directorSerializador(ConstructorSerializadorAbstracto cs){
-        Mazo mazo = new MazoEspanyol();
-
+    public static void directorSerializador(SerializadorAbstracto cs){
         try {
-            // FileWriter archivo = new FileWriter(ruta);
-            // PrintWriter escritor = new PrintWriter(archivo);
-            String informacionJugadorUno = cs.serializarMazo(mazo);
-            // escritor.println(cs.inicioObjetop("Jugador 1")+informacionJugadorUno + cs.finObjeto());
-            // escritor.close();
-            // archivo.close();
-            System.out.println(cs.inicioObjetop("Mazo")+informacionJugadorUno + cs.finObjeto());
+            MazoEspanyol mazo = new MazoEspanyol();
+            mazo.iniciarMazo();
+            mazo.imprimirMazo();
+            JugadorMaquina jugador = new JugadorMaquina();
+            JugadorPersona jugador2 = new JugadorPersona();
+
+            cs.inicioObjeto("Juego");
+            cs.serializarMazo(mazo);
+            cs.serializarJugador(jugador);
+            cs.serializarJugador(jugador2);
+            cs.finObjeto();
+            String result = cs.obtSerializacion();
+
+            System.out.println(result);
+
         } catch (Exception e) {
             e.printStackTrace();
         }
     }
 
     public static void main(String[] args) throws Exception {
-        // MazoEspanyol mazo = new MazoEspanyol();
-        // mazo.iniciarMazo();
-        // mazo.imprimirMazo();
-
-        ConstructorSerializadorEscobaJson cs = new ConstructorSerializadorEscobaJson(); 
-        directorConstructor(cs);
+        SerializadorEscobaJson cs = new SerializadorEscobaJson(); 
+        directorSerializador(cs);
     }
 }
 

@@ -9,6 +9,7 @@ public abstract class Mazo {
         grupoDeCartas = new ArrayList<Carta>();
     }
 
+    // Plantilla
     public void iniciarMazo(){
         ArrayList<String> palos = obtenerPalos();
         int numeroCartas = obtenerCantidadCartas();
