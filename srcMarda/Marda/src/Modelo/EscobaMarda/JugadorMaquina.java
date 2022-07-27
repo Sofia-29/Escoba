@@ -5,11 +5,9 @@ import Modelo.Jugador;
 import Modelo.Carta;
 
 public class JugadorMaquina extends Jugador{
-    private ArrayList<Carta> cartasCapturadas;
 
     public JugadorMaquina(){
         super();
-        cartasCapturadas = new ArrayList<Carta>();
     }
 
     @Override
@@ -59,19 +57,5 @@ public class JugadorMaquina extends Jugador{
             }
         }
         return encontrado;
-    }
-
-    public void capturarCartas(ArrayList<Carta> cartasCapturadas){
-        if(cartasCapturadas != null){
-            this.cartasCapturadas.addAll(cartasCapturadas);
-        }
-    }
-
-    public ArrayList<Carta> obtenerCartasCapturadas(){
-        return this.cartasCapturadas;
-    }
-
-    public int obtenerCantidadDeCartasCapturadas(){
-        return this.cartasCapturadas.size();
     }
 }
