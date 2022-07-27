@@ -140,10 +140,10 @@ public class MesaVista extends JFrame {
 	public static void main(String[] args) {
 		MesaVista frame = new MesaVista();
 
-		Carta carta1 = new Carta(1, "Bastos");
-		Carta carta2 = new Carta(2, "Copas");
-		Carta carta3 = new Carta(3, "Oros");
-		Carta carta4 = new Carta(4, "Espadas");
+		Carta carta1 = new Carta(1, "Bastos", "");
+		Carta carta2 = new Carta(2, "Copas", "");
+		Carta carta3 = new Carta(3, "Oros", "");
+		Carta carta4 = new Carta(4, "Espadas", "");
 		ArrayList<Carta> cartas = new ArrayList<Carta>();
 		cartas.add(carta1);
 		cartas.add(carta2);

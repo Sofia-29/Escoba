@@ -6,8 +6,6 @@ import Modelo.EscobaMarda.SerializadorEscobaJson;
 import java.io.File;
 import javax.swing.JFileChooser;
 import Modelo.SerializadorAbstracto;
-import Modelo.Jugador;
-import Modelo.Mazo;
 
 public class Controlador {
     public static File elegirArchivo(){
