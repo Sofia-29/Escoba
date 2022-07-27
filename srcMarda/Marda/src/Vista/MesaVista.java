@@ -3,7 +3,6 @@ package Vista;
 import java.awt.BorderLayout;
 
 import java.util.ArrayList;
-import java.util.concurrent.TimeUnit;
 
 import javax.swing.ImageIcon;
 import javax.swing.JFrame;
@@ -18,12 +17,14 @@ public class MesaVista extends JFrame {
 
 	private JPanel panelMesa;
 	private JPanel panelCartasMesa;
-	private JPanel mazoComun;
+	private JPanel panelMazoComun;
+	private JPanel panelCartasDescartadas;
 
 	private ArrayList<JLabel> cartasEnMesa;
 	private JugadorVista jugadorUno;
 	private JugadorVista jugadorDos;
 	private JugadorVista JugadorActual;
+	private General ayudante;
 
 
 	public MesaVista() {
@@ -35,42 +36,44 @@ public class MesaVista extends JFrame {
 		panelMesa.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(panelMesa);
 		panelMesa.setLayout(new BorderLayout(0, 0));
-
+		ayudante = new General();
 		cartasEnMesa = new ArrayList<JLabel>();
+		panelCartasMesa = ayudante.generarPanel();
+		panelMesa.add(panelCartasMesa, BorderLayout.CENTER);
+	}
+
+	public void inicializarMazoComun(){
+		this.panelMazoComun = ayudante.generarPanel();
+		panelMazoComun.setLayout(new BorderLayout(0, 0));
+		String ruta = "Imagenes/Carta_Reverso/grupo_cartas.png";
+		ImageIcon imagen = new ImageIcon(this.getClass().getResource(ruta));
+		JLabel etiqueta = ayudante.generarEtiquetaConImagen("Grupo de cartas", imagen);
+		etiqueta.setBorder(null);
+		panelMazoComun.add(etiqueta,BorderLayout.CENTER);
+		panelMesa.add(panelMazoComun, BorderLayout.EAST);
+	}
+
+	public void inicializarMazoCartasDescartadas(){
+		this.panelCartasDescartadas = ayudante.generarPanel();
+		panelCartasDescartadas.setLayout(new BorderLayout(0, 0));
+		String ruta = "Imagenes/Carta_Reverso/grupo_cartas.png";
+		ImageIcon imagen = new ImageIcon(this.getClass().getResource(ruta));
+		JLabel etiqueta = ayudante.generarEtiquetaConImagen("Grupo de cartas", imagen);
+		etiqueta.setBorder(null);
+		panelCartasDescartadas.add(etiqueta,BorderLayout.CENTER);
+		panelMesa.add(panelCartasDescartadas, BorderLayout.WEST);
+	}
+
+	public void inicializarJugadores(){
 		jugadorUno = new JugadorVista();
 		jugadorDos = new JugadorVista();
 		JugadorActual = new JugadorVista();
-
-		
-		panelCartasMesa = this.generarPanel();
-		JPanel panelCartasJugadorUno = this.generarPanel();
-		JPanel panelCartasJugadorDos = this.generarPanel();
-		mazoComun = this.generarPanel();
-
+		JPanel panelCartasJugadorUno = ayudante.generarPanel();
+		JPanel panelCartasJugadorDos = ayudante.generarPanel();
 		jugadorUno.asignarPanel(panelCartasJugadorUno);
 		jugadorDos.asignarPanel(panelCartasJugadorDos);
-		JugadorActual = jugadorUno;
-		panelMesa.add(panelCartasMesa, BorderLayout.CENTER);
 		panelMesa.add(panelCartasJugadorUno, BorderLayout.NORTH);
 		panelMesa.add(panelCartasJugadorDos, BorderLayout.SOUTH);
-		panelMesa.add(mazoComun, BorderLayout.EAST);
-	}
-
-	public JPanel generarPanel(){
-		JPanel panel = new JPanel();
-		panel.setBackground(new java.awt.Color(28, 84, 45));
-		return panel;
-	}
-
-	public JLabel generarEtiquetaConImagen(String nombre, ImageIcon icono){
-		JLabel etiqueta = new JLabel();
-        etiqueta.setName(nombre);
-        etiqueta.setBorder(new EmptyBorder(60,5,5,5));
-        etiqueta.setSize(144,200);
-        etiqueta.setIcon(icono);
-        etiqueta.setEnabled(true);
-		etiqueta.setVisible(true);
-		return etiqueta;
 	}
 
 	public void actualizarCartasJugadorUno(ArrayList<Carta> cartas){
@@ -124,10 +127,10 @@ public class MesaVista extends JFrame {
             Integer valor = cartasEnMesa.get(indice).obtenerValor();
             String ruta = "Imagenes/" + palo + "/" + valor.toString() + "-" + palo + ".jpg";
 			ImageIcon imagen = new ImageIcon(this.getClass().getResource(ruta));
-            JLabel etiqueta = generarEtiquetaConImagen(valor+"-"+palo, imagen);
+            JLabel etiqueta = ayudante.generarEtiquetaConImagen(valor+"-"+palo, imagen);
             this.cartasEnMesa.add(etiqueta);
             this.panelCartasMesa.add(etiqueta);
-            this.JugadorActual.actualizarPanel(this.panelMesa);
+            ayudante.actualizarPanel(this.panelMesa);
         }
 	}
 
@@ -147,9 +150,12 @@ public class MesaVista extends JFrame {
 		cartas.add(carta3);
 		cartas.add(carta4);
 		frame.actualizarCartasEnMesa(cartas);
+		frame.inicializarJugadores();
 		frame.actualizarCartasJugadorUno(cartas);
 		frame.actualizarCartasJugadorDos(cartas);
 		frame.deshabilitarCartasJugadores();
+		frame.inicializarMazoComun();
+		frame.inicializarMazoCartasDescartadas();
 		frame.setVisible(true);
 		frame.preguntarInformacionJugadorUno();
 		frame.preguntarInformacionJugadorDos();
