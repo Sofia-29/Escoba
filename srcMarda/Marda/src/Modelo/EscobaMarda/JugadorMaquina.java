@@ -7,7 +7,7 @@ import Modelo.Carta;
 public class JugadorMaquina extends Jugador{
     private ArrayList<Carta> cartasCapturadas;
 
-    JugadorMaquina(){
+    public JugadorMaquina(){
         super();
         cartasCapturadas = new ArrayList<Carta>();
     }
