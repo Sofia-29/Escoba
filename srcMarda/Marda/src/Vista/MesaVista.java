@@ -3,7 +3,7 @@ package Vista;
 import java.awt.BorderLayout;
 
 import java.util.ArrayList;
-
+import java.util.concurrent.TimeUnit;
 
 import javax.swing.ImageIcon;
 import javax.swing.JFrame;
@@ -73,29 +73,48 @@ public class MesaVista extends JFrame {
 		return etiqueta;
 	}
 
-	public void actualizarCartasJugador(ArrayList<Carta> cartas){
+	public void actualizarCartasJugadorUno(ArrayList<Carta> cartas){
 		jugadorUno.actualizarCartasJugador(cartas);
+	}
+
+	public void actualizarCartasJugadorDos(ArrayList<Carta> cartas){
 		jugadorDos.actualizarCartasJugador(cartas);
 	}
 
 	public void preguntarInformacionJugadorUno(){
 		jugadorUno.preguntarNombreJugador();
 		int opcion = jugadorUno.preguntarTurno();
-		asignarTurnoJugador(jugadorUno.obtenerNombreJugador());
+
+		//Asignacion del turno segun lo que elija el jugador uno
+		if(opcion == 0){
+			JugadorActual.asignarNombre("");
+		}else{
+			JugadorActual.asignarNombre(jugadorUno.obtenerNombreJugador());
+		}
+		cambiarTurnoJugador();
 	}
 
 	public void preguntarInformacionJugadorDos(){
 		jugadorDos.preguntarNombreJugador();
 	}
 
-	public void asignarTurnoJugador(String nombre){
-		if(jugadorUno.obtenerNombreJugador().equals(nombre)){
-			JugadorActual = jugadorUno;
-			jugadorDos.deshabilitarCartasJugador();
-		}else{
+	public void deshabilitarCartasJugadores(){
+		jugadorUno.deshabilitarCartasJugador();
+		jugadorDos.deshabilitarCartasJugador();
+	}
+
+	public void cambiarTurnoJugador(){
+		if(JugadorActual.obtenerNombreJugador().equals(jugadorUno.obtenerNombreJugador())){
 			JugadorActual = jugadorDos;
 			jugadorUno.deshabilitarCartasJugador();
+		}else{
+			JugadorActual = jugadorUno;
+			jugadorDos.deshabilitarCartasJugador();
 		}
+		JugadorActual.habilitarCartasJugador();
+		this.panelMesa.revalidate();
+    	this.panelMesa.repaint();
+
 	}
 
 	public void actualizarCartasEnMesa(ArrayList<Carta> cartasEnMesa){
@@ -108,8 +127,7 @@ public class MesaVista extends JFrame {
             JLabel etiqueta = generarEtiquetaConImagen(valor+"-"+palo, imagen);
             this.cartasEnMesa.add(etiqueta);
             this.panelCartasMesa.add(etiqueta);
-            this.panelCartasMesa.revalidate();
-            this.panelCartasMesa.repaint();
+            this.JugadorActual.actualizarPanel(this.panelMesa);
         }
 	}
 
@@ -129,10 +147,13 @@ public class MesaVista extends JFrame {
 		cartas.add(carta3);
 		cartas.add(carta4);
 		frame.actualizarCartasEnMesa(cartas);
-		frame.actualizarCartasJugador(cartas);
+		frame.actualizarCartasJugadorUno(cartas);
+		frame.actualizarCartasJugadorDos(cartas);
+		frame.deshabilitarCartasJugadores();
 		frame.setVisible(true);
 		frame.preguntarInformacionJugadorUno();
 		frame.preguntarInformacionJugadorDos();
-		frame.asignarTurnoJugador("Carmelo");
+
+		frame.cambiarTurnoJugador();
 	}
 }

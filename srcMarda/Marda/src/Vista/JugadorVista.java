@@ -30,16 +30,20 @@ public class JugadorVista {
         this.panel = panel;
     }
 
+    public void asignarNombre(String nombre){
+        this.nombre = nombre;
+    }
+
     public String obtenerNombreJugador(){
         return this.nombre;
     }
 
     public void preguntarNombreJugador(){
         String mensaje = "Ingrese el nombre del jugador: ";
-        this.nombre = JOptionPane.showInputDialog(mensaje,"");
+        this.asignarNombre(JOptionPane.showInputDialog(mensaje,""));
     }
 
-    public static int preguntarTurno(){
+    public int preguntarTurno(){
         String mensaje="¿Desea ser el primer jugador?";
         int respuesta = JOptionPane.showConfirmDialog(null, mensaje, "Escoger turno", JOptionPane.YES_NO_OPTION);
         return respuesta;
@@ -56,8 +60,7 @@ public class JugadorVista {
             generarBotonConImagen(boton, valor+"-"+palo, imagen);
             this.componenteCartasJugador.add(boton);
             panel.add(boton);
-            panel.revalidate();
-            panel.repaint();
+            actualizarPanel(panel);
         }
     }
 
@@ -68,12 +71,29 @@ public class JugadorVista {
             JToggleButton boton = this.componenteCartasJugador.get(indice);
             generarBotonConImagen(boton, "Carta_Reverso", imagen);
             boton.setEnabled(false);
-            panel.revalidate();
-            panel.repaint();
+            actualizarPanel(panel);
         }
     }
 
-    public void generarBotonConImagen(JToggleButton boton, String nombre, ImageIcon icono){
+    public void habilitarCartasJugador(){
+        for(int indice = 0; indice < this.cartasJugador.size(); indice++){
+            String palo = this.cartasJugador.get(indice).obtenerPalo();
+            Integer valor = this.cartasJugador.get(indice).obtenerValor();
+            String ruta = "Imagenes/" + palo + "/" + valor.toString() + "-" + palo + ".jpg";
+            ImageIcon imagen = new ImageIcon(this.getClass().getResource(ruta));
+            JToggleButton boton = this.componenteCartasJugador.get(indice);
+            generarBotonConImagen(boton, "Carta_Reverso", imagen);
+            boton.setEnabled(true);
+            actualizarPanel(panel);
+        }
+    }
+
+    public void actualizarPanel(JPanel panel){
+        panel.revalidate();
+        panel.repaint();
+    }
+
+    private void generarBotonConImagen(JToggleButton boton, String nombre, ImageIcon icono){
         boton.setName(nombre);
         boton.setBorder(new EmptyBorder(5,5,5,5));
         boton.setSize(144,200);
