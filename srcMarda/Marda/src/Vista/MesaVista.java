@@ -19,7 +19,9 @@ public class MesaVista extends JFrame {
 	private JPanel panelCartasMesa;
 	private JPanel panelMazoComun;
 	private JPanel panelCartasDescartadas;
-
+	private JPanel panelEtiquetas;
+	private JLabel turnoJugador;
+	private JLabel puntajeJugador;
 	private ArrayList<JLabel> cartasEnMesa;
 	private JugadorVista jugadorUno;
 	private JugadorVista jugadorDos;
@@ -40,6 +42,10 @@ public class MesaVista extends JFrame {
 		cartasEnMesa = new ArrayList<JLabel>();
 		panelCartasMesa = ayudante.generarPanel();
 		panelMesa.add(panelCartasMesa, BorderLayout.CENTER);
+		panelEtiquetas= ayudante.generarPanel();
+		panelEtiquetas.setSize(200,100);
+		inicializarEtiquetas();
+		panelMesa.add(panelEtiquetas,BorderLayout.WEST);
 	}
 
 	public void inicializarMazoComun(){
@@ -53,6 +59,27 @@ public class MesaVista extends JFrame {
 		panelMesa.add(panelMazoComun, BorderLayout.EAST);
 	}
 
+	public void inicializarJugadores(){
+		jugadorUno = new JugadorVista();
+		jugadorDos = new JugadorVista();
+		JugadorActual = new JugadorVista();
+		JPanel panelCartasJugadorUno = ayudante.generarPanel();
+		JPanel panelCartasJugadorDos = ayudante.generarPanel();
+		jugadorUno.asignarPanel(panelCartasJugadorUno);
+		jugadorDos.asignarPanel(panelCartasJugadorDos);
+		//actualizarEtiquetaTurnoJugador();
+		panelMesa.add(panelCartasJugadorUno, BorderLayout.NORTH);
+		panelMesa.add(panelCartasJugadorDos, BorderLayout.SOUTH);
+	}
+
+	public void actualizarCartasJugadorUno(ArrayList<Carta> cartas){
+		jugadorUno.actualizarCartasJugador(cartas);
+	}
+
+	public void actualizarCartasJugadorDos(ArrayList<Carta> cartas){
+		jugadorDos.actualizarCartasJugador(cartas);
+	}
+
 	public void inicializarMazoCartasDescartadas(){
 		this.panelCartasDescartadas = ayudante.generarPanel();
 		panelCartasDescartadas.setLayout(new BorderLayout(0, 0));
@@ -64,24 +91,27 @@ public class MesaVista extends JFrame {
 		panelMesa.add(panelCartasDescartadas, BorderLayout.WEST);
 	}
 
-	public void inicializarJugadores(){
-		jugadorUno = new JugadorVista();
-		jugadorDos = new JugadorVista();
-		JugadorActual = new JugadorVista();
-		JPanel panelCartasJugadorUno = ayudante.generarPanel();
-		JPanel panelCartasJugadorDos = ayudante.generarPanel();
-		jugadorUno.asignarPanel(panelCartasJugadorUno);
-		jugadorDos.asignarPanel(panelCartasJugadorDos);
-		panelMesa.add(panelCartasJugadorUno, BorderLayout.NORTH);
-		panelMesa.add(panelCartasJugadorDos, BorderLayout.SOUTH);
+	public void actualizarCartasEnMesa(ArrayList<Carta> cartasEnMesa){
+		this.cartasEnMesa = new ArrayList<JLabel>();
+		for(int indice = 0; indice < cartasEnMesa.size(); indice++){
+            String palo = cartasEnMesa.get(indice).obtenerPalo();
+            Integer valor = cartasEnMesa.get(indice).obtenerValor();
+            String ruta = "Imagenes/" + palo + "/" + valor.toString() + "-" + palo + ".jpg";
+			ImageIcon imagen = new ImageIcon(this.getClass().getResource(ruta));
+            JLabel etiqueta = ayudante.generarEtiquetaConImagen(valor+"-"+palo, imagen);
+            this.cartasEnMesa.add(etiqueta);
+            this.panelCartasMesa.add(etiqueta);
+            ayudante.actualizarPanel(this.panelMesa);
+        }
 	}
 
-	public void actualizarCartasJugadorUno(ArrayList<Carta> cartas){
-		jugadorUno.actualizarCartasJugador(cartas);
-	}
-
-	public void actualizarCartasJugadorDos(ArrayList<Carta> cartas){
-		jugadorDos.actualizarCartasJugador(cartas);
+	public void iniciarBotonDescartarCartaJugadores(){
+		jugadorUno.iniciarBotonDescartarCarta();
+		jugadorDos.iniciarBotonDescartarCarta();
+		JPanel panelSur = jugadorDos.obtenerPanel();
+		panelSur.add(jugadorDos.obtenerBotonDescartarCarta());
+		JPanel panelNorte = jugadorUno.obtenerPanel();
+		panelNorte.add(jugadorUno.obtenerBotonDescartarCarta());
 	}
 
 	public void preguntarInformacionJugadorUno(){
@@ -101,12 +131,9 @@ public class MesaVista extends JFrame {
 		jugadorDos.preguntarNombreJugador();
 	}
 
-	public void deshabilitarCartasJugadores(){
-		jugadorUno.deshabilitarCartasJugador();
-		jugadorDos.deshabilitarCartasJugador();
-	}
 
 	public void cambiarTurnoJugador(){
+
 		if(JugadorActual.obtenerNombreJugador().equals(jugadorUno.obtenerNombreJugador())){
 			JugadorActual = jugadorDos;
 			jugadorUno.deshabilitarCartasJugador();
@@ -115,51 +142,85 @@ public class MesaVista extends JFrame {
 			jugadorDos.deshabilitarCartasJugador();
 		}
 		JugadorActual.habilitarCartasJugador();
+		turnoJugador.setText("Turno de "+JugadorActual.obtenerNombreJugador());
+		actualizarEtiquetaTurnoJugador(JugadorActual.obtenerNombreJugador());
 		this.panelMesa.revalidate();
     	this.panelMesa.repaint();
-
 	}
 
-	public void actualizarCartasEnMesa(ArrayList<Carta> cartasEnMesa){
-		this.cartasEnMesa = new ArrayList<JLabel>();
-		for(int indice = 0; indice < cartasEnMesa.size(); indice++){
-            String palo = cartasEnMesa.get(indice).obtenerPalo();
-            Integer valor = cartasEnMesa.get(indice).obtenerValor();
-            String ruta = "Imagenes/" + palo + "/" + valor.toString() + "-" + palo + ".jpg";
-			ImageIcon imagen = new ImageIcon(this.getClass().getResource(ruta));
-            JLabel etiqueta = ayudante.generarEtiquetaConImagen(valor+"-"+palo, imagen);
-            this.cartasEnMesa.add(etiqueta);
-            this.panelCartasMesa.add(etiqueta);
-            ayudante.actualizarPanel(this.panelMesa);
-        }
+	public void deshabilitarCartasJugadores(){
+		jugadorUno.deshabilitarCartasJugador();
+		jugadorDos.deshabilitarCartasJugador();
 	}
 
+	public String obtenerCartaDescartada(){
+		return JugadorActual.obtenerCartaDescartada();
+	}
+
+
+	private void inicializarEtiquetas(){
+		turnoJugador = ayudante.generarEtiqueta("Turno");
+		panelEtiquetas.add(turnoJugador, BorderLayout.NORTH);
+	}
+
+	//hay que llamarlo en pasar turno para que se actualice la etiqueta
+	private void actualizarEtiquetaTurnoJugador(String nombreJugador){
+		//String nombreJugador = JugadorActual.obtenerNombreJugador();
+		turnoJugador.setText("Turno de " +nombreJugador);
+		turnoJugador.setVisible(true);
+		ayudante.actualizarPanel(panelMesa);
+	}
+
+	/* 
+	public void actualizarEtiquetaPuntajeJugador(){
+		String puntajeJugador = JugadorActual.obtenerNombreJugador();
+		turnoJugador = ayudante.generarEtiqueta("Turno de " +nombreJugador);
+		turnoJugador.setVisible(true);
+		panelEtiquetas.add(turnoJugador, BorderLayout.NORTH);
+	}
+	*/
+	
 	/**
 	 * Launch the application.
 	 */
 	public static void main(String[] args) {
 		MesaVista frame = new MesaVista();
 
-		Carta carta1 = new Carta(1, "Bastos");
-		Carta carta2 = new Carta(2, "Copas");
-		Carta carta3 = new Carta(3, "Oros");
-		Carta carta4 = new Carta(4, "Espadas");
+		Carta carta1 = new Carta(1, "Bastos", "Imagenes/Bastos/1-Bastos.jpg");
+		Carta carta2 = new Carta(2, "Copas", "Imagenes/Copas/2-Copas.jpg");
+		Carta carta3 = new Carta(3, "Oros", "Imagenes/Oros/3-Oros.jpg");
+		Carta carta4 = new Carta(4, "Espadas", "Imagenes/Espadas/4-oros.jpg");
 		ArrayList<Carta> cartas = new ArrayList<Carta>();
+		ArrayList<Carta> cartas1 = new ArrayList<Carta>();
 		cartas.add(carta1);
 		cartas.add(carta2);
 		cartas.add(carta3);
 		cartas.add(carta4);
+		cartas1.add(carta1);
+		cartas1.add(carta2);
+		cartas1.add(carta3);
+		cartas1.add(carta4);
 		frame.actualizarCartasEnMesa(cartas);
 		frame.inicializarJugadores();
 		frame.actualizarCartasJugadorUno(cartas);
-		frame.actualizarCartasJugadorDos(cartas);
+		frame.actualizarCartasJugadorDos(cartas1);
 		frame.deshabilitarCartasJugadores();
 		frame.inicializarMazoComun();
 		frame.inicializarMazoCartasDescartadas();
 		frame.setVisible(true);
 		frame.preguntarInformacionJugadorUno();
 		frame.preguntarInformacionJugadorDos();
+		//frame.actualizarEtiquetaTurnoJugador();
+		//frame.setVisible(true);
+		frame.iniciarBotonDescartarCartaJugadores();
+
+		String carta = "-1";
+		while(carta.equals("-1")){
+			carta = frame.obtenerCartaDescartada();
+		}
+		System.out.println(carta);
 
 		frame.cambiarTurnoJugador();
 	}
+	//frame.actualizarEtiquetaTurnoJugador();
 }

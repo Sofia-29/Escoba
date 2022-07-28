@@ -1,4 +1,4 @@
-package Modelo.EscobaMarda;
+package Modelo.JuegoEscoba;
 
 import Modelo.Regla;
 import Modelo.Carta;

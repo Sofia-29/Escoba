@@ -1,4 +1,4 @@
-package Modelo.EscobaMarda;
+package Modelo.JuegoEscoba;
 
 import java.util.ArrayList;
 
@@ -74,13 +74,13 @@ public class ValidadorEscoba extends Validador{
     //     ArrayList<Carta> cartas = new ArrayList<Carta>();
     //     ArrayList<Carta> cartas2 = new ArrayList<Carta>();
     //     ArrayList<Carta> cartasEnMesa = new ArrayList<Carta>();
-    //     Carta carta = new Carta(7, "Oros");
-    //     Carta carta2 = new Carta(7, "Copas");
-    //     Carta carta3 = new Carta(7, "Espadas");
-    //     Carta carta4 = new Carta(7, "Bastos");
+    //     Carta carta = new Carta(7, "Oros", "");
+    //     Carta carta2 = new Carta(7, "Copas", "");
+    //     Carta carta3 = new Carta(7, "Espadas", "");
+    //     Carta carta4 = new Carta(7, "Bastos", "");
     //     for (int i = 0; i < 10; i++) {
     //         if (i != 6){
-    //             cartas.add(new Carta(i+1, "Oros"));
+    //             cartas.add(new Carta(i+1, "Oros", ""));
     //         }
     //     }
     //     cartas2.add(carta);

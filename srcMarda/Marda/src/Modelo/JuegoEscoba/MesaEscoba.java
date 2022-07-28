@@ -1,11 +1,11 @@
-package Modelo.EscobaMarda;
+package Modelo.JuegoEscoba;
 import java.util.ArrayList;
-
 import Modelo.Carta;
 import Modelo.Jugador;
 import Modelo.Mesa;
 
-class MesaEscoba extends Mesa {
+
+public class MesaEscoba extends Mesa {
 
     public Jugador obtenerJugadorPersona(String nombre){
         if(primerJugador.obtenerNombre() == nombre){

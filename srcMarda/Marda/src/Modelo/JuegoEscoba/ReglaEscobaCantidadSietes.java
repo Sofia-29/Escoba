@@ -1,11 +1,11 @@
-package Modelo.EscobaMarda;
+package Modelo.JuegoEscoba;
 
 import Modelo.Regla;
 import Modelo.Carta;
 import java.util.ArrayList;
 
-public class ReglaEscobaSieteOros extends Regla{
-    public ReglaEscobaSieteOros(String nombre, int puntaje){
+public class ReglaEscobaCantidadSietes extends Regla{
+    public ReglaEscobaCantidadSietes(String nombre, int puntaje){
         super(nombre, puntaje);
     }
 
@@ -14,7 +14,7 @@ public class ReglaEscobaSieteOros extends Regla{
     {
         int puntaje = 0;
         for (Carta carta : cartas) {
-            if(carta.obtenerValor() == 7 && carta.obtenerPalo().equals("Oros"))
+            if(carta.obtenerValor() == 7)
             {
                 puntaje += 1;
             }
