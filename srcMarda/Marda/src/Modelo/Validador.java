@@ -6,10 +6,16 @@ public abstract class Validador {
     private ArrayList<Regla> Reglas;
 
     public Validador(){
+        this.Reglas = new ArrayList<Regla>();
     }
 
     public void contabilizarPuntos(Jugador primerJugador, Jugador segundoJugador){
         validarReglas(primerJugador, segundoJugador);
+    }
+
+    public ArrayList<Regla> obtenerReglas()
+    {
+        return this.Reglas;
     }
 
     public abstract void validarReglas(Jugador primerJugador, Jugador segundoJugador);

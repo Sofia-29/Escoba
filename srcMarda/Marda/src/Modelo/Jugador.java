@@ -28,6 +28,10 @@ public abstract class Jugador {
         this.cartas = cartas;
     }
 
+    public void asignarCartasCapturadas(ArrayList<Carta> cartas){
+        this.cartasCapturadas = cartas;
+    }
+
     public void asignarPuntaje(int puntaje){
         this.puntaje += puntaje;
     }
