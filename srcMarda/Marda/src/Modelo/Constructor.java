@@ -3,8 +3,6 @@ import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileReader;
 
-import javax.swing.JFileChooser;
-
 public abstract class Constructor {
 
     public Constructor(){
@@ -29,8 +27,7 @@ public abstract class Constructor {
         return resultado;
     }
 
-    public void leerArchivo(){
-        File partida = elegirArchivo();
+    public void leerArchivo(File partida){
         String salida = "";
         try
         {
@@ -45,18 +42,5 @@ public abstract class Constructor {
             e.printStackTrace();
         }
         this.mesaSerial = salida;
-    }
-
-    private static File elegirArchivo(){
-        JFileChooser selectorDeArchivo = new JFileChooser();
-        int respuesta = selectorDeArchivo.showOpenDialog(null);
-        
-        if(respuesta == JFileChooser.APPROVE_OPTION){
-            File file  = new File(selectorDeArchivo.getSelectedFile().getAbsolutePath());
-            return file;
-        }else{
-            System.out.println("error al cargar el archivo");
-            return null;
-        }
     }
 }

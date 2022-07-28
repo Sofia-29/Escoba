@@ -1,17 +1,15 @@
 package Vista;
-
 import java.awt.BorderLayout;
-
+import java.io.File;
 import java.util.ArrayList;
-
 import javax.swing.ImageIcon;
+import javax.swing.JFileChooser;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
-
 import Modelo.Carta;
-
 
 public class MesaVista extends JFrame {
 
@@ -134,6 +132,35 @@ public class MesaVista extends JFrame {
         }
 	}
 
+	public boolean preguntarCargarPartida(){
+		boolean resultado = false;
+		String mensaje="¿Desea cargar una partida?";
+        int respuesta = JOptionPane.showConfirmDialog(null, mensaje, "Cargar partida", JOptionPane.YES_NO_OPTION);
+		if(respuesta != 1){
+			resultado = true;
+		}
+		return resultado;
+	}
+
+	public String guardarPartida(){
+		JOptionPane.showMessageDialog(null, "Ingrese la ruta y nombre del archivo a guardar");
+		File rutaElegida = elegirArchivo();
+		return rutaElegida.getPath();
+	}
+
+	public File elegirArchivo(){
+        JFileChooser selectorDeArchivo = new JFileChooser();
+        int respuesta = selectorDeArchivo.showOpenDialog(null);
+        
+        if(respuesta == JFileChooser.APPROVE_OPTION){
+            File file  = new File(selectorDeArchivo.getSelectedFile().getAbsolutePath());
+            return file;
+        }else{
+            System.out.println("error al cargar el archivo");
+            return null;
+        }
+    }
+
 	/**
 	 * Launch the application.
 	 */
@@ -157,9 +184,11 @@ public class MesaVista extends JFrame {
 		frame.inicializarMazoComun();
 		frame.inicializarMazoCartasDescartadas();
 		frame.setVisible(true);
+		frame.preguntarCargarPartida();
 		frame.preguntarInformacionJugadorUno();
 		frame.preguntarInformacionJugadorDos();
 
 		frame.cambiarTurnoJugador();
+		
 	}
 }
