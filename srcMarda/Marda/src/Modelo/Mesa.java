@@ -26,6 +26,14 @@ public abstract class Mesa {
         this.primerJugador = primerJugador;
     }
 
+    public void asignarCartasEnMesa(ArrayList<Carta> cartasEnMesa){
+        this.cartasEnMesa = cartasEnMesa;
+    }
+
+    public void asignarJugadorActual(Jugador jugadorActual){
+        this.jugadorActual = jugadorActual;
+    }
+
     public void asignarSegundoJugador(Jugador segundoJugador){
        this.segundoJugador = segundoJugador;
     }

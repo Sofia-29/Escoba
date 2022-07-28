@@ -1,0 +1,212 @@
+Mazo={
+  "grupoDeCartas": [
+    {
+      "valor": 1,
+      "palo": "Copas",
+      "ruta": "img/Espanyol/1-Copas"
+    },
+    {
+      "valor": 2,
+      "palo": "Copas",
+      "ruta": "img/Espanyol/2-Copas"
+    },
+    {
+      "valor": 3,
+      "palo": "Copas",
+      "ruta": "img/Espanyol/3-Copas"
+    },
+    {
+      "valor": 4,
+      "palo": "Copas",
+      "ruta": "img/Espanyol/4-Copas"
+    },
+    {
+      "valor": 5,
+      "palo": "Copas",
+      "ruta": "img/Espanyol/5-Copas"
+    },
+    {
+      "valor": 6,
+      "palo": "Copas",
+      "ruta": "img/Espanyol/6-Copas"
+    },
+    {
+      "valor": 7,
+      "palo": "Copas",
+      "ruta": "img/Espanyol/7-Copas"
+    },
+    {
+      "valor": 8,
+      "palo": "Copas",
+      "ruta": "img/Espanyol/8-Copas"
+    },
+    {
+      "valor": 9,
+      "palo": "Copas",
+      "ruta": "img/Espanyol/9-Copas"
+    },
+    {
+      "valor": 10,
+      "palo": "Copas",
+      "ruta": "img/Espanyol/10-Copas"
+    },
+    {
+      "valor": 1,
+      "palo": "Espadas",
+      "ruta": "img/Espanyol/1-Espadas"
+    },
+    {
+      "valor": 2,
+      "palo": "Espadas",
+      "ruta": "img/Espanyol/2-Espadas"
+    },
+    {
+      "valor": 3,
+      "palo": "Espadas",
+      "ruta": "img/Espanyol/3-Espadas"
+    },
+    {
+      "valor": 4,
+      "palo": "Espadas",
+      "ruta": "img/Espanyol/4-Espadas"
+    },
+    {
+      "valor": 5,
+      "palo": "Espadas",
+      "ruta": "img/Espanyol/5-Espadas"
+    },
+    {
+      "valor": 6,
+      "palo": "Espadas",
+      "ruta": "img/Espanyol/6-Espadas"
+    },
+    {
+      "valor": 7,
+      "palo": "Espadas",
+      "ruta": "img/Espanyol/7-Espadas"
+    },
+    {
+      "valor": 8,
+      "palo": "Espadas",
+      "ruta": "img/Espanyol/8-Espadas"
+    },
+    {
+      "valor": 9,
+      "palo": "Espadas",
+      "ruta": "img/Espanyol/9-Espadas"
+    },
+    {
+      "valor": 10,
+      "palo": "Espadas",
+      "ruta": "img/Espanyol/10-Espadas"
+    },
+    {
+      "valor": 1,
+      "palo": "Bastos",
+      "ruta": "img/Espanyol/1-Bastos"
+    },
+    {
+      "valor": 2,
+      "palo": "Bastos",
+      "ruta": "img/Espanyol/2-Bastos"
+    },
+    {
+      "valor": 3,
+      "palo": "Bastos",
+      "ruta": "img/Espanyol/3-Bastos"
+    },
+    {
+      "valor": 4,
+      "palo": "Bastos",
+      "ruta": "img/Espanyol/4-Bastos"
+    },
+    {
+      "valor": 5,
+      "palo": "Bastos",
+      "ruta": "img/Espanyol/5-Bastos"
+    },
+    {
+      "valor": 6,
+      "palo": "Bastos",
+      "ruta": "img/Espanyol/6-Bastos"
+    },
+    {
+      "valor": 7,
+      "palo": "Bastos",
+      "ruta": "img/Espanyol/7-Bastos"
+    },
+    {
+      "valor": 8,
+      "palo": "Bastos",
+      "ruta": "img/Espanyol/8-Bastos"
+    },
+    {
+      "valor": 9,
+      "palo": "Bastos",
+      "ruta": "img/Espanyol/9-Bastos"
+    },
+    {
+      "valor": 10,
+      "palo": "Bastos",
+      "ruta": "img/Espanyol/10-Bastos"
+    },
+    {
+      "valor": 1,
+      "palo": "Oros",
+      "ruta": "img/Espanyol/1-Oros"
+    },
+    {
+      "valor": 2,
+      "palo": "Oros",
+      "ruta": "img/Espanyol/2-Oros"
+    },
+    {
+      "valor": 3,
+      "palo": "Oros",
+      "ruta": "img/Espanyol/3-Oros"
+    },
+    {
+      "valor": 4,
+      "palo": "Oros",
+      "ruta": "img/Espanyol/4-Oros"
+    },
+    {
+      "valor": 5,
+      "palo": "Oros",
+      "ruta": "img/Espanyol/5-Oros"
+    },
+    {
+      "valor": 6,
+      "palo": "Oros",
+      "ruta": "img/Espanyol/6-Oros"
+    },
+    {
+      "valor": 7,
+      "palo": "Oros",
+      "ruta": "img/Espanyol/7-Oros"
+    },
+    {
+      "valor": 8,
+      "palo": "Oros",
+      "ruta": "img/Espanyol/8-Oros"
+    },
+    {
+      "valor": 9,
+      "palo": "Oros",
+      "ruta": "img/Espanyol/9-Oros"
+    },
+    {
+      "valor": 10,
+      "palo": "Oros",
+      "ruta": "img/Espanyol/10-Oros"
+    }
+  ]
+}*Jugador={
+  "cartasCapturadas": [],
+  "puntaje": 0,
+  "nombre": "Nombre 1"
+}*Jugador={
+  "cartasCapturadas": [],
+  "puntaje": 0,
+  "nombre": "Nombre 2"
+}*JugadorActual=Nombre 2*

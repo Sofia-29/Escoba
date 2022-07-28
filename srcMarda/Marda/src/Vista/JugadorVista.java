@@ -1,13 +1,9 @@
 package Vista;
 import java.util.ArrayList;
-
 import javax.swing.ImageIcon;
-import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JToggleButton;
-import javax.swing.border.EmptyBorder;
-
 import Modelo.Carta;
 
 public class JugadorVista {
@@ -16,7 +12,6 @@ public class JugadorVista {
     private General ayudante;
     private JPanel panel; 
     private String nombre;
-    private JLabel puntaje;
 
     JugadorVista(){
         componenteCartasJugador = new ArrayList<JToggleButton>();

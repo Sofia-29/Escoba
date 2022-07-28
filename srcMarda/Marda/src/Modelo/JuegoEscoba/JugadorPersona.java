@@ -1,4 +1,4 @@
-package Modelo.EscobaMarda;
+package Modelo.JuegoEscoba;
 import java.util.ArrayList;
 
 import Modelo.Jugador; 
@@ -6,7 +6,7 @@ import Modelo.Carta;
 
 public class JugadorPersona extends Jugador{
 
-    JugadorPersona(){
+    public JugadorPersona(){
         super();
     }
 
