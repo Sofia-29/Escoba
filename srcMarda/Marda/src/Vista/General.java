@@ -39,5 +39,14 @@ public class General {
 		etiqueta.setVisible(true);
 		return etiqueta;
 	}
+
+    public JLabel generarEtiqueta(String texto){
+        JLabel etiqueta = new JLabel();
+        etiqueta.setText(texto);
+        etiqueta.setVisible(false);
+        etiqueta.setOpaque(true);
+        etiqueta.setBackground(new java.awt.Color(78, 59, 49));
+        return etiqueta;
+    }
 }
     
