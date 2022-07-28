@@ -9,6 +9,9 @@ import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
+import javax.swing.JToggleButton;
+import javax.swing.Icon;
+import java.awt.Image;
 
 import Modelo.Carta;
 
@@ -20,8 +23,11 @@ public class MesaVista extends JFrame {
 	private JPanel panelMazoComun;
 	private JPanel panelCartasDescartadas;
 	private JPanel panelEtiquetas;
+	private JPanel panelReglas;
 	private JLabel turnoJugador;
 	private JLabel puntajeJugador;
+	private JToggleButton reglasJuego;
+	
 	private ArrayList<JLabel> cartasEnMesa;
 	private JugadorVista jugadorUno;
 	private JugadorVista jugadorDos;
@@ -42,10 +48,17 @@ public class MesaVista extends JFrame {
 		cartasEnMesa = new ArrayList<JLabel>();
 		panelCartasMesa = ayudante.generarPanel();
 		panelMesa.add(panelCartasMesa, BorderLayout.CENTER);
+
 		panelEtiquetas= ayudante.generarPanel();
 		panelEtiquetas.setSize(200,100);
 		inicializarEtiquetas();
 		panelMesa.add(panelEtiquetas,BorderLayout.WEST);
+
+		panelReglas = ayudante.generarPanel();
+		panelEtiquetas.setSize(200,200);
+		inicializarReglas();
+		panelMesa.add(panelReglas,BorderLayout.EAST);
+		botonReglas();
 	}
 
 	public void inicializarMazoComun(){
@@ -157,7 +170,6 @@ public class MesaVista extends JFrame {
 		return JugadorActual.obtenerCartaDescartada();
 	}
 
-
 	private void inicializarEtiquetas(){
 		turnoJugador = ayudante.generarEtiqueta("Turno");
 		panelEtiquetas.add(turnoJugador, BorderLayout.NORTH);
@@ -170,11 +182,29 @@ public class MesaVista extends JFrame {
 		turnoJugador.setVisible(true);
 		ayudante.actualizarPanel(panelMesa);
 	}
-
 	
 	public void actualizarEtiquetaPuntajeJugador(String puntaje){
 		puntajeJugador.setText("Puntaje: " +puntaje);
 		puntajeJugador.setVisible(true);
+		ayudante.actualizarPanel(panelMesa);
+	}
+
+	private void inicializarReglas(){
+		reglasJuego = new JToggleButton();
+		String ruta = "Imagenes/Reglas/reglas.png";
+        ImageIcon imagen = new ImageIcon(this.getClass().getResource(ruta));
+        Icon icono = new ImageIcon(imagen.getImage().getScaledInstance(130,100,
+        Image.SCALE_DEFAULT));
+        reglasJuego.setBorder(new EmptyBorder(0,0,0,0));
+        reglasJuego.setBackground(new java.awt.Color(28, 84, 45));
+        reglasJuego.setIcon(icono);
+        reglasJuego.setForeground(new java.awt.Color(28, 84, 45));
+		panelReglas.add(reglasJuego, BorderLayout.NORTH);
+	}
+
+	public void botonReglas(){
+		reglasJuego.setVisible(true);
+		panelReglas.setVisible(true);
 		ayudante.actualizarPanel(panelMesa);
 	}
 
@@ -205,7 +235,6 @@ public class MesaVista extends JFrame {
 
         return juegoReglas;
     }
-
 	
 	/**
 	 * Launch the application.
