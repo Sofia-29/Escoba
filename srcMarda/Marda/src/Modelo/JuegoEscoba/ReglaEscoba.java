@@ -14,7 +14,7 @@ public class ReglaEscoba extends Regla{
     {
         int puntaje = 0;
         if(cartas.isEmpty()){
-            puntaje += 1;
+            puntaje += this.obtenerPuntaje();
         }
         return puntaje;
     }

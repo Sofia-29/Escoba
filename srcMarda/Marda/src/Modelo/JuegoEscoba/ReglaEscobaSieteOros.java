@@ -16,7 +16,7 @@ public class ReglaEscobaSieteOros extends Regla{
         for (Carta carta : cartas) {
             if(carta.obtenerValor() == 7 && carta.obtenerPalo().equals("Oros"))
             {
-                puntaje += 1;
+                puntaje += this.obtenerPuntaje();
             }
         }
         return puntaje;

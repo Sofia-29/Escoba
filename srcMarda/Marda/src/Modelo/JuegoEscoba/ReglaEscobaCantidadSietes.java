@@ -16,7 +16,7 @@ public class ReglaEscobaCantidadSietes extends Regla{
         for (Carta carta : cartas) {
             if(carta.obtenerValor() == 7)
             {
-                puntaje += 1;
+                puntaje += this.obtenerPuntaje();
             }
         }
         return puntaje;

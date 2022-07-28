@@ -14,6 +14,18 @@ public class ValidadorEscoba extends Validador{
     }
 
     @Override
+    public void inicializarReglas()
+    {
+        ArrayList<Regla> reglas = this.obtenerReglas();
+        reglas.add(new ReglaEscoba("Escoba", 1));
+        reglas.add(new ReglaEscobaCantidadOros("Cantidad Oros", 1));
+        reglas.add(new ReglaEscobaCantidadSietes("Cantidad Sietes", 1));
+        reglas.add(new ReglaEscobaSietes("Sietes", 1));
+        reglas.add(new ReglaEscobaOros("Oros", 1));
+        reglas.add(new ReglaEscobaSieteOros("Siete Oros", 1));
+    }
+
+    @Override
     public void validarReglas(Jugador primerJugador, Jugador segundoJugador){
         String stringABuscar = "Cantidad";
         for (Regla regla : this.obtenerReglas()) {
@@ -22,7 +34,11 @@ public class ValidadorEscoba extends Validador{
                 if(regla.obtenerNombre().contains(stringABuscar)){
                     int puntuacionJugadorUno = validarReglaJugador(primerJugador, regla);
                     int puntuacionJugadorDos = validarReglaJugador(segundoJugador, regla);
-                    comparacionMayor(primerJugador, segundoJugador, puntuacionJugadorUno, puntuacionJugadorDos).asignarPuntaje(1);
+                    Jugador ganador = comparacionMayor(primerJugador, segundoJugador, puntuacionJugadorUno, puntuacionJugadorDos);
+                    if(ganador != null)
+                    {
+                        ganador.asignarPuntaje(1);
+                    }
                 }else{
                     primerJugador.asignarPuntaje(validarReglaJugador(primerJugador, regla));
                     segundoJugador.asignarPuntaje(validarReglaJugador(segundoJugador, regla));
@@ -54,17 +70,6 @@ public class ValidadorEscoba extends Validador{
             }
             return null;
         }
-    }
-
-    private void inicializarReglas()
-    {
-        ArrayList<Regla> reglas = this.obtenerReglas();
-        reglas.add(new ReglaEscoba("Escoba", 1));
-        reglas.add(new ReglaEscobaCantidadOros("Cantidad Oros", 1));
-        reglas.add(new ReglaEscobaCantidadSietes("Cantidad Sietes", 1));
-        reglas.add(new ReglaEscobaSietes("Sietes", 1));
-        reglas.add(new ReglaEscobaOros("Oros", 1));
-        reglas.add(new ReglaEscobaSieteOros("Siete Oros", 1));
     }
 
     // public static void main(String[] args) {
