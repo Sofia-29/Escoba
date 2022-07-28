@@ -11,6 +11,7 @@ public class ValidadorEscoba extends Validador{
     private ArrayList<Regla> Reglas;
 
     public ValidadorEscoba(){
+        inicializarReglas();
     }
 
     @Override
@@ -49,5 +50,15 @@ public class ValidadorEscoba extends Validador{
             }
             return null;
         }
+    }
+
+    private void inicializarReglas()
+    {
+        this.Reglas.add(new ReglaEscoba("Escoba", 1));
+        this.Reglas.add(new ReglaEscobaCantidadOros("Cantidad Oros", 1));
+        this.Reglas.add(new ReglaEscobaCantidadSietes("Cantidad Sietes", 1));
+        this.Reglas.add(new ReglaEscobaSietes("Sietes", 1));
+        this.Reglas.add(new ReglaEscobaOros("Oros", 1));
+        this.Reglas.add(new ReglaEscobaSieteOros("Siete Oros", 1));
     }
 }
