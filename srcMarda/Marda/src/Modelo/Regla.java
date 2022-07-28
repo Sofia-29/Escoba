@@ -2,25 +2,22 @@ package Modelo;
 
 import java.util.ArrayList;
 
-public abstract class Reglas {
+public abstract class Regla {
     private String nombre;
     private int puntaje;
 
-    public Reglas(String nombre, int puntaje)
-    {
+    public Regla(String nombre, int puntaje){
         this.nombre = nombre;
         this.puntaje = puntaje;
     }
 
-    public String obtenerNombre()
-    {
+    public String obtenerNombre(){
         return this.nombre;
     }
 
-    public int obtenerPuntaje()
-    {
+    public int obtenerPuntaje(){
         return this.puntaje;
     }
 
-    protected abstract int validarRegla(ArrayList<Carta> cartas);
+    public abstract int validarRegla(ArrayList<Carta> cartas);
 }
