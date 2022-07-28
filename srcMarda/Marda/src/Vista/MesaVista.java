@@ -161,24 +161,23 @@ public class MesaVista extends JFrame {
 	private void inicializarEtiquetas(){
 		turnoJugador = ayudante.generarEtiqueta("Turno");
 		panelEtiquetas.add(turnoJugador, BorderLayout.NORTH);
+		puntajeJugador = ayudante.generarEtiqueta("Turno");
+		panelEtiquetas.add(puntajeJugador);
 	}
 
-	//hay que llamarlo en pasar turno para que se actualice la etiqueta
 	private void actualizarEtiquetaTurnoJugador(String nombreJugador){
-		//String nombreJugador = JugadorActual.obtenerNombreJugador();
 		turnoJugador.setText("Turno de " +nombreJugador);
 		turnoJugador.setVisible(true);
 		ayudante.actualizarPanel(panelMesa);
 	}
 
-	/* 
-	public void actualizarEtiquetaPuntajeJugador(){
-		String puntajeJugador = JugadorActual.obtenerNombreJugador();
-		turnoJugador = ayudante.generarEtiqueta("Turno de " +nombreJugador);
-		turnoJugador.setVisible(true);
-		panelEtiquetas.add(turnoJugador, BorderLayout.NORTH);
+	
+	public void actualizarEtiquetaPuntajeJugador(String puntaje){
+		puntajeJugador.setText("Puntaje: " +puntaje);
+		puntajeJugador.setVisible(true);
+		ayudante.actualizarPanel(panelMesa);
 	}
-	*/
+
 	
 	/**
 	 * Launch the application.
