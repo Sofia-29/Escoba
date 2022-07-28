@@ -1,51 +1,92 @@
 package Controlador;
-import Modelo.EscobaMarda.JugadorMaquina;
-import Modelo.EscobaMarda.JugadorPersona;
-import Modelo.EscobaMarda.MazoEspanyol;
-import Modelo.EscobaMarda.SerializadorEscobaJson;
 import java.io.File;
 import javax.swing.JFileChooser;
-import Modelo.SerializadorAbstracto;
+
+import Modelo.Constructor;
+import Modelo.Mesa;
+import Modelo.Serializador;
+import Modelo.JuegoEscoba.ConstructorEscoba;
+import Modelo.JuegoEscoba.JugadorMaquina;
+import Modelo.JuegoEscoba.JugadorPersona;
+import Modelo.JuegoEscoba.MazoEspanyol;
+import Modelo.JuegoEscoba.SerializadorEscoba;
+import Modelo.JuegoEscoba.MesaEscoba;
 
 public class Controlador {
-    public static File elegirArchivo(){
-        JFileChooser selectorDeArchivo = new JFileChooser();
-        int respuesta = selectorDeArchivo.showOpenDialog(null);
-        
-        if(respuesta == JFileChooser.APPROVE_OPTION){
-            File file  = new File(selectorDeArchivo.getSelectedFile().getAbsolutePath());
-            return file;
-        }else{
-            System.out.println("error al cargar el archivo");
-            return null;
-        }
-    }
-
-    public static void directorSerializador(SerializadorAbstracto cs){
+    public static void directorSerializador(Serializador cs){
         try {
             MazoEspanyol mazo = new MazoEspanyol();
             mazo.iniciarMazo();
             mazo.imprimirMazo();
-            JugadorMaquina jugador = new JugadorMaquina();
-            JugadorPersona jugador2 = new JugadorPersona();
-
-            cs.inicioObjeto("Juego");
+            JugadorMaquina primerJugador = new JugadorMaquina();
+            primerJugador.asignarNombre("Nombre 1");
+            JugadorPersona segundoJugador = new JugadorPersona();
+            segundoJugador.asignarNombre("Nombre 2");
+            // Cartas en mesa
             cs.serializarMazo(mazo);
-            cs.serializarJugador(jugador);
-            cs.serializarJugador(jugador2);
-            cs.finObjeto();
+            // Jugadores
+            cs.serializarJugador(primerJugador);
+            cs.serializarJugador(segundoJugador);
+            // Jugador Actual
+            cs.serializarjugadorActual(segundoJugador.obtenerNombre());
             String result = cs.obtSerializacion();
 
+            // Archivo serial
             System.out.println(result);
-
         } catch (Exception e) {
             e.printStackTrace();
         }
     }
 
+    public static void directorConstructor(Constructor constructorMesa){
+        // Agregar esqueleto de mesa
+        Mesa mesaConcreta = new MesaEscoba();
+        constructorMesa.iniciarMesaConcreta(mesaConcreta);
+
+        // Construir partes sobre el esqueleto de mesa 
+        constructorMesa.leerArchivo();
+        String atributo = constructorMesa.siguienteObjeto();
+        int posicionJugador = 0;
+        while(atributo != "null"){
+            String tipo = constructorMesa.obtenerTipoObjeto(atributo);
+            String Valor = constructorMesa.obtenerValorObjeto(atributo);
+            
+            switch (tipo) {
+                case "Mazo":
+                    constructorMesa.construirMazo(Valor);
+                    break;
+
+                case "Jugador":
+                    constructorMesa.construirJugador(Valor, posicionJugador);
+                    posicionJugador += 1;
+                    break;
+                
+                case "JugadorActual":
+                    constructorMesa.construirjugadorActual(Valor);
+                    break;
+            
+                default:
+                    break;
+            }
+
+            atributo = constructorMesa.siguienteObjeto();
+            if(atributo.length() <= 1){
+                break;
+            }
+        }
+
+        // Obtener mesa resultante
+        mesaConcreta = constructorMesa.obtenerMesa();
+    }
+
     public static void main(String[] args) throws Exception {
-        SerializadorEscobaJson cs = new SerializadorEscobaJson(); 
-        directorSerializador(cs);
+        // Se descomenta para probar el serializador
+        // SerializadorEscoba cs = new SerializadorEscoba(); 
+        // directorSerializador(cs);
+
+        // Se puede probar con el arch Partidas
+        // ConstructorEscoba ce = new ConstructorEscoba();
+        // directorConstructor(ce);
     }
 }
 

@@ -1,4 +1,4 @@
-{
+Mazo={
   "grupoDeCartas": [
     {
       "valor": 1,
@@ -201,4 +201,12 @@
       "ruta": "img/Espanyol/10-Oros"
     }
   ]
-}
+}*Jugador={
+  "cartasCapturadas": [],
+  "puntaje": 0,
+  "nombre": "Nombre 1"
+}*Jugador={
+  "cartasCapturadas": [],
+  "puntaje": 0,
+  "nombre": "Nombre 2"
+}*JugadorActual=Nombre 2*

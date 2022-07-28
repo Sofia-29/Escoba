@@ -1,4 +1,4 @@
-package Modelo.EscobaMarda;
+package Modelo.JuegoEscoba;
 import java.util.ArrayList;
 
 import Modelo.Jugador; 
