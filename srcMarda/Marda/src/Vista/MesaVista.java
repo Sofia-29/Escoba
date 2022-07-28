@@ -44,6 +44,7 @@ public class MesaVista extends JFrame {
 		panelMesa.add(panelCartasMesa, BorderLayout.CENTER);
 		panelEtiquetas= ayudante.generarPanel();
 		panelEtiquetas.setSize(200,100);
+		inicializarEtiquetas();
 		panelMesa.add(panelEtiquetas,BorderLayout.WEST);
 	}
 
@@ -121,9 +122,10 @@ public class MesaVista extends JFrame {
 			jugadorDos.deshabilitarCartasJugador();
 		}
 		JugadorActual.habilitarCartasJugador();
+		turnoJugador.setText("Turno de "+JugadorActual.obtenerNombreJugador());
+		actualizarEtiquetaTurnoJugador(JugadorActual.obtenerNombreJugador());
 		this.panelMesa.revalidate();
     	this.panelMesa.repaint();
-
 	}
 
 	public void actualizarCartasEnMesa(ArrayList<Carta> cartasEnMesa){
@@ -140,12 +142,18 @@ public class MesaVista extends JFrame {
         }
 	}
 
-	//hay que llamarlo en pasar turno para que se actualice la etiqueta
-	public void actualizarEtiquetaTurnoJugador(){
-		String nombreJugador = JugadorActual.obtenerNombreJugador();
-		turnoJugador = ayudante.generarEtiqueta("Turno de " +nombreJugador);
-		turnoJugador.setVisible(true);
+
+	private void inicializarEtiquetas(){
+		turnoJugador = ayudante.generarEtiqueta("Turno");
 		panelEtiquetas.add(turnoJugador, BorderLayout.NORTH);
+	}
+
+	//hay que llamarlo en pasar turno para que se actualice la etiqueta
+	private void actualizarEtiquetaTurnoJugador(String nombreJugador){
+		//String nombreJugador = JugadorActual.obtenerNombreJugador();
+		turnoJugador.setText("Turno de " +nombreJugador);
+		turnoJugador.setVisible(true);
+		ayudante.actualizarPanel(panelMesa);
 	}
 
 	/* 
@@ -182,8 +190,9 @@ public class MesaVista extends JFrame {
 		frame.setVisible(true);
 		frame.preguntarInformacionJugadorUno();
 		frame.preguntarInformacionJugadorDos();
-		frame.actualizarEtiquetaTurnoJugador();
-		frame.setVisible(true);
+		//frame.actualizarEtiquetaTurnoJugador();
+		//frame.setVisible(true);
 		frame.cambiarTurnoJugador();
+		//frame.actualizarEtiquetaTurnoJugador();
 	}
 }
