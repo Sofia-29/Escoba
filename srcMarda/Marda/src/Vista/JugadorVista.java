@@ -130,7 +130,7 @@ public class JugadorVista {
             String ruta = "Imagenes/" + palo + "/" + valor.toString() + "-" + palo + ".jpg";
             ImageIcon imagen = new ImageIcon(this.getClass().getResource(ruta));
             JToggleButton boton = this.componenteCartasJugador.get(indice);
-            ayudante.generarBotonConImagen(boton, "Carta_Reverso", imagen);
+            ayudante.generarBotonConImagen(boton, palo+"-"+valor, imagen);
             boton.setEnabled(true);
             ayudante.actualizarPanel(panel);
         }
