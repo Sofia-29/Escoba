@@ -45,7 +45,7 @@ public class General {
         etiqueta.setText(texto);
         etiqueta.setVisible(false);
         etiqueta.setOpaque(true);
-        etiqueta.setBackground(new java.awt.Color(78, 59, 49));
+        etiqueta.setBackground(new java.awt.Color(255,255,255));
         return etiqueta;
     }
 }

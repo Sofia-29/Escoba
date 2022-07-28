@@ -19,7 +19,8 @@ public class MesaVista extends JFrame {
 	private JPanel panelCartasMesa;
 	private JPanel panelMazoComun;
 	private JPanel panelCartasDescartadas;
-
+	private JPanel panelEtiquetas;
+	private JLabel turnoJugador;
 	private ArrayList<JLabel> cartasEnMesa;
 	private JugadorVista jugadorUno;
 	private JugadorVista jugadorDos;
@@ -40,6 +41,9 @@ public class MesaVista extends JFrame {
 		cartasEnMesa = new ArrayList<JLabel>();
 		panelCartasMesa = ayudante.generarPanel();
 		panelMesa.add(panelCartasMesa, BorderLayout.CENTER);
+		panelEtiquetas= ayudante.generarPanel();
+		panelEtiquetas.setSize(100,100);
+		panelMesa.add(panelEtiquetas,BorderLayout.WEST);
 	}
 
 	public void inicializarMazoComun(){
@@ -72,6 +76,7 @@ public class MesaVista extends JFrame {
 		JPanel panelCartasJugadorDos = ayudante.generarPanel();
 		jugadorUno.asignarPanel(panelCartasJugadorUno);
 		jugadorDos.asignarPanel(panelCartasJugadorDos);
+		//actualizarEtiquetaTurnoJugador();
 		panelMesa.add(panelCartasJugadorUno, BorderLayout.NORTH);
 		panelMesa.add(panelCartasJugadorDos, BorderLayout.SOUTH);
 	}
@@ -134,6 +139,12 @@ public class MesaVista extends JFrame {
         }
 	}
 
+	public void actualizarEtiquetaTurnoJugador(){
+		String nombreJugador = JugadorActual.obtenerNombreJugador();
+		turnoJugador = ayudante.generarEtiqueta("Turno de " +nombreJugador);
+		turnoJugador.setVisible(true);
+		panelEtiquetas.add(turnoJugador, BorderLayout.NORTH);
+	}
 	/**
 	 * Launch the application.
 	 */
@@ -159,7 +170,8 @@ public class MesaVista extends JFrame {
 		frame.setVisible(true);
 		frame.preguntarInformacionJugadorUno();
 		frame.preguntarInformacionJugadorDos();
-
+		frame.actualizarEtiquetaTurnoJugador();
+		frame.setVisible(true);
 		frame.cambiarTurnoJugador();
 	}
 }
