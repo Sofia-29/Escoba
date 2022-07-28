@@ -1,5 +1,5 @@
 package Vista;
-
+import java.awt.Font;
 import javax.swing.ImageIcon;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
@@ -45,7 +45,9 @@ public class General {
         etiqueta.setText(texto);
         etiqueta.setVisible(false);
         etiqueta.setOpaque(true);
+        etiqueta.setFont(new Font("Arial", Font.PLAIN, 24));
         etiqueta.setBackground(new java.awt.Color(255,255,255));
+        etiqueta.setSize(500,500);
         return etiqueta;
     }
 }

@@ -42,7 +42,7 @@ public class MesaVista extends JFrame {
 		panelCartasMesa = ayudante.generarPanel();
 		panelMesa.add(panelCartasMesa, BorderLayout.CENTER);
 		panelEtiquetas= ayudante.generarPanel();
-		panelEtiquetas.setSize(100,100);
+		panelEtiquetas.setSize(200,100);
 		panelMesa.add(panelEtiquetas,BorderLayout.WEST);
 	}
 
