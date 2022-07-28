@@ -47,7 +47,7 @@ public class General {
         etiqueta.setOpaque(true);
         etiqueta.setFont(new Font("Arial", Font.PLAIN, 24));
         etiqueta.setBackground(new java.awt.Color(255,255,255));
-        etiqueta.setSize(500,500);
+        etiqueta.setSize(200,100);
         return etiqueta;
     }
 }

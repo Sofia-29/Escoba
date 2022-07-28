@@ -21,6 +21,7 @@ public class MesaVista extends JFrame {
 	private JPanel panelCartasDescartadas;
 	private JPanel panelEtiquetas;
 	private JLabel turnoJugador;
+	private JLabel puntajeJugador;
 	private ArrayList<JLabel> cartasEnMesa;
 	private JugadorVista jugadorUno;
 	private JugadorVista jugadorDos;
@@ -139,12 +140,23 @@ public class MesaVista extends JFrame {
         }
 	}
 
+	//hay que llamarlo en pasar turno para que se actualice la etiqueta
 	public void actualizarEtiquetaTurnoJugador(){
 		String nombreJugador = JugadorActual.obtenerNombreJugador();
 		turnoJugador = ayudante.generarEtiqueta("Turno de " +nombreJugador);
 		turnoJugador.setVisible(true);
 		panelEtiquetas.add(turnoJugador, BorderLayout.NORTH);
 	}
+
+	/* 
+	public void actualizarEtiquetaPuntajeJugador(){
+		String puntajeJugador = JugadorActual.obtenerNombreJugador();
+		turnoJugador = ayudante.generarEtiqueta("Turno de " +nombreJugador);
+		turnoJugador.setVisible(true);
+		panelEtiquetas.add(turnoJugador, BorderLayout.NORTH);
+	}
+	*/
+	
 	/**
 	 * Launch the application.
 	 */
