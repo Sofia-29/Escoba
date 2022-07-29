@@ -83,26 +83,19 @@ public class Controlador {
     }
 
     public static void main(String[] args) throws Exception {
-        MesaVista mesaVista = new MesaVistaEscoba();
-
         // Cargar partida
         Mesa mesaConcreta = new MesaEscoba();
-        boolean cargarPartida = mesaVista.preguntarCargarPartida();
+        MesaVista frame = new MesaVistaEscoba();
+        boolean cargarPartida = frame.preguntarCargarPartida();
         if(cargarPartida){
             Constructor constructor = new ConstructorEscoba();
-            directorConstructor(constructor, mesaConcreta, mesaVista.elegirArchivo());
+            directorConstructor(constructor, mesaConcreta, frame.elegirArchivo());
         }
-        System.out.print(mesaConcreta.obtenerPrimerJugador().obtenerNombre());
-        System.out.print(mesaConcreta.obtenerSegundoJugador().obtenerNombre());
 
+        // Asigna mesa y serializador
+        Serializador serializador = new SerializadorEscoba();
+        frame.asignarMesa(mesaConcreta, serializador);
         
-        // Guardar partida
-        String ruta = mesaVista.guardarPartida();
-        System.out.print("guardando en: "+ruta);
-        Serializador serializador = new SerializadorEscoba(); 
-        directorSerializador(serializador, ruta, mesaConcreta);
-
-        MesaVista frame = new MesaVistaEscoba();
 		Carta carta1 = new Carta(1, "Bastos", "");
 		Carta carta2 = new Carta(2, "Copas", "");
 		Carta carta3 = new Carta(3, "Oros", "");

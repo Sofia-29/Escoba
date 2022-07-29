@@ -1,8 +1,10 @@
 package Vista;
 
+import Modelo.Mesa;
+
 public class MesaVistaEscoba extends MesaVista {
     
-    public MesaVistaEscoba(){
+    public MesaVistaEscoba( ){
         super();
     }
 
