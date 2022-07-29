@@ -15,7 +15,7 @@ public abstract class Validador {
 
     public abstract void validarReglas(Jugador primerJugador, Jugador segundoJugador);
 
-    public abstract Jugador validarJugada(ArrayList<Carta> cartas, Jugador jugador);
+    public abstract void validarJugada(ArrayList<Carta> cartas, Jugador jugador);
 
     public abstract void inicializarReglas();
 
