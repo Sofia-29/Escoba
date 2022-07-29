@@ -9,14 +9,6 @@ import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JToggleButton;
 
-import javax.swing.ButtonGroup;
-import javax.swing.ImageIcon;
-import javax.swing.JButton;
-import javax.swing.JLabel;
-import javax.swing.JOptionPane;
-import javax.swing.JPanel;
-import javax.swing.JToggleButton;
-
 import Modelo.Carta;
 
 public class JugadorVista {
@@ -144,7 +136,7 @@ public class JugadorVista {
         }
     }
 
-    public void mostrarCaptura(ArrayList<Carta> cartas){
+    public void mostrarCaptura(ArrayList<Carta> cartas, boolean escoba){
         JPanel panel = new JPanel();
 		ArrayList<JLabel> cartasCapturadas = new ArrayList<JLabel>();
 		for(int indice = 0; indice < cartas.size(); indice++){
@@ -158,6 +150,11 @@ public class JugadorVista {
 		for(int indice = 0; indice < cartasCapturadas.size(); indice++){
 			panel.add(cartasCapturadas.get(indice));
 		}
-		JOptionPane.showMessageDialog(null,panel,"Captura",JOptionPane.INFORMATION_MESSAGE);
+        if(escoba){
+            panel.setBackground(new java.awt.Color(249,214,46));
+            JOptionPane.showMessageDialog(null,panel,"Escoba",JOptionPane.INFORMATION_MESSAGE);
+        }else{
+            JOptionPane.showMessageDialog(null,panel,"Captura",JOptionPane.INFORMATION_MESSAGE);
+        }
     }
 }
