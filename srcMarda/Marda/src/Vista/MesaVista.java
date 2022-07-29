@@ -9,10 +9,6 @@ import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
-import javax.swing.JToggleButton;
-import javax.swing.Icon;
-import java.awt.Image;
-import java.awt.FlowLayout;
 import Modelo.Carta;
 import Modelo.Mesa;
 import Modelo.Serializador;
@@ -230,56 +226,6 @@ public abstract class MesaVista extends JFrame {
         reglasJuego.setBackground(new java.awt.Color(28, 84, 45));
         reglasJuego.setIcon(icono);
         reglasJuego.setForeground(new java.awt.Color(28, 84, 45));
-		panelEtiquetas.add(reglasJuego, BorderLayout.LINE_END);
-	}
-
-	public void botonReglas(){
-		reglasJuego.setVisible(true);
-		ayudante.actualizarPanel(panelMesa);
-		gestorEventos.accionMostrarReglas(this);
-	}
-
-	protected abstract String reglasJuego();
-	
-	/**
-	 * Launch the application.
-	
-	public static void main(String[] args) {
-		MesaVista frame = new MesaVista();
-
-		Carta carta1 = new Carta(1, "Bastos", "Imagenes/Bastos/1-Bastos.jpg");
-		Carta carta2 = new Carta(2, "Copas", "Imagenes/Copas/2-Copas.jpg");
-		Carta carta3 = new Carta(3, "Oros", "Imagenes/Oros/3-Oros.jpg");
-		Carta carta4 = new Carta(4, "Espadas", "Imagenes/Espadas/4-oros.jpg");
-		ArrayList<Carta> cartas = new ArrayList<Carta>();
-		ArrayList<Carta> cartas1 = new ArrayList<Carta>();
-		cartas.add(carta1);
-		cartas.add(carta2);
-		cartas.add(carta3);
-		cartas.add(carta4);
-		cartas1.add(carta1);
-		cartas1.add(carta2);
-		cartas1.add(carta3);
-		cartas1.add(carta4);
-		frame.actualizarCartasEnMesa(cartas);
-		frame.inicializarJugadores();
-		frame.actualizarCartasJugadorUno(cartas);
-		frame.actualizarCartasJugadorDos(cartas1);
-		frame.deshabilitarCartasJugadores();
-		frame.inicializarMazoComun();
-		frame.inicializarMazoCartasDescartadas();
-		frame.setVisible(true);
-		frame.preguntarInformacionJugadorUno();
-		frame.preguntarInformacionJugadorDos();
-		frame.actualizarEtiquetaPuntajeJugador("12");
-		//frame.setVisible(true);
-		frame.iniciarBotonDescartarCartaJugadores();
-
-		String carta = "-1";
-		while(carta.equals("-1")){
-			carta = frame.obtenerCartaDescartada();
-		}
-		System.out.println(carta);
 		botonGuardar.setText("Guardar");
 		panelEtiquetas.add(reglasJuego, BorderLayout.LINE_END);
 		panelEtiquetas.add(botonGuardar, BorderLayout.LINE_START);
@@ -302,7 +248,5 @@ public abstract class MesaVista extends JFrame {
 		this.serializador = serializador;
 		botonGuardar();
 	}
-	//frame.actualizarEtiquetaTurnoJugador();
-	 */
-	//protected abstract String reglasJuego();
+	protected abstract String reglasJuego();
 }
