@@ -10,14 +10,13 @@ import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 import Modelo.Carta;
+import Modelo.Mesa;
+import Modelo.Serializador;
 import javax.swing.JToggleButton;
 import javax.swing.Icon;
 import java.awt.Image;
-import Modelo.Carta;
-
 
 public abstract class MesaVista extends JFrame {
-
 	private JPanel panelMesa;
 	private JPanel panelCartasMesa;
 	private JPanel panelMazoComun;
@@ -26,12 +25,15 @@ public abstract class MesaVista extends JFrame {
 	private JLabel turnoJugador;
 	private JLabel puntajeJugador;
 	public JToggleButton reglasJuego;
+	public JToggleButton botonGuardar;
 	private GestorEventos gestorEventos;
 	private ArrayList<JLabel> cartasEnMesa;
 	private JugadorVista jugadorUno;
 	private JugadorVista jugadorDos;
 	private JugadorVista JugadorActual;
 	private General ayudante;
+	private Mesa mesaConcreta;
+	private Serializador serializador;
 
 
 	public MesaVista() {
@@ -215,6 +217,7 @@ public abstract class MesaVista extends JFrame {
 
 	private void inicializarReglas(){
 		reglasJuego = new JToggleButton();
+		botonGuardar = new JToggleButton();
 		String ruta = "Imagenes/Reglas/reglas.png";
         ImageIcon imagen = new ImageIcon(this.getClass().getResource(ruta));
         Icon icono = new ImageIcon(imagen.getImage().getScaledInstance(130,100,
@@ -223,7 +226,9 @@ public abstract class MesaVista extends JFrame {
         reglasJuego.setBackground(new java.awt.Color(28, 84, 45));
         reglasJuego.setIcon(icono);
         reglasJuego.setForeground(new java.awt.Color(28, 84, 45));
+		botonGuardar.setText("Guardar");
 		panelEtiquetas.add(reglasJuego, BorderLayout.LINE_END);
+		panelEtiquetas.add(botonGuardar, BorderLayout.LINE_START);
 	}
 
 	public void botonReglas(){
@@ -232,63 +237,16 @@ public abstract class MesaVista extends JFrame {
 		gestorEventos.accionMostrarReglas(this);
 	}
 
-	protected abstract String reglasJuego();
-	
-	/**
-	 * Launch the application.
-	
-	public static void main(String[] args) {
-		MesaVista frame = new MesaVista();
-
-		Carta carta1 = new Carta(1, "Bastos", "Imagenes/Bastos/1-Bastos.jpg");
-		Carta carta2 = new Carta(2, "Copas", "Imagenes/Copas/2-Copas.jpg");
-		Carta carta3 = new Carta(3, "Oros", "Imagenes/Oros/3-Oros.jpg");
-		ArrayList<Carta> cartas = new ArrayList<Carta>();
-		ArrayList<Carta> cartas1 = new ArrayList<Carta>();
-		cartas.add(carta1);
-		cartas.add(carta2);
-		cartas.add(carta3);
-		cartas1.add(carta1);
-		cartas1.add(carta2);
-		cartas1.add(carta3);
-		frame.actualizarCartasEnMesa(cartas);
-		frame.inicializarJugadores();
-		frame.actualizarCartasJugadorUno(cartas);
-		frame.actualizarCartasJugadorDos(cartas1);
-		frame.deshabilitarCartasJugadores();
-		frame.inicializarMazoComun();
-		frame.inicializarMazoCartasDescartadas();
-		frame.setVisible(true);
-		frame.preguntarCargarPartida();
-		frame.preguntarInformacionJugadorUno();
-		frame.preguntarInformacionJugadorDos();
-		frame.actualizarEtiquetaPuntajeJugador("12");
-		//frame.setVisible(true);
-		frame.iniciarBotonDescartarCartaJugadores();
-
-		String carta = "-1";
-		while(true){
-			carta = frame.obtenerCartaDescartada();
-			if(!carta.equals("-1")){
-				
-				System.out.println("Me sali");
-				break;
-			}
-			try {
-				TimeUnit.SECONDS.sleep(1);
-			} catch (InterruptedException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
-			//System.out.println("En el ciclo");
-		}
-		System.out.println(carta);
-		// try{
-		// 	Thread.sleep(2000);
-		// }catch(Exception e){}
-		frame.cambiarTurnoJugador();
-		
+	public void botonGuardar(){
+		botonGuardar.setVisible(true);
+		ayudante.actualizarPanel(panelMesa);
+		gestorEventos.accionGuardar(this, mesaConcreta, serializador);
 	}
-	//frame.actualizarEtiquetaTurnoJugador();
-	 */
+
+	public void asignarMesa(Mesa mesaConcreta,  Serializador serializador){
+		this.mesaConcreta = mesaConcreta;
+		this.serializador = serializador;
+		botonGuardar();
+	}
+	protected abstract String reglasJuego();
 }

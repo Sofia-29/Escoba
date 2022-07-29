@@ -1,11 +1,14 @@
 package Vista;
-
 import javax.swing.ButtonGroup;
 import javax.swing.ButtonModel;
 import javax.swing.JButton;
 import javax.swing.JToggleButton;
-
 import Modelo.Carta;
+import Modelo.Mazo;
+import Modelo.Mesa;
+import Modelo.Serializador;
+import Modelo.JuegoEscoba.MazoEspanyol;
+import Modelo.JuegoEscoba.SerializadorEscoba;
 import javax.swing.JOptionPane;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -68,5 +71,37 @@ public class GestorEventos {
                 }
         };
         mesa.reglasJuego.addActionListener(accion);
+    }
+
+    public void accionGuardar(MesaVista mesa, Mesa mesaConcreta, Serializador serializador){
+        ActionListener accion = new ActionListener(){
+            @Override
+            public void actionPerformed(ActionEvent event){
+                String ruta = mesa.guardarPartida();
+                directorSerializador(serializador, ruta, mesaConcreta);
+                JOptionPane.showMessageDialog(null,"El juego ha sido guardado en "+ruta+" ","Confirmación",JOptionPane.INFORMATION_MESSAGE);
+            }
+        };
+        mesa.botonGuardar.addActionListener(accion);
+    }
+
+    public static void directorSerializador(Serializador cs, String ruta, Mesa mesaConcreta){
+        try {
+            Mazo cartasEnMesa = new MazoEspanyol();
+            cartasEnMesa.asignarMazo(mesaConcreta.retornarCartasEnMesa());
+
+            // Cartas en mesa
+            cs.serializarMazo(cartasEnMesa);
+
+            // Jugadores
+            cs.serializarJugador(mesaConcreta.obtenerPrimerJugador());
+            cs.serializarJugador(mesaConcreta.obtenerSegundoJugador());
+
+            // Jugador Actual
+            cs.serializarjugadorActual(mesaConcreta.obtenerJugadorActual().obtenerNombre());
+            cs.obtSerializacion(ruta);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 }
