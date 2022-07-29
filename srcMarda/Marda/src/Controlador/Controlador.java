@@ -1,5 +1,9 @@
 package Controlador;
 import java.io.File;
+import java.util.ArrayList;
+import java.util.concurrent.TimeUnit;
+import javax.swing.JFileChooser;
+import Modelo.Carta;
 import Modelo.Constructor;
 import Modelo.Mazo;
 import Modelo.Mesa;
@@ -8,6 +12,9 @@ import Modelo.JuegoEscoba.ConstructorEscoba;
 import Modelo.JuegoEscoba.JugadorMaquina;
 import Modelo.JuegoEscoba.JugadorPersona;
 import Modelo.JuegoEscoba.MazoEspanyol;
+import Modelo.JuegoEscoba.SerializadorEscoba;
+import Vista.MesaVista;
+import Vista.MesaVistaEscoba;
 import Modelo.JuegoEscoba.MesaEscoba;
 import Modelo.JuegoEscoba.SerializadorEscoba;
 import Vista.MesaVista;
@@ -76,7 +83,7 @@ public class Controlador {
     }
 
     public static void main(String[] args) throws Exception {
-        MesaVista mesaVista = new MesaVista();
+        MesaVista mesaVista = new MesaVistaEscoba();
 
         // Cargar partida
         Mesa mesaConcreta = new MesaEscoba();
@@ -94,6 +101,47 @@ public class Controlador {
         System.out.print("guardando en: "+ruta);
         Serializador serializador = new SerializadorEscoba(); 
         directorSerializador(serializador, ruta, mesaConcreta);
+
+        MesaVista frame = new MesaVistaEscoba();
+		Carta carta1 = new Carta(1, "Bastos", "");
+		Carta carta2 = new Carta(2, "Copas", "");
+		Carta carta3 = new Carta(3, "Oros", "");
+		Carta carta4 = new Carta(4, "Espadas", "");
+		ArrayList<Carta> cartas = new ArrayList<Carta>();
+        ArrayList<Carta> cartas1 = new ArrayList<Carta>();
+		cartas.add(carta1);
+		cartas.add(carta2);
+		cartas.add(carta3);
+		cartas.add(carta4);
+        cartas1.add(carta1);
+		cartas1.add(carta2);
+		cartas1.add(carta3);
+		cartas1.add(carta4);
+		frame.actualizarCartasEnMesa(cartas);
+		frame.inicializarJugadores();
+		frame.actualizarCartasJugadorUno(cartas);
+		frame.actualizarCartasJugadorDos(cartas1);
+		frame.deshabilitarCartasJugadores();
+		frame.inicializarMazoComun();
+		frame.inicializarMazoCartasDescartadas();
+		frame.setVisible(true);
+		frame.preguntarInformacionJugadorUno();
+		frame.preguntarInformacionJugadorDos();
+		frame.actualizarEtiquetaPuntajeJugador("12");
+		//frame.setVisible(true);
+		frame.iniciarBotonDescartarCartaJugadores();
+
+		String carta = "-1";
+		while(true){
+			carta = frame.obtenerCartaDescartada();
+			if(!carta.equals("-1")){
+				break;
+			}
+			TimeUnit.SECONDS.sleep(1);
+		}
+		System.out.println(carta);
+
+		frame.cambiarTurnoJugador();
     }
 }
 

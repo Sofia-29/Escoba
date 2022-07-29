@@ -10,14 +10,23 @@ import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 import Modelo.Carta;
+import javax.swing.JToggleButton;
+import javax.swing.Icon;
+import java.awt.Image;
+import Modelo.Carta;
 
-public class MesaVista extends JFrame {
+
+public abstract class MesaVista extends JFrame {
 
 	private JPanel panelMesa;
 	private JPanel panelCartasMesa;
 	private JPanel panelMazoComun;
 	private JPanel panelCartasDescartadas;
-
+	private JPanel panelEtiquetas;
+	private JLabel turnoJugador;
+	private JLabel puntajeJugador;
+	public JToggleButton reglasJuego;
+	private GestorEventos gestorEventos;
 	private ArrayList<JLabel> cartasEnMesa;
 	private JugadorVista jugadorUno;
 	private JugadorVista jugadorDos;
@@ -35,9 +44,16 @@ public class MesaVista extends JFrame {
 		setContentPane(panelMesa);
 		panelMesa.setLayout(new BorderLayout(0, 0));
 		ayudante = new General();
+		gestorEventos = new GestorEventos();
 		cartasEnMesa = new ArrayList<JLabel>();
 		panelCartasMesa = ayudante.generarPanel();
 		panelMesa.add(panelCartasMesa, BorderLayout.CENTER);
+		panelEtiquetas= ayudante.generarPanel();
+		panelEtiquetas.setSize(200,200);
+		inicializarEtiquetas();
+		panelMesa.add(panelEtiquetas,BorderLayout.WEST);
+		inicializarReglas();
+		botonReglas();
 	}
 
 	public void inicializarMazoComun(){
@@ -51,6 +67,27 @@ public class MesaVista extends JFrame {
 		panelMesa.add(panelMazoComun, BorderLayout.EAST);
 	}
 
+	public void inicializarJugadores(){
+		jugadorUno = new JugadorVista();
+		jugadorDos = new JugadorVista();
+		JugadorActual = new JugadorVista();
+		JPanel panelCartasJugadorUno = ayudante.generarPanel();
+		JPanel panelCartasJugadorDos = ayudante.generarPanel();
+		jugadorUno.asignarPanel(panelCartasJugadorUno);
+		jugadorDos.asignarPanel(panelCartasJugadorDos);
+		//actualizarEtiquetaTurnoJugador();
+		panelMesa.add(panelCartasJugadorUno, BorderLayout.NORTH);
+		panelMesa.add(panelCartasJugadorDos, BorderLayout.SOUTH);
+	}
+
+	public void actualizarCartasJugadorUno(ArrayList<Carta> cartas){
+		jugadorUno.actualizarCartasJugador(cartas);
+	}
+
+	public void actualizarCartasJugadorDos(ArrayList<Carta> cartas){
+		jugadorDos.actualizarCartasJugador(cartas);
+	}
+
 	public void inicializarMazoCartasDescartadas(){
 		this.panelCartasDescartadas = ayudante.generarPanel();
 		panelCartasDescartadas.setLayout(new BorderLayout(0, 0));
@@ -62,24 +99,27 @@ public class MesaVista extends JFrame {
 		panelMesa.add(panelCartasDescartadas, BorderLayout.WEST);
 	}
 
-	public void inicializarJugadores(){
-		jugadorUno = new JugadorVista();
-		jugadorDos = new JugadorVista();
-		JugadorActual = new JugadorVista();
-		JPanel panelCartasJugadorUno = ayudante.generarPanel();
-		JPanel panelCartasJugadorDos = ayudante.generarPanel();
-		jugadorUno.asignarPanel(panelCartasJugadorUno);
-		jugadorDos.asignarPanel(panelCartasJugadorDos);
-		panelMesa.add(panelCartasJugadorUno, BorderLayout.NORTH);
-		panelMesa.add(panelCartasJugadorDos, BorderLayout.SOUTH);
+	public void actualizarCartasEnMesa(ArrayList<Carta> cartasEnMesa){
+		this.cartasEnMesa = new ArrayList<JLabel>();
+		for(int indice = 0; indice < cartasEnMesa.size(); indice++){
+            String palo = cartasEnMesa.get(indice).obtenerPalo();
+            Integer valor = cartasEnMesa.get(indice).obtenerValor();
+            String ruta = "Imagenes/" + palo + "/" + valor.toString() + "-" + palo + ".jpg";
+			ImageIcon imagen = new ImageIcon(this.getClass().getResource(ruta));
+            JLabel etiqueta = ayudante.generarEtiquetaConImagen(valor+"-"+palo, imagen);
+            this.cartasEnMesa.add(etiqueta);
+            this.panelCartasMesa.add(etiqueta);
+            ayudante.actualizarPanel(this.panelMesa);
+        }
 	}
 
-	public void actualizarCartasJugadorUno(ArrayList<Carta> cartas){
-		jugadorUno.actualizarCartasJugador(cartas);
-	}
-
-	public void actualizarCartasJugadorDos(ArrayList<Carta> cartas){
-		jugadorDos.actualizarCartasJugador(cartas);
+	public void iniciarBotonDescartarCartaJugadores(){
+		jugadorUno.iniciarBotonDescartarCarta();
+		jugadorDos.iniciarBotonDescartarCarta();
+		JPanel panelSur = jugadorDos.obtenerPanel();
+		panelSur.add(jugadorDos.obtenerBotonDescartarCarta());
+		JPanel panelNorte = jugadorUno.obtenerPanel();
+		panelNorte.add(jugadorUno.obtenerBotonDescartarCarta());
 	}
 
 	public void preguntarInformacionJugadorUno(){
@@ -99,12 +139,9 @@ public class MesaVista extends JFrame {
 		jugadorDos.preguntarNombreJugador();
 	}
 
-	public void deshabilitarCartasJugadores(){
-		jugadorUno.deshabilitarCartasJugador();
-		jugadorDos.deshabilitarCartasJugador();
-	}
 
 	public void cambiarTurnoJugador(){
+
 		if(JugadorActual.obtenerNombreJugador().equals(jugadorUno.obtenerNombreJugador())){
 			JugadorActual = jugadorDos;
 			jugadorUno.deshabilitarCartasJugador();
@@ -113,23 +150,15 @@ public class MesaVista extends JFrame {
 			jugadorDos.deshabilitarCartasJugador();
 		}
 		JugadorActual.habilitarCartasJugador();
+		turnoJugador.setText("Turno de "+JugadorActual.obtenerNombreJugador());
+		actualizarEtiquetaTurnoJugador(JugadorActual.obtenerNombreJugador());
 		this.panelMesa.revalidate();
     	this.panelMesa.repaint();
-
 	}
 
-	public void actualizarCartasEnMesa(ArrayList<Carta> cartasEnMesa){
-		this.cartasEnMesa = new ArrayList<JLabel>();
-		for(int indice = 0; indice < cartasEnMesa.size(); indice++){
-            String palo = cartasEnMesa.get(indice).obtenerPalo();
-            Integer valor = cartasEnMesa.get(indice).obtenerValor();
-            String ruta = "Imagenes/" + palo + "/" + valor.toString() + "-" + palo + ".jpg";
-			ImageIcon imagen = new ImageIcon(this.getClass().getResource(ruta));
-            JLabel etiqueta = ayudante.generarEtiquetaConImagen(valor+"-"+palo, imagen);
-            this.cartasEnMesa.add(etiqueta);
-            this.panelCartasMesa.add(etiqueta);
-            ayudante.actualizarPanel(this.panelMesa);
-        }
+	public void deshabilitarCartasJugadores(){
+		jugadorUno.deshabilitarCartasJugador();
+		jugadorDos.deshabilitarCartasJugador();
 	}
 
 	public boolean preguntarCargarPartida(){
@@ -161,25 +190,71 @@ public class MesaVista extends JFrame {
         }
     }
 
+	public String obtenerCartaDescartada(){
+		return JugadorActual.obtenerCartaDescartada();
+	}
+
+	private void inicializarEtiquetas(){
+		turnoJugador = ayudante.generarEtiqueta("Turno");
+		panelEtiquetas.add(turnoJugador, BorderLayout.NORTH);
+		puntajeJugador = ayudante.generarEtiqueta("Turno");
+		panelEtiquetas.add(puntajeJugador);
+	}
+
+	private void actualizarEtiquetaTurnoJugador(String nombreJugador){
+		turnoJugador.setText("Turno de " +nombreJugador);
+		turnoJugador.setVisible(true);
+		ayudante.actualizarPanel(panelMesa);
+	}
+	
+	public void actualizarEtiquetaPuntajeJugador(String puntaje){
+		puntajeJugador.setText("Puntaje: " +puntaje);
+		puntajeJugador.setVisible(true);
+		ayudante.actualizarPanel(panelMesa);
+	}
+
+	private void inicializarReglas(){
+		reglasJuego = new JToggleButton();
+		String ruta = "Imagenes/Reglas/reglas.png";
+        ImageIcon imagen = new ImageIcon(this.getClass().getResource(ruta));
+        Icon icono = new ImageIcon(imagen.getImage().getScaledInstance(130,100,
+        Image.SCALE_DEFAULT));
+        reglasJuego.setBorder(new EmptyBorder(0,0,0,0));
+        reglasJuego.setBackground(new java.awt.Color(28, 84, 45));
+        reglasJuego.setIcon(icono);
+        reglasJuego.setForeground(new java.awt.Color(28, 84, 45));
+		panelEtiquetas.add(reglasJuego, BorderLayout.LINE_END);
+	}
+
+	public void botonReglas(){
+		reglasJuego.setVisible(true);
+		ayudante.actualizarPanel(panelMesa);
+		gestorEventos.accionMostrarReglas(this);
+	}
+
+	protected abstract String reglasJuego();
+	
 	/**
 	 * Launch the application.
-	 */
+	
 	public static void main(String[] args) {
 		MesaVista frame = new MesaVista();
 
-		Carta carta1 = new Carta(1, "Bastos", "");
-		Carta carta2 = new Carta(2, "Copas", "");
-		Carta carta3 = new Carta(3, "Oros", "");
-		Carta carta4 = new Carta(4, "Espadas", "");
+		Carta carta1 = new Carta(1, "Bastos", "Imagenes/Bastos/1-Bastos.jpg");
+		Carta carta2 = new Carta(2, "Copas", "Imagenes/Copas/2-Copas.jpg");
+		Carta carta3 = new Carta(3, "Oros", "Imagenes/Oros/3-Oros.jpg");
 		ArrayList<Carta> cartas = new ArrayList<Carta>();
+		ArrayList<Carta> cartas1 = new ArrayList<Carta>();
 		cartas.add(carta1);
 		cartas.add(carta2);
 		cartas.add(carta3);
-		cartas.add(carta4);
+		cartas1.add(carta1);
+		cartas1.add(carta2);
+		cartas1.add(carta3);
 		frame.actualizarCartasEnMesa(cartas);
 		frame.inicializarJugadores();
 		frame.actualizarCartasJugadorUno(cartas);
-		frame.actualizarCartasJugadorDos(cartas);
+		frame.actualizarCartasJugadorDos(cartas1);
 		frame.deshabilitarCartasJugadores();
 		frame.inicializarMazoComun();
 		frame.inicializarMazoCartasDescartadas();
@@ -187,8 +262,33 @@ public class MesaVista extends JFrame {
 		frame.preguntarCargarPartida();
 		frame.preguntarInformacionJugadorUno();
 		frame.preguntarInformacionJugadorDos();
+		frame.actualizarEtiquetaPuntajeJugador("12");
+		//frame.setVisible(true);
+		frame.iniciarBotonDescartarCartaJugadores();
 
+		String carta = "-1";
+		while(true){
+			carta = frame.obtenerCartaDescartada();
+			if(!carta.equals("-1")){
+				
+				System.out.println("Me sali");
+				break;
+			}
+			try {
+				TimeUnit.SECONDS.sleep(1);
+			} catch (InterruptedException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+			//System.out.println("En el ciclo");
+		}
+		System.out.println(carta);
+		// try{
+		// 	Thread.sleep(2000);
+		// }catch(Exception e){}
 		frame.cambiarTurnoJugador();
 		
 	}
+	//frame.actualizarEtiquetaTurnoJugador();
+	 */
 }
