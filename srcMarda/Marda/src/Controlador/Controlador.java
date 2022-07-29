@@ -1,6 +1,7 @@
 package Controlador;
 import java.io.File;
 import java.util.ArrayList;
+import java.util.concurrent.TimeUnit;
 
 import javax.swing.JFileChooser;
 
@@ -101,14 +102,19 @@ public class Controlador {
 		Carta carta3 = new Carta(3, "Oros", "");
 		Carta carta4 = new Carta(4, "Espadas", "");
 		ArrayList<Carta> cartas = new ArrayList<Carta>();
+        ArrayList<Carta> cartas1 = new ArrayList<Carta>();
 		cartas.add(carta1);
 		cartas.add(carta2);
 		cartas.add(carta3);
 		cartas.add(carta4);
+        cartas1.add(carta1);
+		cartas1.add(carta2);
+		cartas1.add(carta3);
+		cartas1.add(carta4);
 		frame.actualizarCartasEnMesa(cartas);
 		frame.inicializarJugadores();
 		frame.actualizarCartasJugadorUno(cartas);
-		frame.actualizarCartasJugadorDos(cartas);
+		frame.actualizarCartasJugadorDos(cartas1);
 		frame.deshabilitarCartasJugadores();
 		frame.inicializarMazoComun();
 		frame.inicializarMazoCartasDescartadas();
@@ -120,8 +126,12 @@ public class Controlador {
 		frame.iniciarBotonDescartarCartaJugadores();
 
 		String carta = "-1";
-		while(carta.equals("-1")){
+		while(true){
 			carta = frame.obtenerCartaDescartada();
+			if(!carta.equals("-1")){
+				break;
+			}
+			TimeUnit.SECONDS.sleep(1);
 		}
 		System.out.println(carta);
 
