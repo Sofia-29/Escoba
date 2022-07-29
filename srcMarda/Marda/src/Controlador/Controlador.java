@@ -137,4 +137,3 @@ public class Controlador {
 		frame.cambiarTurnoJugador();
     }
 }
-

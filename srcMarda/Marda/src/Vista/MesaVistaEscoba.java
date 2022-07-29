@@ -1,6 +1,5 @@
 package Vista;
 
-import Modelo.Mesa;
 
 public class MesaVistaEscoba extends MesaVista {
     
