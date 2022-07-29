@@ -143,4 +143,21 @@ public class JugadorVista {
             ayudante.actualizarPanel(panel);
         }
     }
+
+    public void mostrarCaptura(ArrayList<Carta> cartas){
+        JPanel panel = new JPanel();
+		ArrayList<JLabel> cartasCapturadas = new ArrayList<JLabel>();
+		for(int indice = 0; indice < cartas.size(); indice++){
+            String palo = cartas.get(indice).obtenerPalo();
+            Integer valor = cartas.get(indice).obtenerValor();
+            String ruta = "Imagenes/" + palo + "/" + valor.toString() + "-" + palo + ".jpg";
+			ImageIcon imagen = new ImageIcon(this.getClass().getResource(ruta));
+            JLabel etiqueta = ayudante.generarEtiquetaConImagen(valor+"-"+palo, imagen);
+            cartasCapturadas.add(etiqueta);
+        }
+		for(int indice = 0; indice < cartasCapturadas.size(); indice++){
+			panel.add(cartasCapturadas.get(indice));
+		}
+		JOptionPane.showMessageDialog(null,panel,"Captura",JOptionPane.INFORMATION_MESSAGE);
+    }
 }
