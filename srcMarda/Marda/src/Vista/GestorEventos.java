@@ -50,7 +50,6 @@ public class GestorEventos {
         ArrayList<Carta> cartasJugador = jugador.obtenerCartasJugador();
         for(int indice = 0; indice < componenteCartasJugador.size();indice++){
             JToggleButton boton = componenteCartasJugador.get(indice);
-            System.out.println("Nombre:" + boton.getName());
             boton.setVisible(false);
             if(boton.getModel().equals(modeloBoton)){ 
                 jugador.asignarCartaDescartada(boton.getName());

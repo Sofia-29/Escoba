@@ -211,19 +211,24 @@ public abstract class MesaVista extends JFrame {
 	public static void main(String[] args) {
 		MesaVista frame = new MesaVista();
 
-		Carta carta1 = new Carta(1, "Bastos", "");
-		Carta carta2 = new Carta(2, "Copas", "");
-		Carta carta3 = new Carta(3, "Oros", "");
-		Carta carta4 = new Carta(4, "Espadas", "");
+		Carta carta1 = new Carta(1, "Bastos", "Imagenes/Bastos/1-Bastos.jpg");
+		Carta carta2 = new Carta(2, "Copas", "Imagenes/Copas/2-Copas.jpg");
+		Carta carta3 = new Carta(3, "Oros", "Imagenes/Oros/3-Oros.jpg");
+		Carta carta4 = new Carta(4, "Espadas", "Imagenes/Espadas/4-oros.jpg");
 		ArrayList<Carta> cartas = new ArrayList<Carta>();
+		ArrayList<Carta> cartas1 = new ArrayList<Carta>();
 		cartas.add(carta1);
 		cartas.add(carta2);
 		cartas.add(carta3);
 		cartas.add(carta4);
+		cartas1.add(carta1);
+		cartas1.add(carta2);
+		cartas1.add(carta3);
+		cartas1.add(carta4);
 		frame.actualizarCartasEnMesa(cartas);
 		frame.inicializarJugadores();
 		frame.actualizarCartasJugadorUno(cartas);
-		frame.actualizarCartasJugadorDos(cartas);
+		frame.actualizarCartasJugadorDos(cartas1);
 		frame.deshabilitarCartasJugadores();
 		frame.inicializarMazoComun();
 		frame.inicializarMazoCartasDescartadas();
