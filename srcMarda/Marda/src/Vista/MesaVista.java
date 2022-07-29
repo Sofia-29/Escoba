@@ -25,8 +25,8 @@ public class MesaVista extends JFrame {
 	private JPanel panelEtiquetas;
 	private JLabel turnoJugador;
 	private JLabel puntajeJugador;
-	private JToggleButton reglasJuego;
-	
+	public JToggleButton reglasJuego;
+	private GestorEventos gestorEventos;
 	private ArrayList<JLabel> cartasEnMesa;
 	private JugadorVista jugadorUno;
 	private JugadorVista jugadorDos;
@@ -44,6 +44,7 @@ public class MesaVista extends JFrame {
 		setContentPane(panelMesa);
 		panelMesa.setLayout(new BorderLayout(0, 0));
 		ayudante = new General();
+		gestorEventos = new GestorEventos();
 		cartasEnMesa = new ArrayList<JLabel>();
 		panelCartasMesa = ayudante.generarPanel();
 		panelMesa.add(panelCartasMesa, BorderLayout.CENTER);
@@ -199,6 +200,7 @@ public class MesaVista extends JFrame {
 	public void botonReglas(){
 		reglasJuego.setVisible(true);
 		ayudante.actualizarPanel(panelMesa);
+		gestorEventos.accionMostrarReglas(this);
 	}
 
 	public String reglasJuego(){
