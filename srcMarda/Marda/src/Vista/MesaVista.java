@@ -9,11 +9,14 @@ import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
-
+import javax.swing.JToggleButton;
+import javax.swing.Icon;
+import java.awt.Image;
+import java.awt.FlowLayout;
 import Modelo.Carta;
 
 
-public class MesaVista extends JFrame {
+public abstract class MesaVista extends JFrame {
 
 	private JPanel panelMesa;
 	private JPanel panelCartasMesa;
@@ -22,6 +25,8 @@ public class MesaVista extends JFrame {
 	private JPanel panelEtiquetas;
 	private JLabel turnoJugador;
 	private JLabel puntajeJugador;
+	public JToggleButton reglasJuego;
+	private GestorEventos gestorEventos;
 	private ArrayList<JLabel> cartasEnMesa;
 	private JugadorVista jugadorUno;
 	private JugadorVista jugadorDos;
@@ -39,13 +44,16 @@ public class MesaVista extends JFrame {
 		setContentPane(panelMesa);
 		panelMesa.setLayout(new BorderLayout(0, 0));
 		ayudante = new General();
+		gestorEventos = new GestorEventos();
 		cartasEnMesa = new ArrayList<JLabel>();
 		panelCartasMesa = ayudante.generarPanel();
 		panelMesa.add(panelCartasMesa, BorderLayout.CENTER);
 		panelEtiquetas= ayudante.generarPanel();
-		panelEtiquetas.setSize(200,100);
+		panelEtiquetas.setSize(200,200);
 		inicializarEtiquetas();
 		panelMesa.add(panelEtiquetas,BorderLayout.WEST);
+		inicializarReglas();
+		botonReglas();
 	}
 
 	public void inicializarMazoComun(){
@@ -157,32 +165,49 @@ public class MesaVista extends JFrame {
 		return JugadorActual.obtenerCartaDescartada();
 	}
 
-
 	private void inicializarEtiquetas(){
 		turnoJugador = ayudante.generarEtiqueta("Turno");
 		panelEtiquetas.add(turnoJugador, BorderLayout.NORTH);
+		puntajeJugador = ayudante.generarEtiqueta("Turno");
+		panelEtiquetas.add(puntajeJugador);
 	}
 
-	//hay que llamarlo en pasar turno para que se actualice la etiqueta
 	private void actualizarEtiquetaTurnoJugador(String nombreJugador){
-		//String nombreJugador = JugadorActual.obtenerNombreJugador();
 		turnoJugador.setText("Turno de " +nombreJugador);
 		turnoJugador.setVisible(true);
 		ayudante.actualizarPanel(panelMesa);
 	}
-
-	/* 
-	public void actualizarEtiquetaPuntajeJugador(){
-		String puntajeJugador = JugadorActual.obtenerNombreJugador();
-		turnoJugador = ayudante.generarEtiqueta("Turno de " +nombreJugador);
-		turnoJugador.setVisible(true);
-		panelEtiquetas.add(turnoJugador, BorderLayout.NORTH);
+	
+	public void actualizarEtiquetaPuntajeJugador(String puntaje){
+		puntajeJugador.setText("Puntaje: " +puntaje);
+		puntajeJugador.setVisible(true);
+		ayudante.actualizarPanel(panelMesa);
 	}
-	*/
+
+	private void inicializarReglas(){
+		reglasJuego = new JToggleButton();
+		String ruta = "Imagenes/Reglas/reglas.png";
+        ImageIcon imagen = new ImageIcon(this.getClass().getResource(ruta));
+        Icon icono = new ImageIcon(imagen.getImage().getScaledInstance(130,100,
+        Image.SCALE_DEFAULT));
+        reglasJuego.setBorder(new EmptyBorder(0,0,0,0));
+        reglasJuego.setBackground(new java.awt.Color(28, 84, 45));
+        reglasJuego.setIcon(icono);
+        reglasJuego.setForeground(new java.awt.Color(28, 84, 45));
+		panelEtiquetas.add(reglasJuego, BorderLayout.LINE_END);
+	}
+
+	public void botonReglas(){
+		reglasJuego.setVisible(true);
+		ayudante.actualizarPanel(panelMesa);
+		gestorEventos.accionMostrarReglas(this);
+	}
+
+	protected abstract String reglasJuego();
 	
 	/**
 	 * Launch the application.
-	 */
+	
 	public static void main(String[] args) {
 		MesaVista frame = new MesaVista();
 
@@ -210,7 +235,7 @@ public class MesaVista extends JFrame {
 		frame.setVisible(true);
 		frame.preguntarInformacionJugadorUno();
 		frame.preguntarInformacionJugadorDos();
-		//frame.actualizarEtiquetaTurnoJugador();
+		frame.actualizarEtiquetaPuntajeJugador("12");
 		//frame.setVisible(true);
 		frame.iniciarBotonDescartarCartaJugadores();
 
@@ -223,4 +248,5 @@ public class MesaVista extends JFrame {
 		frame.cambiarTurnoJugador();
 	}
 	//frame.actualizarEtiquetaTurnoJugador();
+	 */
 }

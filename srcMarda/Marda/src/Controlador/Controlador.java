@@ -1,7 +1,10 @@
 package Controlador;
 import java.io.File;
+import java.util.ArrayList;
+
 import javax.swing.JFileChooser;
 
+import Modelo.Carta;
 import Modelo.Constructor;
 import Modelo.Mesa;
 import Modelo.Serializador;
@@ -10,6 +13,8 @@ import Modelo.JuegoEscoba.JugadorMaquina;
 import Modelo.JuegoEscoba.JugadorPersona;
 import Modelo.JuegoEscoba.MazoEspanyol;
 import Modelo.JuegoEscoba.SerializadorEscoba;
+import Vista.MesaVista;
+import Vista.MesaVistaEscoba;
 import Modelo.JuegoEscoba.MesaEscoba;
 
 public class Controlador {
@@ -87,6 +92,40 @@ public class Controlador {
         // Se puede probar con el arch Partidas
         // ConstructorEscoba ce = new ConstructorEscoba();
         // directorConstructor(ce);
+
+
+        MesaVista frame = new MesaVistaEscoba();
+
+		Carta carta1 = new Carta(1, "Bastos", "");
+		Carta carta2 = new Carta(2, "Copas", "");
+		Carta carta3 = new Carta(3, "Oros", "");
+		Carta carta4 = new Carta(4, "Espadas", "");
+		ArrayList<Carta> cartas = new ArrayList<Carta>();
+		cartas.add(carta1);
+		cartas.add(carta2);
+		cartas.add(carta3);
+		cartas.add(carta4);
+		frame.actualizarCartasEnMesa(cartas);
+		frame.inicializarJugadores();
+		frame.actualizarCartasJugadorUno(cartas);
+		frame.actualizarCartasJugadorDos(cartas);
+		frame.deshabilitarCartasJugadores();
+		frame.inicializarMazoComun();
+		frame.inicializarMazoCartasDescartadas();
+		frame.setVisible(true);
+		frame.preguntarInformacionJugadorUno();
+		frame.preguntarInformacionJugadorDos();
+		frame.actualizarEtiquetaPuntajeJugador("12");
+		//frame.setVisible(true);
+		frame.iniciarBotonDescartarCartaJugadores();
+
+		String carta = "-1";
+		while(carta.equals("-1")){
+			carta = frame.obtenerCartaDescartada();
+		}
+		System.out.println(carta);
+
+		frame.cambiarTurnoJugador();
     }
 }
 
