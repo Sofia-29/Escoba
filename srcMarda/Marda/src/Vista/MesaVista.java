@@ -12,7 +12,7 @@ import javax.swing.border.EmptyBorder;
 import javax.swing.JToggleButton;
 import javax.swing.Icon;
 import java.awt.Image;
-
+import java.awt.FlowLayout;
 import Modelo.Carta;
 
 
@@ -23,7 +23,6 @@ public class MesaVista extends JFrame {
 	private JPanel panelMazoComun;
 	private JPanel panelCartasDescartadas;
 	private JPanel panelEtiquetas;
-	private JPanel panelReglas;
 	private JLabel turnoJugador;
 	private JLabel puntajeJugador;
 	private JToggleButton reglasJuego;
@@ -48,16 +47,11 @@ public class MesaVista extends JFrame {
 		cartasEnMesa = new ArrayList<JLabel>();
 		panelCartasMesa = ayudante.generarPanel();
 		panelMesa.add(panelCartasMesa, BorderLayout.CENTER);
-
 		panelEtiquetas= ayudante.generarPanel();
-		panelEtiquetas.setSize(200,100);
+		panelEtiquetas.setSize(200,200);
 		inicializarEtiquetas();
 		panelMesa.add(panelEtiquetas,BorderLayout.WEST);
-
-		panelReglas = ayudante.generarPanel();
-		panelEtiquetas.setSize(200,200);
 		inicializarReglas();
-		panelMesa.add(panelReglas,BorderLayout.EAST);
 		botonReglas();
 	}
 
@@ -199,12 +193,11 @@ public class MesaVista extends JFrame {
         reglasJuego.setBackground(new java.awt.Color(28, 84, 45));
         reglasJuego.setIcon(icono);
         reglasJuego.setForeground(new java.awt.Color(28, 84, 45));
-		panelReglas.add(reglasJuego, BorderLayout.NORTH);
+		panelEtiquetas.add(reglasJuego, BorderLayout.LINE_END);
 	}
 
 	public void botonReglas(){
 		reglasJuego.setVisible(true);
-		panelReglas.setVisible(true);
 		ayudante.actualizarPanel(panelMesa);
 	}
 
@@ -261,7 +254,7 @@ public class MesaVista extends JFrame {
 		frame.setVisible(true);
 		frame.preguntarInformacionJugadorUno();
 		frame.preguntarInformacionJugadorDos();
-		//frame.actualizarEtiquetaTurnoJugador();
+		frame.actualizarEtiquetaPuntajeJugador("12");
 		//frame.setVisible(true);
 		frame.iniciarBotonDescartarCartaJugadores();
 
