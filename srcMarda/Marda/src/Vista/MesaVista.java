@@ -3,7 +3,6 @@ package Vista;
 import java.awt.BorderLayout;
 
 import java.util.ArrayList;
-import java.util.concurrent.TimeUnit;
 
 import javax.swing.ImageIcon;
 import javax.swing.JFrame;
@@ -13,7 +12,6 @@ import javax.swing.border.EmptyBorder;
 import javax.swing.JToggleButton;
 import javax.swing.Icon;
 import java.awt.Image;
-import java.awt.FlowLayout;
 import Modelo.Carta;
 
 
