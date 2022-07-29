@@ -4,6 +4,7 @@ import Modelo.Carta;
 import Modelo.Jugador;
 import Modelo.Mazo;
 import Modelo.Mesa;
+import Modelo.Validador;
 
 
 public class MesaEscoba extends Mesa {
@@ -13,6 +14,11 @@ public class MesaEscoba extends Mesa {
     public MesaEscoba(Jugador primerJugador, Jugador segundoJugador, Mazo mazo, Jugador jugadorActual,ArrayList<Carta> cartasEnMesa){
         super(primerJugador,segundoJugador,mazo,jugadorActual,cartasEnMesa);
         this.ultimoJugadorCaptura = this.obtenerJugadorActual();
+    }
+
+    public MesaEscoba(){
+        super();
+        Validador validar;
     }
 
     public Jugador obtenerJugadorPersona(String nombre){
@@ -82,7 +88,7 @@ public class MesaEscoba extends Mesa {
         jugadorActual.removerCarta(naipe.obtenerPalo(),naipe.obtenerValor());
         return cartaDescartada;
     }
-    
+
     public Jugador obtenerUltimoJugadorCaptura(){
         return ultimoJugadorCaptura;
     }
