@@ -82,10 +82,6 @@ public abstract class Mesa {
     public ArrayList<Carta> retornarCartasJugador(String nombreJugador){
         return obtenerJugadorPorNombre(nombreJugador).obtenerCartas();
     }
-
-    public ArrayList<Carta> retornarCartasMesa(){
-        return cartasEnMesa;
-    }
     
     public ArrayList<Carta> retornarCartasEnMesa(){
         return cartasEnMesa;

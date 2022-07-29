@@ -2,11 +2,10 @@ package Controlador;
 import java.io.File;
 import java.util.ArrayList;
 import java.util.concurrent.TimeUnit;
-
 import javax.swing.JFileChooser;
-
 import Modelo.Carta;
 import Modelo.Constructor;
+import Modelo.Mazo;
 import Modelo.Mesa;
 import Modelo.Serializador;
 import Modelo.JuegoEscoba.ConstructorEscoba;
@@ -17,40 +16,38 @@ import Modelo.JuegoEscoba.SerializadorEscoba;
 import Vista.MesaVista;
 import Vista.MesaVistaEscoba;
 import Modelo.JuegoEscoba.MesaEscoba;
+import Modelo.JuegoEscoba.SerializadorEscoba;
+import Vista.MesaVista;
 
 public class Controlador {
-    public static void directorSerializador(Serializador cs){
+    public static void directorSerializador(Serializador cs, String ruta, Mesa mesaConcreta){
         try {
-            MazoEspanyol mazo = new MazoEspanyol();
-            mazo.iniciarMazo();
-            mazo.imprimirMazo();
-            JugadorMaquina primerJugador = new JugadorMaquina();
-            primerJugador.asignarNombre("Nombre 1");
-            JugadorPersona segundoJugador = new JugadorPersona();
-            segundoJugador.asignarNombre("Nombre 2");
-            // Cartas en mesa
-            cs.serializarMazo(mazo);
-            // Jugadores
-            cs.serializarJugador(primerJugador);
-            cs.serializarJugador(segundoJugador);
-            // Jugador Actual
-            cs.serializarjugadorActual(segundoJugador.obtenerNombre());
-            String result = cs.obtSerializacion();
+            Mazo cartasEnMesa = new MazoEspanyol();
+            cartasEnMesa.asignarMazo(mesaConcreta.retornarCartasEnMesa());
 
-            // Archivo serial
-            System.out.println(result);
+            // Cartas en mesa
+            cs.serializarMazo(cartasEnMesa);
+
+            // Jugadores
+            cs.serializarJugador(mesaConcreta.obtenerPrimerJugador());
+            cs.serializarJugador(mesaConcreta.obtenerSegundoJugador());
+
+            // Jugador Actual
+            cs.serializarjugadorActual(mesaConcreta.obtenerJugadorActual().obtenerNombre());
+            cs.obtSerializacion(ruta);
         } catch (Exception e) {
             e.printStackTrace();
         }
     }
 
-    public static void directorConstructor(Constructor constructorMesa){
-        // Agregar esqueleto de mesa
-        Mesa mesaConcreta = new MesaEscoba();
-        constructorMesa.iniciarMesaConcreta(mesaConcreta);
+    /*
+     * Director constructor para objetos del tipo Mesa
+     */
+    public static void directorConstructor(Constructor constructorMesa, Mesa mesaConcretaVacia, File archivo){
+        constructorMesa.iniciarMesaConcreta(mesaConcretaVacia);
 
         // Construir partes sobre el esqueleto de mesa 
-        constructorMesa.leerArchivo();
+        constructorMesa.leerArchivo(archivo);
         String atributo = constructorMesa.siguienteObjeto();
         int posicionJugador = 0;
         while(atributo != "null"){
@@ -82,21 +79,30 @@ public class Controlador {
         }
 
         // Obtener mesa resultante
-        mesaConcreta = constructorMesa.obtenerMesa();
+        mesaConcretaVacia = constructorMesa.obtenerMesa();
     }
 
     public static void main(String[] args) throws Exception {
-        // Se descomenta para probar el serializador
-        // SerializadorEscoba cs = new SerializadorEscoba(); 
-        // directorSerializador(cs);
+        MesaVista mesaVista = new MesaVistaEscoba();
 
-        // Se puede probar con el arch Partidas
-        // ConstructorEscoba ce = new ConstructorEscoba();
-        // directorConstructor(ce);
+        // Cargar partida
+        Mesa mesaConcreta = new MesaEscoba();
+        boolean cargarPartida = mesaVista.preguntarCargarPartida();
+        if(cargarPartida){
+            Constructor constructor = new ConstructorEscoba();
+            directorConstructor(constructor, mesaConcreta, mesaVista.elegirArchivo());
+        }
+        System.out.print(mesaConcreta.obtenerPrimerJugador().obtenerNombre());
+        System.out.print(mesaConcreta.obtenerSegundoJugador().obtenerNombre());
 
+        
+        // Guardar partida
+        String ruta = mesaVista.guardarPartida();
+        System.out.print("guardando en: "+ruta);
+        Serializador serializador = new SerializadorEscoba(); 
+        directorSerializador(serializador, ruta, mesaConcreta);
 
         MesaVista frame = new MesaVistaEscoba();
-
 		Carta carta1 = new Carta(1, "Bastos", "");
 		Carta carta2 = new Carta(2, "Copas", "");
 		Carta carta3 = new Carta(3, "Oros", "");

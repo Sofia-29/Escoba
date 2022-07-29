@@ -1,9 +1,5 @@
 package Modelo;
 
-import java.io.File;
-
-import javax.swing.JFileChooser;
-
 public abstract class Serializador {
 
     public Serializador(){
@@ -15,5 +11,5 @@ public abstract class Serializador {
 
     public abstract void inicioObjeto(String nombre);
     public abstract void finObjeto();
-    public abstract String obtSerializacion();
+    public abstract String obtSerializacion(String rutaArchivo);
 }
