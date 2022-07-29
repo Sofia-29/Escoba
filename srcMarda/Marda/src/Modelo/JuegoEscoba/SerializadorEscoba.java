@@ -58,10 +58,9 @@ public class SerializadorEscoba extends Serializador{
     }
 
     @Override
-    public String obtSerializacion() {
-        String ruta = "src/Partidas";
+    public String obtSerializacion(String rutaArchivo) {
         try {
-            FileWriter fichero = new FileWriter(ruta);
+            FileWriter fichero = new FileWriter(rutaArchivo);
             PrintWriter escritor = new PrintWriter(fichero);
             escritor.println(resultadoSerial);
             escritor.close();

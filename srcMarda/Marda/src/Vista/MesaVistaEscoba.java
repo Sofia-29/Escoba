@@ -1,8 +1,9 @@
 package Vista;
 
+
 public class MesaVistaEscoba extends MesaVista {
     
-    public MesaVistaEscoba(){
+    public MesaVistaEscoba( ){
         super();
     }
 

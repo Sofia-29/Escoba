@@ -1,12 +1,12 @@
 package Vista;
-
 import java.awt.BorderLayout;
-
+import java.io.File;
 import java.util.ArrayList;
-
 import javax.swing.ImageIcon;
+import javax.swing.JFileChooser;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 import javax.swing.JToggleButton;
@@ -14,10 +14,13 @@ import javax.swing.Icon;
 import java.awt.Image;
 import java.awt.FlowLayout;
 import Modelo.Carta;
-
+import Modelo.Mesa;
+import Modelo.Serializador;
+import javax.swing.JToggleButton;
+import javax.swing.Icon;
+import java.awt.Image;
 
 public abstract class MesaVista extends JFrame {
-
 	private JPanel panelMesa;
 	private JPanel panelCartasMesa;
 	private JPanel panelMazoComun;
@@ -26,12 +29,15 @@ public abstract class MesaVista extends JFrame {
 	private JLabel turnoJugador;
 	private JLabel puntajeJugador;
 	public JToggleButton reglasJuego;
+	public JToggleButton botonGuardar;
 	private GestorEventos gestorEventos;
 	private ArrayList<JLabel> cartasEnMesa;
 	private JugadorVista jugadorUno;
 	private JugadorVista jugadorDos;
 	private JugadorVista JugadorActual;
 	private General ayudante;
+	private Mesa mesaConcreta;
+	private Serializador serializador;
 
 
 	public MesaVista() {
@@ -161,6 +167,35 @@ public abstract class MesaVista extends JFrame {
 		jugadorDos.deshabilitarCartasJugador();
 	}
 
+	public boolean preguntarCargarPartida(){
+		boolean resultado = false;
+		String mensaje="¿Desea cargar una partida?";
+        int respuesta = JOptionPane.showConfirmDialog(null, mensaje, "Cargar partida", JOptionPane.YES_NO_OPTION);
+		if(respuesta != 1){
+			resultado = true;
+		}
+		return resultado;
+	}
+
+	public String guardarPartida(){
+		JOptionPane.showMessageDialog(null, "Ingrese la ruta y nombre del archivo a guardar");
+		File rutaElegida = elegirArchivo();
+		return rutaElegida.getPath();
+	}
+
+	public File elegirArchivo(){
+        JFileChooser selectorDeArchivo = new JFileChooser();
+        int respuesta = selectorDeArchivo.showOpenDialog(null);
+        
+        if(respuesta == JFileChooser.APPROVE_OPTION){
+            File file  = new File(selectorDeArchivo.getSelectedFile().getAbsolutePath());
+            return file;
+        }else{
+            System.out.println("error al cargar el archivo");
+            return null;
+        }
+    }
+
 	public String obtenerCartaDescartada(){
 		return JugadorActual.obtenerCartaDescartada();
 	}
@@ -186,6 +221,7 @@ public abstract class MesaVista extends JFrame {
 
 	private void inicializarReglas(){
 		reglasJuego = new JToggleButton();
+		botonGuardar = new JToggleButton();
 		String ruta = "Imagenes/Reglas/reglas.png";
         ImageIcon imagen = new ImageIcon(this.getClass().getResource(ruta));
         Icon icono = new ImageIcon(imagen.getImage().getScaledInstance(130,100,
@@ -244,9 +280,29 @@ public abstract class MesaVista extends JFrame {
 			carta = frame.obtenerCartaDescartada();
 		}
 		System.out.println(carta);
+		botonGuardar.setText("Guardar");
+		panelEtiquetas.add(reglasJuego, BorderLayout.LINE_END);
+		panelEtiquetas.add(botonGuardar, BorderLayout.LINE_START);
+	}
 
-		frame.cambiarTurnoJugador();
+	public void botonReglas(){
+		reglasJuego.setVisible(true);
+		ayudante.actualizarPanel(panelMesa);
+		gestorEventos.accionMostrarReglas(this);
+	}
+
+	public void botonGuardar(){
+		botonGuardar.setVisible(true);
+		ayudante.actualizarPanel(panelMesa);
+		gestorEventos.accionGuardar(this, mesaConcreta, serializador);
+	}
+
+	public void asignarMesa(Mesa mesaConcreta,  Serializador serializador){
+		this.mesaConcreta = mesaConcreta;
+		this.serializador = serializador;
+		botonGuardar();
 	}
 	//frame.actualizarEtiquetaTurnoJugador();
 	 */
+	//protected abstract String reglasJuego();
 }
