@@ -3,6 +3,7 @@ package Vista;
 import java.awt.BorderLayout;
 
 import java.util.ArrayList;
+import java.util.concurrent.TimeUnit;
 
 import javax.swing.ImageIcon;
 import javax.swing.JFrame;
@@ -158,17 +159,14 @@ public class MesaVista extends JFrame {
 		Carta carta1 = new Carta(1, "Bastos", "Imagenes/Bastos/1-Bastos.jpg");
 		Carta carta2 = new Carta(2, "Copas", "Imagenes/Copas/2-Copas.jpg");
 		Carta carta3 = new Carta(3, "Oros", "Imagenes/Oros/3-Oros.jpg");
-		Carta carta4 = new Carta(4, "Espadas", "Imagenes/Espadas/4-oros.jpg");
 		ArrayList<Carta> cartas = new ArrayList<Carta>();
 		ArrayList<Carta> cartas1 = new ArrayList<Carta>();
 		cartas.add(carta1);
 		cartas.add(carta2);
 		cartas.add(carta3);
-		cartas.add(carta4);
 		cartas1.add(carta1);
 		cartas1.add(carta2);
 		cartas1.add(carta3);
-		cartas1.add(carta4);
 		frame.actualizarCartasEnMesa(cartas);
 		frame.inicializarJugadores();
 		frame.actualizarCartasJugadorUno(cartas);
@@ -182,11 +180,25 @@ public class MesaVista extends JFrame {
 		frame.iniciarBotonDescartarCartaJugadores();
 
 		String carta = "-1";
-		while(carta.equals("-1")){
+		while(true){
 			carta = frame.obtenerCartaDescartada();
+			if(!carta.equals("-1")){
+				
+				System.out.println("Me sali");
+				break;
+			}
+			try {
+				TimeUnit.SECONDS.sleep(1);
+			} catch (InterruptedException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+			//System.out.println("En el ciclo");
 		}
 		System.out.println(carta);
-
+		// try{
+		// 	Thread.sleep(2000);
+		// }catch(Exception e){}
 		frame.cambiarTurnoJugador();
 	}
 }

@@ -113,7 +113,7 @@ public class JugadorVista {
     }
 
     public void deshabilitarCartasJugador(){
-        for(int indice = 0; indice < this.componenteCartasJugador.size(); indice++){
+        for(int indice = 0; indice < this.cartasJugador.size(); indice++){
             String ruta = "Imagenes/" + "Carta_Reverso/" + "carta_reverso.png";
 			ImageIcon imagen = new ImageIcon(this.getClass().getResource(ruta));
             JToggleButton boton = this.componenteCartasJugador.get(indice);

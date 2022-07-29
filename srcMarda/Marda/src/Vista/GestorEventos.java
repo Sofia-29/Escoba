@@ -21,9 +21,7 @@ public class GestorEventos {
             @Override
             public void actionPerformed(ActionEvent event){
                 eliminarBoton(jugador);
-                //jugador.actualizarCartasJugador(jugador.obtenerCartasJugador());
                 botonDescartarCarta.setEnabled(false);
-                //guardarPartida.setEnabled(false);
                 jugador.deshabilitarCartasJugador();
             }
         };
@@ -54,9 +52,9 @@ public class GestorEventos {
             if(boton.getModel().equals(modeloBoton)){ 
                 jugador.asignarCartaDescartada(boton.getName());
                 cartasJugador.remove(indice);
+                componenteCartasJugador.remove(indice);
+                grupoCartasJugador.remove(boton);
             }
-            componenteCartasJugador.remove(indice);
-            grupoCartasJugador.remove(boton);
         };
         grupoCartasJugador.clearSelection();
     }
