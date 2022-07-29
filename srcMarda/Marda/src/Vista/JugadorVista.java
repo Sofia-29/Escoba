@@ -124,7 +124,7 @@ public class JugadorVista {
     }
 
     public void habilitarCartasJugador(){
-        for(int indice = 0; indice < this.cartasJugador.size(); indice++){
+        for(int indice = 0; indice < this.componenteCartasJugador.size(); indice++){
             String palo = this.cartasJugador.get(indice).obtenerPalo();
             Integer valor = this.cartasJugador.get(indice).obtenerValor();
             String ruta = "Imagenes/" + palo + "/" + valor.toString() + "-" + palo + ".jpg";

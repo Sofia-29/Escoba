@@ -1,25 +1,28 @@
 package Modelo;
 import java.util.ArrayList;
 
+import Modelo.JuegoEscoba.ValidadorEscoba;
+
 public abstract class Mesa {
     
     protected Jugador primerJugador;
     protected Jugador segundoJugador;
     protected Jugador jugadorActual;
     protected ArrayList<Carta> cartasEnMesa;
-    //private Mazo mazo;
+    protected Validador validar;
+    protected Mazo mazo;
 
     public Mesa(){
-       // validar = new Validador();
+        Validador validar;
     }
 
-    public Mesa(Jugador primerJugador, Jugador segundoJugador /*Mazo mazo*/, Jugador jugadorActual,ArrayList<Carta> cartasEnMesa){
+    public Mesa(Jugador primerJugador, Jugador segundoJugador, Mazo mazo, Jugador jugadorActual,ArrayList<Carta> cartasEnMesa){
         this.primerJugador = primerJugador;
         this.segundoJugador = segundoJugador;
-        //this.mazo = mazo;
+        this.mazo = mazo;
         this.jugadorActual = jugadorActual;
         this.cartasEnMesa = cartasEnMesa;
-        //validar = new Validador();
+        Validador validar;
     }
 
     public void asignarPrimerJugador(Jugador primerJugador){
@@ -45,11 +48,11 @@ public abstract class Mesa {
     public Jugador obtenerSegundoJugador(){
         return segundoJugador;
     }
-    /* 
+    
     public Mazo obtenerMazo(){
         return mazo;
     }
-    */
+
     public Jugador obtenerJugadorActual(){
         return jugadorActual;
     }
@@ -62,9 +65,9 @@ public abstract class Mesa {
         }
     }
 
-    public void iniciarPartidao(){
+    public void iniciarPartida(){
         jugadorActual = primerJugador;
-        //mazo = new Mazo();
+        Mazo mazo;
         repartirCartasAMesa(4);
         repartirCartasAJugador(primerJugador.obtenerNombre(),3);
         repartirCartasAJugador(segundoJugador.obtenerNombre(),3);
@@ -82,10 +85,6 @@ public abstract class Mesa {
     public ArrayList<Carta> retornarCartasJugador(String nombreJugador){
         return obtenerJugadorPorNombre(nombreJugador).obtenerCartas();
     }
-
-    public ArrayList<Carta> retornarCartasMesa(){
-        return cartasEnMesa;
-    }
     
     public ArrayList<Carta> retornarCartasEnMesa(){
         return cartasEnMesa;
@@ -98,17 +97,17 @@ public abstract class Mesa {
     protected abstract ArrayList<Carta> movimientoJugadorCapturarCarta(Carta naipe, String nombreJugador);
 
     public void repartirCartasAJugador(String nombreJugador,int cantCartas){ 
-       // obtenerJugadorPorNombre(nombreJugador).asignarCartas(mazo.repartirMazo(cantCartas));
+       obtenerJugadorPorNombre(nombreJugador).asignarCartas(mazo.repartirMazo(cantCartas));
     }
 
     public void repartirCartasAMesa(int cantCartas){
-        //cartasEnMesa = mazo.repartirMazo(cantCartas);
+        cartasEnMesa = mazo.repartirMazo(cantCartas);
     }
 
     protected abstract Boolean validarTerminarPartida();
 
     public Jugador terminarPartida(){ 
-        //validar.contabilizarPuntos(primerJugador, segundoJugador);
+        validar.contabilizarPuntos(primerJugador, segundoJugador);
         jugadorActual = declararGanador();
         return jugadorActual;
     }
