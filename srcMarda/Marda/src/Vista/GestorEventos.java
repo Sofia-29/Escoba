@@ -6,7 +6,7 @@ import javax.swing.JButton;
 import javax.swing.JToggleButton;
 
 import Modelo.Carta;
-
+import javax.swing.JOptionPane;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
@@ -57,5 +57,16 @@ public class GestorEventos {
             }
         };
         grupoCartasJugador.clearSelection();
+    }
+
+    public void accionMostrarReglas(MesaVista mesa){
+        ActionListener accion = new ActionListener(){
+                @Override
+                public void actionPerformed(ActionEvent event){
+                    String reglasJuego = mesa.reglasJuego();
+                    JOptionPane.showMessageDialog(null,reglasJuego,"REGLAS DEL JUEGO",JOptionPane.INFORMATION_MESSAGE);
+                }
+        };
+        mesa.reglasJuego.addActionListener(accion);
     }
 }
