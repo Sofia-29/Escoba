@@ -93,7 +93,7 @@ public class ValidadorEscoba extends Validador{
         return resultado;
     }
 
-    public boolean combinaciones(ArrayList<Carta> cartasEnMesa, int suma, ArrayList<Integer> indicesVisitados){
+    private boolean combinaciones(ArrayList<Carta> cartasEnMesa, int suma, ArrayList<Integer> indicesVisitados){
         boolean encontrado = false;
         if(suma == 15){
             encontrado = true;
@@ -152,37 +152,4 @@ public class ValidadorEscoba extends Validador{
             cartasEnMesa.add(naipe);
         }
     }
-
-    // public static void main(String[] args) {
-    //     ValidadorEscoba validadorEscoba = new ValidadorEscoba();
-    //     Jugador primerJugador = new JugadorPersona();
-    //     Jugador segundoJugador = new JugadorMaquina();
-    //     ArrayList<Carta> cartas = new ArrayList<Carta>();
-    //     ArrayList<Carta> cartas2 = new ArrayList<Carta>();
-    //     ArrayList<Carta> cartasEnMesa = new ArrayList<Carta>();
-    //     Carta carta = new Carta(7, "Oros", "");
-    //     Carta carta2 = new Carta(7, "Copas", "");
-    //     Carta carta3 = new Carta(7, "Espadas", "");
-    //     Carta carta4 = new Carta(7, "Bastos", "");
-    //     for (int i = 0; i < 10; i++) {
-    //         if (i != 6){
-    //             cartas.add(new Carta(i+1, "Oros", ""));
-    //         }
-    //     }
-    //     cartas2.add(carta);
-    //     cartas2.add(carta2);
-    //     cartas2.add(carta3);
-    //     cartas2.add(carta4);
-
-    //     cartasEnMesa.add(carta);
-    //     cartasEnMesa.add(carta2);
-    //     cartasEnMesa.add(carta3);
-    //     cartasEnMesa.add(new Carta(1, "Oros", ""));
-        
-    //     // primerJugador.asignarCartasCapturadas(cartas);
-    //     // segundoJugador.asignarCartasCapturadas(cartas2);
-    //     // validadorEscoba.validarJugada(cartasEnMesa, primerJugador);
-    //     // validadorEscoba.validarReglas(primerJugador, segundoJugador);
-    //     validadorEscoba.validarJugada(cartasEnMesa, primerJugador);
-    // }
 }
