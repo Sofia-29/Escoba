@@ -2,10 +2,18 @@ package Modelo.JuegoEscoba;
 import java.util.ArrayList;
 import Modelo.Carta;
 import Modelo.Jugador;
+import Modelo.Mazo;
 import Modelo.Mesa;
 
 
 public class MesaEscoba extends Mesa {
+
+    private Jugador ultimoJugadorCaptura;
+
+    public MesaEscoba(Jugador primerJugador, Jugador segundoJugador, Mazo mazo, Jugador jugadorActual,ArrayList<Carta> cartasEnMesa){
+        super(primerJugador,segundoJugador,mazo,jugadorActual,cartasEnMesa);
+        this.ultimoJugadorCaptura = this.obtenerJugadorActual();
+    }
 
     public Jugador obtenerJugadorPersona(String nombre){
         if(primerJugador.obtenerNombre() == nombre){
@@ -20,12 +28,10 @@ public class MesaEscoba extends Mesa {
         Carta cartaDescartada = null;
         cartaDescartada = movimientoJugadorDescartarCarta(naipe, nombreJugador);
         ArrayList<Carta> naipesCapturados = null;
-        /* 
         naipesCapturados = validar.validarCaptura(jugadorActual, cartaDescartada, cartasEnMesa);
         if(naipesCapturados != null){
             ultimoJugadorCaptura = jugadorActual;
         }
-        */
         return naipesCapturados;
     }
     
@@ -42,12 +48,12 @@ public class MesaEscoba extends Mesa {
 
     @Override
     protected Boolean validarTerminarPartida() {
-        //if(mazo.obtenerCantidadDeNaipes() == 0 && primerJugador.obtenerNumeroCartasEnJuego() == 0 && segundoJugador.obtenerNumeroCartasEnJuego() == 0){
-            //ultimoJugadorCaptura.capturarCartas(cartasEnMesa);
+        if(mazo.obtenerCantidadCartas() == 0 && primerJugador.obtenerNumeroCartasEnJuego() == 0 && segundoJugador.obtenerNumeroCartasEnJuego() == 0){
+            ultimoJugadorCaptura.capturarCartas(cartasEnMesa);
             cartasEnMesa.removeAll(cartasEnMesa);
             return true;
-        //}
-        //return false;
+        }
+        return false;
     }
 
     @Override
@@ -73,7 +79,13 @@ public class MesaEscoba extends Mesa {
             naipes.add(naipe);
             cartaDescartada = jugadorActual.descartarCarta(naipes);
         }
-        //*jugadorActual.removerCarta(cartaDescartada);
+        jugadorActual.removerCarta(naipe.obtenerPalo(),naipe.obtenerValor());
         return cartaDescartada;
     }
+    
+    public Jugador obtenerUltimoJugadorCaptura(){
+        return ultimoJugadorCaptura;
+    }
+
+
 }

@@ -23,4 +23,9 @@ public abstract class Validador {
     {
         return this.Reglas;
     }
+
+    public ArrayList<Carta> validarCaptura(Jugador jugadorActual, Carta cartaDescartada,
+            ArrayList<Carta> cartasEnMesa) {
+        return null;
+    }
 }
