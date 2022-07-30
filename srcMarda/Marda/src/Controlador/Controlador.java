@@ -69,6 +69,7 @@ public abstract class Controlador {
         + mesaConcreta.obtenerPrimerJugador().obtenerPuntaje() +" puntos\n" + mesaConcreta.obtenerSegundoJugador().obtenerNombre()+ " termina con "
         + mesaConcreta.obtenerSegundoJugador().obtenerPuntaje() + "puntos \nEl ganador es: " + ganador.obtenerNombre();
         mesaVistaConcreta.finalizarJuego(mensaje);
+        mesaVistaConcreta.setVisible(false);
     }
 
       /*

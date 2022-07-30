@@ -47,13 +47,11 @@ public class GestorEventos {
         ButtonGroup grupoCartasJugador = jugador.obtenerGrupoCartasJugador();
         ButtonModel modeloBoton = grupoCartasJugador.getSelection();
         ArrayList<JToggleButton> componenteCartasJugador = jugador.obtenerBotonesCartasJugador();
-        ArrayList<Carta> cartasJugador = jugador.obtenerCartasJugador();
         for(int indice = 0; indice < componenteCartasJugador.size();indice++){
             JToggleButton boton = componenteCartasJugador.get(indice);
             boton.setVisible(false);
             if(boton.getModel().equals(modeloBoton)){ 
                 jugador.asignarCartaDescartada(boton.getName());
-                cartasJugador.remove(indice);
                 componenteCartasJugador.remove(indice);
                 grupoCartasJugador.remove(boton);
             }

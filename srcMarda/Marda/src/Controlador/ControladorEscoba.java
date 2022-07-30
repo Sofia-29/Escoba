@@ -61,6 +61,9 @@ public class ControladorEscoba extends Controlador {
             mesa.repartirCartasAJugador(mesa.obtenerSegundoJugador().obtenerNombre(), 3);
             mesaVistaConcreta.actualizarCartasJugadorUno(mesa.obtenerPrimerJugador().obtenerCartas());
             mesaVistaConcreta.actualizarCartasJugadorDos(mesa.obtenerSegundoJugador().obtenerCartas());
+            mesaVistaConcreta.deshabilitarCartasJugadores();
+            mesaVistaConcreta.mostrarCartasJugadorActual();
+            System.out.println(mesa.obtenerMazo().obtenerCartasActuales());
         }
 
         if(mesa.obtenerJugadorActual().obtenerNombre() != "Jugador Maquina"){
@@ -78,20 +81,19 @@ public class ControladorEscoba extends Controlador {
             cartaDescartada = jugadorActual.obtenerCarta(palo, Integer.parseInt(valor));
             cartasCapturadas = mesa.movimientoJugadorCapturarCarta(cartaDescartada, jugadorActual.obtenerNombre());
         }else{
+            esperar(2);
             cartaDescartada = jugadorActual.descartarCarta(mesa.retornarCartasEnMesa());
             cartasCapturadas = mesa.movimientoJugadorCapturarCarta(cartaDescartada, jugadorActual.obtenerNombre());
             mesaVistaConcreta.actualizarCartasJugadorDos(jugadorActual.obtenerCartas());
-            esperar(3);
+            esperar(1);
         }
 
         if(cartasCapturadas != null){
             boolean capturaEscoba = validador.esEscoba(mesa.retornarCartasEnMesa());
             if(capturaEscoba){
                 mesaVistaConcreta.mostrarEscoba(cartasCapturadas);
-                esperar(7);
             }else{
                 mesaVistaConcreta.mostrarCaptura(cartasCapturadas);
-                esperar(4);
             }
         }
         mesaVistaConcreta.actualizarCartasEnMesa(mesa.retornarCartasEnMesa());
@@ -115,5 +117,6 @@ public class ControladorEscoba extends Controlador {
         Serializador serializador = new SerializadorEscoba();
         Controlador controlador = new ControladorEscoba(mesa, mesaVista, constructor, serializador);
         controlador.iniciarJuego();
+        System.exit(0);
     }
 }

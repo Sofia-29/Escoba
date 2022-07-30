@@ -25,6 +25,10 @@ public abstract class Mazo {
     public abstract int obtenerCantidadCartas();
     public abstract String obtenerRuta(String palo, int valor);
 
+    public int obtenerCartasActuales(){
+        return this.grupoDeCartas.size();
+    }
+
     public void asignarMazo(ArrayList<Carta> mazo){
         this.grupoDeCartas = mazo;
     }

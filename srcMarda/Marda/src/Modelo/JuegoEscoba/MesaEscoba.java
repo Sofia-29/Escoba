@@ -64,7 +64,7 @@ public class MesaEscoba extends Mesa {
 
     @Override
     public Boolean validarTerminarPartida() {
-        if(mazo.obtenerCantidadCartas() == 0 && primerJugador.obtenerNumeroCartasEnJuego() == 0 && segundoJugador.obtenerNumeroCartasEnJuego() == 0){
+        if(mazo.obtenerCartasActuales() == 0 && primerJugador.obtenerNumeroCartasEnJuego() == 0 && segundoJugador.obtenerNumeroCartasEnJuego() == 0){
             ultimoJugadorCaptura.capturarCartas(cartasEnMesa);
             cartasEnMesa.removeAll(cartasEnMesa);
             return true;
@@ -89,14 +89,8 @@ public class MesaEscoba extends Mesa {
 
     @Override
     public Carta movimientoJugadorDescartarCarta(Carta naipe, String nombreJugador) {
-        ArrayList<Carta> naipes = new ArrayList<Carta>();
-        Carta cartaDescartada = naipe;
-        if(jugadorActual.obtenerNombre() == obtenerJugadorPersona(nombreJugador).obtenerNombre()){
-            naipes.add(naipe);
-            cartaDescartada = jugadorActual.descartarCarta(naipes);
-        }
         jugadorActual.removerCarta(naipe.obtenerPalo(),naipe.obtenerValor());
-        return cartaDescartada;
+        return naipe;
     }
 
     public Jugador obtenerUltimoJugadorCaptura(){
