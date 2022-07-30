@@ -30,7 +30,7 @@ public class ControladorEscoba extends Controlador {
         Jugador segundoJugador = mesa.crearJugadorMaquina();
         mesaVistaConcreta.inicializarJugadores();
         mesaVistaConcreta.preguntarInformacionJugadorUno();
-        mesaVistaConcreta.asignarInformacionJugadorDos("Jugador Maquina");
+        mesaVistaConcreta.asignarInformacionJugadorDos("Maquina");
         primerJugador.asignarNombre(mesaVistaConcreta.obtenerNombreJugadorUno());
         mesa.asignarPrimerJugador(primerJugador);
         mesa.asignarSegundoJugador(segundoJugador);
@@ -66,7 +66,7 @@ public class ControladorEscoba extends Controlador {
             System.out.println(mesa.obtenerMazo().obtenerCartasActuales());
         }
 
-        if(mesa.obtenerJugadorActual().obtenerNombre() != "Jugador Maquina"){
+        if(mesa.obtenerJugadorActual().obtenerNombre() != "Maquina"){
             String cartaSeleccionada = "-1";
             while(true){
                 cartaSeleccionada = mesaVistaConcreta.obtenerCartaDescartada();
