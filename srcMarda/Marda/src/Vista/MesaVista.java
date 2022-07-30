@@ -11,10 +11,7 @@ import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 import Modelo.Carta;
 import Modelo.Mesa;
-import Modelo.Jugador;
 import Modelo.Serializador;
-import Modelo.JuegoEscoba.JugadorPersona;
-import Modelo.JuegoEscoba.JugadorMaquina;
 
 import javax.swing.JToggleButton;
 import javax.swing.Icon;

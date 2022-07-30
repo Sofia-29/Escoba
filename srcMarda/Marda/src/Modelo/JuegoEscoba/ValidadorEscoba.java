@@ -4,6 +4,7 @@ import java.util.ArrayList;
 
 import Modelo.Regla;
 import Modelo.Carta;
+import Modelo.JuegoEscoba.ReglasConcretas.*;
 import Modelo.Jugador;
 import Modelo.Validador;
 
@@ -18,8 +19,8 @@ public class ValidadorEscoba extends Validador{
     {
         ArrayList<Regla> reglas = this.obtenerReglas();
         reglas.add(new ReglaEscoba("Escoba", 1));
-        reglas.add(new ReglaEscobaCantidadOros("Cantidad Oros", 1));
-        reglas.add(new ReglaEscobaCantidadSietes("Cantidad Sietes", 1));
+        reglas.add(new ReglaEscobaOros("Cantidad Oros", 1));
+        reglas.add(new ReglaEscobaSieteOros("Cantidad Sietes", 1));
         reglas.add(new ReglaEscobaSietes("Sietes", 1));
         reglas.add(new ReglaEscobaOros("Oros", 1));
         reglas.add(new ReglaEscobaSieteOros("Siete Oros", 1));
@@ -29,8 +30,7 @@ public class ValidadorEscoba extends Validador{
     public void validarReglas(Jugador primerJugador, Jugador segundoJugador){
         String stringABuscar = "Cantidad";
         for (Regla regla : this.obtenerReglas()) {
-            if(regla.obtenerNombre().equals("Escoba")){}
-            else{
+            if(!regla.obtenerNombre().equals("Escoba")){
                 if(regla.obtenerNombre().contains(stringABuscar)){
                     int puntuacionJugadorUno = validarReglaJugador(primerJugador, regla);
                     int puntuacionJugadorDos = validarReglaJugador(segundoJugador, regla);

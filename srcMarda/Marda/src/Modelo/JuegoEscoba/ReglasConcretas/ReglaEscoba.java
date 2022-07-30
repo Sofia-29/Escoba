@@ -1,4 +1,4 @@
-package Modelo.JuegoEscoba;
+package Modelo.JuegoEscoba.ReglasConcretas;
 
 import Modelo.Regla;
 import Modelo.Carta;

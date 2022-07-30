@@ -1,11 +1,11 @@
-package Modelo.JuegoEscoba;
+package Modelo.JuegoEscoba.ReglasConcretas;
 
 import Modelo.Regla;
 import Modelo.Carta;
 import java.util.ArrayList;
 
-public class ReglaEscobaCantidadOros extends Regla{
-    public ReglaEscobaCantidadOros(String nombre, int puntaje){
+public class ReglaEscobaOros extends Regla{
+    public ReglaEscobaOros(String nombre, int puntaje){
         super(nombre, puntaje);
     }
 

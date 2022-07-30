@@ -3,7 +3,6 @@ import javax.swing.ButtonGroup;
 import javax.swing.ButtonModel;
 import javax.swing.JButton;
 import javax.swing.JToggleButton;
-import Modelo.Carta;
 import Modelo.Mazo;
 import Modelo.Mesa;
 import Modelo.Serializador;

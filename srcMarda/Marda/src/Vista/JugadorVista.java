@@ -21,7 +21,6 @@ public class JugadorVista {
     private JButton botonDescartarCarta;
     private String nombre;
     private String cartaSeleccionada;
-    private JLabel puntaje;
 
     JugadorVista(){
         componenteCartasJugador = new ArrayList<JToggleButton>();
