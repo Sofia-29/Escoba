@@ -1,49 +1,77 @@
 package Controlador;
 import java.io.File;
-import java.util.ArrayList;
-import java.util.concurrent.TimeUnit;
-import javax.swing.JFileChooser;
 import Modelo.Jugador;
-import Modelo.Carta;
 import Modelo.Constructor;
-import Modelo.Mazo;
 import Modelo.Mesa;
 import Modelo.Serializador;
-import Modelo.Validador;
-import Modelo.JuegoEscoba.ConstructorEscoba;
-import Modelo.JuegoEscoba.JugadorMaquina;
-import Modelo.JuegoEscoba.JugadorPersona;
-import Modelo.JuegoEscoba.MazoEspanyol;
-import Modelo.JuegoEscoba.SerializadorEscoba;
-import Modelo.JuegoEscoba.ValidadorEscoba;
-import Vista.MesaVista;
-import Vista.MesaVistaEscoba;
-import Modelo.JuegoEscoba.MesaEscoba;
-import Modelo.JuegoEscoba.SerializadorEscoba;
 import Vista.MesaVista;
 
-public class Controlador {
-    public static void directorSerializador(Serializador cs, String ruta, Mesa mesaConcreta){
-        try {
-            Mazo cartasEnMesa = new MazoEspanyol();
-            cartasEnMesa.asignarMazo(mesaConcreta.retornarCartasEnMesa());
+public abstract class Controlador {
 
-            // Cartas en mesa
-            cs.serializarMazo(cartasEnMesa);
+    private Mesa mesaConcreta;
+    private MesaVista mesaVistaConcreta; 
+    private Constructor constructorConcreto;
+    private Serializador serializador;
 
-            // Jugadores
-            cs.serializarJugador(mesaConcreta.obtenerPrimerJugador());
-            cs.serializarJugador(mesaConcreta.obtenerSegundoJugador());
+    public Controlador(Mesa mesaConcreta, MesaVista mesaVistaConcreta, Constructor constructorConcreto, Serializador serializador){
+        this.mesaConcreta = mesaConcreta;
+        this.mesaVistaConcreta = mesaVistaConcreta;
+        this.constructorConcreto = constructorConcreto;
+        this.serializador = serializador;
+    }
 
-            // Jugador Actual
-            cs.serializarjugadorActual(mesaConcreta.obtenerJugadorActual().obtenerNombre());
-            cs.obtSerializacion(ruta);
-        } catch (Exception e) {
-            e.printStackTrace();
+    public abstract void inicializarMesa();
+    public abstract void realizarTurnoJugador();
+
+    public Mesa obtenerMesaConcreta(){
+        return mesaConcreta;
+    }
+
+    public MesaVista obtenerMesaVistaConcreta(){
+        return mesaVistaConcreta;
+    }
+
+    public void cargarPartida(){
+        boolean cargarPartida = mesaVistaConcreta.preguntarCargarPartida();
+        if(cargarPartida){
+            directorConstructor(constructorConcreto, mesaConcreta, mesaVistaConcreta.elegirArchivo());
+        }else{
+            inicializarMesa();
         }
     }
 
-    /*
+    public void pasarTurno(){
+        mesaConcreta.pasarTurno();
+        mesaVistaConcreta.cambiarTurnoJugador();
+		mesaVistaConcreta.actualizarEtiquetaPuntajeJugador(mesaConcreta.obtenerJugadorActual().obtenerPuntaje());
+    }
+    
+    public void iniciarJuego(){
+        cargarPartida();
+        mesaConcreta.iniciarPartida();
+        mesaVistaConcreta.asignarMesa(mesaConcreta, serializador);
+        mesaVistaConcreta.actualizarCartasEnMesa(mesaConcreta.obtenerCartasEnMesa());
+        mesaVistaConcreta.actualizarCartasJugadorUno(mesaConcreta.obtenerPrimerJugador().obtenerCartas());
+		mesaVistaConcreta.actualizarCartasJugadorDos(mesaConcreta.obtenerSegundoJugador().obtenerCartas());
+        mesaVistaConcreta.actualizarEtiquetaTurnoJugador(mesaVistaConcreta.obtenerNombreJugadorActual());
+        mesaVistaConcreta.deshabilitarCartasJugadores();
+        mesaVistaConcreta.mostrarCartasJugadorActual();
+        mesaVistaConcreta.setVisible(true);
+
+        while(!mesaConcreta.validarTerminarPartida()){
+            realizarTurnoJugador();
+            pasarTurno();
+        }
+
+        mesaVistaConcreta.actualizarCartasEnMesa(mesaConcreta.retornarCartasEnMesa());
+        Jugador ganador = mesaConcreta.terminarPartida();
+        String mensaje="Juego finalizado\n"+mesaConcreta.obtenerPrimerJugador().obtenerNombre()+ " termina con "
+        + mesaConcreta.obtenerPrimerJugador().obtenerPuntaje() +" puntos\n" + mesaConcreta.obtenerSegundoJugador().obtenerNombre()+ " termina con "
+        + mesaConcreta.obtenerSegundoJugador().obtenerPuntaje() + "puntos \nEl ganador es: " + ganador.obtenerNombre();
+        mesaVistaConcreta.finalizarJuego(mensaje);
+    }
+
+      /*
      * Director constructor para objetos del tipo Mesa
      */
     public static void directorConstructor(Constructor constructorMesa, Mesa mesaConcretaVacia, File archivo){
@@ -83,73 +111,5 @@ public class Controlador {
 
         // Obtener mesa resultante
         mesaConcretaVacia = constructorMesa.obtenerMesa();
-    }
-
-    public static void main(String[] args) throws Exception {
-        // Cargar partida
-        Mesa mesaConcreta = new MesaEscoba();
-        MesaVista frame = new MesaVistaEscoba();
-        boolean cargarPartida = frame.preguntarCargarPartida();
-        frame.inicializarMazoComun();
-		frame.inicializarMazoCartasDescartadas();
-        frame.setVisible(true);
-        if(cargarPartida){
-            Constructor constructor = new ConstructorEscoba();
-            directorConstructor(constructor, mesaConcreta, frame.elegirArchivo());
-        }else{
-            frame.inicializarJugadores();
-            frame.preguntarInformacionJugadorUno();
-            frame.preguntarInformacionJugadorDos();
-        }
-
-        // Se asignan atributos a la mesa.
-        Jugador primerJugador = frame.obtenerJugadorPersona();
-        Jugador segundoJugador = frame.obtenerJugadorMaquina();
-        mesaConcreta.asignarPrimerJugador(primerJugador);
-        mesaConcreta.asignarSegundoJugador(segundoJugador);
-        if(frame.obtenerNombreJugadorActual().equals(primerJugador.obtenerNombre()))
-        {
-            mesaConcreta.asignarJugadorActual(primerJugador);
-        }else{
-            mesaConcreta.asignarJugadorActual(segundoJugador);
-        }
-        Validador validadora = new ValidadorEscoba();
-        mesaConcreta.asignarValidador(validadora);
-        Mazo mazo = new MazoEspanyol();
-        mazo.iniciarMazo();
-        mesaConcreta.asignarMazo(mazo);
-
-        // Se inicia la partida, se reparten cartas.
-        mesaConcreta.iniciarPartida();
-
-        
-        // Asigna mesa y serializador
-        Serializador serializador = new SerializadorEscoba();
-        frame.asignarMesa(mesaConcreta, serializador);
-        
-		frame.actualizarCartasEnMesa(mesaConcreta.obtenerCartasEnMesa());
-		frame.actualizarCartasJugadorUno(mesaConcreta.obtenerPrimerJugador().obtenerCartas());
-		frame.actualizarCartasJugadorDos(mesaConcreta.obtenerSegundoJugador().obtenerCartas());
-		frame.deshabilitarCartasJugadores();
-        frame.mostrarCartasJugadorActual();
-		frame.actualizarEtiquetaPuntajeJugador(mesaConcreta.obtenerJugadorActual().obtenerPuntaje());
-		frame.iniciarBotonDescartarCartaJugadores();
-
-        // Empieza el ciclo de descartar cartas y jugar hasta que ya no hayan cartas.
-		String carta = "-1";
-		while(true){
-			carta = frame.obtenerCartaDescartada();
-			if(!carta.equals("-1")){
-				break;
-			}
-			TimeUnit.SECONDS.sleep(1);
-		}
-        String[] res = carta.split("[-]", 0);
-        Carta cartaDescartada = new Carta(Integer.parseInt(res[1]), res[0], "");
-        //valida si el descarte con las cartas en mesa hace captura/escoba.
-        mesaConcreta.movimientoJugadorDescartarCarta(cartaDescartada, frame.obtenerNombreJugadorActual());
-		System.out.println(carta);
-
-		frame.cambiarTurnoJugador();
     }
 }

@@ -8,7 +8,6 @@ import Modelo.Mazo;
 import Modelo.Mesa;
 import Modelo.Serializador;
 import Modelo.JuegoEscoba.MazoEspanyol;
-import Modelo.JuegoEscoba.SerializadorEscoba;
 import javax.swing.JOptionPane;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;

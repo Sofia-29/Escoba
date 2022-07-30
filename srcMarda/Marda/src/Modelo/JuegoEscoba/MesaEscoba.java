@@ -11,15 +11,25 @@ public class MesaEscoba extends Mesa {
 
     private Jugador ultimoJugadorCaptura;
 
-    public MesaEscoba(Jugador primerJugador, Jugador segundoJugador, Mazo mazo, Jugador jugadorActual,ArrayList<Carta> cartasEnMesa){
-        super(primerJugador,segundoJugador,mazo,jugadorActual,cartasEnMesa);
+    public MesaEscoba(Jugador primerJugador, Jugador segundoJugador, Mazo mazo, Jugador jugadorActual,ArrayList<Carta> cartasEnMesa, Validador validador){
+        super(primerJugador,segundoJugador,mazo,jugadorActual,cartasEnMesa, validador);
         this.ultimoJugadorCaptura = this.obtenerJugadorActual();
     }
 
-    public MesaEscoba(){
-        super();
-        Validador validar;
+    public MesaEscoba(Validador validador){
+        super(validador);
     }
+
+    public Jugador crearJugadorPersona(){
+		Jugador jugadorPersona = new JugadorPersona();
+		return jugadorPersona;
+	}
+
+	public Jugador crearJugadorMaquina(){
+		Jugador jugadorMaquina = new JugadorMaquina();
+		jugadorMaquina.asignarNombre("Jugador Maquina");
+		return jugadorMaquina;
+	}
 
     public Jugador obtenerJugadorPersona(String nombre){
         if(primerJugador.obtenerNombre() == nombre){
@@ -93,5 +103,10 @@ public class MesaEscoba extends Mesa {
         return ultimoJugadorCaptura;
     }
 
-
+    @Override
+    public void iniciarPartida() {
+        repartirCartasAMesa(4);
+        repartirCartasAJugador(primerJugador.obtenerNombre(),3);
+        repartirCartasAJugador(segundoJugador.obtenerNombre(),3);
+    }
 }

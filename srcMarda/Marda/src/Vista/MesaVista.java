@@ -35,7 +35,7 @@ public abstract class MesaVista extends JFrame {
 	private JugadorVista jugadorUno;
 	private JugadorVista jugadorDos;
 	private JugadorVista JugadorActual;
-	private General ayudante;
+	protected General ayudante;
 	private Mesa mesaConcreta;
 	private Serializador serializador;
 
@@ -106,7 +106,7 @@ public abstract class MesaVista extends JFrame {
 	}
 
 	public void actualizarCartasEnMesa(ArrayList<Carta> cartasEnMesa){
-		this.cartasEnMesa = new ArrayList<JLabel>();
+		ayudante.limpiarComponenteJLabel(this.cartasEnMesa, this.panelCartasMesa);
 		for(int indice = 0; indice < cartasEnMesa.size(); indice++){
             String palo = cartasEnMesa.get(indice).obtenerPalo();
             Integer valor = cartasEnMesa.get(indice).obtenerValor();
@@ -118,6 +118,23 @@ public abstract class MesaVista extends JFrame {
             ayudante.actualizarPanel(this.panelMesa);
         }
 	}
+
+	public void mostrarCaptura(ArrayList<Carta> cartas){
+        JPanel panel = new JPanel();
+        ArrayList<JLabel> cartasCapturadas = new ArrayList<JLabel>();
+        for(int indice = 0; indice < cartas.size(); indice++){
+            String palo = cartas.get(indice).obtenerPalo();
+            Integer valor = cartas.get(indice).obtenerValor();
+            String ruta = "Imagenes/" + palo + "/" + valor.toString() + "-" + palo + ".jpg";
+            ImageIcon imagen = new ImageIcon(this.getClass().getResource(ruta));
+            JLabel etiqueta = ayudante.generarEtiquetaConImagen(valor+"-"+palo, imagen);
+            cartasCapturadas.add(etiqueta);
+        }
+        for(int indice = 0; indice < cartasCapturadas.size(); indice++){
+            panel.add(cartasCapturadas.get(indice));
+        }
+        JOptionPane.showMessageDialog(null,panel,"Captura",JOptionPane.INFORMATION_MESSAGE);
+    }
 
 	public void iniciarBotonDescartarCartaJugadores(){
 		jugadorUno.iniciarBotonDescartarCarta();
@@ -145,7 +162,6 @@ public abstract class MesaVista extends JFrame {
 		jugadorDos.preguntarNombreJugador();
 	}
 
-
 	public void cambiarTurnoJugador(){
 
 		if(JugadorActual.obtenerNombreJugador().equals(jugadorUno.obtenerNombreJugador())){
@@ -158,8 +174,7 @@ public abstract class MesaVista extends JFrame {
 		JugadorActual.habilitarCartasJugador();
 		turnoJugador.setText("Turno de "+JugadorActual.obtenerNombreJugador());
 		actualizarEtiquetaTurnoJugador(JugadorActual.obtenerNombreJugador());
-		this.panelMesa.revalidate();
-    	this.panelMesa.repaint();
+		ayudante.actualizarPanel(this.panelMesa);
 	}
 
 	public void deshabilitarCartasJugadores(){
@@ -200,6 +215,22 @@ public abstract class MesaVista extends JFrame {
 		return JugadorActual.obtenerCartaDescartada();
 	}
 
+	public void asignarInformacionJugadorUno(String nombre){
+		jugadorUno.asignarNombre(nombre);
+	}
+
+	public void asignarInformacionJugadorDos(String nombre){
+		jugadorDos.asignarNombre(nombre);
+	}
+
+	public String obtenerNombreJugadorUno(){
+		return jugadorUno.obtenerNombreJugador();
+	}
+
+	public String obtenerNombreJugadorDos(){
+		return jugadorDos.obtenerNombreJugador();
+	}
+
 	private void inicializarEtiquetas(){
 		turnoJugador = ayudante.generarEtiqueta("Turno");
 		panelEtiquetas.add(turnoJugador, BorderLayout.NORTH);
@@ -207,7 +238,7 @@ public abstract class MesaVista extends JFrame {
 		panelEtiquetas.add(puntajeJugador);
 	}
 
-	private void actualizarEtiquetaTurnoJugador(String nombreJugador){
+	public void actualizarEtiquetaTurnoJugador(String nombreJugador){
 		turnoJugador.setText("Turno de " +nombreJugador);
 		turnoJugador.setVisible(true);
 		ayudante.actualizarPanel(panelMesa);
@@ -254,18 +285,6 @@ public abstract class MesaVista extends JFrame {
 		botonGuardar();
 	}
 
-	public Jugador obtenerJugadorPersona(){
-		Jugador jugadorPersona = new JugadorPersona();
-		jugadorPersona.asignarNombre(jugadorUno.obtenerNombreJugador());
-		return jugadorPersona;
-	}
-
-	public Jugador obtenerJugadorMaquina(){
-		Jugador jugadorMaquina = new JugadorMaquina();
-		jugadorMaquina.asignarNombre(jugadorDos.obtenerNombreJugador());
-		return jugadorMaquina;
-	}
-
 	public String obtenerNombreJugadorActual(){
 		return JugadorActual.obtenerNombreJugador();
 	}
@@ -275,4 +294,8 @@ public abstract class MesaVista extends JFrame {
 	}
 
 	protected abstract String reglasJuego();
+
+	public void finalizarJuego(String mensaje){
+        JOptionPane.showMessageDialog(null, mensaje);
+    }
 }

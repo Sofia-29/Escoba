@@ -78,7 +78,6 @@ public abstract class Jugador {
 
     public Carta descartarCarta(ArrayList<Carta> carta){
         Carta resultado = this.elegirCarta(carta);
-        this.removerCarta(resultado.obtenerPalo(), resultado.obtenerValor());
         return resultado;
     }
 

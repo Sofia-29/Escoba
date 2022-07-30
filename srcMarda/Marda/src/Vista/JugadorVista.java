@@ -96,7 +96,7 @@ public class JugadorVista {
 
     public void actualizarCartasJugador(ArrayList<Carta> cartas){
         this.cartasJugador = cartas;
-        //this.componenteCartasJugador.removeAll(this.componenteCartasJugador);
+        ayudante.limpiarComponenteBotones(componenteCartasJugador, grupoCartasJugador, panel);
 		for(int indice = 0; indice < cartas.size(); indice++){
             String palo = cartas.get(indice).obtenerPalo();
             Integer valor = cartas.get(indice).obtenerValor();
@@ -111,6 +111,8 @@ public class JugadorVista {
             ayudante.actualizarPanel(panel);
         }
     }
+
+
 
     public void deshabilitarCartasJugador(){
         for(int indice = 0; indice < this.componenteCartasJugador.size(); indice++){

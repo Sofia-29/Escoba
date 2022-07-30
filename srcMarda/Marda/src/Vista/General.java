@@ -1,5 +1,8 @@
 package Vista;
 import java.awt.Font;
+import java.util.ArrayList;
+
+import javax.swing.ButtonGroup;
 import javax.swing.ImageIcon;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
@@ -49,6 +52,28 @@ public class General {
         etiqueta.setBackground(new java.awt.Color(255,255,255));
         etiqueta.setSize(200,100);
         return etiqueta;
+    }
+
+    public void limpiarComponenteBotones(ArrayList<JToggleButton> componente, ButtonGroup grupoBotones, JPanel panel){
+        int indiceComponente = componente.size() - 1;
+        while(indiceComponente >= 0){
+            JToggleButton boton = componente.get(indiceComponente);
+            grupoBotones.remove(boton);
+            panel.remove(boton);
+            indiceComponente--;
+        }
+        componente.removeAll(componente);
+    }
+
+    public void limpiarComponenteJLabel(ArrayList<JLabel> componente, JPanel panel){
+        int indiceComponente = componente.size() - 1;
+        while(indiceComponente >= 0){
+            JLabel etiqueta = componente.get(indiceComponente);
+            etiqueta.setVisible(false);
+            panel.remove(etiqueta);
+            componente.remove(indiceComponente);
+            indiceComponente--;
+        }
     }
 }
     

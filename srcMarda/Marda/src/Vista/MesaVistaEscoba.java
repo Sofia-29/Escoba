@@ -1,5 +1,12 @@
 package Vista;
+import Modelo.Carta;
 
+import java.util.ArrayList;
+
+import javax.swing.ImageIcon;
+import javax.swing.JLabel;
+import javax.swing.JOptionPane;
+import javax.swing.JPanel;
 
 public class MesaVistaEscoba extends MesaVista {
     
@@ -34,5 +41,23 @@ public class MesaVistaEscoba extends MesaVista {
         "- El jugador que sume más puntos al final de la partida es declarado como ganador.";
 
     return juegoReglas;
+    }
+
+    public void mostrarEscoba(ArrayList<Carta> cartas){
+        JPanel panel = new JPanel();
+        ArrayList<JLabel> cartasCapturadas = new ArrayList<JLabel>();
+        for(int indice = 0; indice < cartas.size(); indice++){
+            String palo = cartas.get(indice).obtenerPalo();
+            Integer valor = cartas.get(indice).obtenerValor();
+            String ruta = "Imagenes/" + palo + "/" + valor.toString() + "-" + palo + ".jpg";
+            ImageIcon imagen = new ImageIcon(this.getClass().getResource(ruta));
+            JLabel etiqueta = ayudante.generarEtiquetaConImagen(valor+"-"+palo, imagen);
+            cartasCapturadas.add(etiqueta);
+        }
+        for(int indice = 0; indice < cartasCapturadas.size(); indice++){
+            panel.add(cartasCapturadas.get(indice));
+        }
+        panel.setBackground(new java.awt.Color(249,214,46));
+        JOptionPane.showMessageDialog(null,panel,"Escoba",JOptionPane.INFORMATION_MESSAGE);
     }
 }

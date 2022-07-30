@@ -1,8 +1,6 @@
 package Modelo;
 import java.util.ArrayList;
 
-import Modelo.JuegoEscoba.ValidadorEscoba;
-
 public abstract class Mesa {
     
     protected Jugador primerJugador;
@@ -13,16 +11,20 @@ public abstract class Mesa {
     protected Mazo mazo;
 
     public Mesa(){
-        Validador validar;
+
     }
 
-    public Mesa(Jugador primerJugador, Jugador segundoJugador, Mazo mazo, Jugador jugadorActual,ArrayList<Carta> cartasEnMesa){
+    public Mesa(Validador validador){
+        validar = validador;
+    }
+
+    public Mesa(Jugador primerJugador, Jugador segundoJugador, Mazo mazo, Jugador jugadorActual,ArrayList<Carta> cartasEnMesa, Validador validador){
         this.primerJugador = primerJugador;
         this.segundoJugador = segundoJugador;
         this.mazo = mazo;
         this.jugadorActual = jugadorActual;
         this.cartasEnMesa = cartasEnMesa;
-        Validador validar;
+        this.validar = validador;
     }
 
     public void asignarValidador(Validador validador){
@@ -47,6 +49,10 @@ public abstract class Mesa {
 
     public void asignarSegundoJugador(Jugador segundoJugador){
        this.segundoJugador = segundoJugador;
+    }
+
+    public Validador obtenerValidador(){
+        return validar;
     }
 
     public Jugador obtenerPrimerJugador(){
@@ -77,11 +83,7 @@ public abstract class Mesa {
         return this.cartasEnMesa;
     }
 
-    public void iniciarPartida(){
-        repartirCartasAMesa(4);
-        repartirCartasAJugador(primerJugador.obtenerNombre(),3);
-        repartirCartasAJugador(segundoJugador.obtenerNombre(),3);
-    }
+    public abstract void iniciarPartida();
 
     public Jugador pasarTurno(){
         if(jugadorActual.obtenerNombre().equals(primerJugador.obtenerNombre())){
@@ -114,7 +116,7 @@ public abstract class Mesa {
         cartasEnMesa = mazo.repartirMazo(cantCartas);
     }
 
-    protected abstract Boolean validarTerminarPartida();
+    public abstract Boolean validarTerminarPartida();
 
     public Jugador terminarPartida(){ 
         validar.contabilizarPuntos(primerJugador, segundoJugador);
