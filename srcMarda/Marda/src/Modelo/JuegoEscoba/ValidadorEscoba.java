@@ -54,6 +54,11 @@ public class ValidadorEscoba extends Validador{
         validarCaptura(jugador, cartaDescartada, cartas);
     }
 
+    /**
+     * @param jugador El jugador al que se le está validando la regla
+     * @param regla La regla a validar
+     * @return Los puntos ganados por la regla
+     */
     public int validarReglaJugador(Jugador jugador, Regla regla)
     {
         return regla.validarRegla(jugador.obtenerCartasCapturadas());
@@ -72,6 +77,13 @@ public class ValidadorEscoba extends Validador{
         }
     }
 
+    /**
+     * Valida si se realizó una captura en base a la jugada
+     * @param jugador El jugador al que se le está validando la captura
+     * @param carta La carta que el jugador tiró
+     * @param cartasEnMesa Las cartas que están en mesa
+     * @return Las cartas capturadas
+     */
     public ArrayList<Carta> validarCaptura(Jugador jugador, Carta carta, ArrayList<Carta> cartasEnMesa){
         boolean encontrado = false;
         ArrayList<Carta> resultado = validarEscoba(carta, cartasEnMesa);
@@ -93,6 +105,13 @@ public class ValidadorEscoba extends Validador{
         return resultado;
     }
 
+    /**
+     * Valida si hay alguna combinación posible que de 15
+     * @param cartasEnMesa Las cartas que están en mesa
+     * @param suma La suma actual de valor
+     * @param indicesVisitados Los índices de las cartas que ya se han visitado
+     * @return Un booleano indicando si se hayó una combinación o no
+     */
     private boolean combinaciones(ArrayList<Carta> cartasEnMesa, int suma, ArrayList<Integer> indicesVisitados){
         boolean encontrado = false;
         if(suma == 15){
@@ -116,6 +135,12 @@ public class ValidadorEscoba extends Validador{
         return encontrado;
     }
 
+    /**
+     * Valida si las cartas actuales son una escoba
+     * @param carta La carta que el jugador tiró
+     * @param cartas Las cartas que están en mesa
+     * @return Las cartas capturadas
+     */
     public ArrayList<Carta> validarEscoba(Carta carta, ArrayList<Carta> cartas){
         ArrayList<Carta> resultado = new ArrayList<Carta>();
         int suma = carta.obtenerValor();
@@ -131,6 +156,11 @@ public class ValidadorEscoba extends Validador{
         return resultado;
     }
 
+    /**
+     * Valida si no hay cartas en la mesa
+     * @param cartasEnMesa Las cartas que están en mesa
+     * @return Un booleano indicando si hay cartas
+     */
     public boolean esEscoba(ArrayList<Carta> cartasEnMesa){
         Regla escoba = this.obtenerReglas().get(0);
         if(escoba.validarRegla(cartasEnMesa) == 1){
@@ -139,6 +169,13 @@ public class ValidadorEscoba extends Validador{
         return false;
     }
 
+     /**
+     * Asigna los puntos al jugador si es escoba y quita las cartas capturadas
+     * @param jugador El jugador al que se le están asignando puntos
+     * @param naipe La carta que el jugador tiró
+     * @param resultado Las cartas capturadas
+     * @param cartasEnMesa Las cartas que están en mesa
+     */
     public void asignarPuntajeCaptura(Jugador jugador, Carta naipe, ArrayList<Carta> resultado, ArrayList<Carta> cartasEnMesa){
         if (resultado != null){
             cartasEnMesa.removeAll(resultado);
