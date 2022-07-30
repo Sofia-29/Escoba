@@ -104,7 +104,6 @@ public class ControladorEscoba extends Controlador {
         try {
             TimeUnit.SECONDS.sleep(segundos);
         } catch (InterruptedException e) {
-            // TODO Auto-generated catch block
             e.printStackTrace();
         }
     }

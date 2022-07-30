@@ -14,14 +14,23 @@ public class Carta {
         this.ruta = ruta;
     };
 
+    /**
+     * @return el valor de la carta
+     */
     public int obtenerValor(){
         return this.valor;
     }
 
+    /**
+     * @return el palo de la carta
+     */
     public String obtenerPalo(){
         return this.palo;
     }
 
+    /**
+     * @return la ruta en donde se encuentra la imagen de la carta
+     */
     public String obtenerRuta(){
         return this.ruta;
     }

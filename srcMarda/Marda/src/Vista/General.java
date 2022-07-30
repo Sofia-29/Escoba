@@ -12,17 +12,28 @@ import javax.swing.border.EmptyBorder;
 public class General {
     public General(){}
 
+    /**
+     * @param panel panel a actualizar
+     */
     public void actualizarPanel(JPanel panel){
         panel.revalidate();
         panel.repaint();
     }
 
+    /**
+     * @return el panel generado
+     */
     public JPanel generarPanel(){
 		JPanel panel = new JPanel();
 		panel.setBackground(new java.awt.Color(28, 84, 45));
 		return panel;
 	}
 
+    /**
+     * @param boton al que se le agrega una imagen 
+     * @param nombre del boton
+     * @param icono del boton
+     */
     public void generarBotonConImagen(JToggleButton boton, String nombre, ImageIcon icono){
         boton.setName(nombre);
         boton.setBorder(new EmptyBorder(5,5,5,5));
@@ -32,6 +43,11 @@ public class General {
 		boton.setVisible(true);
     }
 
+    /**
+     * @param nombre de la etiqueta
+     * @param icono de la etiqueta
+     * @return un JLabel con las especificaciones
+     */
     public JLabel generarEtiquetaConImagen(String nombre, ImageIcon icono){
 		JLabel etiqueta = new JLabel();
         etiqueta.setName(nombre);
@@ -43,6 +59,10 @@ public class General {
 		return etiqueta;
 	}
 
+    /**
+     * @param texto que debe agregarse a la etiqueta
+     * @return la etiqueta con los parametros necesarios
+     */
     public JLabel generarEtiqueta(String texto){
         JLabel etiqueta = new JLabel();
         etiqueta.setText(texto);
@@ -54,6 +74,11 @@ public class General {
         return etiqueta;
     }
 
+    /**
+     * @param componente que debe ser limpiado
+     * @param grupoBotones al que se le deben eliminar los componentes
+     * @param panel al que se le debe eliminar los componentes
+     */
     public void limpiarComponenteBotones(ArrayList<JToggleButton> componente, ButtonGroup grupoBotones, JPanel panel){
         int indiceComponente = componente.size() - 1;
         while(indiceComponente >= 0){
@@ -65,6 +90,10 @@ public class General {
         componente.removeAll(componente);
     }
 
+    /**
+     * @param componente a limpiar
+     * @param panel al que se le debe eliminar las etiquetas
+     */
     public void limpiarComponenteJLabel(ArrayList<JLabel> componente, JPanel panel){
         int indiceComponente = componente.size() - 1;
         while(indiceComponente >= 0){
