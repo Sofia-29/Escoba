@@ -11,7 +11,11 @@ import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 import Modelo.Carta;
 import Modelo.Mesa;
+import Modelo.Jugador;
 import Modelo.Serializador;
+import Modelo.JuegoEscoba.JugadorPersona;
+import Modelo.JuegoEscoba.JugadorMaquina;
+
 import javax.swing.JToggleButton;
 import javax.swing.Icon;
 import java.awt.Image;
@@ -209,8 +213,9 @@ public abstract class MesaVista extends JFrame {
 		ayudante.actualizarPanel(panelMesa);
 	}
 	
-	public void actualizarEtiquetaPuntajeJugador(String puntaje){
-		puntajeJugador.setText("Puntaje: " +puntaje);
+	public void actualizarEtiquetaPuntajeJugador(int puntaje){
+		String texto = "Puntaje: " + Integer.toString(puntaje);
+		puntajeJugador.setText(texto);
 		puntajeJugador.setVisible(true);
 		ayudante.actualizarPanel(panelMesa);
 	}
@@ -248,5 +253,26 @@ public abstract class MesaVista extends JFrame {
 		this.serializador = serializador;
 		botonGuardar();
 	}
+
+	public Jugador obtenerJugadorPersona(){
+		Jugador jugadorPersona = new JugadorPersona();
+		jugadorPersona.asignarNombre(jugadorUno.obtenerNombreJugador());
+		return jugadorPersona;
+	}
+
+	public Jugador obtenerJugadorMaquina(){
+		Jugador jugadorMaquina = new JugadorMaquina();
+		jugadorMaquina.asignarNombre(jugadorDos.obtenerNombreJugador());
+		return jugadorMaquina;
+	}
+
+	public String obtenerNombreJugadorActual(){
+		return JugadorActual.obtenerNombreJugador();
+	}
+
+	public void mostrarCartasJugadorActual(){
+		JugadorActual.habilitarCartasJugador();
+	}
+
 	protected abstract String reglasJuego();
 }

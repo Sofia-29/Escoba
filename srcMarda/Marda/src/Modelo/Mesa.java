@@ -25,6 +25,14 @@ public abstract class Mesa {
         Validador validar;
     }
 
+    public void asignarValidador(Validador validador){
+        this.validar = validador;
+    }
+
+    public void asignarMazo(Mazo mazo){
+        this.mazo = mazo;
+    }
+
     public void asignarPrimerJugador(Jugador primerJugador){
         this.primerJugador = primerJugador;
     }
@@ -65,9 +73,11 @@ public abstract class Mesa {
         }
     }
 
+    public ArrayList<Carta> obtenerCartasEnMesa(){
+        return this.cartasEnMesa;
+    }
+
     public void iniciarPartida(){
-        jugadorActual = primerJugador;
-        Mazo mazo;
         repartirCartasAMesa(4);
         repartirCartasAJugador(primerJugador.obtenerNombre(),3);
         repartirCartasAJugador(segundoJugador.obtenerNombre(),3);

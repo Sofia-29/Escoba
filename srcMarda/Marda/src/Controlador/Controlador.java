@@ -3,16 +3,19 @@ import java.io.File;
 import java.util.ArrayList;
 import java.util.concurrent.TimeUnit;
 import javax.swing.JFileChooser;
+import Modelo.Jugador;
 import Modelo.Carta;
 import Modelo.Constructor;
 import Modelo.Mazo;
 import Modelo.Mesa;
 import Modelo.Serializador;
+import Modelo.Validador;
 import Modelo.JuegoEscoba.ConstructorEscoba;
 import Modelo.JuegoEscoba.JugadorMaquina;
 import Modelo.JuegoEscoba.JugadorPersona;
 import Modelo.JuegoEscoba.MazoEspanyol;
 import Modelo.JuegoEscoba.SerializadorEscoba;
+import Modelo.JuegoEscoba.ValidadorEscoba;
 import Vista.MesaVista;
 import Vista.MesaVistaEscoba;
 import Modelo.JuegoEscoba.MesaEscoba;
@@ -87,43 +90,49 @@ public class Controlador {
         Mesa mesaConcreta = new MesaEscoba();
         MesaVista frame = new MesaVistaEscoba();
         boolean cargarPartida = frame.preguntarCargarPartida();
+        frame.inicializarMazoComun();
+		frame.inicializarMazoCartasDescartadas();
+        frame.setVisible(true);
         if(cargarPartida){
             Constructor constructor = new ConstructorEscoba();
             directorConstructor(constructor, mesaConcreta, frame.elegirArchivo());
+        }else{
+            frame.inicializarJugadores();
+            frame.preguntarInformacionJugadorUno();
+            frame.preguntarInformacionJugadorDos();
         }
+        Jugador primerJugador = frame.obtenerJugadorPersona();
+        Jugador segundoJugador = frame.obtenerJugadorMaquina();
 
+        mesaConcreta.asignarPrimerJugador(primerJugador);
+        mesaConcreta.asignarSegundoJugador(segundoJugador);
+        if(frame.obtenerNombreJugadorActual().equals(primerJugador.obtenerNombre()))
+        {
+            mesaConcreta.asignarJugadorActual(primerJugador);
+        }else{
+            mesaConcreta.asignarJugadorActual(segundoJugador);
+        }
+        Validador validadora = new ValidadorEscoba();
+        mesaConcreta.asignarValidador(validadora);
+        Mazo mazo = new MazoEspanyol();
+        mazo.iniciarMazo();
+        mesaConcreta.asignarMazo(mazo);
+        mesaConcreta.iniciarPartida();
+
+        
         // Asigna mesa y serializador
         Serializador serializador = new SerializadorEscoba();
         frame.asignarMesa(mesaConcreta, serializador);
         
-		Carta carta1 = new Carta(1, "Bastos", "");
-		Carta carta2 = new Carta(2, "Copas", "");
-		Carta carta3 = new Carta(3, "Oros", "");
-		Carta carta4 = new Carta(4, "Espadas", "");
-		ArrayList<Carta> cartas = new ArrayList<Carta>();
-        ArrayList<Carta> cartas1 = new ArrayList<Carta>();
-		cartas.add(carta1);
-		cartas.add(carta2);
-		cartas.add(carta3);
-		cartas.add(carta4);
-        cartas1.add(carta1);
-		cartas1.add(carta2);
-		cartas1.add(carta3);
-		cartas1.add(carta4);
-		frame.actualizarCartasEnMesa(cartas);
-		frame.inicializarJugadores();
-		frame.actualizarCartasJugadorUno(cartas);
-		frame.actualizarCartasJugadorDos(cartas1);
+		frame.actualizarCartasEnMesa(mesaConcreta.obtenerCartasEnMesa());
+		frame.actualizarCartasJugadorUno(mesaConcreta.obtenerPrimerJugador().obtenerCartas());
+		frame.actualizarCartasJugadorDos(mesaConcreta.obtenerSegundoJugador().obtenerCartas());
 		frame.deshabilitarCartasJugadores();
-		frame.inicializarMazoComun();
-		frame.inicializarMazoCartasDescartadas();
-		frame.setVisible(true);
-		frame.preguntarInformacionJugadorUno();
-		frame.preguntarInformacionJugadorDos();
-		frame.actualizarEtiquetaPuntajeJugador("12");
-		//frame.setVisible(true);
+        frame.mostrarCartasJugadorActual();
+		frame.actualizarEtiquetaPuntajeJugador(mesaConcreta.obtenerJugadorActual().obtenerPuntaje());
 		frame.iniciarBotonDescartarCartaJugadores();
 
+        // Empieza el ciclo de descartar cartas y jugar hasta que ya no hayan cartas.
 		String carta = "-1";
 		while(true){
 			carta = frame.obtenerCartaDescartada();
