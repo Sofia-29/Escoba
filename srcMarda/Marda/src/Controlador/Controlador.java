@@ -101,9 +101,10 @@ public class Controlador {
             frame.preguntarInformacionJugadorUno();
             frame.preguntarInformacionJugadorDos();
         }
+
+        // Se asignan atributos a la mesa.
         Jugador primerJugador = frame.obtenerJugadorPersona();
         Jugador segundoJugador = frame.obtenerJugadorMaquina();
-
         mesaConcreta.asignarPrimerJugador(primerJugador);
         mesaConcreta.asignarSegundoJugador(segundoJugador);
         if(frame.obtenerNombreJugadorActual().equals(primerJugador.obtenerNombre()))
@@ -117,6 +118,8 @@ public class Controlador {
         Mazo mazo = new MazoEspanyol();
         mazo.iniciarMazo();
         mesaConcreta.asignarMazo(mazo);
+
+        // Se inicia la partida, se reparten cartas.
         mesaConcreta.iniciarPartida();
 
         
