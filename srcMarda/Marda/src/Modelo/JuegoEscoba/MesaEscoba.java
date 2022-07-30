@@ -27,7 +27,7 @@ public class MesaEscoba extends Mesa {
 
 	public Jugador crearJugadorMaquina(){
 		Jugador jugadorMaquina = new JugadorMaquina();
-		jugadorMaquina.asignarNombre("Jugador Maquina");
+		jugadorMaquina.asignarNombre("Maquina");
 		return jugadorMaquina;
 	}
 
