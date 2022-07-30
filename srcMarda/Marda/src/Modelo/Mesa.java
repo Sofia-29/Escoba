@@ -100,11 +100,11 @@ public abstract class Mesa {
         return cartasEnMesa;
     }
 
-    protected abstract Boolean validarRepartirCartas();
+    public abstract Boolean validarRepartirCartas();
 
-    protected abstract Carta movimientoJugadorDescartarCarta(Carta naipe, String nombreJugador);
+    public abstract Carta movimientoJugadorDescartarCarta(Carta naipe, String nombreJugador);
 
-    protected abstract ArrayList<Carta> movimientoJugadorCapturarCarta(Carta naipe, String nombreJugador);
+    public abstract ArrayList<Carta> movimientoJugadorCapturarCarta(Carta naipe, String nombreJugador);
 
     public void repartirCartasAJugador(String nombreJugador,int cantCartas){ 
        obtenerJugadorPorNombre(nombreJugador).asignarCartas(mazo.repartirMazo(cantCartas));
@@ -122,5 +122,5 @@ public abstract class Mesa {
         return jugadorActual;
     }
 
-    protected abstract Jugador declararGanador();
+    public abstract Jugador declararGanador();
 }

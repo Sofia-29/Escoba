@@ -144,6 +144,10 @@ public class Controlador {
 			}
 			TimeUnit.SECONDS.sleep(1);
 		}
+        String[] res = carta.split("[-]", 0);
+        Carta cartaDescartada = new Carta(Integer.parseInt(res[1]), res[0], "");
+        //valida si el descarte con las cartas en mesa hace captura/escoba.
+        mesaConcreta.movimientoJugadorDescartarCarta(cartaDescartada, frame.obtenerNombreJugadorActual());
 		System.out.println(carta);
 
 		frame.cambiarTurnoJugador();

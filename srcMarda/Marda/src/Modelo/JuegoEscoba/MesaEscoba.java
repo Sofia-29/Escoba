@@ -30,7 +30,7 @@ public class MesaEscoba extends Mesa {
     }
 
     @Override
-    protected ArrayList<Carta> movimientoJugadorCapturarCarta(Carta naipe, String nombreJugador){
+    public ArrayList<Carta> movimientoJugadorCapturarCarta(Carta naipe, String nombreJugador){
         Carta cartaDescartada = null;
         cartaDescartada = movimientoJugadorDescartarCarta(naipe, nombreJugador);
         ArrayList<Carta> naipesCapturados = null;
@@ -42,7 +42,7 @@ public class MesaEscoba extends Mesa {
     }
     
     @Override
-    protected Boolean validarRepartirCartas() {
+    public Boolean validarRepartirCartas() {
         if(primerJugador.obtenerNumeroCartasEnJuego()==0 && segundoJugador.obtenerNumeroCartasEnJuego()==0){
             return true;
         }
@@ -53,7 +53,7 @@ public class MesaEscoba extends Mesa {
     }
 
     @Override
-    protected Boolean validarTerminarPartida() {
+    public Boolean validarTerminarPartida() {
         if(mazo.obtenerCantidadCartas() == 0 && primerJugador.obtenerNumeroCartasEnJuego() == 0 && segundoJugador.obtenerNumeroCartasEnJuego() == 0){
             ultimoJugadorCaptura.capturarCartas(cartasEnMesa);
             cartasEnMesa.removeAll(cartasEnMesa);
@@ -63,7 +63,7 @@ public class MesaEscoba extends Mesa {
     }
 
     @Override
-    protected Jugador declararGanador() {
+    public Jugador declararGanador() {
         int puntajePrimerJugador = primerJugador.obtenerPuntaje();
         int puntajeSegundoJugador = segundoJugador.obtenerPuntaje();
         if(puntajePrimerJugador>puntajeSegundoJugador){
@@ -78,7 +78,7 @@ public class MesaEscoba extends Mesa {
     }
 
     @Override
-    protected Carta movimientoJugadorDescartarCarta(Carta naipe, String nombreJugador) {
+    public Carta movimientoJugadorDescartarCarta(Carta naipe, String nombreJugador) {
         ArrayList<Carta> naipes = new ArrayList<Carta>();
         Carta cartaDescartada = naipe;
         if(jugadorActual.obtenerNombre() == obtenerJugadorPersona(nombreJugador).obtenerNombre()){
