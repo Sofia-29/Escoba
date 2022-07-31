@@ -337,6 +337,7 @@ public abstract class MesaVista extends JFrame {
 	}
 
 	/**
+	 * Metodo plantilla
 	 * boton para que se muestren las reglas 
 	 */
 	public void botonReglas(){

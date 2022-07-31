@@ -49,12 +49,20 @@ public abstract class Controlador {
         }
     }
 
+    /**
+     * Metodo plantilla 
+     * pasa el turno 
+     */
     public void pasarTurno(){
         mesaConcreta.pasarTurno();
         mesaVistaConcreta.cambiarTurnoJugador();
 		mesaVistaConcreta.actualizarEtiquetaPuntajeJugador(mesaConcreta.obtenerJugadorActual().obtenerPuntaje());
     }
     
+    /**
+     * Metodo plantilla
+     * inicializa el juego
+     */
     public void iniciarJuego(){
 
         cargarPartida();

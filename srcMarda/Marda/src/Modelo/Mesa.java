@@ -195,7 +195,8 @@ public abstract class Mesa {
     public abstract Boolean validarTerminarPartida();
 
     /**
-     * @return el jugador que gana la partida
+     * Metodo plantilla
+     *  @return el jugador que gana la partida
      */
     public Jugador terminarPartida(){ 
         validar.contabilizarPuntos(primerJugador, segundoJugador);
