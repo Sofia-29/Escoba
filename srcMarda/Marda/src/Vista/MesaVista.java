@@ -59,6 +59,9 @@ public abstract class MesaVista extends JFrame {
 		botonReglas();
 	}
 
+	/**
+	 * Se inicializa el mazo comun para la vista
+	 */
 	public void inicializarMazoComun(){
 		this.panelMazoComun = ayudante.generarPanel();
 		panelMazoComun.setLayout(new BorderLayout(0, 0));
@@ -70,6 +73,9 @@ public abstract class MesaVista extends JFrame {
 		panelMesa.add(panelMazoComun, BorderLayout.EAST);
 	}
 
+	/**
+	 * se inicializan los jugadores para la vista 
+	 */
 	public void inicializarJugadores(){
 		jugadorUno = new JugadorVista();
 		jugadorDos = new JugadorVista();
@@ -83,14 +89,23 @@ public abstract class MesaVista extends JFrame {
 		panelMesa.add(panelCartasJugadorDos, BorderLayout.SOUTH);
 	}
 
+	/**
+	 * @param cartas que posee el jugador uno son actualizadas 
+	 */
 	public void actualizarCartasJugadorUno(ArrayList<Carta> cartas){
 		jugadorUno.actualizarCartasJugador(cartas);
 	}
 
+	/**
+	 * @param cartas que posee el jugador dos son actualizadas
+	 */
 	public void actualizarCartasJugadorDos(ArrayList<Carta> cartas){
 		jugadorDos.actualizarCartasJugador(cartas);
 	}
 
+	/**
+	 * se inicializa el mazo de cartas descartadas para la vista
+	 */
 	public void inicializarMazoCartasDescartadas(){
 		this.panelCartasDescartadas = ayudante.generarPanel();
 		panelCartasDescartadas.setLayout(new BorderLayout(0, 0));
@@ -102,6 +117,9 @@ public abstract class MesaVista extends JFrame {
 		panelMesa.add(panelCartasDescartadas, BorderLayout.WEST);
 	}
 
+	/**
+	 * @param cartasEnMesa que son actualizas en la vista
+	 */
 	public void actualizarCartasEnMesa(ArrayList<Carta> cartasEnMesa){
 		ayudante.limpiarComponenteJLabel(this.cartasEnMesa, this.panelCartasMesa);
 		for(int indice = 0; indice < cartasEnMesa.size(); indice++){
@@ -116,6 +134,9 @@ public abstract class MesaVista extends JFrame {
         }
 	}
 
+	/**
+	 * @param cartas que se van a mostrar en la captura
+	 */
 	public void mostrarCaptura(ArrayList<Carta> cartas){
         JPanel panel = new JPanel();
         ArrayList<JLabel> cartasCapturadas = new ArrayList<JLabel>();
@@ -133,6 +154,9 @@ public abstract class MesaVista extends JFrame {
         JOptionPane.showMessageDialog(null,panel,"Captura",JOptionPane.INFORMATION_MESSAGE);
     }
 
+	/**
+	 * se inicializa el boton de los jugadores para descartar una carta 
+	 */
 	public void iniciarBotonDescartarCartaJugadores(){
 		jugadorUno.iniciarBotonDescartarCarta();
 		jugadorDos.iniciarBotonDescartarCarta();
@@ -142,6 +166,9 @@ public abstract class MesaVista extends JFrame {
 		panelNorte.add(jugadorUno.obtenerBotonDescartarCarta());
 	}
 
+	/**
+	 * se pregunta por el nombre del jugador uno y si este desea ser el primer jugador
+	 */
 	public void preguntarInformacionJugadorUno(){
 		jugadorUno.preguntarNombreJugador();
 		int opcion = jugadorUno.preguntarTurno();
@@ -155,10 +182,16 @@ public abstract class MesaVista extends JFrame {
 		cambiarTurnoJugador();
 	}
 
+	/**
+	 * se pregunta el nombre del jugador dos
+	 */
 	public void preguntarInformacionJugadorDos(){
 		jugadorDos.preguntarNombreJugador();
 	}
 
+	/**
+	 *  se actualiza la vista en la mesa al cambiar el turno de jugador
+	 */
 	public void cambiarTurnoJugador(){
 
 		if(JugadorActual.obtenerNombreJugador().equals(jugadorUno.obtenerNombreJugador())){
@@ -174,11 +207,17 @@ public abstract class MesaVista extends JFrame {
 		ayudante.actualizarPanel(this.panelMesa);
 	}
 
+	/**
+	 *  se deshabilitan las cartas de los jugadores 
+	 */
 	public void deshabilitarCartasJugadores(){
 		jugadorUno.deshabilitarCartasJugador();
 		jugadorDos.deshabilitarCartasJugador();
 	}
 
+	/**
+	 * @return el resultado true/false dependiendo de la respuesta del usuario sobre si desea cargar la partida
+	 */
 	public boolean preguntarCargarPartida(){
 		boolean resultado = false;
 		String mensaje="¿Desea cargar una partida?";
@@ -189,12 +228,18 @@ public abstract class MesaVista extends JFrame {
 		return resultado;
 	}
 
+	/**
+	 * @return la ruta elegiga por el usuario donde guardó la partida
+	 */
 	public String guardarPartida(){
 		JOptionPane.showMessageDialog(null, "Ingrese la ruta y nombre del archivo a guardar");
 		File rutaElegida = elegirArchivo();
 		return rutaElegida.getPath();
 	}
 
+	/**
+	 * @return el archivo que el usuario escogió para guardar la partida
+	 */
 	public File elegirArchivo(){
         JFileChooser selectorDeArchivo = new JFileChooser();
         int respuesta = selectorDeArchivo.showOpenDialog(null);
@@ -208,26 +253,44 @@ public abstract class MesaVista extends JFrame {
         }
     }
 
+	/**
+	 * @return la carta descartada del jugador actual
+	 */
 	public String obtenerCartaDescartada(){
 		return JugadorActual.obtenerCartaDescartada();
 	}
 
+	/**
+	 * @param nombre que se le asigna al jugador uno
+	 */
 	public void asignarInformacionJugadorUno(String nombre){
 		jugadorUno.asignarNombre(nombre);
 	}
 
+	/**
+	 * @param nombre que se le asigna al jugador dos
+	 */
 	public void asignarInformacionJugadorDos(String nombre){
 		jugadorDos.asignarNombre(nombre);
 	}
 
+	/**
+	 * @return el nombre del jugador uno
+	 */
 	public String obtenerNombreJugadorUno(){
 		return jugadorUno.obtenerNombreJugador();
 	}
 
+	/**
+	 * @return el nombre del jugador dos
+	 */
 	public String obtenerNombreJugadorDos(){
 		return jugadorDos.obtenerNombreJugador();
 	}
 
+	/**
+	 * se inicializan las etiquetas del turno y del puntaje
+	 */
 	private void inicializarEtiquetas(){
 		turnoJugador = ayudante.generarEtiqueta("Turno");
 		panelEtiquetas.add(turnoJugador, BorderLayout.NORTH);
@@ -235,12 +298,18 @@ public abstract class MesaVista extends JFrame {
 		panelEtiquetas.add(puntajeJugador);
 	}
 
+	/**
+	 * @param nombreJugador para la etiqueta del turno
+	 */
 	public void actualizarEtiquetaTurnoJugador(String nombreJugador){
 		turnoJugador.setText("Turno de " +nombreJugador);
 		turnoJugador.setVisible(true);
 		ayudante.actualizarPanel(panelMesa);
 	}
 	
+	/**
+	 * @param puntaje para la etiqueta del puntaje
+	 */
 	public void actualizarEtiquetaPuntajeJugador(int puntaje){
 		String texto = "Puntaje: " + Integer.toString(puntaje);
 		puntajeJugador.setText(texto);
@@ -248,6 +317,9 @@ public abstract class MesaVista extends JFrame {
 		ayudante.actualizarPanel(panelMesa);
 	}
 
+	/**
+	 * se inicializa el boton de las reglas del juego
+	 */
 	private void inicializarReglas(){
 		reglasJuego = new JToggleButton();
 		botonGuardar = new JToggleButton();
@@ -264,34 +336,53 @@ public abstract class MesaVista extends JFrame {
 		panelEtiquetas.add(botonGuardar, BorderLayout.LINE_START);
 	}
 
+	/**
+	 * boton para que se muestren las reglas 
+	 */
 	public void botonReglas(){
 		reglasJuego.setVisible(true);
 		ayudante.actualizarPanel(panelMesa);
 		gestorEventos.accionMostrarReglas(this);
 	}
 
+	/**
+	 * boton para guardar la partida 
+	 */
 	public void botonGuardar(){
 		botonGuardar.setVisible(true);
 		ayudante.actualizarPanel(panelMesa);
 		gestorEventos.accionGuardar(this, mesaConcreta, serializador);
 	}
 
+	/**
+	 * @param mesaConcreta que se guarda
+	 * @param serializador que guarda la mesa
+	 */
 	public void asignarMesa(Mesa mesaConcreta,  Serializador serializador){
 		this.mesaConcreta = mesaConcreta;
 		this.serializador = serializador;
 		botonGuardar();
 	}
 
+	/**
+	 * @return el nombre del jugador actual
+	 */
 	public String obtenerNombreJugadorActual(){
 		return JugadorActual.obtenerNombreJugador();
 	}
 
+	/**
+	 * se habilitan las cartas del jugador actual para que se muestren en la vista 
+	 */
 	public void mostrarCartasJugadorActual(){
 		JugadorActual.habilitarCartasJugador();
 	}
 
 	protected abstract String reglasJuego();
 
+	/**
+	 * @param mensaje para mostrar quién ganó el juego 
+	 */
 	public void finalizarJuego(String mensaje){
         JOptionPane.showMessageDialog(null, mensaje);
     }

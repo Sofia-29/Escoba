@@ -19,17 +19,27 @@ public class MesaEscoba extends Mesa {
         super(validador);
     }
 
+    /**
+     * @return el jugador persona que fue creado
+     */
     public Jugador crearJugadorPersona(){
 		Jugador jugadorPersona = new JugadorPersona();
 		return jugadorPersona;
 	}
 
+	/**
+	 * @return el jugador maquina que fue creado
+	 */
 	public Jugador crearJugadorMaquina(){
 		Jugador jugadorMaquina = new JugadorMaquina();
-		jugadorMaquina.asignarNombre("Jugador Maquina");
+		jugadorMaquina.asignarNombre("Maquina");
 		return jugadorMaquina;
 	}
 
+    /**
+     * @param nombre
+     * @return el primer jugador o el segundo dependiendo del nombre 
+     */
     public Jugador obtenerJugadorPersona(String nombre){
         if(primerJugador.obtenerNombre() == nombre){
             return primerJugador;

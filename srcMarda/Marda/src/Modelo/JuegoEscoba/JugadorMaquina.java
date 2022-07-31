@@ -37,6 +37,12 @@ public class JugadorMaquina extends Jugador{
         return resultado;
     }
 
+    /**
+     * @param cartasEnMesa cartas que se encuentran en la mesa
+     * @param suma las sumas que hace en cada llamado
+     * @param indicesVisitados los indices del ArrayList que ha visitado.
+     * @return si hay escoba retorna true, de lo contrario retorna false. 
+     */
     private boolean combinaciones(ArrayList<Carta> cartasEnMesa, int suma, ArrayList<Integer> indicesVisitados){
         boolean encontrado = false;
         if(suma == 15){

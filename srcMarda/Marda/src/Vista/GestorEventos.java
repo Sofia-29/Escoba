@@ -17,6 +17,9 @@ public class GestorEventos {
 
     public GestorEventos(){}
 
+    /**
+     * @param jugador al que se le debe agregar el evento de descartar carta
+     */
     public void eventoDescartarCarta(JugadorVista jugador){
         JButton botonDescartarCarta = jugador.obtenerBotonDescartarCarta();
         ActionListener accion = new ActionListener(){
@@ -30,6 +33,11 @@ public class GestorEventos {
         botonDescartarCarta.addActionListener(accion);
     } 
 
+    /**
+     * @param boton al que se le debe agregar el evento de seleccionar una carta
+     * @param grupoCartasJugador boton de cartas del jugador
+     * @param descartarCarta boton de descartar una carta si se selecciona el boton
+     */
     public void eventoSeleccionarCarta(JToggleButton boton, ButtonGroup grupoCartasJugador, JButton descartarCarta){
         ActionListener accion = new ActionListener(){
             @Override
@@ -43,6 +51,9 @@ public class GestorEventos {
         boton.addActionListener(accion);
     }
 
+    /**
+     * @param jugador elimina botones de un jugador de la clase JugadorVista
+     */
     private void eliminarBoton(JugadorVista jugador){
         ButtonGroup grupoCartasJugador = jugador.obtenerGrupoCartasJugador();
         ButtonModel modeloBoton = grupoCartasJugador.getSelection();
@@ -59,6 +70,9 @@ public class GestorEventos {
         grupoCartasJugador.clearSelection();
     }
 
+    /**
+     * @param mesa se agrega al boton de reglas del juego que se encuentra en la mesa el evento de mostrar reglas
+     */
     public void accionMostrarReglas(MesaVista mesa){
         ActionListener accion = new ActionListener(){
                 @Override
@@ -70,6 +84,11 @@ public class GestorEventos {
         mesa.reglasJuego.addActionListener(accion);
     }
 
+    /**
+     * @param mesa a la que se le agregara el evento de guardar
+     * @param mesaConcreta mesa concreta para utilizar el serializador
+     * @param serializador serializador para guardar una partida
+     */
     public void accionGuardar(MesaVista mesa, Mesa mesaConcreta, Serializador serializador){
         ActionListener accion = new ActionListener(){
             @Override
@@ -82,6 +101,11 @@ public class GestorEventos {
         mesa.botonGuardar.addActionListener(accion);
     }
 
+    /**
+     * @param cs serializar abstracto 
+     * @param ruta ruta del archivo a guardar
+     * @param mesaConcreta la mesa concreta que debe ser serializada
+     */
     public static void directorSerializador(Serializador cs, String ruta, Mesa mesaConcreta){
         try {
             MesaEscoba mesaEscoba = (MesaEscoba)mesaConcreta;

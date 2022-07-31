@@ -32,18 +32,30 @@ public class JugadorVista {
         cartaSeleccionada = "-1";
     }
 
+    /**
+     * @param panel asigna el panel del jugador
+     */
     public void asignarPanel(JPanel panel){
         this.panel = panel;
     }
 
+    /**
+     * @param nombre del jugador
+     */
     public void asignarNombre(String nombre){
         this.nombre = nombre;
     }
 
+    /**
+     * @param carta descartada
+     */
     public void asignarCartaDescartada(String carta){
         this.cartaSeleccionada = carta;
     }
 
+    /**
+     * @return la carta descartada
+     */
     public String obtenerCartaDescartada(){
         String carta = this.cartaSeleccionada;
         if(!carta.equals("-1")){
@@ -52,47 +64,77 @@ public class JugadorVista {
         return carta;
     }
 
+    /**
+     * @return el nombre del jugador
+     */
     public String obtenerNombreJugador(){
         return this.nombre;
     }
 
+    /**
+     * @return el panel del jugador
+     */
     public JPanel obtenerPanel(){
         return this.panel;
     }
 
+    /**
+     * @return las cartas del jugador
+     */
     public ArrayList<Carta> obtenerCartasJugador(){
         return this.cartasJugador;
     }
 
+    /**
+     * @return el ArrayList de botones de las cartas del jugador
+     */
     public ArrayList<JToggleButton> obtenerBotonesCartasJugador(){
         return this.componenteCartasJugador;
     }
 
+    /**
+     * @return los grupos de cartas del jugador 
+     */
     public ButtonGroup obtenerGrupoCartasJugador(){
         return this.grupoCartasJugador;
     }
 
+    /**
+     * @return el boton de descartar carta
+     */
     public JButton obtenerBotonDescartarCarta(){
         return this.botonDescartarCarta;
     }
 
+    /**
+     * pregunta el nombre del jugador 
+     */
     public void preguntarNombreJugador(){
         String mensaje = "Ingrese el nombre del jugador: ";
         this.asignarNombre(JOptionPane.showInputDialog(mensaje,""));
     }
 
+    /**
+     * @return pregunta el turno del jugador
+     */
     public int preguntarTurno(){
         String mensaje="¿Desea ser el primer jugador?";
         int respuesta = JOptionPane.showConfirmDialog(null, mensaje, "Escoger turno", JOptionPane.YES_NO_OPTION);
         return respuesta;
     }
 
+    /**
+     * Inicializa el boton de descartar carta
+     */
     public void iniciarBotonDescartarCarta(){
         botonDescartarCarta.setSize(100,100);
         botonDescartarCarta.setEnabled(false);
         gestorEventos.eventoDescartarCarta(this);
     }
 
+    /**
+     * @param cartas actualiza las cartas del jugador
+     */
     public void actualizarCartasJugador(ArrayList<Carta> cartas){
         this.cartasJugador = cartas;
         ayudante.limpiarComponenteBotones(componenteCartasJugador, grupoCartasJugador, panel);
@@ -113,6 +155,9 @@ public class JugadorVista {
 
 
 
+    /**
+     * deshabilita las cartas del jugador
+     */
     public void deshabilitarCartasJugador(){
         for(int indice = 0; indice < this.componenteCartasJugador.size(); indice++){
             String ruta = "Imagenes/" + "Carta_Reverso/" + "carta_reverso.png";
@@ -124,6 +169,9 @@ public class JugadorVista {
         }
     }
 
+    /**
+     * habilita las cartas del jugador
+     */
     public void habilitarCartasJugador(){
         for(int indice = 0; indice < this.componenteCartasJugador.size(); indice++){
             String palo = this.cartasJugador.get(indice).obtenerPalo();
@@ -137,6 +185,10 @@ public class JugadorVista {
         }
     }
 
+    /**
+     * @param cartas que el jugador capturo
+     * @param escoba si el usuario hizo escoba o no 
+     */
     public void mostrarCaptura(ArrayList<Carta> cartas, boolean escoba){
         JPanel panel = new JPanel();
 		ArrayList<JLabel> cartasCapturadas = new ArrayList<JLabel>();
