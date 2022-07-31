@@ -397,4 +397,13 @@ public abstract class MesaVista extends JFrame {
 		}
 		JugadorActual.habilitarCartasJugador();
     }
+	
+	/**
+	 * se actualiza el panel de las etiquetas
+	 */
+	public void refrescarPanelEtiquetas(){
+		ayudante.actualizarPanel(panelEtiquetas);
+	}
+
+
 }

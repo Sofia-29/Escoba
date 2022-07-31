@@ -63,6 +63,7 @@ public class ControladorEscoba extends Controlador {
             mesaVistaConcreta.actualizarCartasJugadorDos(mesa.obtenerSegundoJugador().obtenerCartas());
             mesaVistaConcreta.deshabilitarCartasJugadores();
             mesaVistaConcreta.mostrarCartasJugadorActual();
+            mesaVistaConcreta.refrescarPanelEtiquetas();
             System.out.println(mesa.obtenerMazo().obtenerCartasActuales());
         }
 

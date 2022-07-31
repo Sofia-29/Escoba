@@ -33,6 +33,9 @@ public abstract class Controlador {
         return mesaVistaConcreta;
     }
 
+    /**
+     * Carga una partida previamente guardada o inicializa una partida
+     */
     public void cargarPartida(){
         boolean cargarPartida = mesaVistaConcreta.preguntarCargarPartida();
         if(cargarPartida){

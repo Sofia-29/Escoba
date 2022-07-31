@@ -124,6 +124,7 @@ public abstract class Jugador {
     protected abstract Carta elegirCarta(ArrayList<Carta> carta);
 
     /**
+     * Metodo plantilla
      * @param carta carta descartada
      * @return retorna la carta que descarto
      */
