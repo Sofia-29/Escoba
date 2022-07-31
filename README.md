@@ -18,8 +18,8 @@ https://code.visualstudio.com/docs/languages/java#_install-visual-studio-code-fo
 
 1) Debe ingresar a la carpeta llamada Marda para ejecutar el proyecto.
 
-2) Puede ejecutar el .jar llamado "MardaEscoba" que se encuentra en la página principal del repositorio. Si desea ejecutarlo 
-directamente desde el código, puede hacerlo desde el .java llamado ControladorEscoba. 
+2) Puede ejecutar el .jar llamado "Marda.jar" que se encuentra en la carpeta Marda. Abriendo el cmd desde la carpte Marda y 
+ejecutando "java -jar Marda.jar". Si desea ejecutarlo directamente desde el código, puede hacerlo desde el .java llamado ControladorEscoba. 
 
 3) La justificación y diseño del MARDA se encuentra en la carpeta de la página principal del repositorio llamada "Diseño".
 
