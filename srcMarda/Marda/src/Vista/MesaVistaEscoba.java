@@ -43,6 +43,9 @@ public class MesaVistaEscoba extends MesaVista {
     return juegoReglas;
     }
 
+    /**
+     * @param cartas que formaron la escoba y que se van a mostrar en pantalla
+     */
     public void mostrarEscoba(ArrayList<Carta> cartas){
         JPanel panel = new JPanel();
         ArrayList<JLabel> cartasCapturadas = new ArrayList<JLabel>();
