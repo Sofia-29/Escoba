@@ -67,7 +67,7 @@ public class ControladorEscoba extends Controlador {
             System.out.println(mesa.obtenerMazo().obtenerCartasActuales());
         }
 
-        if(mesa.obtenerJugadorActual().obtenerNombre() != "Maquina"){
+        if(!mesa.obtenerJugadorActual().obtenerNombre().equals("Maquina")){
             String cartaSeleccionada = "-1";
             while(true){
                 cartaSeleccionada = mesaVistaConcreta.obtenerCartaDescartada();
