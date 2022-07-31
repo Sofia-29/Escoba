@@ -48,10 +48,10 @@ public class ValidadorEscoba extends Validador{
     }
 
     @Override
-    public void validarJugada(ArrayList<Carta> cartas, Jugador jugador){
+    public ArrayList<Carta> validarJugada(ArrayList<Carta> cartas, Jugador jugador){
         Carta cartaDescartada = cartas.get(cartas.size()-1);
         cartas.remove(cartaDescartada);
-        validarCaptura(jugador, cartaDescartada, cartas);
+        return validarCaptura(jugador, cartaDescartada, cartas);
     }
 
     /**
