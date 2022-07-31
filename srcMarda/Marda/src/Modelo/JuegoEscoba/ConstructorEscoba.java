@@ -41,24 +41,25 @@ public class ConstructorEscoba extends Constructor {
     @Override
     public void construirMazo(String mazo) {
         Mazo mazoEspanyol = gson.fromJson(mazo, MazoEspanyol.class);
-        resultado.asignarCartasEnMesa(mazoEspanyol.obtenerMazo());
+        resultado.asignarMazo(mazoEspanyol);
     }
 
     @Override
     public void construirjugadorActual(String jugadorActual) {
-        Jugador jugador1 = resultado.obtenerPrimerJugador();
-        Jugador jugador2 = resultado.obtenerSegundoJugador();
-
-        if(jugador1.obtenerNombre().equals(jugadorActual)){
-            resultado.asignarJugadorActual(jugador1);
+        if(jugador1EsNombre(jugadorActual)){
+            resultado.asignarJugadorActual(resultado.obtenerPrimerJugador());
         }else{
-            resultado.asignarJugadorActual(jugador2);
+            resultado.asignarJugadorActual(resultado.obtenerSegundoJugador());
         }
     }
 
     @Override
-    public void construirUltimaCapura(String captura) {
-        System.out.println("--------------------------------------------------- Todo para jeremy -------------------------");
+    public void construirUltimaCaptura(String captura) {
+        if(jugador1EsNombre(captura)){
+            resultado.asignarJugadorUltimaCaptura(resultado.obtenerPrimerJugador());
+        }else{
+            resultado.asignarJugadorUltimaCaptura(resultado.obtenerSegundoJugador());
+        }
     }
 
     @Override
@@ -86,5 +87,21 @@ public class ConstructorEscoba extends Constructor {
             this.mesaSerial = this.mesaSerial.replace(objeto, "");
         }
         return objeto;
+    }
+
+    private boolean jugador1EsNombre(String nombre){
+        boolean esIgual = false;
+        Jugador jugador1 = resultado.obtenerPrimerJugador();
+
+        if(jugador1.obtenerNombre().equals(nombre)){
+            esIgual = true;
+        }
+        return esIgual;
+    }
+
+    @Override
+    public void construirCartasEnMesa(String cartasEnMesa) {
+        Mazo cartas = gson.fromJson(cartasEnMesa, MazoEspanyol.class);
+        resultado.asignarCartasEnMesa(cartas.obtenerGrupoDeCartas());
     }
 }

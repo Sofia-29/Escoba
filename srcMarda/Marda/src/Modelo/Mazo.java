@@ -33,7 +33,7 @@ public abstract class Mazo {
         this.grupoDeCartas = mazo;
     }
 
-    public ArrayList<Carta> obtenerMazo(){
+    public ArrayList<Carta> obtenerGrupoDeCartas(){
         return grupoDeCartas;
     }
 

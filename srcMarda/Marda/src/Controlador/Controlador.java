@@ -4,6 +4,7 @@ import Modelo.Jugador;
 import Modelo.Constructor;
 import Modelo.Mesa;
 import Modelo.Serializador;
+import Modelo.JuegoEscoba.MesaEscoba;
 import Vista.MesaVista;
 
 public abstract class Controlador {
@@ -20,6 +21,7 @@ public abstract class Controlador {
         this.serializador = serializador;
     }
 
+    public abstract void inicializarMesaCargada();
     public abstract void inicializarMesa();
     public abstract void realizarTurnoJugador();
 
@@ -34,9 +36,13 @@ public abstract class Controlador {
     public void cargarPartida(){
         boolean cargarPartida = mesaVistaConcreta.preguntarCargarPartida();
         if(cargarPartida){
-            directorConstructor(constructorConcreto, mesaConcreta, mesaVistaConcreta.elegirArchivo());
+            MesaEscoba mesa = (MesaEscoba)mesaConcreta;
+            directorConstructor(constructorConcreto, mesa, mesaVistaConcreta.elegirArchivo());
+            mesaConcreta = mesa;
+            inicializarMesaCargada();
         }else{
             inicializarMesa();
+            mesaConcreta.iniciarPartida();
         }
     }
 
@@ -47,8 +53,8 @@ public abstract class Controlador {
     }
     
     public void iniciarJuego(){
+
         cargarPartida();
-        mesaConcreta.iniciarPartida();
         mesaVistaConcreta.asignarMesa(mesaConcreta, serializador);
         mesaVistaConcreta.actualizarCartasEnMesa(mesaConcreta.obtenerCartasEnMesa());
         mesaVistaConcreta.actualizarCartasJugadorUno(mesaConcreta.obtenerPrimerJugador().obtenerCartas());
@@ -72,10 +78,10 @@ public abstract class Controlador {
         mesaVistaConcreta.setVisible(false);
     }
 
-      /*
+    /*
      * Director constructor para objetos del tipo Mesa
      */
-    public static void directorConstructor(Constructor constructorMesa, Mesa mesaConcretaVacia, File archivo){
+    public static void directorConstructor(Constructor constructorMesa, MesaEscoba mesaConcretaVacia, File archivo){
         constructorMesa.iniciarMesaConcreta(mesaConcretaVacia);
 
         // Construir partes sobre el esqueleto de mesa 
@@ -90,6 +96,10 @@ public abstract class Controlador {
                 case "Mazo":
                     constructorMesa.construirMazo(Valor);
                     break;
+                
+                case "CartasEnMesa":
+                    constructorMesa.construirCartasEnMesa(Valor);
+                    break;
 
                 case "Jugador":
                     constructorMesa.construirJugador(Valor, posicionJugador);
@@ -98,6 +108,9 @@ public abstract class Controlador {
                 
                 case "JugadorActual":
                     constructorMesa.construirjugadorActual(Valor);
+                    break;
+                case "UltimaCaptura":
+                    constructorMesa.construirUltimaCaptura(Valor);
                     break;
             
                 default:

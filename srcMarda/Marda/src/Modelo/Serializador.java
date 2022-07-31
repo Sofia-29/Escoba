@@ -5,9 +5,11 @@ public abstract class Serializador {
     public Serializador(){
     }
 
-    public abstract void serializarJugador(Jugador jugador);
     public abstract void serializarMazo(Mazo mazo);
+    public abstract void serializarCartasEnMesa(Mazo mazo);
+    public abstract void serializarJugador(Jugador jugador);
     public abstract void serializarjugadorActual(String jugadorActual);
+    public abstract void serializarjugadorUltimaCaptura(String jugadorActual);
 
     public abstract void inicioObjeto(String nombre);
     public abstract void finObjeto();

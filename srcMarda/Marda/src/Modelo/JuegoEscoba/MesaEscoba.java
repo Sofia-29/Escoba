@@ -6,7 +6,6 @@ import Modelo.Mazo;
 import Modelo.Mesa;
 import Modelo.Validador;
 
-
 public class MesaEscoba extends Mesa {
 
     private Jugador ultimoJugadorCaptura;
@@ -102,5 +101,9 @@ public class MesaEscoba extends Mesa {
         repartirCartasAMesa(4);
         repartirCartasAJugador(primerJugador.obtenerNombre(),3);
         repartirCartasAJugador(segundoJugador.obtenerNombre(),3);
+    }
+
+    public void asignarJugadorUltimaCaptura(Jugador jugador){
+        ultimoJugadorCaptura = jugador;
     }
 }

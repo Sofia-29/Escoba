@@ -295,4 +295,15 @@ public abstract class MesaVista extends JFrame {
 	public void finalizarJuego(String mensaje){
         JOptionPane.showMessageDialog(null, mensaje);
     }
+
+	public void asignarJugadorActual(String nombre){
+		if(nombre.equals(jugadorUno.obtenerNombreJugador())){
+			JugadorActual = jugadorUno;
+			jugadorDos.deshabilitarCartasJugador();
+		}else{
+			JugadorActual = jugadorDos;
+			jugadorUno.deshabilitarCartasJugador();
+		}
+		JugadorActual.habilitarCartasJugador();
+    }
 }

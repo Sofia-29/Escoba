@@ -109,6 +109,26 @@ public class ControladorEscoba extends Controlador {
         }
     }
 
+    @Override
+    public void inicializarMesaCargada() {
+        MesaVista mesaVistaConcreta = obtenerMesaVistaConcreta();
+        MesaEscoba mesa = (MesaEscoba)obtenerMesaConcreta();
+        Jugador primerJugador = mesa.obtenerPrimerJugador();
+        Jugador segundoJugador = mesa.obtenerSegundoJugador();
+        mesaVistaConcreta.inicializarJugadores();
+        mesaVistaConcreta.asignarInformacionJugadorDos(segundoJugador.obtenerNombre());
+        mesaVistaConcreta.asignarInformacionJugadorUno(primerJugador.obtenerNombre());
+        mesaVistaConcreta.inicializarMazoCartasDescartadas();
+        mesaVistaConcreta.inicializarMazoComun();
+        mesaVistaConcreta.iniciarBotonDescartarCartaJugadores();
+        mesaVistaConcreta.actualizarCartasEnMesa(mesa.obtenerCartasEnMesa());
+        mesaVistaConcreta.actualizarCartasJugadorDos(segundoJugador.obtenerCartas());
+        mesaVistaConcreta.actualizarCartasJugadorUno(primerJugador.obtenerCartas());
+        mesaVistaConcreta.asignarJugadorActual(mesa.obtenerJugadorActual().obtenerNombre());
+        mesaVistaConcreta.actualizarEtiquetaPuntajeJugador(mesa.obtenerJugadorActual().obtenerPuntaje());
+
+    }
+
     public static void main(String[] args){
         Validador validador = new ValidadorEscoba();
         Mesa mesa = new MesaEscoba(validador);

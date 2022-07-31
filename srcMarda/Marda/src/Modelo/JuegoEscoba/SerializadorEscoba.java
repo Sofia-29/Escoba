@@ -39,14 +39,7 @@ public class SerializadorEscoba extends Serializador{
         resultadoSerial += jugadorActual;
         finObjeto();
     }
-
-    // @Override
-    // public void serializarUltimaCaptura(String captura) {
-    //     inicioObjeto("UltimaCapura");
-    //     resultadoSerial += captura;
-    //     finObjeto();
-    // }
-
+    
     @Override
     public void inicioObjeto(String nombre) {
         resultadoSerial += nombre+"=";
@@ -68,5 +61,20 @@ public class SerializadorEscoba extends Serializador{
             //TODO: handle exception
         }
         return resultadoSerial;
+    }
+
+    @Override
+    public void serializarCartasEnMesa(Mazo cartasEnMesa) {
+        inicioObjeto("CartasEnMesa");
+        String result =gson.toJson(cartasEnMesa);
+        resultadoSerial += result;
+        finObjeto();
+    }
+
+    @Override
+    public void serializarjugadorUltimaCaptura(String jugadorUltimaCaptura) {
+        inicioObjeto("UltimaCaptura");
+        resultadoSerial += jugadorUltimaCaptura;
+        finObjeto();   
     }
 }

@@ -5,6 +5,7 @@ import javax.swing.JButton;
 import javax.swing.JToggleButton;
 import Modelo.Mazo;
 import Modelo.Mesa;
+import Modelo.JuegoEscoba.MesaEscoba;
 import Modelo.Serializador;
 import Modelo.JuegoEscoba.MazoEspanyol;
 import javax.swing.JOptionPane;
@@ -83,18 +84,30 @@ public class GestorEventos {
 
     public static void directorSerializador(Serializador cs, String ruta, Mesa mesaConcreta){
         try {
+            MesaEscoba mesaEscoba = (MesaEscoba)mesaConcreta;
+            
+            Mazo mazo = new MazoEspanyol();
+            mazo.asignarMazo(mesaEscoba.obtenerMazo().obtenerGrupoDeCartas());
+
             Mazo cartasEnMesa = new MazoEspanyol();
-            cartasEnMesa.asignarMazo(mesaConcreta.retornarCartasEnMesa());
+            cartasEnMesa.asignarMazo(mesaEscoba.retornarCartasEnMesa());
 
             // Cartas en mesa
-            cs.serializarMazo(cartasEnMesa);
+            cs.serializarCartasEnMesa(cartasEnMesa);
+
+            // Cartas mazo
+            cs.serializarMazo(mazo);
 
             // Jugadores
-            cs.serializarJugador(mesaConcreta.obtenerPrimerJugador());
-            cs.serializarJugador(mesaConcreta.obtenerSegundoJugador());
+            cs.serializarJugador(mesaEscoba.obtenerPrimerJugador());
+            cs.serializarJugador(mesaEscoba.obtenerSegundoJugador());
 
             // Jugador Actual
-            cs.serializarjugadorActual(mesaConcreta.obtenerJugadorActual().obtenerNombre());
+            cs.serializarjugadorActual(mesaEscoba.obtenerJugadorActual().obtenerNombre());
+            cs.obtSerializacion(ruta);
+
+            // JugadorUltimaCaptura
+            cs.serializarjugadorUltimaCaptura(mesaEscoba.obtenerUltimoJugadorCaptura().obtenerNombre());
             cs.obtSerializacion(ruta);
         } catch (Exception e) {
             e.printStackTrace();
