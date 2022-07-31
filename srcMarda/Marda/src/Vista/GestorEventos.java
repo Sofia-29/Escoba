@@ -96,6 +96,7 @@ public class GestorEventos {
                 String ruta = mesa.guardarPartida();
                 directorSerializador(serializador, ruta, mesaConcreta);
                 JOptionPane.showMessageDialog(null,"El juego ha sido guardado en "+ruta+" ","Confirmación",JOptionPane.INFORMATION_MESSAGE);
+                System.exit(0);
             }
         };
         mesa.botonGuardar.addActionListener(accion);
