@@ -14,6 +14,15 @@ https://code.visualstudio.com/docs/languages/java#_install-visual-studio-code-fo
 3)  VS Code provee la posibilidad de ejecutar el programa como un botón que dice "Run" sobre el main de la aplicación.
 ![runImg](img/run.png)
 
+## Guía del Marda
+
+1) Debe ingresar a la carpeta llamada Marda para ejecutar el proyecto.
+
+2) Puede ejecutar el .jar llamado "MardaEscoba" que se encuentra en la página principal del repositorio. Si desea ejecutarlo 
+directamente desde el código, puede hacerlo desde el .java llamado ControladorEscoba. 
+
+3) La justificación y diseño del MARDA se encuentra en la carpeta de la página principal del repositorio llamada "Diseño".
+
 
 
 
