@@ -53,7 +53,9 @@ public class MesaEscoba extends Mesa {
         Carta cartaDescartada = null;
         cartaDescartada = movimientoJugadorDescartarCarta(naipe, nombreJugador);
         ArrayList<Carta> naipesCapturados = null;
-        naipesCapturados = validar.validarCaptura(jugadorActual, cartaDescartada, cartasEnMesa);
+        ArrayList<Carta> naipesAEvaluar = this.obtenerCartasEnMesa();
+        naipesAEvaluar.add(cartaDescartada);
+        naipesCapturados = validar.validarJugada(naipesAEvaluar, jugadorActual);
         if(naipesCapturados != null){
             ultimoJugadorCaptura = jugadorActual;
         }
